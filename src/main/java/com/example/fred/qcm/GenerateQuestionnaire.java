@@ -17,7 +17,8 @@ import java.util.ArrayList;
 
 public class GenerateQuestionnaire extends IntentService
 {
-    private static final String ns = null;
+    private int _nbQuestionsTotal;
+    private int[] _questionsID;
 
 
     public final class GenerateQuestionnaireActions
@@ -85,6 +86,8 @@ public class GenerateQuestionnaire extends IntentService
                 questionnaire._questions.add(ParseQuestion(parser));
         }*/
 
+        _questionsID = new int[questionnaire._nbQuestions];
+
         XmlResourceParser parser = getApplicationContext().getResources().getXml(R.xml.questions);
         int eventType = parser.getEventType();
         while (eventType != XmlPullParser.END_DOCUMENT)
@@ -92,6 +95,11 @@ public class GenerateQuestionnaire extends IntentService
             switch (eventType)
             {
                 case XmlPullParser.START_TAG:
+
+                    if (parser.getName().equals("Number"))
+                    {
+                        _nbQuestionsTotal = Integer.valueOf(parser.nextText());
+                    }
 
                     if (parser.getName().equals("Questions"))
                         questionnaire._questions = ParseQuestions(parser);
@@ -143,9 +151,7 @@ public class GenerateQuestionnaire extends IntentService
             }
            eventType = parser.next();
         }
-
-
-
+        return questions;
 
         /*parser.require(XmlPullParser.START_TAG, ns, "Question");
         while (parser.next() != XmlPullParser.END_TAG)
@@ -168,12 +174,10 @@ public class GenerateQuestionnaire extends IntentService
             parser.nextTag();
 
         }*/
-        return questions;
     }
 
     ArrayList<Choice> ParseChoices( XmlPullParser parser) throws XmlPullParserException, IOException
     {
-
         int eventType = parser.next();
         ArrayList<Choice> choices = new ArrayList<Choice>();
         Choice choice = null;
@@ -210,7 +214,7 @@ public class GenerateQuestionnaire extends IntentService
           eventType =  parser.next();
         }
 
-
+        return choices;
         /*parser.require(XmlPullParser.START_TAG, ns, "Choices");
 
         while (parser.next() != XmlPullParser.END_TAG)
@@ -226,8 +230,17 @@ public class GenerateQuestionnaire extends IntentService
 
             parser.nextTag();
         }*/
+    }
 
-        return choices;
+    void GenerateQuestionsID(int nbQuestionsInQuestionnaire)
+    {
+        int slice = _nbQuestionsTotal / nbQuestionsInQuestionnaire;
+        int lastID =0;
+        for (int i =0;i < nbQuestionsInQuestionnaire ; i++)
+        {
+
+
+        }
 
     }
 

@@ -18,29 +18,41 @@ import java.util.ArrayList;
 
 public class QuestionnaireActivity extends AppCompatActivity
 {
-
-    private View.OnClickListener choiceListener;
+    /*Other data*/
+    private int _curQuestion, _nbQuestions;
     private Questionnaire _questionnaire;
+    private View.OnClickListener _choiceListener;
+
+    /*Service related data*/
     private Receiver _receiver;
     private IntentFilter _intentFilter;
+
+
+    /*Interesting View*/
     private ArrayList<TextView> _choices;
     private TextView _question;
+    private TextView _questionCpt;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
-        choiceListener = new View.OnClickListener()
+        _choiceListener = new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Test(String.valueOf(v.getId()));
+                if (v.isClickable())
+                    Test(Integer.toString(v.getId()));
             }
         };
 
+        _curQuestion = 0;
+
         _question = (TextView) findViewById(R.id.TV_Question);
+        _questionCpt = (TextView) findViewById(R.id.TV_curQuestionCpt);
 
         _choices = new ArrayList<TextView>();
 
@@ -48,16 +60,19 @@ public class QuestionnaireActivity extends AppCompatActivity
         _choices.add((TextView) findViewById(R.id.TV_Choice2));
         _choices.add((TextView) findViewById(R.id.TV_Choice3));
         _choices.add((TextView) findViewById(R.id.TV_Choice4));
-        //_choices.add((TextView) findViewById(R.id.TV_Choice5));
+        _choices.add((TextView) findViewById(R.id.TV_Choice5));
 
         for (TextView tv : _choices)
-            tv.setOnClickListener(choiceListener);
+            tv.setOnClickListener(_choiceListener);
 
         _intentFilter = new IntentFilter(GenerateQuestionnaire.GenerateQuestionnaireActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_intentFilter);
 
-        _questionnaire = new Questionnaire();
+        _questionnaire = new Questionnaire(5);
+        _nbQuestions = _questionnaire._nbQuestions;
+
+
         Intent generator = new Intent(this,GenerateQuestionnaire.class);
         generator.putExtra("questionnaire", _questionnaire);
         startService(generator);
@@ -85,8 +100,23 @@ public class QuestionnaireActivity extends AppCompatActivity
 
     void UpdateActivityInterface()
     {
-        _question.setText(_questionnaire._questions.get(0)._description);
-        _choices.get(0).setText(_questionnaire._questions.get(0)._possibleChoices.get(0)._description);
+        if (_curQuestion != _nbQuestions)
+        {
+            for (TextView tv : _choices)
+                tv.setClickable(false);
+
+            Question quest = _questionnaire._questions.get(_curQuestion);
+            _question.setText(_questionnaire._questions.get(_curQuestion)._description);
+            _questionCpt.setText(String.valueOf(_curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
+
+            int nbChoices = quest._possibleChoices.size();
+            for (int i = 0; i < nbChoices; i++)
+            {
+                _choices.get(i).setClickable(true);
+                _choices.get(i).setText(quest._possibleChoices.get(i)._description);
+            }
+            _curQuestion++;
+        }
     }
 
     @Override

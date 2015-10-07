@@ -9,9 +9,17 @@ import java.util.ArrayList;
 public class Questionnaire implements Serializable
 {
     public ArrayList<Question> _questions;
+    public int _nbQuestions;
 
-    public Questionnaire()
+    private Questionnaire()
     {
         _questions = new ArrayList<Question>();
+        _nbQuestions = 0;
+    }
+
+    public Questionnaire(int nbQuestions)
+    {
+        _questions = new ArrayList<Question>();
+        _nbQuestions = nbQuestions;
     }
 }
