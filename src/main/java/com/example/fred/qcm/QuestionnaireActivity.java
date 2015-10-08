@@ -69,7 +69,7 @@ public class QuestionnaireActivity extends AppCompatActivity
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_intentFilter);
 
-        _questionnaire = new Questionnaire(5);
+        _questionnaire = new Questionnaire(1);
         _nbQuestions = _questionnaire._nbQuestions;
 
 

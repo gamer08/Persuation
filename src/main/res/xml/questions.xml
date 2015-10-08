@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Questions xmlns:android="http://schemas.android.com/apk/res/android">
+<Data>
     <Number>1</Number>
-    <Question>
-        <Description>Quel est selon vous la meilleure définition d'un geek ?</Description>
-        <Choices>
-            <Choice>
-                <Description>Une personne qui aime les jeux vidéo, l'informatique... </Description>
-                <Weight>2</Weight>
-            </Choice>
-            <Choice>
-                <Description>Une perosnne normale qui à des passions reliées à la technologie</Description>
-                <Weight>5</Weight>
-            </Choice>
-            <Choice>
-                <Description>Quelqu'un d'étrange qui n'a pas quitté le stade de l'enfance </Description>
-                <Weight>0</Weight>
-            </Choice>
-            <Choice>
-                <Description>Un peu toutes ces réponses</Description>
-                <Weight>1</Weight>
-            </Choice>
-        </Choices>
-    </Question>
-</Questions>
+    <Questions>
+        <Question>
+            <ID>0</ID>
+            <Description>Quel est selon vous la meilleure définition d'un geek ?</Description>
+            <Choices>
+                <Choice>
+                    <Description>Une personne qui aime les jeux vidéo, l'informatique... </Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Une perosnne normale qui à des passions reliées à la technologie</Description>
+                    <Weight>5</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Quelqu'un d'étrange qui n'a pas quitté le stade de l'enfance </Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Un peu toutes ces réponses</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+    </Questions>
+</Data>
