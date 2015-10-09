@@ -2,7 +2,6 @@ package com.example.fred.qcm;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 public class QuestionnaireActivity extends AppCompatActivity
 {
     /*Other data*/
-    private int _curQuestion, _nbQuestions;
+    private int _curQuestion, _nbQuestions, _score;
     private Questionnaire _questionnaire;
     private View.OnClickListener _choiceListener;
 
@@ -45,12 +44,19 @@ public class QuestionnaireActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 if (v.isClickable())
-                    Test(Integer.toString(v.getId()));
+                {
+                    int index = _choices.indexOf((TextView)v);
+                    if (index >=0)
+                    {
+                        _score += _questionnaire._questions.get(_curQuestion)._possibleChoices.get(index)._weight;
+                        Test(Integer.toString(_score));
+                    }
+                }
             }
         };
 
-        _curQuestion = 0;
-
+        _curQuestion = -1;
+        _score = 0 ;
         _question = (TextView) findViewById(R.id.TV_Question);
         _questionCpt = (TextView) findViewById(R.id.TV_curQuestionCpt);
 
@@ -89,7 +95,7 @@ public class QuestionnaireActivity extends AppCompatActivity
         {
 
             _questionnaire = (Questionnaire)intent.getSerializableExtra("questionnaire");
-            UpdateActivityInterface();
+            LoadNextQuestion();
         }
     }
 
@@ -98,8 +104,9 @@ public class QuestionnaireActivity extends AppCompatActivity
         Toast.makeText(getApplicationContext(), btn, Toast.LENGTH_LONG).show();
     }
 
-    void UpdateActivityInterface()
+    void LoadNextQuestion()
     {
+        _curQuestion++;
         if (_curQuestion != _nbQuestions)
         {
             for (TextView tv : _choices)
@@ -115,7 +122,12 @@ public class QuestionnaireActivity extends AppCompatActivity
                 _choices.get(i).setClickable(true);
                 _choices.get(i).setText(quest._possibleChoices.get(i)._description);
             }
-            _curQuestion++;
+        }
+        else
+        {
+            //charger la prochaine activité
+
+
         }
     }
 

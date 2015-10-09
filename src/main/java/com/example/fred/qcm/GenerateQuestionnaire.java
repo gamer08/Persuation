@@ -20,7 +20,7 @@ public class GenerateQuestionnaire extends IntentService
 {
     private int _nbQuestionsTotal;
     private int _nbQuestionsQuestionnaire;
-    private int _curQuestionID;
+    private int _nextQuestionID;
     private int _curQuestion;
     private static final int QUESTIONS_ALL_LOADED =-1;
     private int[] _questionsID;
@@ -68,7 +68,7 @@ public class GenerateQuestionnaire extends IntentService
 
         XmlResourceParser parser = getApplicationContext().getResources().getXml(R.xml.questions);
         int eventType = parser.getEventType();
-        while (_curQuestionID != QUESTIONS_ALL_LOADED && eventType != XmlPullParser.END_DOCUMENT)
+        while (_nextQuestionID != QUESTIONS_ALL_LOADED)
         {
             switch (eventType)
             {
@@ -98,7 +98,7 @@ public class GenerateQuestionnaire extends IntentService
         ArrayList<Question> questions = new ArrayList<Question>();
         Question question = null;
 
-        while (_curQuestionID != QUESTIONS_ALL_LOADED && !parser.getName().equals("Questions"))
+        while (_nextQuestionID != QUESTIONS_ALL_LOADED)
         {
             switch (eventType)
             {
@@ -110,7 +110,7 @@ public class GenerateQuestionnaire extends IntentService
                     {
                         if (parser.getName().equals("ID"))
                         {
-                            if(_curQuestionID != Integer.valueOf(parser.nextText()))
+                            if(_nextQuestionID != Integer.valueOf(parser.nextText()))
                             question = null;
                         }
                         else if (parser.getName().equals("Description"))
@@ -126,7 +126,7 @@ public class GenerateQuestionnaire extends IntentService
                     if ((parser.getName().equals("Question")) && question!= null)
                     {
                         questions.add(question);
-                        _curQuestionID = GetNextQuestionID();
+                        _nextQuestionID = GetNextQuestionID();
                     }
 
                     break;
@@ -196,7 +196,7 @@ public class GenerateQuestionnaire extends IntentService
                 slice =0;
         }
 
-        _curQuestionID = _questionsID[0];
+        _nextQuestionID = _questionsID[0];
     }
 
     int GetNextQuestionID()

@@ -21,6 +21,11 @@
             android:name=".GenerateQuestionnaire"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".ProfilActivity"
+            android:label="@string/title_activity_profil" >
+        </activity>
     </application>
 
 </manifest>
