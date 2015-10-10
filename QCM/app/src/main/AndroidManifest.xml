@@ -10,11 +10,6 @@
         <activity
             android:name=".QuestionnaireActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
@@ -26,6 +21,25 @@
             android:name=".ProfilActivity"
             android:label="@string/title_activity_profil" >
         </activity>
+
+        <service
+            android:name=".GenerateProfil"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name=".StartActivity"
+            android:label="@string/title_activity_start" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".LoadProfil"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>

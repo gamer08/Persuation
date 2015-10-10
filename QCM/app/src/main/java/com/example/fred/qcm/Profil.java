@@ -1,17 +1,33 @@
 package com.example.fred.qcm;
 
+import java.io.Serializable;
+
 /**
- * Created by Fred on 2015-10-09.
+ * Classe de test pour le profil.
  */
-public class Profil
+public class Profil implements Serializable
 {
+    public enum Type
+    {
+        ANTIGEEK,
+        GEEKPERSECUTOR,
+        NEUTRAL,
+        GEEKFRIENDLY,
+        GEEK
+    }
+
     public String _firstName, _lastName;
-    public int _score;
-    
+    public float _score;
+    public Type _type;
+
+    public static final String PROFIL_FILE_NAME ="Profil.txt";
+
+
     public Profil()
     {
         _firstName = _lastName ="";
-        _score =0;
+        _score = 0.0f;
+        _type = Type.ANTIGEEK;
 
     }
 

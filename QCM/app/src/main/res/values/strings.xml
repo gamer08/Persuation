@@ -17,4 +17,5 @@
     <string name="TV_LastName">Enter last name</string>
     <string name="TVL_Score">Score</string>
     <string name="BTN_Save">Save</string>
+    <string name="title_activity_start">StartActivity</string>
 </resources>

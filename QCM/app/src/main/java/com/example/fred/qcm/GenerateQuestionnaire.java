@@ -2,19 +2,19 @@ package com.example.fred.qcm;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.Context;
 import android.content.res.XmlResourceParser;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Service qui permet de générer un questionnaire à partir d'un fichier XML
+ */
 
 public class GenerateQuestionnaire extends IntentService
 {
@@ -29,7 +29,6 @@ public class GenerateQuestionnaire extends IntentService
     public final class GenerateQuestionnaireActions
     {
         public static final String Broadcast ="Questionnaire_Broadcast";
-
     }
 
     public GenerateQuestionnaire()
@@ -44,7 +43,7 @@ public class GenerateQuestionnaire extends IntentService
 
         try
         {
-            Generate(questionnaire);
+            generate(questionnaire);
             Intent callBackIntent = new Intent(GenerateQuestionnaireActions.Broadcast);
             callBackIntent.putExtra("questionnaire",questionnaire);
 
@@ -60,7 +59,12 @@ public class GenerateQuestionnaire extends IntentService
         }
     }
 
-    void Generate(Questionnaire questionnaire) throws XmlPullParserException, IOException
+    /**
+     * Fonction principale pour la génération du questionnaire
+     * @param questionnaire le questionnaire a construire
+     */
+
+    void generate(Questionnaire questionnaire) throws XmlPullParserException, IOException
     {
         _questionsID = new int[questionnaire._nbQuestions];
         _nbQuestionsQuestionnaire = questionnaire._nbQuestions;
@@ -77,10 +81,10 @@ public class GenerateQuestionnaire extends IntentService
                     if (parser.getName().equals("Number"))
                     {
                         _nbQuestionsTotal = Integer.valueOf(parser.nextText());
-                        GenerateQuestionsID(questionnaire._nbQuestions);
+                        generateQuestionsID(questionnaire._nbQuestions);
                     }
                     else if (parser.getName().equals("Questions"))
-                        questionnaire._questions = ParseQuestions(parser);
+                        questionnaire._questions = parseQuestions(parser);
 
                     break;
 
@@ -91,7 +95,12 @@ public class GenerateQuestionnaire extends IntentService
         }
     }
 
-    ArrayList<Question> ParseQuestions( XmlPullParser parser) throws XmlPullParserException, IOException
+    /**
+     * Fonction qui permet de récupérer toutes les questions pour le questionnaire
+     * @param parser le parser pour extraire les données
+     * @return la liste de questions pour le questionnaire
+     */
+    ArrayList<Question> parseQuestions( XmlPullParser parser) throws XmlPullParserException, IOException
     {
         int eventType = parser.next();
 
@@ -113,10 +122,12 @@ public class GenerateQuestionnaire extends IntentService
                             if(_nextQuestionID != Integer.valueOf(parser.nextText()))
                             question = null;
                         }
+                        else if (parser.getName().equals("BestWeight"))
+                            question._bestWeight = Integer.valueOf(parser.nextText());
                         else if (parser.getName().equals("Description"))
                             question._description = parser.nextText();
                         else if(parser.getName().equals("Choices"))
-                            question._possibleChoices = ParseChoices(parser);
+                            question._possibleChoices = parseChoices(parser);
                     }
 
                     break;
@@ -126,7 +137,7 @@ public class GenerateQuestionnaire extends IntentService
                     if ((parser.getName().equals("Question")) && question!= null)
                     {
                         questions.add(question);
-                        _nextQuestionID = GetNextQuestionID();
+                        _nextQuestionID = getNextQuestionID();
                     }
 
                     break;
@@ -139,7 +150,12 @@ public class GenerateQuestionnaire extends IntentService
         return questions;
     }
 
-    ArrayList<Choice> ParseChoices( XmlPullParser parser) throws XmlPullParserException, IOException
+    /**
+     * Fonction qui permet de récupérer toutes les questions pour le questionnaire
+     * @param parser le parser pour extraire les données
+     * @return la liste de choix pour une question
+     */
+    ArrayList<Choice> parseChoices( XmlPullParser parser) throws XmlPullParserException, IOException
     {
         int eventType = parser.next();
         ArrayList<Choice> choices = new ArrayList<Choice>();
@@ -179,7 +195,11 @@ public class GenerateQuestionnaire extends IntentService
         return choices;
     }
 
-    void GenerateQuestionsID(int nbQuestionsInQuestionnaire)
+    /**
+     * Fonction qui permet de générer les ID des questions qui seront sélectionnées pour le questionnaire
+     * @param nbQuestionsInQuestionnaire le nombre de questions désirées
+     */
+    void generateQuestionsID(int nbQuestionsInQuestionnaire)
     {
         int slice = _nbQuestionsTotal / nbQuestionsInQuestionnaire;
         int lastID =0;
@@ -199,7 +219,11 @@ public class GenerateQuestionnaire extends IntentService
         _nextQuestionID = _questionsID[0];
     }
 
-    int GetNextQuestionID()
+    /**
+     * Fonction qui retourne le prochain ID de question à sélectionner
+     * @return l'iD de la prochaine question
+     */
+    int getNextQuestionID()
     {
         _curQuestion++;
 

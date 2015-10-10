@@ -1,7 +1,7 @@
 package com.example.fred.qcm;
 
 /**
- * Created by Fred on 2015-10-03.
+ * Classe choice qui représente un choix d'une question.
  */
 public class Choice
 {

@@ -1,19 +1,31 @@
 package com.example.fred.qcm;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
+/**
+ * Classe de test pour l'activité de profil
+ *
+ */
 public class ProfilActivity extends AppCompatActivity
 {
 
     private View.OnClickListener _saveListener;
     private Button _saveButton;
-
-    public final String PROFIL_FILE_NAME ="Profil.txt";
+    private EditText _firstName, _lastName;
+    private TextView _score;
+    private Profil _profil;
 
 
     @Override
@@ -27,12 +39,29 @@ public class ProfilActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-              SaveProfil();
+              saveProfil();
             }
         };
 
+        _firstName = (EditText) findViewById(R.id.TV_FirstName);
+        _lastName = (EditText) findViewById(R.id.TV_LastName);
+        _score = (TextView) findViewById(R.id.TV_Score);
+
         _saveButton = (Button) findViewById(R.id.BTN_Save);
         _saveButton.setOnClickListener(_saveListener);
+
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            _profil = (Profil) intent.getSerializableExtra("profil");
+
+            if (_profil != null)
+            {
+                _firstName.setText(_profil._firstName);
+                _lastName.setText(_profil._lastName);
+                _score.setText(String.valueOf(_profil._score));
+            }
+        }
     }
 
     @Override
@@ -59,8 +88,37 @@ public class ProfilActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void SaveProfil()
+    /**
+     * Sauvegarde les information du profil dans le fichier
+     */
+    public void saveProfil()
     {
+        String firstName = "firstName=";
+        firstName = firstName.concat(_firstName.getText().toString()).concat(System.getProperty("line.separator"));
+
+        String lastName = "lastName=";
+        lastName = lastName.concat(_lastName.getText().toString()).concat(System.getProperty("line.separator"));
+
+        String score = "score=";
+        score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
+
+        //File file = new File(getBaseContext().getFilesDir(),PROFIL_FILE_NAME);
+       // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
+        try
+        {
+            FileOutputStream out = openFileOutput(Profil.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+            out.write(firstName.getBytes());
+            out.write(lastName.getBytes());
+            out.write(score.getBytes());
+            out.close();
+        }
+
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
 
     }
 }

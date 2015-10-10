@@ -15,16 +15,20 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+
+/*
+* L'activité de questionnaire qui permet à l'utilisateur de se créer un profil.
+*/
 public class QuestionnaireActivity extends AppCompatActivity
 {
     /*Other data*/
-    private int _curQuestion, _nbQuestions, _score;
+    private int _curQuestion, _nbQuestions, _score, _totalWeightPossible;
     private Questionnaire _questionnaire;
     private View.OnClickListener _choiceListener;
 
     /*Service related data*/
     private Receiver _receiver;
-    private IntentFilter _intentFilter;
+    private IntentFilter _questionnaireIntentFilter, _profilIntentFilter;
 
 
     /*Interesting View*/
@@ -49,14 +53,16 @@ public class QuestionnaireActivity extends AppCompatActivity
                     if (index >=0)
                     {
                         _score += _questionnaire._questions.get(_curQuestion)._possibleChoices.get(index)._weight;
-                        Test(Integer.toString(_score));
+                        loadNextQuestion();
                     }
                 }
             }
         };
 
         _curQuestion = -1;
-        _score = 0 ;
+        _score = _totalWeightPossible = 0 ;
+
+        // Références vers les objets de l'Activité
         _question = (TextView) findViewById(R.id.TV_Question);
         _questionCpt = (TextView) findViewById(R.id.TV_curQuestionCpt);
 
@@ -68,20 +74,27 @@ public class QuestionnaireActivity extends AppCompatActivity
         _choices.add((TextView) findViewById(R.id.TV_Choice4));
         _choices.add((TextView) findViewById(R.id.TV_Choice5));
 
+
+       //Init de l'observeur de clic pour les choix
         for (TextView tv : _choices)
             tv.setOnClickListener(_choiceListener);
 
-        _intentFilter = new IntentFilter(GenerateQuestionnaire.GenerateQuestionnaireActions.Broadcast);
+        // Déclaration des filtres et diffuseurs pour les services
+        _questionnaireIntentFilter = new IntentFilter(GenerateQuestionnaire.GenerateQuestionnaireActions.Broadcast);
+        _profilIntentFilter = new IntentFilter(GenerateProfil.GenerateProfilActions.Broadcast);
+
         _receiver = new Receiver();
-        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_intentFilter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
         _questionnaire = new Questionnaire(1);
         _nbQuestions = _questionnaire._nbQuestions;
 
 
-        Intent generator = new Intent(this,GenerateQuestionnaire.class);
-        generator.putExtra("questionnaire", _questionnaire);
-        startService(generator);
+        // Start du service de génération de questionnaire
+        Intent questionnaireGenerator = new Intent(this,GenerateQuestionnaire.class);
+        questionnaireGenerator.putExtra("questionnaire", _questionnaire);
+        startService(questionnaireGenerator);
     }
 
     private class Receiver extends BroadcastReceiver
@@ -93,18 +106,25 @@ public class QuestionnaireActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent)
         {
-
-            _questionnaire = (Questionnaire)intent.getSerializableExtra("questionnaire");
-            LoadNextQuestion();
+            if (intent.getAction().equals(GenerateQuestionnaire.GenerateQuestionnaireActions.Broadcast))
+            {
+                _questionnaire = (Questionnaire) intent.getSerializableExtra("questionnaire");
+                loadNextQuestion();
+            }
+            else
+            {
+                Profil profil = (Profil)intent.getSerializableExtra("profil");
+                Intent profilActivity = new Intent(getApplicationContext(),ProfilActivity.class);
+                profilActivity.putExtra("profil",profil);
+                startActivity(profilActivity);
+            }
         }
     }
 
-    void Test(String btn)
-    {
-        Toast.makeText(getApplicationContext(), btn, Toast.LENGTH_LONG).show();
-    }
-
-    void LoadNextQuestion()
+  /**
+   * Affiche la prochaine question du questionnaire et charge et génére le profil à la fin grâce au service
+   * */
+    void loadNextQuestion()
     {
         _curQuestion++;
         if (_curQuestion != _nbQuestions)
@@ -113,6 +133,7 @@ public class QuestionnaireActivity extends AppCompatActivity
                 tv.setClickable(false);
 
             Question quest = _questionnaire._questions.get(_curQuestion);
+            _totalWeightPossible += quest._bestWeight;
             _question.setText(_questionnaire._questions.get(_curQuestion)._description);
             _questionCpt.setText(String.valueOf(_curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
 
@@ -125,9 +146,10 @@ public class QuestionnaireActivity extends AppCompatActivity
         }
         else
         {
-            //charger la prochaine activité
-
-
+            Intent profilGenerator = new Intent(this,GenerateProfil.class);
+            float scoreQuestionnaire = _score / _totalWeightPossible;
+            profilGenerator.putExtra("scoreQuestionnaire", scoreQuestionnaire);
+            startService(profilGenerator);
         }
     }
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Created by Fred on 2015-10-04.
+ * Classe représentant le questionnaire
  */
 public class Questionnaire implements Serializable
 {

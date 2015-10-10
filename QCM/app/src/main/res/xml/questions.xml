@@ -4,6 +4,7 @@
     <Questions>
         <Question>
             <ID>0</ID>
+            <BestWeight>5</BestWeight>
             <Description>Quel est selon vous la meilleure définition d'un geek ?</Description>
             <Choices>
                 <Choice>
@@ -26,6 +27,7 @@
         </Question>
         <Question>
             <ID>1</ID>
+            <BestWeight>5</BestWeight>
             <Description>Que veux dire cette phrase ? 1 4m g33k</Description>
             <Choices>
                 <Choice>
@@ -44,6 +46,7 @@
         </Question>
         <Question>
             <ID>2</ID>
+            <BestWeight>5</BestWeight>
             <Description>Aimez-vous un de ces domaines : informatique, jeux vidéo, manga, science-fiction</Description>
             <Choices>
                 <Choice>
