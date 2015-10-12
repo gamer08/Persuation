@@ -9,6 +9,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 /**
@@ -18,7 +19,7 @@ public class StartActivity extends AppCompatActivity
 {
 
     private Receiver _receiver;
-    private IntentFilter _profilIntentFilter;
+    private IntentFilter _profileIntentFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,12 +27,14 @@ public class StartActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        _profilIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
-        _receiver = new Receiver();
-        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profilIntentFilter);
+        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
-        Intent profilLoader = new Intent(this,LoadProfileActivity.class);
-        startService(profilLoader);
+        _profileIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
+        _receiver = new Receiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
+
+        Intent profileLoader = new Intent(this,LoadProfileActivity.class);
+        startService(profileLoader);
     }
 
 
