@@ -5,7 +5,7 @@
         <Question>
             <ID>0</ID>
             <BestWeight>5</BestWeight>
-            <Description>Quel est selon vous la meilleure définition d'un geek ?</Description>
+            <Description>Quelle est selon vous la meilleure définition d'un geek ?</Description>
             <Choices>
                 <Choice>
                     <Description>Une personne qui aime les jeux vidéo, l'informatique... </Description>
