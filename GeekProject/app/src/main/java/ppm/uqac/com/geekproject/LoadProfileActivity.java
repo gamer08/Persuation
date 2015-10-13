@@ -3,6 +3,8 @@ package ppm.uqac.com.geekproject;
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,6 +17,8 @@ public class LoadProfileActivity extends IntentService
     private String _firstName;
     private String _lastName;
     private float _score;
+
+    private static final String TAG = "LoadProfile Service";
 
     public final class LoadProfilActions
     {
@@ -30,6 +34,10 @@ public class LoadProfileActivity extends IntentService
     {
         Profile profile = null;
         String score ="";
+
+
+        Log.d(TAG, "Service Started!");
+
 
         try
         {

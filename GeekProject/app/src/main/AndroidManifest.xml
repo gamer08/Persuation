@@ -18,12 +18,25 @@
         </activity>
         <activity
             android:name=".CreationProfileActivity"
-            android:label="@string/title_activity_creation_profile">
+            android:label="@string/title_activity_creation_profile" >
         </activity>
         <activity
             android:name=".ViewProfileActivity"
             android:label="@string/title_activity_view_profile" >
         </activity>
+        <activity
+            android:name=".QuestionaryActivity"
+            android:label="@string/title_activity_creation_profile" >
+        </activity>
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/title_activity_welcome" >
+        </activity>
+
+        <!--Déclaration service -->
+        <service
+            android:name=".LoadProfileActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

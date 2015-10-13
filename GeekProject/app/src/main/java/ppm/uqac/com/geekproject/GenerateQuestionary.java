@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -18,6 +19,10 @@ import java.util.Random;
 
 public class GenerateQuestionary extends IntentService
 {
+
+    private static final String TAG = "Generate questionary";
+
+
     private int _nbQuestionsTotal;
     private int _nbQuestionsQuestionnaire;
     private int _nextQuestionID;
@@ -40,6 +45,7 @@ public class GenerateQuestionary extends IntentService
     protected void onHandleIntent(Intent intent)
     {
         Questionary questionary = (Questionary) intent.getSerializableExtra("questionary");
+        Log.d(TAG, "questionary generated !");
 
         try
         {

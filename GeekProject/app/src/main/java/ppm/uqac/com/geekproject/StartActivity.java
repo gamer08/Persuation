@@ -48,6 +48,7 @@ public class StartActivity extends AppCompatActivity
 
         Intent profileLoader = new Intent(this,LoadProfileActivity.class);
         startService(profileLoader);*/
+
     }
 
 
@@ -123,19 +124,22 @@ public class StartActivity extends AppCompatActivity
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, CreationProfileActivity.class);
+                Intent intent = new Intent(StartActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }
         });
 
         _viewProfileButton.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(StartActivity.this, ViewProfileActivity.class);
-                startActivity(intent);
+            @Override
+            public void onClick(View v) {
+                // Intent intent = new Intent(this, LoadProfileActivity.class);
+                Intent intent = new Intent(StartActivity.this, LoadProfileActivity.class);
+                startService(intent);
             }
+
         });
+
     }
 }
 
