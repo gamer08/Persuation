@@ -9,6 +9,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 
@@ -20,24 +22,38 @@ public class StartActivity extends AppCompatActivity
 
     private Receiver _receiver;
     private IntentFilter _profileIntentFilter;
+    Button _creationProfileButton;
+    Button _viewProfileButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        _creationProfileButton = (Button) findViewById(R.id.buttonCreation);
+        _viewProfileButton =  (Button) findViewById(R.id.buttonView);;
 
-        Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
-        _profileIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
+        Toast.makeText(this, "SA.onCreate", Toast.LENGTH_SHORT).show();
+
+        // Pour mettre des listeners sur les boutons
+
+        setButton();
+
+
+       /* _profileIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
 
         Intent profileLoader = new Intent(this,LoadProfileActivity.class);
-        startService(profileLoader);
+        startService(profileLoader);*/
     }
 
 
+    /**
+     * Classe interne
+     */
     private class Receiver extends BroadcastReceiver
     {
 
@@ -55,7 +71,7 @@ public class StartActivity extends AppCompatActivity
             }
             else
             {
-                Intent profilActivity = new Intent(getApplicationContext(),ProfileActivity.class);
+                Intent profilActivity = new Intent(getApplicationContext(),CreationProfileActivity.class);
                 profilActivity.putExtra("profile",profile);
                 startActivity(profilActivity);
             }
@@ -85,6 +101,41 @@ public class StartActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Clic sur le bouton pour aller voir le profil
+     * @param v
+     */
+    public void onButtonProfileClick (View v)
+    {
+        // do something
+
+        Button buttonProfile = (Button) v;
+        //((Button)v).setText("clicked");
+
+
+    }
+
+    public void setButton()
+    {
+        _creationProfileButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartActivity.this, CreationProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        _viewProfileButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(StartActivity.this, ViewProfileActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 

@@ -18,4 +18,7 @@
     <string name="TVL_Score">Score</string>
     <string name="BTN_Save">Save</string>
     <string name="title_activity_start">StartActivity</string>
+    <string name="title_activity_view_profile">ViewProfileActivity</string>
+    <string name="title_activity_creation_profile">CreationProfileActivity</string>
+
 </resources>

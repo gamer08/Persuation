@@ -113,7 +113,7 @@ public class QuestionaryActivity extends AppCompatActivity
             else
             {
                 Profile profile = (Profile)intent.getSerializableExtra("profile");
-                Intent profilActivity = new Intent(getApplicationContext(),ProfileActivity.class);
+                Intent profilActivity = new Intent(getApplicationContext(),CreationProfileActivity.class);
                 profilActivity.putExtra("profile", profile);
                 startActivity(profilActivity);
             }

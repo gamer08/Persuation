@@ -7,4 +7,20 @@
     tools:context="ppm.uqac.com.geekproject.StartActivity">
 
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Créer un profil"
+        android:id="@+id/buttonCreation"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onButtonProfileClick" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voir le profil"
+        android:id="@+id/buttonView"
+        android:layout_below="@+id/buttonCreation"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileOutputStream;
 
@@ -17,7 +18,7 @@ import java.io.FileOutputStream;
  * Classe de test pour l'activité de profil
  *
  */
-public class ProfileActivity extends AppCompatActivity
+public class CreationProfileActivity extends AppCompatActivity
 {
 
     private View.OnClickListener _saveListener;
@@ -32,6 +33,8 @@ public class ProfileActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        Toast.makeText(this, "CPA.onCreate", Toast.LENGTH_SHORT).show();
 
         _saveListener = new View.OnClickListener()
         {
