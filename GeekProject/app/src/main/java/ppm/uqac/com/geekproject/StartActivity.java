@@ -64,16 +64,13 @@ public class StartActivity extends AppCompatActivity
         public void onReceive(Context context, Intent intent)
         {
             Profile profile = (Profile)intent.getSerializableExtra("profile");
-            System.out.println("startactivity receive");
             if (profile == null)
             {
-                System.out.println("startactivity if ok");
-                Intent questionnaireActivity = new Intent(getApplicationContext(),QuestionaryActivity.class);
-                startActivity(questionnaireActivity);
+                Intent intentWelcome = new Intent(StartActivity.this, WelcomeActivity.class);
+                startActivity(intentWelcome);
             }
             else
             {
-                System.out.println("startactivity if else");
                 Intent profilActivity = new Intent(getApplicationContext(),MainActivity.class);
                 profilActivity.putExtra("profile",profile);
                 startActivity(profilActivity);

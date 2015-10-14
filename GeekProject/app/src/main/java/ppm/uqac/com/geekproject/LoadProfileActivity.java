@@ -42,8 +42,13 @@ public class LoadProfileActivity extends IntentService
         try
         {
             File file = getApplicationContext().getFileStreamPath(Profile.PROFIL_FILE_NAME);
-
+            System.out.println(file.exists());
+            /*
+            Avant il y avait cette ligne
             if (file != null || file.exists())
+            A quoi sert file != null?
+             */
+            if (file.exists())
             {
                 FileInputStream in = openFileInput(Profile.PROFIL_FILE_NAME);
                 InputStreamReader reader = new InputStreamReader(in);
