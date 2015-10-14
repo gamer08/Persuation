@@ -18,11 +18,11 @@
     <string name="TVL_Score">Score</string>
     <string name="BTN_Save">Save</string>
     <string name="title_activity_start">StartActivity</string>
-    <string name="title_activity_view_profile">ViewProfileActivity</string>
+    <string name="title_activity_view_profile">Profil</string>
     <string name="title_activity_creation_profile">CreationProfileActivity</string>
     <string name="title_activity_welcome">WelcomeActivity</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_activity_view_list">ViewListActivity</string>
-    <string name="title_activity_view_content">ViewContentActivity</string>
+    <string name="title_activity_main">GeekProject</string>
+    <string name="title_activity_view_list">Liste activités</string>
+    <string name="title_activity_view_content">geeklopédie</string>
 
 </resources>

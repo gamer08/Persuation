@@ -9,4 +9,33 @@
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="activites"
+        android:id="@+id/buttonActivites"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickActivites" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profil"
+        android:id="@+id/buttonProfil"
+        android:layout_below="@+id/buttonCreation"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickProfil"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Geeklopedie"
+        android:id="@+id/buttonContent"
+        android:layout_below="@+id/buttonProfil"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="onClickContent" />
+
 </RelativeLayout>
