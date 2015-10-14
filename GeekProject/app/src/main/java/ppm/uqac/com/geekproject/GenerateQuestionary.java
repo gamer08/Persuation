@@ -52,8 +52,9 @@ public class GenerateQuestionary extends IntentService
         {
             generate(questionary);
             Intent callBackIntent = new Intent(GenerateQuestionnaireActions.Broadcast);
-            callBackIntent.putExtra("questionary", questionary);
 
+            callBackIntent.putExtra("questionary", questionary);
+            System.out.println(questionary._questions);
             LocalBroadcastManager.getInstance(this).sendBroadcast(callBackIntent);
         }
         catch(XmlPullParserException e)

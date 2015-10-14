@@ -75,6 +75,7 @@ public class StartActivity extends AppCompatActivity
                 profilActivity.putExtra("lastName",profile._lastName);
                 profilActivity.putExtra("firstName",profile._firstName);
                 profilActivity.putExtra("type",profile._type.toString());
+                profilActivity.putExtra("activite", "Start");
                 startActivity(profilActivity);
             }
         }

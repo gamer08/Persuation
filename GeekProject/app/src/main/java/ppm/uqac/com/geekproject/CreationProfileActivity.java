@@ -127,6 +127,7 @@ public class CreationProfileActivity extends AppCompatActivity
             intent.putExtra("firstName", _firstName.getText().toString());
             intent.putExtra("lastName", _lastName.getText().toString());
             intent.putExtra("type", _profile._type.toString());
+            intent.putExtra("activite", "CreateProfil");
             startActivity(intent);
             System.out.println("fin save file et type est "+_profile._type.toString());
 
@@ -140,5 +141,11 @@ public class CreationProfileActivity extends AppCompatActivity
 
 
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        System.out.println("Bouton retour");
     }
 }

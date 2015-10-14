@@ -1,16 +1,19 @@
 package ppm.uqac.com.geekproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GA_Dialog.dialogDoneListener{
     private TextView _FirstName;
     private TextView _LastName;
     private TextView _Type;
@@ -34,7 +37,25 @@ public class MainActivity extends AppCompatActivity {
             _LastName.setText(lastName);
             String type = (String) intent.getSerializableExtra("type");
             _Type.setText(type);
+
+            String previousActivity = (String) intent.getSerializableExtra("activite");
+
+            if(previousActivity.toString().equals("CreateProfil"))
+            {
+                //test dialog
+                GA_Dialog myDiag=new GA_Dialog();
+                myDiag.show(getFragmentManager(),"Diag");
+            }
+            else
+            {
+                System.out.println(previousActivity.toString());
+            }
         }
+
+
+
+
+
     }
 
     @Override
@@ -82,5 +103,14 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         System.out.println("Bouton retour");
+    }
+
+    /*
+    Méthode pour gérer l'action de la fenetre de dialogue
+     */
+    @Override
+    public void onDone(boolean state) {
+        Intent intent = new Intent(this,ViewListActivity.class);
+        startActivity(intent);
     }
 }

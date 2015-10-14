@@ -55,6 +55,7 @@ public class QuestionaryActivity extends AppCompatActivity
                 if (v.isClickable())
                 {
                     int index = _choices.indexOf((TextView)v);
+
                     if (index >=0)
                     {
                         System.out.println("Valeur de index "+index);
@@ -94,7 +95,7 @@ public class QuestionaryActivity extends AppCompatActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
-        _questionary = new Questionary(1);
+        _questionary = new Questionary(2);
         _nbQuestions = _questionary._nbQuestions;
 
         // Start du service de génération de questionnaire
@@ -137,9 +138,10 @@ public class QuestionaryActivity extends AppCompatActivity
         _curQuestion++;
         if (_curQuestion != _nbQuestions)
         {
-            for (TextView tv : _choices)
+            for (TextView tv : _choices) {
                 tv.setClickable(false);
-
+                tv.setText(""); //Sans cette ligne, si la question précédente a plus de choix, on a toujours la ou les questions en plus qui apparaisent
+            }
             Question quest = _questionary._questions.get(_curQuestion);
             _totalWeightPossible += quest._bestWeight;
             _question.setText(_questionary._questions.get(_curQuestion)._description);
@@ -184,5 +186,12 @@ public class QuestionaryActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        System.out.println("Bouton retour");
+
     }
 }
