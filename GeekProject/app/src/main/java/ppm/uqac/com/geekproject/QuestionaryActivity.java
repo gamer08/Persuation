@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,10 +36,15 @@ public class QuestionaryActivity extends AppCompatActivity
     private TextView _question;
     private TextView _questionCpt;
 
+    /*Pour afficher des messages dans les logs*/
+    private static final String TAG = "QuestionaryActivity";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        Log.d(TAG, "OnCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionary);
         _choiceListener = new View.OnClickListener()
@@ -51,7 +57,9 @@ public class QuestionaryActivity extends AppCompatActivity
                     int index = _choices.indexOf((TextView)v);
                     if (index >=0)
                     {
+                        System.out.println("Valeur de index "+index);
                         _score += _questionary._questions.get(_curQuestion)._possibleChoices.get(index)._weight;
+                        Log.d(TAG,"LoadedNextQuestion");
                         loadNextQuestion();
                     }
                 }
@@ -89,11 +97,11 @@ public class QuestionaryActivity extends AppCompatActivity
         _questionary = new Questionary(1);
         _nbQuestions = _questionary._nbQuestions;
 
-
         // Start du service de génération de questionnaire
-        Intent questionnaireGenerator = new Intent(this,GenerateQuestionary.class);
-        questionnaireGenerator.putExtra("questionnaire", _questionary);
+        Intent questionnaireGenerator = new Intent(QuestionaryActivity.this,GenerateQuestionary.class);
+        questionnaireGenerator.putExtra("questionary", _questionary);
         startService(questionnaireGenerator);
+        Log.d(TAG,"End OnCreate");
     }
 
     private class Receiver extends BroadcastReceiver
@@ -107,7 +115,7 @@ public class QuestionaryActivity extends AppCompatActivity
         {
             if (intent.getAction().equals(GenerateQuestionary.GenerateQuestionnaireActions.Broadcast))
             {
-                _questionary = (Questionary) intent.getSerializableExtra("questionnaire");
+                _questionary = (Questionary) intent.getSerializableExtra("questionary");
                 loadNextQuestion();
             }
             else

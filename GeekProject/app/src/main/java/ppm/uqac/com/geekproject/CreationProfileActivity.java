@@ -2,8 +2,10 @@ package ppm.uqac.com.geekproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -109,12 +111,16 @@ public class CreationProfileActivity extends AppCompatActivity
         try
         {
             FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+            System.out.println(Profile.PROFIL_FILE_NAME);
             out.write(firstName.getBytes());
             out.write(lastName.getBytes());
             out.write(score.getBytes());
             out.close();
-        }
+            System.out.println("End SaveProfil");
 
+
+
+        }
         catch (Exception e)
         {
             e.printStackTrace();

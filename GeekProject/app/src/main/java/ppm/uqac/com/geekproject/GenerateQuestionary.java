@@ -44,8 +44,9 @@ public class GenerateQuestionary extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
-        Questionary questionary = (Questionary) intent.getSerializableExtra("questionary");
         Log.d(TAG, "questionary generated !");
+        Questionary questionary = (Questionary) intent.getSerializableExtra("questionary");
+
 
         try
         {
