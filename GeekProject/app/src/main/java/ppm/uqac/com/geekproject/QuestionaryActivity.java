@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,7 @@ public class QuestionaryActivity extends AppCompatActivity
     {
         Log.d(TAG, "OnCreate");
         super.onCreate(savedInstanceState);
+        Toast.makeText(this, "QuestionaryA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_questionary);
         _choiceListener = new View.OnClickListener()
         {
@@ -88,8 +90,8 @@ public class QuestionaryActivity extends AppCompatActivity
             tv.setOnClickListener(_choiceListener);
 
         // Déclaration des filtres et diffuseurs pour les services
-        _questionnaireIntentFilter = new IntentFilter(GenerateQuestionary.GenerateQuestionnaireActions.Broadcast);
-        _profilIntentFilter = new IntentFilter(GenerateProfile.GenerateProfilActions.Broadcast);
+        _questionnaireIntentFilter = new IntentFilter(GenerateQuestionaryService.GenerateQuestionnaireActions.Broadcast);
+        _profilIntentFilter = new IntentFilter(GenerateProfileService.GenerateProfilActions.Broadcast);
 
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
@@ -99,7 +101,7 @@ public class QuestionaryActivity extends AppCompatActivity
         _nbQuestions = _questionary._nbQuestions;
 
         // Start du service de génération de questionnaire
-        Intent questionnaireGenerator = new Intent(QuestionaryActivity.this,GenerateQuestionary.class);
+        Intent questionnaireGenerator = new Intent(QuestionaryActivity.this,GenerateQuestionaryService.class);
         questionnaireGenerator.putExtra("questionary", _questionary);
         startService(questionnaireGenerator);
         Log.d(TAG,"End OnCreate");
@@ -114,7 +116,7 @@ public class QuestionaryActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent)
         {
-            if (intent.getAction().equals(GenerateQuestionary.GenerateQuestionnaireActions.Broadcast))
+            if (intent.getAction().equals(GenerateQuestionaryService.GenerateQuestionnaireActions.Broadcast))
             {
                 _questionary = (Questionary) intent.getSerializableExtra("questionary");
                 loadNextQuestion();
@@ -156,7 +158,7 @@ public class QuestionaryActivity extends AppCompatActivity
         }
         else
         {
-            Intent profilGenerator = new Intent(this,GenerateProfile.class);
+            Intent profilGenerator = new Intent(this,GenerateProfileService.class);
             float scoreQuestionnaire = _score / _totalWeightPossible;
             profilGenerator.putExtra("scoreQuestionnaire", scoreQuestionnaire);
             startService(profilGenerator);

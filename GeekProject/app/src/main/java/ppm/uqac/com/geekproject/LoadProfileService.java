@@ -12,7 +12,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 /**Service qui permet de charger le profil s'il existe*/
-public class LoadProfileActivity extends IntentService
+public class LoadProfileService extends IntentService
 {
     private String _firstName;
     private String _lastName;
@@ -26,8 +26,8 @@ public class LoadProfileActivity extends IntentService
         public static final String Broadcast ="Load_Broadcast";
     }
 
-    public LoadProfileActivity() {
-        super("LoadProfileActivity");
+    public LoadProfileService() {
+        super("LoadProfileService");
     }
 
     @Override

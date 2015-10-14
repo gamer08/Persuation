@@ -50,13 +50,13 @@
 
         <!-- Déclaration service -->
         <service
-            android:name=".LoadProfileActivity"
+            android:name=".LoadProfileService"
             android:exported="false" />
         <service
-            android:name=".GenerateQuestionary"
+            android:name=".GenerateQuestionaryService"
             android:exported="false" />
         <service
-            android:name=".GenerateProfile"
+            android:name=".GenerateProfileService"
             android:exported="false" />
     </application>
 

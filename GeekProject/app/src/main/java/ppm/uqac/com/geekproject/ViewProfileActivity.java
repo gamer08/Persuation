@@ -13,7 +13,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
-        Toast.makeText(this, "VPA.onCreate", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "ViewProfileA.onCreate", Toast.LENGTH_SHORT).show();
     }
 
     @Override

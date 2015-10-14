@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Service qui permet de générer le profil suite à un questionnaire
  */
-public class GenerateProfile extends IntentService
+public class GenerateProfileService extends IntentService
 {
     private ArrayList<Profile.Type> _profilTypes;
     private float _profilSclice;
@@ -22,8 +22,8 @@ public class GenerateProfile extends IntentService
         public static final String Broadcast ="Profil_Broadcast";
     }
 
-    public GenerateProfile() {
-        super("GenerateProfile");
+    public GenerateProfileService() {
+        super("GenerateProfileService");
     }
 
 

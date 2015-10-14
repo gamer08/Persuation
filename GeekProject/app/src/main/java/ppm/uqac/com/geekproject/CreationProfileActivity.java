@@ -36,7 +36,7 @@ public class CreationProfileActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Toast.makeText(this, "CPA.onCreate", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "CreationProfileA.onCreate", Toast.LENGTH_SHORT).show();
 
         _saveListener = new View.OnClickListener()
         {
@@ -58,7 +58,7 @@ public class CreationProfileActivity extends AppCompatActivity
         if (intent != null)
         {
             _profile = (Profile) intent.getSerializableExtra("profile");
-            //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfile.java ligne 62 on a profile
+            //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
 
             if (_profile != null)
             {

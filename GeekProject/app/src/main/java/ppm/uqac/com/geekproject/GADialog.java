@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
  */
 
 
-public class GA_Dialog extends DialogFragment {
+public class GADialog extends DialogFragment {
 
 
     private dialogDoneListener mListener;

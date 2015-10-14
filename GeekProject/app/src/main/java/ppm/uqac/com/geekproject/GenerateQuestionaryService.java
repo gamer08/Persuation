@@ -17,7 +17,7 @@ import java.util.Random;
  * Service qui permet de générer un questionnaire à partir d'un fichier XML
  */
 
-public class GenerateQuestionary extends IntentService
+public class GenerateQuestionaryService extends IntentService
 {
 
     private static final String TAG = "Generate questionary";
@@ -36,9 +36,9 @@ public class GenerateQuestionary extends IntentService
         public static final String Broadcast ="Questionnaire_Broadcast";
     }
 
-    public GenerateQuestionary()
+    public GenerateQuestionaryService()
     {
-        super("GenerateQuestionary");
+        super("GenerateQuestionaryService");
     }
 
     @Override

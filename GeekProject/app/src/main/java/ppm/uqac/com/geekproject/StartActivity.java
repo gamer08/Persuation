@@ -35,17 +35,17 @@ public class StartActivity extends AppCompatActivity
         _viewProfileButton =  (Button) findViewById(R.id.buttonView);;
 
 
-        Toast.makeText(this, "SA.onCreate", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "StartA.onCreate", Toast.LENGTH_SHORT).show();
 
         // Pour mettre des listeners sur les boutons
 
         setButton();
 
-        _profileIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
+        _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
 
-        Intent profileLoader = new Intent(this,LoadProfileActivity.class);
+        Intent profileLoader = new Intent(this,LoadProfileService.class);
         startService(profileLoader);
 
     }
@@ -135,8 +135,8 @@ public class StartActivity extends AppCompatActivity
 
             @Override
             public void onClick(View v) {
-                // Intent intent = new Intent(this, LoadProfileActivity.class);
-                Intent intent = new Intent(StartActivity.this, LoadProfileActivity.class);
+                // Intent intent = new Intent(this, LoadProfileService.class);
+                Intent intent = new Intent(StartActivity.this, LoadProfileService.class);
                 startService(intent);
             }
 

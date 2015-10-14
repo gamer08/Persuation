@@ -1,19 +1,15 @@
 package ppm.uqac.com.geekproject;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements GA_Dialog.dialogDoneListener{
+public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
     private TextView _FirstName;
     private TextView _LastName;
     private TextView _Type;
@@ -21,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements GA_Dialog.dialogD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(this, "MainA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_main);
 
 
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements GA_Dialog.dialogD
             if(previousActivity.toString().equals("CreateProfil"))
             {
                 //test dialog
-                GA_Dialog myDiag=new GA_Dialog();
+                GADialog myDiag=new GADialog();
                 myDiag.show(getFragmentManager(),"Diag");
             }
             else
