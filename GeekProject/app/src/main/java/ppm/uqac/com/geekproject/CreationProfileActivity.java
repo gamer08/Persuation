@@ -117,11 +117,14 @@ public class CreationProfileActivity extends AppCompatActivity
             out.write(lastName.getBytes());
             out.write(score.getBytes());
             out.close();
-            System.out.println("End SaveProfil");
 
             //Nouvelle activity MainActivity
             Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("firstName", _firstName.getText().toString());
+            intent.putExtra("lastName", _lastName.getText().toString());
+            intent.putExtra("type", _profile._type.toString());
             startActivity(intent);
+            System.out.println("fin save file et type est "+_profile._type.toString());
 
 
 

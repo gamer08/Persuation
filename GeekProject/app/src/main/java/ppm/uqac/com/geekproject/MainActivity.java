@@ -7,13 +7,34 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView _FirstName;
+    private TextView _LastName;
+    private TextView _Type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        //test pour afficher nom de la personne connecté
+        _FirstName = (TextView) findViewById(R.id.TV_FirstName);
+        _LastName = (TextView) findViewById(R.id.TV_LastName);
+        _Type = (TextView) findViewById(R.id.TV_Type);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            String firstName = (String) intent.getSerializableExtra("firstName");
+            _FirstName.setText(firstName);
+            String lastName = (String) intent.getSerializableExtra("lastName");
+            _LastName.setText(lastName);
+            String type = (String) intent.getSerializableExtra("type");
+            _Type.setText(type);
+        }
     }
 
     @Override
@@ -57,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
     public void onBackPressed()
     {
         System.out.println("Bouton retour");

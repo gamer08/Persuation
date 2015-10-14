@@ -2,6 +2,7 @@
     <string name="app_name">GeekProject</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="hello_worldMain">Hello world! depuis le mainActivity</string>
     <string name="action_settings">Settings</string>
     <string name="TV_curQuestionCpt">1 of 5</string>
     <string name="TV_Question">This is the current question text</string>
