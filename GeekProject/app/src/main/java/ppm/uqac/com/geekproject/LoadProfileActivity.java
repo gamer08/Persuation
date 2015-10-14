@@ -17,6 +17,7 @@ public class LoadProfileActivity extends IntentService
     private String _firstName;
     private String _lastName;
     private float _score;
+    private String _type;
 
     private static final String TAG = "LoadProfile Service";
 
@@ -57,8 +58,8 @@ public class LoadProfileActivity extends IntentService
                 _firstName = buff.readLine();
                 _lastName = buff.readLine();
                 score = buff.readLine();
+                _type = buff.readLine();
 
-                System.out.println(score);
 
                 buff.close();
                 reader.close();
@@ -68,16 +69,39 @@ public class LoadProfileActivity extends IntentService
                 String lastName = _lastName.substring(_lastName.indexOf('=')+1);
                 score = score.substring(score.indexOf('=')+1);
                 _score = Float.parseFloat(score);
+                _type = _type.substring(_type.indexOf('=') + 1);
 
                 profile = new Profile();
 
                 profile._firstName = firstName;
                 profile._lastName = lastName;
                 profile._score = _score;
+
+                switch (_type)
+                {
+                    case "GEEK":
+                        profile._type=Profile.Type.GEEK;
+                        break;
+                    case "GEEKPERSECUTOR":
+                        profile._type=Profile.Type.GEEKPERSECUTOR;
+                        break;
+                    case "NEUTRAL":
+                        profile._type=Profile.Type.NEUTRAL;
+                        break;
+                    case "GEEKFRIENDLY":
+                        profile._type=Profile.Type.GEEKFRIENDLY;
+                        break;
+                    default:
+                        profile._type = Profile.Type.ANTIGEEK;
+                }
+
+
                 System.out.println("résumé profil");
                 System.out.println(firstName);
                 System.out.println(lastName);
                 System.out.println(_score);
+                System.out.println(profile._type.toString());
+                System.out.println("fin résumé profil");
 
             }
                 Intent callBackIntent = new Intent(LoadProfilActions.Broadcast);

@@ -107,6 +107,9 @@ public class CreationProfileActivity extends AppCompatActivity
         String score = "score=";
         score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
 
+        String type = "type=";
+        type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
+
         //File file = new File(getBaseContext().getFilesDir(),PROFIL_FILE_NAME);
        // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
         try
@@ -116,6 +119,7 @@ public class CreationProfileActivity extends AppCompatActivity
             out.write(firstName.getBytes());
             out.write(lastName.getBytes());
             out.write(score.getBytes());
+            out.write(type.getBytes());
             out.close();
 
             //Nouvelle activity MainActivity
