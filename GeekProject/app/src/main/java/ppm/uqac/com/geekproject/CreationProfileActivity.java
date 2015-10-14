@@ -118,6 +118,10 @@ public class CreationProfileActivity extends AppCompatActivity
             out.close();
             System.out.println("End SaveProfil");
 
+            //Nouvelle activity MainActivity
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+
 
 
         }

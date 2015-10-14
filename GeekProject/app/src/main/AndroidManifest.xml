@@ -33,7 +33,22 @@
             android:label="@string/title_activity_welcome" >
         </activity>
 
-        <!--Déclaration service -->
+
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".ViewListActivity"
+            android:label="@string/title_activity_view_list" >
+        </activity>
+        <activity
+            android:name=".ViewContentActivity"
+            android:label="@string/title_activity_view_content" >
+        </activity>
+
+        <!-- Déclaration service -->
         <service
             android:name=".LoadProfileActivity"
             android:exported="false" />
