@@ -53,6 +53,8 @@ public class LoadProfileActivity extends IntentService
                 _lastName = buff.readLine();
                 score = buff.readLine();
 
+                System.out.println(score);
+
                 buff.close();
                 reader.close();
                 in.close();
@@ -67,6 +69,10 @@ public class LoadProfileActivity extends IntentService
                 profile._firstName = firstName;
                 profile._lastName = lastName;
                 profile._score = _score;
+                System.out.println("résumé profil");
+                System.out.println(firstName);
+                System.out.println(lastName);
+                System.out.println(_score);
 
             }
                 Intent callBackIntent = new Intent(LoadProfilActions.Broadcast);

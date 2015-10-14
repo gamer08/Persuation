@@ -41,13 +41,12 @@ public class StartActivity extends AppCompatActivity
 
         setButton();
 
-
-       /* _profileIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
+        _profileIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
 
         Intent profileLoader = new Intent(this,LoadProfileActivity.class);
-        startService(profileLoader);*/
+        startService(profileLoader);
 
     }
 
@@ -65,14 +64,17 @@ public class StartActivity extends AppCompatActivity
         public void onReceive(Context context, Intent intent)
         {
             Profile profile = (Profile)intent.getSerializableExtra("profile");
+            System.out.println("startactivity receive");
             if (profile == null)
             {
+                System.out.println("startactivity if ok");
                 Intent questionnaireActivity = new Intent(getApplicationContext(),QuestionaryActivity.class);
                 startActivity(questionnaireActivity);
             }
             else
             {
-                Intent profilActivity = new Intent(getApplicationContext(),CreationProfileActivity.class);
+                System.out.println("startactivity if else");
+                Intent profilActivity = new Intent(getApplicationContext(),MainActivity.class);
                 profilActivity.putExtra("profile",profile);
                 startActivity(profilActivity);
             }

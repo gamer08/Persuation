@@ -57,7 +57,8 @@ public class CreationProfileActivity extends AppCompatActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            _profile = (Profile) intent.getSerializableExtra("profil");
+            _profile = (Profile) intent.getSerializableExtra("profile");
+            //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfile.java ligne 62 on a profile
 
             if (_profile != null)
             {
