@@ -1,11 +1,14 @@
 package ppm.uqac.com.geekproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     private TextView _FirstName;
     private TextView _LastName;
     private TextView _Type;
+    private ImageView _avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         _FirstName = (TextView) findViewById(R.id.TV_FirstName);
         _LastName = (TextView) findViewById(R.id.TV_LastName);
         _Type = (TextView) findViewById(R.id.TV_Type);
+        _avatar = (ImageView) findViewById(R.id.image);
+
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -34,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             _LastName.setText(lastName);
             String type = (String) intent.getSerializableExtra("type");
             _Type.setText(type);
+            Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.antigeek);
+            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 480, 320, false);
+            ImageView image = (ImageView) findViewById(R.id.image);
+            _avatar.setImageBitmap(bMapScaled);
 
             String previousActivity = (String) intent.getSerializableExtra("activite");
 
