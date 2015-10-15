@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     style='"@android:style/Theme.Dialog"'>
 
-    <TextView android:text="Ceci est un dialog test pour forcé l'utilisateur a voir ces activités"
+    <TextView android:text="Allons voir les différentes activités que nous vous avons concocté."
         android:id="@+id/TV_Type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
     <Button
         android:layout_width="193dp"
         android:layout_height="wrap_content"
-        android:text="Voir les activités"
+        android:text="Je n'ai pas le choix..."
         android:id="@+id/buttonActivites"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"

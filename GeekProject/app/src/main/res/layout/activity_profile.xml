@@ -31,32 +31,35 @@
             android:hint="@string/TV_FirstName"
             android:layout_weight="1"/>
     </LinearLayout>
+
     <LinearLayout
-    android:orientation="horizontal"
-    android:layout_marginTop="50dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:id="@+id/LL_LastName">
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TVL_LastName"
-        android:textSize="24sp"
-        android:text="@string/TVL_LastName"
-        android:layout_marginRight="5dp"
-        android:layout_marginEnd="5dp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/LL_LastName">
 
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_LastName"
-        android:textSize="24sp"
-        android:hint="@string/TV_LastName"
-        android:layout_weight="1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TVL_LastName"
+            android:textSize="24sp"
+            android:text="@string/TVL_LastName"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_LastName"
+            android:textSize="24sp"
+            android:hint="@string/TV_LastName"
+            android:layout_weight="1" />
+
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_marginTop="100dp"
@@ -81,6 +84,7 @@
             android:id="@+id/TV_Score"
             android:textSize="24sp"
             android:layout_weight="1"/>
+
     </LinearLayout>
 
     <Button
@@ -90,4 +94,5 @@
         android:id="@+id/BTN_Save"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

@@ -44,7 +44,7 @@ public class GADialog extends DialogFragment {
     {
         View v = inflater.inflate(R.layout.dialog_ga,container, false);
         Dialog myDialog=getDialog();
-        myDialog.setTitle("Voir activités"); //Pas forcément de mettre un titre
+        myDialog.setTitle("Avant tout..."); //Pas forcément de mettre un titre
         Button OK= (Button) v.findViewById(R.id.buttonActivites); // on lie un bouton java au bouton défini dans le xml
         OK.setOnClickListener(onOK); // Ajout du click sur le bouton dans un listener
         return v;

@@ -1,12 +1,16 @@
 package ppm.uqac.com.geekproject;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ViewProfileActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +18,22 @@ public class ViewProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_profile);
 
         Toast.makeText(this, "ViewProfileA.onCreate", Toast.LENGTH_SHORT).show();
+
+        EditText firstname = (EditText) findViewById(R.id.TV_FirstName);
+        EditText lastname = (EditText) findViewById(R.id.TV_LastName);
+        TextView type = (TextView) findViewById(R.id.TV_Type);
+
+
+
+        Intent intent = getIntent();
+        if (intent != null) {
+
+            firstname.setText(intent.getStringExtra("firstname"));
+            lastname.setText(intent.getStringExtra("lastname"));
+            type.setText(intent.getStringExtra("type"));
+
+        }
+
     }
 
     @Override

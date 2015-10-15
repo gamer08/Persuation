@@ -32,7 +32,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="activites"
+        android:text="Activités"
         android:id="@+id/buttonActivites"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -43,11 +43,10 @@
         android:layout_height="wrap_content"
         android:text="Profil"
         android:id="@+id/buttonProfil"
-        android:onClick="onClickProfil"
+        android:onClick="onClickProfile"
         android:layout_below="@+id/buttonActivites"
-        android:layout_alignLeft="@+id/buttonActivites"
-        android:layout_alignStart="@+id/buttonActivites"
-        android:layout_marginTop="44dp" />
+        android:layout_alignRight="@+id/buttonActivites"
+        android:layout_alignEnd="@+id/buttonActivites" />
 
     <Button
         android:layout_width="wrap_content"
