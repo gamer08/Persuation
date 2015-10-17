@@ -6,14 +6,15 @@ package ppm.uqac.com.geekproject;
  */
 public class GA {
     private String _name;
-    private String _desscription;
+    private String _description;
     private int _level;
     private int _experience;
     private boolean _isDone;
 
 
+
     /**
-     * Constructeur de la classe GekkActivity
+     * Constructeur de la classe GeekActivity
      * @param _n: nom de la GA
      * @param _d: description de la GA
      * @param _lvl: niveau de la GA
@@ -23,7 +24,7 @@ public class GA {
     public GA(String _n, String _d, int _lvl, int _xp, boolean _done)
     {
         _name = _n;
-        _desscription=_d;
+        _description=_d;
         _level=_lvl;
         _experience= _xp;
         _isDone = _done;
@@ -37,4 +38,29 @@ public class GA {
     {
         _isDone=_done;
     }
+
+    /**
+     * Methode qui permet le retour du nom de l'activité
+     * @return
+     */
+    public String get_name() {
+        return _name;
+    }
+
+    public String get_description() {
+        return _description;
+    }
+
+    public int get_level() {
+        return _level;
+    }
+
+    public int get_experience() {
+        return _experience;
+    }
+
+    public boolean get_isDone() {
+        return _isDone;
+    }
+
 }
