@@ -92,9 +92,11 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     {
         Intent intent = new Intent(this,ViewProfileActivity.class);
 
-        intent.putExtra("firstname", _FirstName.toString());
-        intent.putExtra("lastname", _LastName.toString());
-        intent.putExtra("Type", _Type.toString());
+        //System.out.println("in MA.onClickProfil()" + _FirstName.)
+
+        intent.putExtra("firstname", _FirstName.getText().toString());
+        intent.putExtra("lastname", _LastName.getText().toString());
+        intent.putExtra("type", _Type.getText().toString());
         startActivity(intent);
     }
 

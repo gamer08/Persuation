@@ -11,24 +11,22 @@
         android:id="@+id/TV_FirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"/>
+        android:textSize="50dp"
+        android:layout_centerHorizontal="true"/>
 
     <TextView android:text="test"
         android:id="@+id/TV_LastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/TV_FirstName"
-        android:paddingLeft="100dp"
-        android:layout_toRightOf="@id/TV_FirstName"
-        android:textSize="50dp"/>
-    <!--android:layout_alignLeft="@+id/buttonContent"
-    android:layout_alignStart="@+id/buttonContent"-->
+        android:layout_below="@+id/TV_FirstName"
+        android:textSize="50dp"
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/image"
-        android:layout_below="@id/TV_FirstName"
+        android:layout_below="@id/TV_LastName"
         android:layout_centerHorizontal="true"
         android:padding="10dp"
         android:src="@drawable/antigeek"
@@ -53,7 +51,8 @@
         android:id="@+id/buttonActivites"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:onClick="onClickActivites" />
+        android:onClick="onClickActivites"
+        android:drawableLeft="@drawable/activityicon2"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -62,7 +61,8 @@
         android:id="@+id/buttonContent"
         android:onClick="onClickContent"
         android:layout_below="@+id/buttonActivites"
-        android:layout_alignLeft="@+id/buttonActivites" />
+        android:layout_alignLeft="@+id/buttonActivites"
+        android:drawableLeft="@drawable/geeklopedieicon2"/>
 
 
     <Button
@@ -72,7 +72,8 @@
         android:id="@+id/buttonProfil"
         android:onClick="onClickProfile"
         android:layout_below="@+id/buttonContent"
-        android:layout_alignLeft="@+id/buttonContent"/>
+        android:layout_alignLeft="@+id/buttonContent"
+        android:drawableLeft="@drawable/profileicon2"/>
 
 
 

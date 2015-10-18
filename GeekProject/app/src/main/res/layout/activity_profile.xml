@@ -83,6 +83,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/TV_Score"
             android:textSize="24sp"
+            android:editable="false"
             android:layout_weight="1"/>
 
     </LinearLayout>

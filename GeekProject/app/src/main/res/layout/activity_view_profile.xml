@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
-    tools:context="ppm.uqac.com.geekproject.ViewProfileActivity">
+    tools:context="ppm.uqac.com.geekproject.ViewProfileActivity"
+    android:background="#c3c6b0">
 
 
         <ImageView
@@ -20,7 +21,7 @@
             android:id="@+id/TVL_LastName"
             android:text="Nom :"
             android:editable="false"
-            android:textColor="#fc0003"
+            android:textColor="#100000"
             android:textStyle="bold"
             android:textSize="25dp"
             android:layout_below="@id/image"
@@ -43,7 +44,7 @@
             android:id="@+id/TVL_FirstName"
             android:text="Prénom :"
             android:editable="false"
-            android:textColor="#fc0003"
+            android:textColor="#100000"
             android:textStyle="bold"
             android:textSize="25dp"
             android:layout_below="@id/TVL_LastName"
@@ -65,8 +66,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/TVL_Type"
         android:text="Type de profil :"
-        android:editable="false"
-        android:textColor="#fc0003"
+
+        android:textColor="#100000"
         android:textStyle="bold"
         android:layout_below="@id/TVL_FirstName"
         android:textSize="25dp"
@@ -76,9 +77,18 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TV_Type"
+        android:editable="false"
         android:layout_toRightOf="@id/TVL_Type"
         android:layout_alignBottom="@id/TVL_Type"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/TVL_Type"
+        android:layout_centerHorizontal="true"
+        android:text="Sauvegarder les modifications"
+        android:drawableLeft="@drawable/enregistrericone"/>
 
 
 </RelativeLayout>

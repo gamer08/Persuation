@@ -62,6 +62,7 @@ public class CreationProfileActivity extends AppCompatActivity
         Intent intent = getIntent();
         if (intent != null)
         {
+            System.out.println("in CPA.if intent non nul");
             _profile = (Profile) intent.getSerializableExtra("profile");
             //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
 
@@ -108,6 +109,7 @@ public class CreationProfileActivity extends AppCompatActivity
      */
     public void saveProfil()
     {
+        System.out.println("in CPA.saveProfil()");
         String firstName = "firstName=";
         firstName = firstName.concat(_firstName.getText().toString()).concat(System.getProperty("line.separator"));
 
