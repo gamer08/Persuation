@@ -18,15 +18,24 @@ public class ViewListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Toast.makeText(this, "ViewListA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_view_list);
+
+        // Ouverture de la BDD
         GADatabase activityData = new GADatabase(this);
+
+
+        // Exemple avec 2 GA
         GA activity1 = new GA("regarder une video youtube", "blablal", 1, 500, false);
         GA activity2 = new GA("regarder une video youtubbxcbce", "bcxvlablal", 1, 500, false);
         activityData.addActivity(activity1);
         activityData.addActivity(activity2);
+        // Récupération des activités dans la BDD
         ArrayList<GA> listActivities =  activityData.getActivities();
-        ArrayAdapter<GA> adapterActivities = new ArrayAdapter<GA>(this, android.R.layout.simple_list_item_1, listActivities);
-        ListView listActivity = (ListView)findViewById(R.id.ListView01);
-        listActivity.setAdapter(adapterActivities);
+        // Constructeur de notre Adapter de GA
+        GAAdapter adapterGeekActivity = new GAAdapter(this, listActivities);
+        // Récupération de la listView
+        ListView listGA = (ListView) findViewById(R.id.ListView01);
+        // Adaptation de la ListView avec notre Adapter
+        listGA.setAdapter(adapterGeekActivity);
     }
 
     @Override

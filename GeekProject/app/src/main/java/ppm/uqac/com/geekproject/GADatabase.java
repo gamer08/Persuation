@@ -16,11 +16,15 @@ import java.util.ArrayList;
 public class GADatabase extends SQLiteOpenHelper {
 
 
-
-
+    /**
+     * Liste d'activité contenue dans la base de données
+     */
     private ArrayList<GA> listActivities;
+
+
     /**
      * Constructeur de la base de donnée des GeekActivity
+     * Créé la base geek_activity.db et de la table geek_activity
      * @param context : paramètre obligatoire
      */
     public GADatabase(Context context)
@@ -28,23 +32,13 @@ public class GADatabase extends SQLiteOpenHelper {
         super(context, "GeekActivity.db", null, 1);
         listActivities = new ArrayList<GA>();
         System.out.println("bdd geek_activity créée");
-        //juste pour avoir moins de ligne
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS geek_activity");
-        //
-        db.execSQL("CREATE TABLE IF NOT EXISTS geek_activity(" +
-                "number_activity INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "title string, " +
-                "description string, " +
-                "level INTEGER, " +
-                "experience INTEGER, " +
-                "is_done INTEGER" +
-                ")");
-        System.out.println("table geek_activity créée");
+
+        onCreate(db);
     }
 
     /**
-     * Création de la table GeekActivity
+     * Méthode de création de la table GeekActivity
      * @param db : correspond à la base de donnée
      */
     @Override
@@ -70,6 +64,10 @@ public class GADatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    /**
+     * Ajout d'une activité dans la BDD
+     * @param activity
+     */
     public void addActivity(GA activity)
     {
         boolean isDone = activity.get_isDone();
@@ -91,6 +89,10 @@ public class GADatabase extends SQLiteOpenHelper {
         System.out.println("Activite " + activity.get_name() + " ajoutée");
     }
 
+    /**
+     * Récupération de la liste des activités
+     * @return une ArrayList de GA
+     */
     public ArrayList<GA> getActivities()
     {
         //listActivities.clear();

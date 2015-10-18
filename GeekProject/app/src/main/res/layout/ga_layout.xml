@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView android:text="Nom" android:id="@+id/TV_NameActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center">
+
+    </TextView>
+
+    <TextView android:text="Description" android:id="@+id/TV_DescriptionActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        android:textSize="25dp">
+    </TextView>
+
+    <TextView android:text="experience" android:id="@+id/TV_experienceActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right">
+        android:textSize="25dp">
+    </TextView>
+
+    <TextView android:text="Level" android:id="@+id/TV_LevelActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        android:textSize="25dp">
+    </TextView>
+
+</LinearLayout>
