@@ -86,6 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/TVL_Type"
+        android:id="@+id/BTN_Modificate"
         android:layout_centerHorizontal="true"
         android:text="Sauvegarder les modifications"
         android:drawableLeft="@drawable/enregistrericone"/>

@@ -13,10 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
-    private TextView _FirstName;
-    private TextView _LastName;
-    private TextView _Type;
+    private TextView _firstNameTV;
+    private TextView _lastNameTV;
+    private TextView _typeTV;
     private ImageView _avatar;
+    private Profile _profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +27,33 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
 
         //test pour afficher nom de la personne connecté
-        _FirstName = (TextView) findViewById(R.id.TV_FirstName);
-        _LastName = (TextView) findViewById(R.id.TV_LastName);
-        _Type = (TextView) findViewById(R.id.TV_Type);
+        _firstNameTV = (TextView) findViewById(R.id.TV_FirstName);
+        _lastNameTV = (TextView) findViewById(R.id.TV_LastName);
+        _typeTV = (TextView) findViewById(R.id.TV_Type);
         _avatar = (ImageView) findViewById(R.id.image);
 
-
         Intent intent = getIntent();
-        if (intent != null) {
-            String firstName = (String) intent.getSerializableExtra("firstName");
-            _FirstName.setText(firstName);
-            String lastName = (String) intent.getSerializableExtra("lastName");
-            _LastName.setText(lastName);
-            String type = (String) intent.getSerializableExtra("type");
-            _Type.setText(type);
+        if (intent != null)
+        {
+
+            // recuperation des donnees presentes dans l'intent
+            /*_profile.setFirstName((String) intent.getSerializableExtra("firstName"));
+            _profile.setLastName((String) intent.getSerializableExtra("lastName"));
+            _profile.setType((Profile.Type) intent.getSerializableExtra("type"));*/
+
+           /* _profile.setFirstName((String) intent.getStringExtra("profile"));
+            _profile.setLastName((String) intent.getStringExtra("lastName"));
+            _profile.setType((Profile.Type) intent.getSerializableExtra("type"));*/
+
+            _profile = (Profile) intent.getSerializableExtra("profile");
+
+
+            // on set les text viewer qui ne sont que des informations pour l'utilisateurs
+            _firstNameTV.setText(_profile.getFirstName());
+            _lastNameTV.setText(_profile.getLastName());
+            _typeTV.setText((_profile.getType()).toString());
+
+
             Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.antigeek);
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 480, 320, false);
             ImageView image = (ImageView) findViewById(R.id.image);
@@ -58,9 +72,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                 System.out.println(previousActivity.toString());
             }
         }
-
-
-
 
 
     }
@@ -92,11 +103,14 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     {
         Intent intent = new Intent(this,ViewProfileActivity.class);
 
-        //System.out.println("in MA.onClickProfil()" + _FirstName.)
+        //System.out.println("in MA.onClickProfil()" + _firstNameTV.)
 
-        intent.putExtra("firstname", _FirstName.getText().toString());
-        intent.putExtra("lastname", _LastName.getText().toString());
-        intent.putExtra("type", _Type.getText().toString());
+        /*intent.putExtra("firstname", _firstNameTV.getText().toString());
+        intent.putExtra("lastname", _lastNameTV.getText().toString());
+        intent.putExtra("type", _typeTV.getText().toString());*/
+
+        intent.putExtra("profile", _profile);
+
         startActivity(intent);
     }
 

@@ -64,9 +64,10 @@ public class CreationProfileActivity extends AppCompatActivity
         {
             System.out.println("in CPA.if intent non nul");
             _profile = (Profile) intent.getSerializableExtra("profile");
+            //_score.setText((TextView) ((String) _profile.getScore()));
             //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
 
-            if (_profile != null)
+            /*if (_profile != null)
             {
                 _firstName.setText(_profile._firstName);
                 _lastName.setText(_profile._lastName);
@@ -75,8 +76,8 @@ public class CreationProfileActivity extends AppCompatActivity
                 /*Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.antigeek);
                 Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 480, 320, false);
                 ImageView image = (ImageView) findViewById(R.id.image);
-                _avatar.setImageBitmap(bMapScaled);*/
-            }
+                _avatar.setImageBitmap(bMapScaled);
+            }*/
         }
     }
 
@@ -140,10 +141,16 @@ public class CreationProfileActivity extends AppCompatActivity
 
             //Nouvelle activity MainActivity
             Intent intent = new Intent(this,MainActivity.class);
-            intent.putExtra("firstName", _firstName.getText().toString());
+            /*intent.putExtra("firstName", _firstName.getText().toString());
             intent.putExtra("lastName", _lastName.getText().toString());
-            intent.putExtra("type", _profile._type.toString());
+            intent.putExtra("type", _profile._type.toString());*/
+
+            _profile.setFirstName(_firstName.getText().toString());
+            _profile.setLastName(_lastName.getText().toString());
+            _profile.defineType();
+
             //intent.putExtra("avatar", _avatar.toString());
+            intent.putExtra("profile", _profile);
             intent.putExtra("activite", "CreateProfil");
             startActivity(intent);
             System.out.println("fin save file et type est "+_profile._type.toString());

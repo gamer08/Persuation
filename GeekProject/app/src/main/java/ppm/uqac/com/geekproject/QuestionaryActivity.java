@@ -45,7 +45,7 @@ public class QuestionaryActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        Log.d(TAG, "OnCreate");
+        //Log.d(TAG, "OnCreate");
         super.onCreate(savedInstanceState);
         Toast.makeText(this, "QuestionaryA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_questionary);

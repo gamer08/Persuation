@@ -37,4 +37,67 @@ public class Profile implements Serializable
 
     }
 
+    String getFirstName()
+    {
+        return _firstName;
+    }
+
+    String getLastName()
+    {
+        return _lastName;
+    }
+
+    Type getType()
+    {
+        return _type;
+    }
+
+    float getScore()
+    {
+        return _score;
+    }
+
+    void setType(Type t)
+    {
+        _type = t;
+    }
+    public void setFirstName(String f)
+    {
+        _firstName = f;
+    }
+
+    public void setLastName(String l)
+    {
+        _lastName = l;
+    }
+
+    public Type defineType()
+    {
+        if (_score <=0.2)
+        {
+            return Type.ANTIGEEK;
+        }
+
+        else if (_score<=0.4 && _score>0.2)
+        {
+            return Type.GEEKPERSECUTOR;
+        }
+
+        else if (_score<=0.6 && _score >0.4)
+        {
+            return Type.NEUTRAL;
+        }
+
+        else if (_score<=0.8 && _score >0.6)
+        {
+            return Type.GEEKFRIENDLY;
+        }
+
+        else
+        {
+            return Type.GEEK;
+        }
+    }
+
+
 }

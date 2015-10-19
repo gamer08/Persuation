@@ -1,15 +1,25 @@
 package ppm.uqac.com.geekproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
+
 public class ViewProfileActivity extends AppCompatActivity {
+    private EditText _firstNameET;
+    private EditText _lastNameET;
+    private TextView _typeTV;
+    private TextView _score;
+    private Profile _profile;
 
 
     @Override
@@ -19,18 +29,68 @@ public class ViewProfileActivity extends AppCompatActivity {
 
         Toast.makeText(this, "ViewProfileA.onCreate", Toast.LENGTH_SHORT).show();
 
-        EditText firstname = (EditText) findViewById(R.id.TV_FirstName);
-        EditText lastname = (EditText) findViewById(R.id.TV_LastName);
-        TextView type = (TextView) findViewById(R.id.TV_Type);
+
+       // _profile = new Profile();
+        _firstNameET = (EditText) findViewById(R.id.TV_FirstName);
+        _lastNameET = (EditText) findViewById(R.id.TV_LastName);
+        _typeTV = (TextView) findViewById(R.id.TV_Type);
+
+        // Listener pour le bouton de sauvegarde des modifications
+
+        Button buttonModification = (Button)findViewById(R.id.BTN_Modificate);
+
+        buttonModification.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                System.out.println("in CPA.saveProfil()");
+                String firstName = "firstName=";
+                firstName = firstName.concat(_firstNameET.getText().toString()).concat(System.getProperty("line.separator"));
+
+                String lastName = "lastName=";
+                lastName = lastName.concat(_lastNameET.getText().toString()).concat(System.getProperty("line.separator"));
+
+                String score = "score=";
+                score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
+
+                String type = "type=";
+                type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
+
+        /*String avatar = "avatar=";
+        type = type.concat(_profile._avatar.toString()).concat(System.getProperty("line.separator"));*/
+
+
+                //File file = new File(getBaseContext().getFilesDir(),PROFIL_FILE_NAME);
+                // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
+                try
+                {
+                    FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+                    System.out.println(Profile.PROFIL_FILE_NAME);
+                    out.write(firstName.getBytes());
+                    out.write(lastName.getBytes());
+                    out.write(score.getBytes());
+                    out.write(type.getBytes());
+                    out.close();
+
+
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
 
         Intent intent = getIntent();
-        if (intent != null) {
-
-            firstname.setText(intent.getStringExtra("firstname"));
-            lastname.setText(intent.getStringExtra("lastname"));
-            type.setText(intent.getStringExtra("type"));
+        if (intent != null)
+        {
+            _profile = (Profile) intent.getSerializableExtra("profile");
+            _firstNameET.setText(_profile.getFirstName());
+            _lastNameET.setText(_profile.getLastName());
+            _typeTV.setText(_profile.getType().toString());
 
         }
 
@@ -56,5 +116,10 @@ public class ViewProfileActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void changeProfile()
+    {
+
     }
 }
