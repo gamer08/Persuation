@@ -33,7 +33,8 @@
             android:id="@+id/TV_LastName"
             android:layout_toRightOf="@id/TVL_LastName"
             android:layout_alignBottom="@id/TVL_LastName"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:singleLine="true"/>
 
 
 
@@ -56,6 +57,7 @@
         android:id="@+id/TV_FirstName"
         android:layout_toRightOf="@+id/TVL_FirstName"
         android:layout_alignBottom="@id/TVL_FirstName"
+        android:singleLine="true"
         />
 
 
