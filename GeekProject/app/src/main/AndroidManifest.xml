@@ -44,7 +44,7 @@
             android:label="@string/title_activity_view_list" >
         </activity>
         <activity
-            android:name=".ViewContentActivity"
+            android:name=".GeeklopedieActivity"
             android:label="@string/title_activity_view_content" >
         </activity>
 

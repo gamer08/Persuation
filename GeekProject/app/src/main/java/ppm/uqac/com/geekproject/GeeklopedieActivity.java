@@ -6,19 +6,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class ViewContentActivity extends AppCompatActivity {
+public class GeeklopedieActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "VCA.onCreate", Toast.LENGTH_SHORT).show();
-        setContentView(R.layout.activity_view_content);
+        Toast.makeText(this, "GeellopedieA.onCreate", Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_geeklopedie);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_content, menu);
+        getMenuInflater().inflate(R.menu.menu_geeklopedie, menu);
         return true;
     }
 
