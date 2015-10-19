@@ -20,22 +20,22 @@ public class ViewListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_list);
 
         // Ouverture de la BDD
-        GADatabase activityData = new GADatabase(this);
+        GADatabase gadb = new GADatabase(this);
 
 
         // Exemple avec 2 GA
-        GA activity1 = new GA("regarder une video youtube", "blablal", 1, 500, false);
-        GA activity2 = new GA("regarder une video youtubbxcbce", "bcxvlablal", 1, 500, false);
-        activityData.addActivity(activity1);
-        activityData.addActivity(activity2);
+        GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 500, false);
+        GA activity2 = new GA("Lire un article", "Description de l'activité de lecture de l'article", 1, 500, false);
+        gadb.addActivity(activity1);
+        gadb.addActivity(activity2);
         // Récupération des activités dans la BDD
-        ArrayList<GA> listActivities =  activityData.getActivities();
+        ArrayList<GA> gaList =  gadb.getActivities();
         // Constructeur de notre Adapter de GA
-        GAAdapter adapterGeekActivity = new GAAdapter(this, listActivities);
+        GAAdapter gaAdapter = new GAAdapter(this, gaList);
         // Récupération de la listView
-        ListView listGA = (ListView) findViewById(R.id.ListView01);
+        ListView gaLV = (ListView) findViewById(R.id.ListView01);
         // Adaptation de la ListView avec notre Adapter
-        listGA.setAdapter(adapterGeekActivity);
+        gaLV.setAdapter(gaAdapter);
     }
 
     @Override

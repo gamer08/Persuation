@@ -97,7 +97,7 @@ public class QuestionaryActivity extends AppCompatActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
-        _questionary = new Questionary(2);
+        _questionary = new Questionary(1);
         _nbQuestions = _questionary._nbQuestions;
 
         // Start du service de génération de questionnaire

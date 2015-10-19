@@ -11,7 +11,7 @@ public class GeeklopedieActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "Geellopedie[CreationProfileA.onCreate", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Geeklopedie[CreationProfileA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_geeklopedie);
     }
 
