@@ -17,8 +17,10 @@
     <string name="TVL_LastName">Nom</string>
     <string name="TV_LastName">Entrez votre nom</string>
     <string name="TVL_Score">Score</string>
+    <string name="TV_Dialog">Allons voir les différentes activités que nous vous avons concocté!</string>
     <string name="BTN_Save">Enregistrer</string>
     <string name="BTN_Modificate">Modifier</string>
+    <string name="BTN_Dialog">Allons-y!</string>
     <string name="title_activity_start">Quel geek caches-tu en toi?</string>
     <string name="title_activity_view_profile">Profil</string>
     <string name="title_activity_creation_profile">Création du profil</string>

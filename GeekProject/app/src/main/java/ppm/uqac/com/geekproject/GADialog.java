@@ -3,13 +3,11 @@ package ppm.uqac.com.geekproject;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 
 /**
  * Created by Simon on 14/10/2015.
@@ -45,7 +43,7 @@ public class GADialog extends DialogFragment {
         View v = inflater.inflate(R.layout.dialog_ga,container, false);
         Dialog myDialog=getDialog();
         myDialog.setTitle("Avant tout..."); //Pas forcément de mettre un titre
-        Button OK= (Button) v.findViewById(R.id.buttonActivites); // on lie un bouton java au bouton défini dans le xml
+        Button OK= (Button) v.findViewById(R.id.buttonDialog); // on lie un bouton java au bouton défini dans le xml
         OK.setOnClickListener(onOK); // Ajout du click sur le bouton dans un listener
         return v;
     }

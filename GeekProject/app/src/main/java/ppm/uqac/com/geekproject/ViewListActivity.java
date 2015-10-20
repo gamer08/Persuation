@@ -25,7 +25,7 @@ public class ViewListActivity extends AppCompatActivity {
 
         // Exemple avec 2 GA
         GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 500, false);
-        GA activity2 = new GA("Lire un article", "Description de l'activité de lecture de l'article", 1, 500, false);
+        GA activity2 = new GA("Lire un article", "Description lecture article", 1, 500, false);
         gadb.addActivity(activity1);
         gadb.addActivity(activity2);
         // Récupération des activités dans la BDD

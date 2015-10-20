@@ -3,26 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"  android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style='"@android:style/Theme.Dialog"'>
+    style="@android:style/Theme.Dialog">
 
-    <TextView android:text="Allons voir les différentes activités que nous vous avons concocté."
-        android:id="@+id/TV_Type"
+    <TextView
+        android:text="@string/TV_Dialog"
+        android:id="@+id/TV_Dialog"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/TV_FirstName"
-        android:layout_toRightOf="@+id/buttonContent"
-        android:layout_toEndOf="@+id/buttonContent"
-        android:layout_marginLeft="37dp"
-        android:layout_marginStart="37dp" />
+        android:layout_height="wrap_content"/>
 
     <Button
-        android:layout_width="193dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Je n'ai pas le choix..."
-        android:id="@+id/buttonActivites"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onClickActivites" />
+        android:text="@string/BTN_Dialog"
+        android:id="@+id/buttonDialog"
+        android:onClick="onClickActivities" />
 
 
 </LinearLayout>
