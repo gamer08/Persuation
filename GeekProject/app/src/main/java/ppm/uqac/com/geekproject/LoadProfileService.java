@@ -16,7 +16,7 @@ public class LoadProfileService extends IntentService
 {
     private String _firstName;
     private String _lastName;
-    private float _score;
+    private Float _score;
     private String _type;
 
     private static final String TAG = "LoadProfile Service";
@@ -51,6 +51,7 @@ public class LoadProfileService extends IntentService
              */
             if (file.exists())
             {
+                System.out.println("testestsetsetestsetestestsetestset");
                 FileInputStream in = openFileInput(Profile.PROFIL_FILE_NAME);
                 InputStreamReader reader = new InputStreamReader(in);
                 BufferedReader buff = new BufferedReader(reader);
@@ -67,7 +68,9 @@ public class LoadProfileService extends IntentService
 
                 String firstName = _firstName.substring(_firstName.indexOf('=')+1);
                 String lastName = _lastName.substring(_lastName.indexOf('=')+1);
-                score = score.substring(score.indexOf('=')+1);
+                System.out.println("valeur de score "+score);
+                score = score.substring(score.indexOf('=') + 1);
+
                 _score = Float.parseFloat(score);
                 _type = _type.substring(_type.indexOf('=') + 1);
 

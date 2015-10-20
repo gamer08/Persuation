@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
             _profile = (Profile) intent.getSerializableExtra("profile");
 
+            System.out.println("AAAAAAAA   " +
+                    "" + _profile.getFirstName());
+
 
             // on set les text viewer qui ne sont que des informations pour l'utilisateurs
             _firstNameTV.setText(_profile.getFirstName());

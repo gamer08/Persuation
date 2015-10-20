@@ -7,20 +7,9 @@
     tools:context="ppm.uqac.com.geekproject.StartActivity">
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pas de profil"
-        android:id="@+id/buttonCreation"
-        android:onClick="onButtonProfileClick"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Profil existant"
-        android:id="@+id/buttonView"
-        android:layout_below="@+id/buttonCreation"
-        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/startactivity">
+    </ImageView>
 </RelativeLayout>
