@@ -21,13 +21,17 @@
         />
 
     <TextView
+        android:text="lalala"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/TV_Score"
-        android:textSize="24sp"
-        android:layout_toRightOf="@id/TVL_Score"
+        android:textSize="30sp"
+        android:paddingTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_alignTop="@id/TVL_Score"
         android:editable="false"
-        android:textColor="@color/text"
+        android:textColor="@color/score"
         />
 
     <EditText

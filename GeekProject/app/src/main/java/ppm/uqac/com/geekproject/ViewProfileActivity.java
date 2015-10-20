@@ -2,6 +2,8 @@ package ppm.uqac.com.geekproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +23,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     private TextView _typeTV;
     private TextView _score;
     private Profile _profile;
+    private ImageView _avatar;
 
 
     @Override
@@ -34,6 +38,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         _firstNameET = (EditText) findViewById(R.id.TV_FirstName);
         _lastNameET = (EditText) findViewById(R.id.TV_LastName);
         _typeTV = (TextView) findViewById(R.id.TV_Type);
+        _avatar = (ImageView) findViewById(R.id.image);
 
         // Listener pour le bouton de sauvegarde des modifications
 
@@ -91,6 +96,9 @@ public class ViewProfileActivity extends AppCompatActivity {
             _firstNameET.setText(_profile.getFirstName());
             _lastNameET.setText(_profile.getLastName());
             _typeTV.setText(_profile.getType().toString());
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
+            Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
+            _avatar.setImageBitmap(bMapScaled);
 
         }
 

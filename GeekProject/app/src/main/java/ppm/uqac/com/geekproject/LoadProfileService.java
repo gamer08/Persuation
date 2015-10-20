@@ -51,7 +51,6 @@ public class LoadProfileService extends IntentService
              */
             if (file.exists())
             {
-                System.out.println("testestsetsetestsetestestsetestset");
                 FileInputStream in = openFileInput(Profile.PROFIL_FILE_NAME);
                 InputStreamReader reader = new InputStreamReader(in);
                 BufferedReader buff = new BufferedReader(reader);
@@ -79,8 +78,9 @@ public class LoadProfileService extends IntentService
                 profile._firstName = firstName;
                 profile._lastName = lastName;
                 profile._score = _score;
+                profile.defineType();
 
-                switch (_type)
+                /*switch (_type)
                 {
                     case "GEEK":
                         profile._type=Profile.Type.GEEK;
@@ -96,7 +96,7 @@ public class LoadProfileService extends IntentService
                         break;
                     default:
                         profile._type = Profile.Type.ANTIGEEK;
-                }
+                }*/
 
 
                 System.out.println("résumé profil");

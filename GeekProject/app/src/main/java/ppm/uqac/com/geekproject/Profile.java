@@ -22,7 +22,7 @@ public class Profile implements Serializable
     public String _firstName, _lastName;
     public float _score;
     public Type _type;
-    Bitmap _avatar;
+    int _avatar;
 
     public static final String PROFIL_FILE_NAME ="Profile.txt";
 
@@ -32,8 +32,7 @@ public class Profile implements Serializable
         _firstName = _lastName ="";
         _score = 0.0f;
         _type = Type.ANTIGEEK;
-        //_avatar = BitmapFactory.decodeResource(getResources(),R.drawable.antigeek);
-        //_avatar = Bitmap.createBitmap(_avatar, 480, 320, false);
+        _avatar = R.drawable.antigeek;
 
     }
 
@@ -57,6 +56,8 @@ public class Profile implements Serializable
         return _score;
     }
 
+    int getAvatar() { return _avatar; }
+
     void setType(Type t)
     {
         _type = t;
@@ -71,31 +72,37 @@ public class Profile implements Serializable
         _lastName = l;
     }
 
-    public Type defineType()
+    public void defineType()
     {
         if (_score <=0.2)
         {
-            return Type.ANTIGEEK;
+            _type = Type.ANTIGEEK;
+            _avatar = R.drawable.antigeek;
         }
 
         else if (_score<=0.4 && _score>0.2)
         {
-            return Type.GEEKPERSECUTOR;
+            _type = Type.GEEKPERSECUTOR;
+            _avatar = R.drawable.geekpersecutor;
         }
 
         else if (_score<=0.6 && _score >0.4)
         {
-            return Type.NEUTRAL;
+            _type = Type.NEUTRAL;
+
+            _avatar = R.drawable.neutral;
         }
 
         else if (_score<=0.8 && _score >0.6)
         {
-            return Type.GEEKFRIENDLY;
+            _type = Type.GEEKFRIENDLY;
+            _avatar = R.drawable.geekfriendly;
         }
 
         else
         {
-            return Type.GEEK;
+            _type = Type.GEEK;
+            _avatar = R.drawable.geek;
         }
     }
 

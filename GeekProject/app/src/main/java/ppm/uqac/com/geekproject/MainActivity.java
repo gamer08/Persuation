@@ -56,10 +56,8 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             _lastNameTV.setText(_profile.getLastName());
             _typeTV.setText((_profile.getType()).toString());
 
-
-            Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.antigeek);
-            Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 480, 320, false);
-            ImageView image = (ImageView) findViewById(R.id.image);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
+            Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
             _avatar.setImageBitmap(bMapScaled);
 
             String previousActivity = (String) intent.getSerializableExtra("activite");
