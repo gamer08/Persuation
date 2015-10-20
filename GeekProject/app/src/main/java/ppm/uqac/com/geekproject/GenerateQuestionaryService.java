@@ -210,16 +210,18 @@ public class GenerateQuestionaryService extends IntentService
     void generateQuestionsID(int nbQuestionsInQuestionnaire)
     {
         int slice = _nbQuestionsTotal / nbQuestionsInQuestionnaire;
-        int lastID =0;
+        int lastID, nextAvailableID;
+        lastID = nextAvailableID = 0;
         for (int i =0;i < nbQuestionsInQuestionnaire ; i++)
         {
             Random rand = new Random();
-            int nextID = rand.nextInt(slice - lastID) + lastID;
+            int nextID = rand.nextInt(slice) + nextAvailableID;
             lastID = nextID;
+            nextAvailableID = lastID+1;
             _questionsID[i] = nextID;
 
             if ((nbQuestionsInQuestionnaire-(i+1)) != 0)
-            slice = (_nbQuestionsTotal - (lastID + 1)) / (nbQuestionsInQuestionnaire-(i+1));
+                slice = (_nbQuestionsTotal - (nextAvailableID)) / (nbQuestionsInQuestionnaire-(i+1));
             else
                 slice =0;
         }
