@@ -22,8 +22,7 @@ public class StartActivity extends AppCompatActivity
 
     private Receiver _receiver;
     private IntentFilter _profileIntentFilter;
-    Button _creationProfileButton;
-    Button _viewProfileButton;
+
 
 
     @Override
@@ -31,15 +30,13 @@ public class StartActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        _creationProfileButton = (Button) findViewById(R.id.buttonCreation);
-        _viewProfileButton =  (Button) findViewById(R.id.buttonView);;
+
 
 
         Toast.makeText(this, "StartA.onCreate", Toast.LENGTH_SHORT).show();
 
-        // Pour mettre des listeners sur les boutons
 
-        setButton();
+
 
         _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
@@ -57,6 +54,7 @@ public class StartActivity extends AppCompatActivity
     private class Receiver extends BroadcastReceiver
     {
 
+
         private Receiver()
         {}
 
@@ -72,9 +70,10 @@ public class StartActivity extends AppCompatActivity
             else
             {
                 Intent profilActivity = new Intent(getApplicationContext(),MainActivity.class);
-                profilActivity.putExtra("lastName",profile._lastName);
+                /*profilActivity.putExtra("lastName",profile._lastName);
                 profilActivity.putExtra("firstName",profile._firstName);
-                profilActivity.putExtra("type",profile._type.toString());
+                profilActivity.putExtra("type",profile._type.toString());*/
+                profilActivity.putExtra("profile", profile);
                 profilActivity.putExtra("activite", "Start");
                 startActivity(profilActivity);
             }
@@ -120,28 +119,6 @@ public class StartActivity extends AppCompatActivity
 
     }
 
-    public void setButton()
-    {
-        _creationProfileButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, WelcomeActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        _viewProfileButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // Intent intent = new Intent(this, LoadProfileService.class);
-                Intent intent = new Intent(StartActivity.this, LoadProfileService.class);
-                startService(intent);
-            }
-
-        });
-
-    }
 }
 

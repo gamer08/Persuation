@@ -64,6 +64,7 @@ public class CreationProfileActivity extends AppCompatActivity
         {
             System.out.println("in CPA.if intent non nul");
             _profile = (Profile) intent.getSerializableExtra("profile");
+            _score.setText(String.valueOf(_profile._score));
             //_score.setText((TextView) ((String) _profile.getScore()));
             //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
 
@@ -71,7 +72,7 @@ public class CreationProfileActivity extends AppCompatActivity
             {
                 _firstName.setText(_profile._firstName);
                 _lastName.setText(_profile._lastName);
-                _score.setText(String.valueOf(_profile._score));
+
 
                 /*Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.antigeek);
                 Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 480, 320, false);

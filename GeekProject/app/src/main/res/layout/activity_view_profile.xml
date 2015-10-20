@@ -28,11 +28,11 @@
            android:textColor="@color/text"/>
 
         <EditText
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/TV_LastName"
             android:layout_toRightOf="@id/TVL_LastName"
-            android:layout_alignBottom="@id/TVL_LastName"
+            android:layout_alignTop="@id/TVL_LastName"
             android:paddingTop="10dp"
             android:singleLine="true"
            android:textColor="@color/text"/>
@@ -53,7 +53,7 @@
             />
 
      <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TV_FirstName"
         android:layout_toRightOf="@+id/TVL_FirstName"
@@ -78,7 +78,7 @@
         />
 
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/TV_Type"
         android:editable="false"

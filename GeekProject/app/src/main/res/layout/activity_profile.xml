@@ -7,62 +7,17 @@
     >
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TVL_LastName"
-        android:paddingTop="50dp"
-        android:textSize="24sp"
-        android:text="@string/TVL_LastName"
-        android:textColor="@color/text"
-        />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_LastName"
-        android:textSize="24sp"
-        android:layout_toRightOf="@+id/TVL_LastName"
-        android:layout_alignBottom="@+id/TVL_LastName"
-        android:hint="@string/TV_LastName"
-        android:singleLine="true"
-        android:textColor="@color/text"
-         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/TVL_FirstName"
-        android:paddingTop="50dp"
-        android:textSize="24sp"
-        android:layout_below="@id/TVL_LastName"
-        android:text="@string/TVL_FirstName"
-        android:textColor="@color/text"
-       />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_FirstName"
-        android:textSize="24sp"
-        android:layout_toRightOf="@id/TVL_FirstName"
-        android:layout_alignBottom="@id/TVL_FirstName"
-        android:hint="@string/TV_FirstName"
-        android:singleLine="true"
-        android:textColor="@color/text"
-        />
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:id="@+id/TVL_Score"
         android:paddingTop="50dp"
-        android:layout_below="@id/TVL_FirstName"
         android:textSize="24sp"
         android:text="@string/TVL_Score"
         android:textColor="@color/text"
+        android:paddingBottom="20dp"
         />
 
     <TextView
@@ -75,13 +30,43 @@
         android:textColor="@color/text"
         />
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TV_LastName"
+        android:textSize="24sp"
+        android:hint="@string/TV_LastName"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/TVL_Score"
+        android:singleLine="true"
+        android:textColor="@color/text"
+         />
+
+
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TV_FirstName"
+        android:textSize="24sp"
+        android:hint="@string/TV_FirstName"
+        android:singleLine="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/TV_LastName"
+        android:textColor="@color/text"
+        />
+
+
+
+
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BTN_Save"
+        android:text="@string/BTN_Create"
         android:id="@+id/BTN_Save"
-        android:layout_below="@id/TVL_Score"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@id/TV_FirstName"
+        android:layout_alignRight="@id/TV_FirstName" />
 
 </RelativeLayout>
