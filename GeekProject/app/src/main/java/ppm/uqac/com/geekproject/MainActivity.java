@@ -1,5 +1,7 @@
 package ppm.uqac.com.geekproject;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog.Builder;
 
 public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
     private TextView _firstNameTV;
@@ -130,6 +133,16 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     @Override
     public void onBackPressed()
     {
+        new AlertDialog.Builder(this)
+                .setMessage("Voulez-vous vraiment quitter cette application?")
+                .setCancelable(false)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        MainActivity.this.finish();
+                    }
+                })
+                .setNegativeButton("Non", null)
+                .show();
         System.out.println("Bouton retour");
     }
 
