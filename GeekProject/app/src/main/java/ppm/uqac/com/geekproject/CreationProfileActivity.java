@@ -44,7 +44,15 @@ public class CreationProfileActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-              saveProfil();
+                if(_firstName.getText().length() !=0 && _lastName.getText().length() != 0)
+                {
+                    saveProfil();
+                }
+                else
+                {
+                    Toast.makeText(CreationProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
+                }
+
             }
         };
 
@@ -152,7 +160,6 @@ public class CreationProfileActivity extends AppCompatActivity
             intent.putExtra("activite", "CreateProfil");
             startActivity(intent);
             System.out.println("fin save file et type est "+_profile._type.toString());
-
 
 
         }
