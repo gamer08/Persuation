@@ -21,6 +21,10 @@ public class GADatabase extends SQLiteOpenHelper {
      */
     private ArrayList<GA> listActivities;
 
+    /**
+     * Liste du contenu de la geeklopedie
+     */
+    private ArrayList<Content> listContent;
 
     /**
      * Constructeur de la base de donnée des GeekActivity
@@ -32,6 +36,7 @@ public class GADatabase extends SQLiteOpenHelper {
         super(context, "GeekActivity.db", null, 1);
         listActivities = new ArrayList<GA>();
         System.out.println("bdd geek_activity créée");
+        listContent = new ArrayList<Content>();
         SQLiteDatabase db = this.getWritableDatabase();
 
         onCreate(db);
@@ -55,6 +60,17 @@ public class GADatabase extends SQLiteOpenHelper {
                 "is_done INTEGER" +
                 ")");
         System.out.println("table geek_activity créée");
+
+        db.execSQL("DROP TABLE IF EXISTS geek_content");
+        //
+        db.execSQL("CREATE TABLE IF NOT EXISTS geek_content(" +
+                "number_content INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name string, " +
+                "description string, " +
+                "url string " +
+                ")");
+
+        System.out.println("table geek_content créée");
     }
 
     @Override
@@ -133,6 +149,62 @@ public class GADatabase extends SQLiteOpenHelper {
         db.close();
         return listActivities;
 
+    }
+
+    /**
+     * Ajout d'une activité dans la BDD
+     * @param c
+     */
+    public void addContent(Content c)
+    {
+
+
+
+        this.getWritableDatabase().execSQL("INSERT INTO geek_content (name, description,url) VALUES ('" +
+                c.get_name() + "','" +
+                c.get_description() + "','" +
+                c.get_url()+
+                 "')");
+        this.getWritableDatabase().close();
+        System.out.println("Content " + c.get_name() + " ajouté");
+    }
+
+    /**
+     * Récupération du contenu
+     * @return une ArrayList de Content
+     */
+    public ArrayList<Content> getContent()
+    {
+        //listActivities.clear();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor activitiesSaved = db.rawQuery("SELECT * FROM geek_content", null);
+
+        String name;
+        String description;
+        String url;
+
+        System.out.println("test");
+
+        activitiesSaved.moveToFirst();
+        System.out.println("movetofirst " + activitiesSaved.getPosition());
+        activitiesSaved.moveToLast();
+
+
+        for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext())
+        {
+            name = activitiesSaved.getString(1);
+            description = activitiesSaved.getString(2);
+            url = activitiesSaved.getString(3);
+
+            Content c = new Content(name,description,url);
+
+            listContent.add(c);
+            System.out.println("non activité " + c.get_name());
+        }
+        System.out.println("Activités " + listContent.get(0).get_name());
+
+        db.close();
+        return listContent;
     }
 
 }
