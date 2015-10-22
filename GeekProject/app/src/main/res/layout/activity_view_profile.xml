@@ -88,6 +88,17 @@
 
         />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TV_Score"
+        android:layout_toRightOf="@id/TVL_LastName"
+        android:layout_alignTop="@id/TVL_LastName"
+        android:paddingTop="10dp"
+        android:singleLine="true"
+        android:visibility="invisible"
+        android:textColor="@color/text"/>
+
     <Button
 
         android:layout_width="wrap_content"

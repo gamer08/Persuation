@@ -38,6 +38,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         _firstNameET = (EditText) findViewById(R.id.TV_FirstName);
         _lastNameET = (EditText) findViewById(R.id.TV_LastName);
         _typeTV = (TextView) findViewById(R.id.TV_Type);
+        _score = (TextView) findViewById(R.id.TV_Score);
         _avatar = (ImageView) findViewById(R.id.image);
 
         // Listener pour le bouton de sauvegarde des modifications
@@ -48,41 +49,13 @@ public class ViewProfileActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                System.out.println("in CPA.saveProfil()");
-                String firstName = "firstName=";
-                firstName = firstName.concat(_firstNameET.getText().toString()).concat(System.getProperty("line.separator"));
-
-                String lastName = "lastName=";
-                lastName = lastName.concat(_lastNameET.getText().toString()).concat(System.getProperty("line.separator"));
-
-                String score = "score=";
-                score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
-
-                String type = "type=";
-                type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
-
-        /*String avatar = "avatar=";
-        type = type.concat(_profile._avatar.toString()).concat(System.getProperty("line.separator"));*/
-
-
-                //File file = new File(getBaseContext().getFilesDir(),PROFIL_FILE_NAME);
-                // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
-                try
+                if(_firstNameET.getText().length() !=0 && _lastNameET.getText().length() != 0)
                 {
-                    FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-                    System.out.println(Profile.PROFIL_FILE_NAME);
-                    out.write(firstName.getBytes());
-                    out.write(lastName.getBytes());
-                    out.write(score.getBytes());
-                    out.write(type.getBytes());
-                    out.close();
-
-
-
+                    saveProfil();
                 }
-                catch (Exception e)
+                else
                 {
-                    e.printStackTrace();
+                    Toast.makeText(ViewProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -96,6 +69,7 @@ public class ViewProfileActivity extends AppCompatActivity {
             _firstNameET.setText(_profile.getFirstName());
             _lastNameET.setText(_profile.getLastName());
             _typeTV.setText(_profile.getType().toString());
+            _score.setText(String.valueOf(_profile._score));
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
             _avatar.setImageBitmap(bMapScaled);
@@ -126,8 +100,47 @@ public class ViewProfileActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void changeProfile()
+
+    /**
+     * Sauvegarde les information du profil dans le fichier
+     */
+    public void saveProfil()
     {
+        System.out.println("in CPA.saveProfil()");
+        String firstName = "firstName=";
+        firstName = firstName.concat(_firstNameET.getText().toString()).concat(System.getProperty("line.separator"));
+
+        String lastName = "lastName=";
+        lastName = lastName.concat(_lastNameET.getText().toString()).concat(System.getProperty("line.separator"));
+
+        String score = "score=";
+        score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
+
+        String type = "type=";
+        type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
+
+        /*String avatar = "avatar=";
+        type = type.concat(_profile._avatar.toString()).concat(System.getProperty("line.separator"));*/
+
+
+        //File file = new File(getBaseContext().getFilesDir(),PROFIL_FILE_NAME);
+        // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
+        try
+        {
+            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+            System.out.println(Profile.PROFIL_FILE_NAME);
+            out.write(firstName.getBytes());
+            out.write(lastName.getBytes());
+            out.write(score.getBytes());
+            out.write(type.getBytes());
+            out.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
 
     }
 }
