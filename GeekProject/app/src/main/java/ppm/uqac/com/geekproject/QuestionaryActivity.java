@@ -126,6 +126,7 @@ public class QuestionaryActivity extends AppCompatActivity
                 Profile profile = (Profile)intent.getSerializableExtra("profile");
                 Intent profilActivity = new Intent(getApplicationContext(),CreationProfileActivity.class);
                 profilActivity.putExtra("profile", profile);
+                QuestionaryActivity.this.finish();
                 System.out.println("valeur profil avant start profilactivity "+profile._score);
                 startActivity(profilActivity);
             }

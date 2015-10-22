@@ -69,6 +69,7 @@ public class StartActivity extends AppCompatActivity
             }
             else
             {
+                StartActivity.this.finish();
                 Intent profilActivity = new Intent(getApplicationContext(),MainActivity.class);
                 /*profilActivity.putExtra("lastName",profile._lastName);
                 profilActivity.putExtra("firstName",profile._firstName);

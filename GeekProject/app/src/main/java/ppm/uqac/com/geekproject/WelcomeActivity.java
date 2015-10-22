@@ -44,6 +44,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void StartQuestionary(View v)
     {
+        this.finish();
         Intent intent = new Intent(this,QuestionaryActivity.class);
         startActivity(intent);
     }

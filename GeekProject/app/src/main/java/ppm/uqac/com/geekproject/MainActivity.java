@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -138,12 +139,23 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                 .setCancelable(false)
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        MainActivity.this.finish();
+                        MainActivity.this.moveTaskToBack(true);
                     }
                 })
                 .setNegativeButton("Non", null)
                 .show();
         System.out.println("Bouton retour");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("MaintActivity", "onPause");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("MaintActivity", "onDestroy");
     }
 
     /*

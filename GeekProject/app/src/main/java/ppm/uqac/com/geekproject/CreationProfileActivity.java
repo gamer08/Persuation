@@ -156,6 +156,7 @@ public class CreationProfileActivity extends AppCompatActivity
             _profile.defineType();
 
             //intent.putExtra("avatar", _avatar.toString());
+            this.finish();
             intent.putExtra("profile", _profile);
             intent.putExtra("activite", "CreateProfil");
             startActivity(intent);
