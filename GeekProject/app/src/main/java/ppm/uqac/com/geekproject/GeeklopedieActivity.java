@@ -7,6 +7,10 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class GeeklopedieActivity extends AppCompatActivity {
@@ -22,6 +26,37 @@ public class GeeklopedieActivity extends AppCompatActivity {
         // Accès a la bdd (ouverture)
         GADatabase db = new GADatabase(this);
         System.out.println("ouverture bd");
+
+        InputStream is = getResources().openRawResource(
+                getResources().getIdentifier("raw/contenu",
+                        "raw", getPackageName()));
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        int d,u;
+
+        try {
+            while ((line = reader.readLine()) != null) {
+        /*sb.append(line).append('\n');
+        System.out.println("while "+sb.toString());*/
+                System.out.println("index url: "+line.indexOf("name="));
+                d=line.indexOf(";desc=");
+                u=line.indexOf(";url=");
+                Content contenu = new Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
+                db.addContent(contenu);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         // pour l'alpha on ajoute 3 contenu
         //Cette partie sera rmplacée plus tard
