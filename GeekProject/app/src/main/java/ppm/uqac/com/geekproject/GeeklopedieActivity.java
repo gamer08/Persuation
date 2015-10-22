@@ -1,10 +1,15 @@
 package ppm.uqac.com.geekproject;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -58,7 +63,7 @@ public class GeeklopedieActivity extends AppCompatActivity {
         }
 
 
-        // pour l'alpha on ajoute 3 contenu
+       /* // pour l'alpha on ajoute 3 contenu
         //Cette partie sera rmplacée plus tard
         Content c1 = new Content("Contenu 1","ceci est une image","http://google.fr");
         Content c2 = new Content("Contenu 2","ceci est une video","http://google.fr");
@@ -79,19 +84,30 @@ public class GeeklopedieActivity extends AppCompatActivity {
         db.addContent(c7);
         db.addContent(c8);
         db.addContent(c9);
-        db.addContent(c10);
+        db.addContent(c10);*/
 
         //
         // Récupération de tout le contenu
         ArrayList<Content> List =  db.getContent();
 
         // On crée un adapter
-        ContentAdapter cAdapter = new ContentAdapter(this,List);
+        final ContentAdapter cAdapter = new ContentAdapter(this,List);
 
         // Récupération de la listView
         ListView ContentListView = (ListView) findViewById(R.id.ListView1);
         // Adaptation de la ListView avec notre Adapter
         ContentListView.setAdapter(cAdapter);
+
+        ContentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Content c = cAdapter.getItem(position);
+                Uri uri = Uri.parse(c.get_url()); // Si l'url ne contient pas http:// l'appli plante
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
 
     }
 

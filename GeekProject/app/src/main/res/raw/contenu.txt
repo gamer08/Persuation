@@ -1,0 +1,5 @@
+name=La figure du « geek »;desc=Page web;url=http://trans.revues.org/370
+name=Définition du mot geek:;desc=Page web;url=http://okki666.free.fr/docmaster/articles/linux096.htm
+name=Linkthesun;desc=Vidéo Youtube;url=https://www.youtube.com/watch?v=vU0hjO52xpU
+name=Cyprien 4;desc=Vidéo Youtube;url=https://www.youtube.com/watch?v=wzjvKygubsI
+name=Nerd vs geek;desc=Vidéo Youtube;url=https://www.youtube.com/watch?v=2Tvy_Pbe5NA
