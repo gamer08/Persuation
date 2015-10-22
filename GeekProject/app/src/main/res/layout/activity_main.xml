@@ -64,9 +64,9 @@
         android:text="Geeklopedie"
         android:id="@+id/buttonContent"
         android:onClick="onClickContent"
+        android:drawableLeft="@drawable/geeklopedieicon2"
         android:layout_below="@+id/buttonActivities"
-        android:layout_alignLeft="@+id/buttonActivities"
-        android:drawableLeft="@drawable/geeklopedieicon2"/>
+        android:layout_centerHorizontal="true" />
 
 
     <Button
@@ -75,9 +75,9 @@
         android:text="Profil"
         android:id="@+id/buttonProfil"
         android:onClick="onClickProfile"
+        android:drawableLeft="@drawable/profileicon2"
         android:layout_below="@+id/buttonContent"
-        android:layout_alignLeft="@+id/buttonContent"
-        android:drawableLeft="@drawable/profileicon2"/>
+        android:layout_centerHorizontal="true" />
 
 
 
