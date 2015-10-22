@@ -52,6 +52,7 @@ public class ViewProfileActivity extends AppCompatActivity {
                 if(_firstNameET.getText().length() !=0 && _lastNameET.getText().length() != 0)
                 {
                     saveProfil();
+
                 }
                 else
                 {
@@ -96,7 +97,6 @@ public class ViewProfileActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -109,9 +109,11 @@ public class ViewProfileActivity extends AppCompatActivity {
         System.out.println("in CPA.saveProfil()");
         String firstName = "firstName=";
         firstName = firstName.concat(_firstNameET.getText().toString()).concat(System.getProperty("line.separator"));
+        _profile.setFirstName(_firstNameET.getText().toString());
 
         String lastName = "lastName=";
         lastName = lastName.concat(_lastNameET.getText().toString()).concat(System.getProperty("line.separator"));
+        _profile.setLastName(_lastNameET.getText().toString());
 
         String score = "score=";
         score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
@@ -140,7 +142,11 @@ public class ViewProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
+        Intent intent = new Intent(this,MainActivity.class);
+        this.finish();
+        intent.putExtra("profile", _profile);
+        intent.putExtra("activite", "ViewProfileActivity");
+        startActivity(intent);
+        System.out.println("fin save file et type est "+_profile._type.toString());
     }
 }
