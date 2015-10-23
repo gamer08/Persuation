@@ -30,14 +30,13 @@
         <activity
             android:name=".QuestionaryActivity"
             android:label="@string/title_activity_creation_profile"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".WelcomeActivity"
             android:label="@string/title_activity_welcome"
             android:screenOrientation="portrait" >
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
@@ -64,6 +63,12 @@
         <service
             android:name=".GenerateProfileService"
             android:exported="false" />
+
+        <activity
+            android:name=".geeklopedie2"
+            android:label="@string/title_activity_geeklopedie2"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

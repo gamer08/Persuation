@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Explications profils">
+    <menu>
+        <item android:id="@+id/antigeek" android:icon="@android:drawable/ic_menu_camera"
+            android:title="Antigeek" />
+        <item android:id="@+id/GeekPersecutor" android:icon="@android:drawable/ic_menu_gallery"
+            android:title="GeekPersecutor" />
+        <item android:id="@+id/Neutral" android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Neutral" />
+        <item android:id="@+id/Geekfriendly" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Geekfriendly" />
+        <item android:id="@+id/Geek" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Geek" />
+        </menu>
+    </item>
+
+    <item android:title="En apprendre davantage sur les geeks">
+        <menu>
+            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
+                android:title="Contenu" />
+        </menu>
+    </item>
+
+</menu>

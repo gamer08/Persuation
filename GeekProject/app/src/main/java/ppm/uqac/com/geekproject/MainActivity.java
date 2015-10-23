@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
     public void onClickContent(View v)
     {
-        Intent intent = new Intent(this,GeeklopedieActivity.class);
+        Intent intent = new Intent(this,geeklopedie2.class);
         startActivity(intent);
     }
 

@@ -29,4 +29,22 @@
     <string name="title_activity_view_list">Liste des activités </string>
     <string name="title_activity_view_content">Geeklopédie</string>
 
+
+    <string-array name="menuContent">
+        <item>AntiGeek</item>
+        <item>GeekPersecutor</item>
+        <item>Neutral</item>
+        <item>GeekFriendly</item>
+        <item>Geek</item>
+        <item>Liste Contenus</item>
+    </string-array>
+
+    <string name="drawer_open">Open Navigation Drawer</string>
+    <string name="drawer_close">Close Navigation Drawer</string>
+    <string name="title_activity_geeklopedie2">geeklopedie2</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
 </resources>
