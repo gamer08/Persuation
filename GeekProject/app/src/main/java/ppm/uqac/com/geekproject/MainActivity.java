@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog.Builder;
 
 public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
     private TextView _firstNameTV;
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
     public void onClickContent(View v)
     {
-        Intent intent = new Intent(this,geeklopedie2.class);
+        Intent intent = new Intent(this,GeeklopedieActivity.class);
         startActivity(intent);
     }
 

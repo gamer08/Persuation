@@ -49,8 +49,9 @@
         </activity>
         <activity
             android:name=".GeeklopedieActivity"
-            android:label="@string/title_activity_view_content"
-            android:screenOrientation="portrait" >
+            android:label="@string/title_activity_geeklopedie2"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
         </activity>
 
         <!-- Déclaration service -->
@@ -64,11 +65,7 @@
             android:name=".GenerateProfileService"
             android:exported="false" />
 
-        <activity
-            android:name=".geeklopedie2"
-            android:label="@string/title_activity_geeklopedie2"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+
     </application>
 
 </manifest>

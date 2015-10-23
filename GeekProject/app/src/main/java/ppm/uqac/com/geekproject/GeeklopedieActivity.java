@@ -1,13 +1,7 @@
 package ppm.uqac.com.geekproject;
 
 import android.app.FragmentManager;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,24 +17,24 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class geeklopedie2 extends AppCompatActivity
+public class GeeklopedieActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_geeklopedie2);
+        setContentView(R.layout.activity_geeklopedie);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -54,8 +46,7 @@ public class geeklopedie2 extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame,new Fragment_1()).commit();
-
+        fm.beginTransaction().replace(R.id.content_frame,new Fragment_main()).commit();
     }
 
     @Override
@@ -96,8 +87,6 @@ public class geeklopedie2 extends AppCompatActivity
         // Handle navigation view item clicks here.
 
         FragmentManager fm = getFragmentManager();
-
-
 
         int id = item.getItemId();
         System.out.println(id);
@@ -157,16 +146,11 @@ public class geeklopedie2 extends AppCompatActivity
             System.out.println(List.toString());
 
             // On crée un adapter
-            final ContentAdapter cAdapter = new ContentAdapter(geeklopedie2.this,List);
+            final ContentAdapter cAdapter = new ContentAdapter(GeeklopedieActivity.this,List);
 
             Fragment_6 f6 = new Fragment_6();
-
-
-
-
             fm.beginTransaction().replace(R.id.content_frame,f6).commit();
             f6.setData(cAdapter);
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
