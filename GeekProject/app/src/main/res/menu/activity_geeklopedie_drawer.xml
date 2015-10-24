@@ -3,15 +3,16 @@
 
     <item android:title="Explications profils">
     <menu>
-        <item android:id="@+id/antigeek" android:icon="@android:drawable/ic_menu_camera"
+        <item android:id="@+id/antigeek" android:icon="@drawable/antigeek_icon"
             android:title="Antigeek" />
-        <item android:id="@+id/GeekPersecutor" android:icon="@android:drawable/ic_menu_gallery"
+        <item android:id="@+id/GeekPersecutor" android:icon="@drawable/geekpersecutor_icon"
             android:title="GeekPersecutor" />
-        <item android:id="@+id/Neutral" android:icon="@android:drawable/ic_menu_slideshow"
+        <item android:id="@+id/Neutral" android:icon="@drawable/neutral_icon"
             android:title="Neutral" />
-        <item android:id="@+id/Geekfriendly" android:icon="@android:drawable/ic_menu_manage"
+        <item android:id="@+id/Geekfriendly" android:icon="@drawable/geekfriendly_icon"
             android:title="Geekfriendly" />
-        <item android:id="@+id/Geek" android:icon="@android:drawable/ic_menu_manage"
+        <item android:id="@+id/Geek" android:icon="@drawable/geek_icon"
+            android:src="@drawable/geek_icon"
             android:title="Geek" />
         </menu>
     </item>
