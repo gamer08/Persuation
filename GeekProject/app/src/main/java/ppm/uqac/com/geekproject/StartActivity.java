@@ -56,7 +56,9 @@ public class StartActivity extends AppCompatActivity
 
 
         private Receiver()
-        {}
+        {
+
+        }
 
         @Override
         public void onReceive(Context context, Intent intent)
@@ -66,6 +68,12 @@ public class StartActivity extends AppCompatActivity
             {
                 Intent intentWelcome = new Intent(StartActivity.this, WelcomeActivity.class);
                 startActivity(intentWelcome);
+                GADatabase gadb = new GADatabase(StartActivity.this);
+                // Exemple avec 2 GA
+                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 500, false);
+                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 500, false);
+                gadb.addActivity(activity1);
+                gadb.addActivity(activity2);
             }
             else
             {

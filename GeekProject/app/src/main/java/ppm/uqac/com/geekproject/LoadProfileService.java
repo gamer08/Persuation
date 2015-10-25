@@ -15,7 +15,6 @@ import java.io.InputStreamReader;
 public class LoadProfileService extends IntentService
 {
     private String _firstName;
-    private String _lastName;
     private Float _score;
     private String _type;
 
@@ -56,7 +55,6 @@ public class LoadProfileService extends IntentService
                 BufferedReader buff = new BufferedReader(reader);
 
                 _firstName = buff.readLine();
-                _lastName = buff.readLine();
                 score = buff.readLine();
                 _type = buff.readLine();
 
@@ -66,7 +64,6 @@ public class LoadProfileService extends IntentService
                 in.close();
 
                 String firstName = _firstName.substring(_firstName.indexOf('=')+1);
-                String lastName = _lastName.substring(_lastName.indexOf('=')+1);
                 System.out.println("valeur de score "+score);
                 score = score.substring(score.indexOf('=') + 1);
 

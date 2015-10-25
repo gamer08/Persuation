@@ -49,7 +49,7 @@ public class GADatabase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //juste pour avoir moins de ligne
-        db.execSQL("DROP TABLE IF EXISTS geek_activity");
+        //db.execSQL("DROP TABLE IF EXISTS geek_activity");
         //
         db.execSQL("CREATE TABLE IF NOT EXISTS geek_activity(" +
                 "number_activity INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -86,12 +86,9 @@ public class GADatabase extends SQLiteOpenHelper {
      */
     public void addActivity(GA activity)
     {
-        boolean isDone = activity.get_isDone();
-        int done;
-        if (isDone == false)
-            done = 0;
-        else
-            done = 1;
+
+        int done =0;
+
 
 
 
