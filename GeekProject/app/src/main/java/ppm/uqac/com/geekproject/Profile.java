@@ -19,7 +19,7 @@ public class Profile implements Serializable
         GEEK
     }
 
-    public String _firstName, _lastName;
+    public String _userName;
     public float _score;
     public Type _type;
     int _avatar;
@@ -29,22 +29,19 @@ public class Profile implements Serializable
 
     public Profile()
     {
-        _firstName = _lastName ="";
+        _userName  ="";
         _score = 0.0f;
         _type = Type.ANTIGEEK;
         _avatar = R.drawable.antigeek;
 
     }
 
-    String getFirstName()
+    String getUserName()
     {
-        return _firstName;
+        return _userName;
     }
 
-    String getLastName()
-    {
-        return _lastName;
-    }
+
 
     Type getType()
     {
@@ -62,15 +59,11 @@ public class Profile implements Serializable
     {
         _type = t;
     }
-    public void setFirstName(String f)
+    public void setUserName(String f)
     {
-        _firstName = f;
+        _userName = f;
     }
 
-    public void setLastName(String l)
-    {
-        _lastName = l;
-    }
 
     public void defineType()
     {

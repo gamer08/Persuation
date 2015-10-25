@@ -12,10 +12,8 @@
     <string name="TV_Choice4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacus nunc, consequat eget lorem ac, molestie iaculis purus. Suspendisse sit amet dapibus sem. Proin dapibus sem quis sapien efficitur, vitae sagittis tellus porttitor. Vivamus et quam at massa placerat bibendum. Maecenas posuere nulla sed. </string>
     <string name="TV_Choice5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rutrum dui dapibus, luctus ligula ut, faucibus augue. Curabitur vitae eleifend sapien. Mauris eget mollis enim. Sed vel tellus dignissim, feugiat tortor vitae, facilisis risus. In eu nulla vitae diam molestie laoreet. Curabitur massa nunc. </string>
     <!--<string name="title_activity_profile">ProfileActivity</string>-->
-    <string name="TVL_FirstName">Prénom</string>
-    <string name="TV_FirstName">Entrez votre prénom</string>
-    <string name="TVL_LastName">Nom</string>
-    <string name="TV_LastName">Entrez votre nom</string>
+    <string name="TVL_UserName">Pseudo</string>
+    <string name="TV_UserName">Entrez votre pseudo</string>
     <string name="TVL_Score">Score</string>
     <string name="TV_Dialog">Allons voir les différentes activités que nous vous avons concocté!</string>
     <string name="BTN_Create">Créer</string>

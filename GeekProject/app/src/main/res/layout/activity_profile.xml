@@ -34,31 +34,17 @@
         android:textColor="@color/score"
         />
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_LastName"
-        android:textSize="24sp"
-        android:hint="@string/TV_LastName"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/TVL_Score"
-        android:singleLine="true"
-        android:textColor="@color/text"
-         />
-
-
 
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TV_FirstName"
+        android:id="@+id/TV_UserName"
         android:textSize="24sp"
-        android:hint="@string/TV_FirstName"
+        android:hint="@string/TV_UserName"
         android:singleLine="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/TV_LastName"
         android:textColor="@color/text"
-        />
+        android:layout_below="@id/TVL_Score" />
 
 
 
@@ -70,7 +56,7 @@
         android:layout_height="wrap_content"
         android:text="@string/BTN_Create"
         android:id="@+id/BTN_Save"
-        android:layout_below="@id/TV_FirstName"
-        android:layout_alignRight="@id/TV_FirstName" />
+        android:layout_below="@id/TV_UserName"
+        android:layout_alignRight="@id/TV_UserName" />
 
 </RelativeLayout>

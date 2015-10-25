@@ -75,8 +75,7 @@ public class LoadProfileService extends IntentService
 
                 profile = new Profile();
 
-                profile._firstName = firstName;
-                profile._lastName = lastName;
+                profile._userName = firstName;
                 profile._score = _score;
                 profile.defineType();
 
@@ -101,7 +100,7 @@ public class LoadProfileService extends IntentService
 
                 System.out.println("résumé profil");
                 System.out.println(firstName);
-                System.out.println(lastName);
+
                 System.out.println(_score);
                 System.out.println(profile._type.toString());
                 System.out.println("fin résumé profil");

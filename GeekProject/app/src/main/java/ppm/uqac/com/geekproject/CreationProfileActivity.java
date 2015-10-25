@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +24,7 @@ public class CreationProfileActivity extends AppCompatActivity
 
     private View.OnClickListener _saveListener;
     private Button _saveButton;
-    private EditText _firstName, _lastName;
+    private EditText _userName;
     private TextView _score;
     private Profile _profile;
     private ImageView _avatar;
@@ -44,7 +43,7 @@ public class CreationProfileActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                if(_firstName.getText().length() !=0 && _lastName.getText().length() != 0)
+                if(_userName.getText().length() !=0)
                 {
                     saveProfil();
                 }
@@ -56,8 +55,7 @@ public class CreationProfileActivity extends AppCompatActivity
             }
         };
 
-        _firstName = (EditText) findViewById(R.id.TV_FirstName);
-        _lastName = (EditText) findViewById(R.id.TV_LastName);
+        _userName = (EditText) findViewById(R.id.TV_UserName);
         _score = (TextView) findViewById(R.id.TV_Score);
         _avatar = (ImageView) findViewById(R.id.image);
 
@@ -75,8 +73,8 @@ public class CreationProfileActivity extends AppCompatActivity
 
             /*if (_profile != null)
             {
-                _firstName.setText(_profile._firstName);
-                _lastName.setText(_profile._lastName);
+                _userName.setText(_profile._userName);
+
 
 
                 /*Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.antigeek);
@@ -117,11 +115,11 @@ public class CreationProfileActivity extends AppCompatActivity
     public void saveProfil()
     {
         System.out.println("in CPA.saveProfil()");
-        String firstName = "firstName=";
-        firstName = firstName.concat(_firstName.getText().toString()).concat(System.getProperty("line.separator"));
+        String userName = "userName=";
+        userName = userName.concat(_userName.getText().toString()).concat(System.getProperty("line.separator"));
 
-        String lastName = "lastName=";
-        lastName = lastName.concat(_lastName.getText().toString()).concat(System.getProperty("line.separator"));
+
+
 
         String score = "score=";
         score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
@@ -139,20 +137,20 @@ public class CreationProfileActivity extends AppCompatActivity
         {
             FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
             System.out.println(Profile.PROFIL_FILE_NAME);
-            out.write(firstName.getBytes());
-            out.write(lastName.getBytes());
+            out.write(userName.getBytes());
+
             out.write(score.getBytes());
             out.write(type.getBytes());
             out.close();
 
             //Nouvelle activity MainActivity
             Intent intent = new Intent(this,MainActivity.class);
-            /*intent.putExtra("firstName", _firstName.getText().toString());
-            intent.putExtra("lastName", _lastName.getText().toString());
+            /*intent.putExtra("userName", _userName.getText().toString());
+
             intent.putExtra("type", _profile._type.toString());*/
 
-            _profile.setFirstName(_firstName.getText().toString());
-            _profile.setLastName(_lastName.getText().toString());
+            _profile.setUserName(_userName.getText().toString());
+
             _profile.defineType();
 
             //intent.putExtra("avatar", _avatar.toString());

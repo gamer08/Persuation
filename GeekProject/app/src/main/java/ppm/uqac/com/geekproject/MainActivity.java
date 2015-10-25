@@ -16,8 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
-    private TextView _firstNameTV;
-    private TextView _lastNameTV;
+    private TextView _userNameTV;
     private TextView _typeTV;
     private ImageView _avatar;
     private Profile _profile;
@@ -30,8 +29,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
 
         //test pour afficher nom de la personne connecté
-        _firstNameTV = (TextView) findViewById(R.id.TV_FirstName);
-        _lastNameTV = (TextView) findViewById(R.id.TV_LastName);
+        _userNameTV = (TextView) findViewById(R.id.TV_UserName);
         _typeTV = (TextView) findViewById(R.id.TV_Type);
         _avatar = (ImageView) findViewById(R.id.image);
 
@@ -40,24 +38,23 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         {
 
             // recuperation des donnees presentes dans l'intent
-            /*_profile.setFirstName((String) intent.getSerializableExtra("firstName"));
+            /*_profile.setUserName((String) intent.getSerializableExtra("firstName"));
             _profile.setLastName((String) intent.getSerializableExtra("lastName"));
             _profile.setType((Profile.Type) intent.getSerializableExtra("type"));*/
 
-           /* _profile.setFirstName((String) intent.getStringExtra("profile"));
+           /* _profile.setUserName((String) intent.getStringExtra("profile"));
             _profile.setLastName((String) intent.getStringExtra("lastName"));
             _profile.setType((Profile.Type) intent.getSerializableExtra("type"));*/
 
             _profile = (Profile) intent.getSerializableExtra("profile");
 
-            System.out.println("firstname   " + _profile.getFirstName());
-            System.out.println("lastname  " + _profile.getLastName());
+            System.out.println("firstname   " + _profile.getUserName());
             System.out.println("score   " + _profile.getScore());
 
 
             // on set les text viewer qui ne sont que des informations pour l'utilisateurs
-            _firstNameTV.setText(_profile.getFirstName());
-            _lastNameTV.setText(_profile.getLastName());
+            _userNameTV.setText(_profile.getUserName());
+
             _typeTV.setText((_profile.getType()).toString());
 
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
@@ -107,9 +104,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     {
         Intent intent = new Intent(this,ViewProfileActivity.class);
 
-        //System.out.println("in MA.onClickProfil()" + _firstNameTV.)
+        //System.out.println("in MA.onClickProfil()" + _userNameTV.)
 
-        /*intent.putExtra("firstname", _firstNameTV.getText().toString());
+        /*intent.putExtra("username", _userNameTV.getText().toString());
         intent.putExtra("lastname", _lastNameTV.getText().toString());
         intent.putExtra("type", _typeTV.getText().toString());*/
         this.finish();

@@ -18,8 +18,7 @@ import android.widget.Toast;
 import java.io.FileOutputStream;
 
 public class ViewProfileActivity extends AppCompatActivity {
-    private EditText _firstNameET;
-    private EditText _lastNameET;
+    private EditText _userNameET;
     private TextView _typeTV;
     private TextView _score;
     private Profile _profile;
@@ -35,8 +34,7 @@ public class ViewProfileActivity extends AppCompatActivity {
 
 
        // _profile = new Profile();
-        _firstNameET = (EditText) findViewById(R.id.TV_FirstName);
-        _lastNameET = (EditText) findViewById(R.id.TV_LastName);
+        _userNameET = (EditText) findViewById(R.id.TV_UserName);
         _typeTV = (TextView) findViewById(R.id.TV_Type);
         _score = (TextView) findViewById(R.id.TV_Score);
         _avatar = (ImageView) findViewById(R.id.image);
@@ -49,7 +47,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                if(_firstNameET.getText().length() !=0 && _lastNameET.getText().length() != 0)
+                if(_userNameET.getText().length() !=0)
                 {
                     saveProfil();
 
@@ -67,8 +65,8 @@ public class ViewProfileActivity extends AppCompatActivity {
         if (intent != null)
         {
             _profile = (Profile) intent.getSerializableExtra("profile");
-            _firstNameET.setText(_profile.getFirstName());
-            _lastNameET.setText(_profile.getLastName());
+            _userNameET.setText(_profile.getUserName());
+
             _typeTV.setText(_profile.getType().toString());
             _score.setText(String.valueOf(_profile._score));
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
@@ -107,13 +105,12 @@ public class ViewProfileActivity extends AppCompatActivity {
     public void saveProfil()
     {
         System.out.println("in CPA.saveProfil()");
-        String firstName = "firstName=";
-        firstName = firstName.concat(_firstNameET.getText().toString()).concat(System.getProperty("line.separator"));
-        _profile.setFirstName(_firstNameET.getText().toString());
+        String userName = "userName=";
+        userName = userName.concat(_userNameET.getText().toString()).concat(System.getProperty("line.separator"));
+        _profile.setUserName(_userNameET.getText().toString());
 
         String lastName = "lastName=";
-        lastName = lastName.concat(_lastNameET.getText().toString()).concat(System.getProperty("line.separator"));
-        _profile.setLastName(_lastNameET.getText().toString());
+
 
         String score = "score=";
         score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
@@ -131,8 +128,8 @@ public class ViewProfileActivity extends AppCompatActivity {
         {
             FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
             System.out.println(Profile.PROFIL_FILE_NAME);
-            out.write(firstName.getBytes());
-            out.write(lastName.getBytes());
+            out.write(userName.getBytes());
+
             out.write(score.getBytes());
             out.write(type.getBytes());
             out.close();
