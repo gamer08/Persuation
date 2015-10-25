@@ -19,7 +19,8 @@
         android:text="@string/BTN_Dialog"
         android:id="@+id/buttonDialog"
         android:onClick="onClickActivities"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        />
 
 
 </LinearLayout>

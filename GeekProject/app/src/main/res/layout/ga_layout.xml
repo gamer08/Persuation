@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:textSize="40dp"
+        android:textSize="25dp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
         android:textColor="@color/text">
@@ -18,23 +18,32 @@
     <TextView android:text="Description" android:id="@+id/TV_DescriptionActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textColor="@color/text">
     </TextView>
 
     <TextView android:text="experience" android:id="@+id/TV_experienceActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:textSize="25dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
         android:textColor="@color/text">
     </TextView>
 
-    <TextView android:text="Level" android:id="@+id/TV_LevelActivity"
+    <TextView android:text="Level"
+        android:id="@+id/TV_LevelActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:textColor="@color/text">
     </TextView>
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activité finis"
+        android:layout_gravity="center_horizontal"
+        android:drawableLeft="@drawable/gabutton"
+        android:onClick="onClickActivitiesDone"/>
 
 </LinearLayout>
