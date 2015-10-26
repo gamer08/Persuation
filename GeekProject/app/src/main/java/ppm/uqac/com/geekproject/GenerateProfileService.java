@@ -3,24 +3,27 @@ package ppm.uqac.com.geekproject;
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 /**
  * Service qui permet de générer le profil suite à un questionnaire
  */
-public class GenerateProfile extends IntentService
+public class GenerateProfileService extends IntentService
 {
     private ArrayList<Profile.Type> _profilTypes;
     private float _profilSclice;
+
+    private static final String TAG = "Generate questionary";
 
     public final class GenerateProfilActions
     {
         public static final String Broadcast ="Profil_Broadcast";
     }
 
-    public GenerateProfile() {
-        super("GenerateProfile");
+    public GenerateProfileService() {
+        super("GenerateProfileService");
     }
 
 
@@ -30,6 +33,7 @@ public class GenerateProfile extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
+        Log.d(TAG,"OnHandleIntent");
         _profilTypes = new ArrayList<Profile.Type>();
 
         _profilTypes.add(Profile.Type.ANTIGEEK);

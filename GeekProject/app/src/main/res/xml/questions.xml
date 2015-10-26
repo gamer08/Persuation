@@ -12,7 +12,7 @@
                     <Weight>2</Weight>
                 </Choice>
                 <Choice>
-                    <Description>Une perosnne normale qui à des passions reliées à la technologie</Description>
+                    <Description>Une personne normale qui a des passions reliées à la technologie</Description>
                     <Weight>5</Weight>
                 </Choice>
                 <Choice>
@@ -56,6 +56,38 @@
                 <Choice>
                     <Description>Non</Description>
                     <Weight>0</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+
+        <Question>
+            <ID>3</ID>
+            <BestWeight>1</BestWeight>
+            <Description> Que veut dire "AFK"?</Description>
+            <Choices>
+                <Choice>
+                    <Description>
+                        Adversaire Fort Killer
+                    </Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>
+                        Away From Knowledge
+                    </Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>
+                        Aware For Kitchen
+                    </Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>
+                        Away From Keyboard
+                    </Description>
+                    <Weight>1</Weight>
                 </Choice>
             </Choices>
         </Question>

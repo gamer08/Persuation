@@ -9,6 +9,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 
 /**
@@ -18,7 +21,9 @@ public class StartActivity extends AppCompatActivity
 {
 
     private Receiver _receiver;
-    private IntentFilter _profilIntentFilter;
+    private IntentFilter _profileIntentFilter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,20 +31,34 @@ public class StartActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        _profilIntentFilter = new IntentFilter(LoadProfileActivity.LoadProfilActions.Broadcast);
-        _receiver = new Receiver();
-        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profilIntentFilter);
 
-        Intent profilLoader = new Intent(this,LoadProfileActivity.class);
-        startService(profilLoader);
+
+        Toast.makeText(this, "StartA.onCreate", Toast.LENGTH_SHORT).show();
+
+
+
+
+        _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
+        _receiver = new Receiver();
+        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
+
+        Intent profileLoader = new Intent(this,LoadProfileService.class);
+        startService(profileLoader);
+
     }
 
 
+    /**
+     * Classe interne
+     */
     private class Receiver extends BroadcastReceiver
     {
 
+
         private Receiver()
-        {}
+        {
+
+        }
 
         @Override
         public void onReceive(Context context, Intent intent)
@@ -47,13 +66,24 @@ public class StartActivity extends AppCompatActivity
             Profile profile = (Profile)intent.getSerializableExtra("profile");
             if (profile == null)
             {
-                Intent questionnaireActivity = new Intent(getApplicationContext(),QuestionaryActivity.class);
-                startActivity(questionnaireActivity);
+                Intent intentWelcome = new Intent(StartActivity.this, WelcomeActivity.class);
+                startActivity(intentWelcome);
+                GADatabase gadb = new GADatabase(StartActivity.this);
+                // Exemple avec 2 GA
+                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 500, false);
+                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 500, false);
+                gadb.addActivity(activity1);
+                gadb.addActivity(activity2);
             }
             else
             {
-                Intent profilActivity = new Intent(getApplicationContext(),ProfileActivity.class);
-                profilActivity.putExtra("profile",profile);
+                StartActivity.this.finish();
+                Intent profilActivity = new Intent(getApplicationContext(),MainActivity.class);
+                /*profilActivity.putExtra("lastName",profile._lastName);
+                profilActivity.putExtra("firstName",profile._firstName);
+                profilActivity.putExtra("type",profile._type.toString());*/
+                profilActivity.putExtra("profile", profile);
+                profilActivity.putExtra("activite", "Start");
                 startActivity(profilActivity);
             }
         }
@@ -83,5 +113,21 @@ public class StartActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * Clic sur le bouton pour aller voir le profil
+     * @param v
+     */
+    public void onButtonProfileClick (View v)
+    {
+        // do something
+
+        Button buttonProfile = (Button) v;
+        //((Button)v).setText("clicked");
+
+
+    }
+
+
 }
 

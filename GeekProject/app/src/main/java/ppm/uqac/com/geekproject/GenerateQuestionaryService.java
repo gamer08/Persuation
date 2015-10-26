@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -16,8 +17,12 @@ import java.util.Random;
  * Service qui permet de générer un questionnaire à partir d'un fichier XML
  */
 
-public class GenerateQuestionary extends IntentService
+public class GenerateQuestionaryService extends IntentService
 {
+
+    private static final String TAG = "Generate questionary";
+
+
     private int _nbQuestionsTotal;
     private int _nbQuestionsQuestionnaire;
     private int _nextQuestionID;
@@ -31,22 +36,25 @@ public class GenerateQuestionary extends IntentService
         public static final String Broadcast ="Questionnaire_Broadcast";
     }
 
-    public GenerateQuestionary()
+    public GenerateQuestionaryService()
     {
-        super("GenerateQuestionary");
+        super("GenerateQuestionaryService");
     }
 
     @Override
     protected void onHandleIntent(Intent intent)
     {
+        Log.d(TAG, "questionary generated !");
         Questionary questionary = (Questionary) intent.getSerializableExtra("questionary");
+
 
         try
         {
             generate(questionary);
             Intent callBackIntent = new Intent(GenerateQuestionnaireActions.Broadcast);
-            callBackIntent.putExtra("questionary", questionary);
 
+            callBackIntent.putExtra("questionary", questionary);
+            System.out.println(questionary._questions);
             LocalBroadcastManager.getInstance(this).sendBroadcast(callBackIntent);
         }
         catch(XmlPullParserException e)
@@ -202,16 +210,18 @@ public class GenerateQuestionary extends IntentService
     void generateQuestionsID(int nbQuestionsInQuestionnaire)
     {
         int slice = _nbQuestionsTotal / nbQuestionsInQuestionnaire;
-        int lastID =0;
+        int lastID, nextAvailableID;
+        lastID = nextAvailableID = 0;
         for (int i =0;i < nbQuestionsInQuestionnaire ; i++)
         {
             Random rand = new Random();
-            int nextID = rand.nextInt(slice - lastID) + lastID;
+            int nextID = rand.nextInt(slice) + nextAvailableID;
             lastID = nextID;
+            nextAvailableID = lastID+1;
             _questionsID[i] = nextID;
 
             if ((nbQuestionsInQuestionnaire-(i+1)) != 0)
-            slice = (_nbQuestionsTotal - (lastID + 1)) / (nbQuestionsInQuestionnaire-(i+1));
+                slice = (_nbQuestionsTotal - (nextAvailableID)) / (nbQuestionsInQuestionnaire-(i+1));
             else
                 slice =0;
         }

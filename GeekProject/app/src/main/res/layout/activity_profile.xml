@@ -1,93 +1,62 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background"
+    >
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/LL_FirstName">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TVL_FirstName"
-            android:textSize="24sp"
-            android:text="@string/TVL_FirstName"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/TV_FirstName"
-            android:textSize="24sp"
-            android:hint="@string/TV_FirstName"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-    android:orientation="horizontal"
-    android:layout_marginTop="50dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:id="@+id/LL_LastName">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/TVL_LastName"
+        android:layout_alignParentTop="true"
+        android:id="@+id/TVL_Score"
+        android:paddingTop="50dp"
         android:textSize="24sp"
-        android:text="@string/TVL_LastName"
-        android:layout_marginRight="5dp"
-        android:layout_marginEnd="5dp"/>
+        android:text="@string/TVL_Score"
+        android:textColor="@color/text"
+        android:paddingBottom="20dp"
+        />
+
+    <TextView
+        android:text="lalala"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TV_Score"
+        android:textSize="30sp"
+        android:paddingTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:layout_alignTop="@id/TVL_Score"
+        android:editable="false"
+        android:textColor="@color/score"
+        />
+
 
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TV_LastName"
+        android:id="@+id/TV_UserName"
         android:textSize="24sp"
-        android:hint="@string/TV_LastName"
-        android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/LL_Score">
+        android:hint="@string/TV_UserName"
+        android:singleLine="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/text"
+        android:layout_below="@id/TVL_Score" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/TVL_Score"
-            android:textSize="24sp"
-            android:text="@string/TVL_Score"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/TV_Score"
-            android:textSize="24sp"
-            android:layout_weight="1"/>
-    </LinearLayout>
+
+
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/BTN_Save"
+        android:text="@string/BTN_Create"
         android:id="@+id/BTN_Save"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@id/TV_UserName"
+        android:layout_alignRight="@id/TV_UserName" />
+
 </RelativeLayout>
