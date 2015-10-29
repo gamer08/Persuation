@@ -134,6 +134,8 @@ public class GenerateQuestionaryService extends IntentService
                             question._bestWeight = Integer.valueOf(parser.nextText());
                         else if (parser.getName().equals("Description"))
                             question._description = parser.nextText();
+                        else if (parser.getName().equals("Fact"))
+                            question._fact = parser.nextText();
                         else if(parser.getName().equals("Choices"))
                             question._possibleChoices = parseChoices(parser);
                     }

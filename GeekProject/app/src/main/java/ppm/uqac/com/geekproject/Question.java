@@ -7,16 +7,17 @@ import java.util.ArrayList;
  */
 public class Question
 {
-    public int _id;
     public String _description;
     public ArrayList<Choice> _possibleChoices;
+    public String _fact;
     public int _bestWeight;
+
 
     public Question()
     {
-        _id = 0;
         _description = "";
         _possibleChoices = new ArrayList<Choice>();
+        _fact = "";
         _bestWeight = 0;
     }
 }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Data>
-    <Number>3</Number>
+    <Number>5</Number>
     <Questions>
         <Question>
             <ID>0</ID>
             <BestWeight>5</BestWeight>
             <Description>Quelle est selon vous la meilleure définition d'un geek ?</Description>
+            <Fact>Saviez-vous que... Le terme Geek vient du moyen Allemand geck qui désigne un fou et était utilisé déjà au 18ième siècle.</Fact>
             <Choices>
                 <Choice>
                     <Description>Une personne qui aime les jeux vidéo, l'informatique... </Description>
@@ -29,9 +30,10 @@
             <ID>1</ID>
             <BestWeight>5</BestWeight>
             <Description>Que veux dire cette phrase ? 1 4m g33k</Description>
+            <Fact>Saviez-vous que... Le Leet Speak à été inventé dans les années 1980 pour apporté une diversité à l'écriture traditionnelle.</Fact>
             <Choices>
                 <Choice>
-                    <Description>Génial du leepspeech</Description>
+                    <Description>Génial du Leet Speak</Description>
                     <Weight>5</Weight>
                 </Choice>
                 <Choice>
@@ -48,6 +50,7 @@
             <ID>2</ID>
             <BestWeight>5</BestWeight>
             <Description>Aimez-vous un de ces domaines : informatique, jeux vidéo, manga, science-fiction</Description>
+            <Fact>Saviez-vous que... Le terme Geek n'est souvent associé qu'aux domaines technologiques, mais il s'appliqe à d'autres sphères où le terme utilisé est fan inconditionnel.</Fact>
             <Choices>
                 <Choice>
                     <Description>Oui</Description>
@@ -59,34 +62,46 @@
                 </Choice>
             </Choices>
         </Question>
-
         <Question>
             <ID>3</ID>
             <BestWeight>1</BestWeight>
             <Description> Que veut dire "AFK"?</Description>
+            <Fact>Saviez-vous que... Les acronymes sont utilisé pour raccourcir et faciliter la communication dans plusieurs domaines..</Fact>
             <Choices>
                 <Choice>
-                    <Description>
-                        Adversaire Fort Killer
-                    </Description>
+                    <Description>Adversaire Fort Killer</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>
-                        Away From Knowledge
-                    </Description>
+                    <Description>Away From Knowledge</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>
-                        Aware For Kitchen
-                    </Description>
+                    <Description>Aware For Kitchen</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>
-                        Away From Keyboard
-                    </Description>
+                    <Description>Away From Keyboard</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+        <Question>
+            <ID>4</ID>
+            <BestWeight>1</BestWeight>
+            <Description> Trouvez-vous que les geeks sont des personnes associales</Description>
+            <Fact>Saviez-vous que... La geeklopedie contient de nombreuses informations et fait divers intéressants</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Oui</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Non</Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Parfois</Description>
                     <Weight>1</Weight>
                 </Choice>
             </Choices>

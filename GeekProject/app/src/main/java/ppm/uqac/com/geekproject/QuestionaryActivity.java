@@ -17,6 +17,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 
@@ -39,6 +41,7 @@ public class QuestionaryActivity extends AppCompatActivity
     private ArrayList<TextView> _choices;
     private TextView _question;
     private TextView _questionCpt;
+    private TextView _fact;
 
     /*Pour afficher des messages dans les logs*/
     private static final String TAG = "QuestionaryActivity";
@@ -47,7 +50,6 @@ public class QuestionaryActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         //Log.d(TAG, "OnCreate");
-
         super.onCreate(savedInstanceState);
         Toast.makeText(this, "QuestionaryA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_questionary);
@@ -77,6 +79,7 @@ public class QuestionaryActivity extends AppCompatActivity
         // Références vers les objets de l'Activité
         _question = (TextView) findViewById(R.id.TV_Question);
         _questionCpt = (TextView) findViewById(R.id.TV_curQuestionCpt);
+        _fact = (TextView) findViewById(R.id.TV_Fact);
 
         _choices = new ArrayList<TextView>();
 
@@ -99,7 +102,7 @@ public class QuestionaryActivity extends AppCompatActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
-        _questionary = new Questionary(1);
+        _questionary = new Questionary(2);
         _nbQuestions = _questionary._nbQuestions;
 
         // Start du service de génération de questionnaire
@@ -166,8 +169,9 @@ public class QuestionaryActivity extends AppCompatActivity
             }
             Question quest = _questionary._questions.get(_curQuestion);
             _totalWeightPossible += quest._bestWeight;
-            _question.setText(_questionary._questions.get(_curQuestion)._description);
+            _question.setText(quest._description);
             _questionCpt.setText(String.valueOf(_curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
+            _fact.setText(quest._fact);
 
             int nbChoices = quest._possibleChoices.size();
             for (int i = 0; i < nbChoices; i++)
