@@ -38,69 +38,84 @@
         />
 
 
-    <ScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/SV_Choices"
         android:layout_below="@+id/TV_Question"
-        android:layout_centerHorizontal="true" >
+        android:id="@+id/LL_Core"
+        android:weightSum="10">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/SV_Choices"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="8">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/LL_Choices"
+                android:weightSum="5">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TV_Choice1"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                   android:textColor="@color/text"
+                    />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TV_Choice2"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                   android:textColor="@color/text"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TV_Choice3"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                   android:textColor="@color/text"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TV_Choice4"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                   android:textColor="@color/text"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TV_Choice5"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_marginTop="20dp"
+                   android:textColor="@color/text"/>
+            </LinearLayout>
+        </ScrollView>
+        <TextView
             android:layout_width="fill_parent"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:id="@+id/LL_Choices"
-            android:weightSum="5">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TV_Choice1"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-               android:textColor="@color/text"
-                />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TV_Choice2"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-               android:textColor="@color/text"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TV_Choice3"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-               android:textColor="@color/text"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TV_Choice4"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-               android:textColor="@color/text"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TV_Choice5"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-               android:textColor="@color/text"/>
-
-
-        </LinearLayout>
-    </ScrollView>
+            android:id="@+id/TV_Fact"
+            android:textSize="18sp"
+            />
+    </LinearLayout>
 
 
 </RelativeLayout>

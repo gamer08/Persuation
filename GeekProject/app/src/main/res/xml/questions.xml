@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Data>
-    <Number>5</Number>
+    <Number>11</Number>
     <Questions>
         <Question>
             <ID>0</ID>
@@ -42,7 +42,7 @@
                 </Choice>
                 <Choice>
                     <Description>Je n'ai pas de temps à perdre avec cela </Description>
-                    <Weight>-2</Weight>
+                    <Weight>0</Weight>
                 </Choice>
             </Choices>
         </Question>
@@ -106,5 +106,137 @@
                 </Choice>
             </Choices>
         </Question>
-    </Questions>
+        <Question>
+            <ID>5</ID>
+            <BestWeight>3</BestWeight>
+            <Description> Parmis les mots suivants quel est le meilleur synonyme de geek ?</Description>
+            <Fact>Saviez-vous que... Le terme geek à des significations différentes selon le milieu.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Alien</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>informaticien</Description>
+                    <Weight>3</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Nerd</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>6</ID>
+            <BestWeight>2</BestWeight>
+            <Description> Quel est selon vous la meilleure définition du mot geek ?</Description>
+            <Fact>Saviez-vous que... Les définitions sont parfois issue de pensée populaire massivement partagée.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Grand évènement de l'éruption du Kilimandjaro.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Grand écervellé enkylosé.</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Le terme Geek vient du moyen Allemand geck qui désigne un fou.</Description>
+                    <Weight>2</Weight>
+                </Choice>
+				 <Choice>
+                    <Description>c'est l'abréviation de Geeklopedie.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>7</ID>
+            <BestWeight>4</BestWeight>
+            <Description> Quel est la meilleure traduction francaise du mot geek ?</Description>
+            <Fact>Saviez-vous que... le terme Geek est un terme universel utilisé dans de nombreux pays.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Une personne passionnée par plusieurs domaines.</Description>
+                    <Weight>4</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Un grand enfant.</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Quelqu'un qui a des goûts particuliers et qui est parfois étrange.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>8</ID>
+            <BestWeight>2</BestWeight>
+            <Description> Quelles sont les différence entre un geek et une personne dite normale ?</Description>
+            <Fact>Saviez-vous que... Merci de lire ces faits !</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Aucune, les geeks ont seulement des goûts différents.</Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Ils sont gros, laids et louches.</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Ils ont des goûts atypiques et vivent en marge de la société.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>9</ID>
+            <BestWeight>2</BestWeight>
+            <Description> Parmis les personnes suivantes qui est la plus geek ?</Description>
+            <Fact>Saviez-vous que... les geeks ont fait de grande choses pour l'évolution technologique</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Ripley</Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>le doc de Retour vers le future.</Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Francois hollande.</Description>
+                    <Weight>0</Weight>
+                </Choice>
+				<Choice>
+                    <Description>Ralph H. Baer.</Description>
+                    <Weight>2</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>10</ID>
+            <BestWeight>3</BestWeight>
+            <Description> Quel est votre film/série préféré ?</Description>
+            <Fact>Saviez-vous que... les domaines de sciences-fictions et autres sont très populaire à l'écran.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>La matrice</Description>
+                    <Weight>3</Weight>
+                </Choice>
+                <Choice>
+                    <Description>MythBuster.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+                <Choice>
+                    <Description>les films marvel.</Description>
+                    <Weight>3</Weight>
+                </Choice>
+				<Choice>
+                    <Description>Questions pour un champion.</Description>
+                    <Weight>0</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+	</Questions>
 </Data>
