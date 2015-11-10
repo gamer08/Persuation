@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,7 +66,7 @@ public class GAAdapter extends BaseAdapter {
         TextView tv_description = (TextView) layoutItem.findViewById(R.id.TV_DescriptionActivity);
         TextView tv_level = (TextView) layoutItem.findViewById(R.id.TV_LevelActivity);
         TextView tv_exp = (TextView) layoutItem.findViewById(R.id.TV_experienceActivity);
-
+        Button bt_activity = (Button) layoutItem.findViewById(R.id.BT_ActivityDone);
         // renseignement des nouveaux champs
 
         tv_name.setText(listActivity.get(position).get_name());
@@ -74,6 +75,15 @@ public class GAAdapter extends BaseAdapter {
         tv_level.setText(lvl);
         String xp = "Experience : " + Integer.toString(listActivity.get(position).get_experience());
         tv_exp.setText(xp);
+
+        if(!listActivity.get(position).get_isDone())
+        {
+            bt_activity.setEnabled(true);
+        }
+        else if (listActivity.get(position).get_isDone())
+        {
+            bt_activity.setVisibility(View.GONE);
+        }
 
         return layoutItem;
 
@@ -88,5 +98,8 @@ public class GAAdapter extends BaseAdapter {
         return position;
     }
 
-
+    public void updateListView(ArrayList<GA> lista)
+    {
+        listActivity = lista;
+    }
 }

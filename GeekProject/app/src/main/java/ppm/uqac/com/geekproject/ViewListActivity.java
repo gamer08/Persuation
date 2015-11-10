@@ -14,6 +14,13 @@ import android.widget.ArrayAdapter;
 
 public class ViewListActivity extends AppCompatActivity {
 
+    GADatabase gadb;
+
+    ArrayList<GA> gaList;
+
+    GAAdapter gaAdapter;
+
+    ListView gaLV;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,20 +28,23 @@ public class ViewListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_list);
 
         // Ouverture de la BDD
-        GADatabase gadb = new GADatabase(this);
+        gadb = new GADatabase(this);
         // Récupération des activités dans la BDD
-        ArrayList<GA> gaList =  gadb.getActivities();
+        gaList =  gadb.getActivities();
         // Constructeur de notre Adapter de GA
-        GAAdapter gaAdapter = new GAAdapter(this, gaList);
+        gaAdapter = new GAAdapter(this, gaList);
         // Récupération de la listView
-        ListView gaLV = (ListView) findViewById(R.id.ListView01);
+        gaLV = (ListView) findViewById(R.id.ListView01);
         // Adaptation de la ListView avec notre Adapter
         gaLV.setAdapter(gaAdapter);
     }
 
     public void onClickActivitiesDone(View v)
     {
-        Toast.makeText(this, "activite " + v.getId() + "  faite", Toast.LENGTH_SHORT).show();
+        gadb.updateActivity(gaLV.getPositionForView(v)+1);
+        gaList = gadb.getActivities();
+        gaAdapter.updateListView(gaList);
+        gaLV.setAdapter(gaAdapter);
     }
 
     @Override

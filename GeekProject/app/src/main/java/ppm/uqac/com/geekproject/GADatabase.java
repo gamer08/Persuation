@@ -108,7 +108,8 @@ public class GADatabase extends SQLiteOpenHelper {
      */
     public ArrayList<GA> getActivities()
     {
-        //listActivities.clear();
+
+        listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor activitiesSaved = db.rawQuery("SELECT * FROM geek_activity", null);
 
@@ -117,37 +118,51 @@ public class GADatabase extends SQLiteOpenHelper {
         int levelActivity;
         int experienceActivity;
         int done;
-        boolean isDone;
-        System.out.println("test");
+        boolean isDone = false;
+
 
         activitiesSaved.moveToFirst();
-        System.out.println("movetofirst " + activitiesSaved.getPosition());
+
 
         activitiesSaved.moveToLast();
 
         for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext())
-            {
+        {
+            int numActivity = activitiesSaved.getInt(0);
+            System.out.println("GADatabase : " + numActivity);
             nameActivity = activitiesSaved.getString(1);
             descriptionActivity = activitiesSaved.getString(2);
             levelActivity = activitiesSaved.getInt(3);
             experienceActivity = activitiesSaved.getInt(4);
             done = activitiesSaved.getInt(5);
+                System.out.println("GADatabase Bool = " + done);
             if(done == 0)
                 isDone=false;
-            else
-                isDone=true;
-
+            else if (done ==1)
+            {
+                isDone = true;
+            }
+                System.out.println("GADatabase Bool = " + isDone);
             GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
             listActivities.add(activity);
             System.out.println("non activité " + activity.get_name());
         }
-        System.out.println("Activités " + listActivities.get(0).get_name());
+
 
         db.close();
         return listActivities;
 
     }
 
+
+    public void updateActivity(int position)
+    {
+        this.getWritableDatabase().execSQL("UPDATE geek_activity " +
+                "SET is_done = '1' " +
+                "WHERE number_activity = " + position);
+        this.getWritableDatabase().close();
+        System.out.println("GADatabase : Activity" + position + "done");
+    }
     /**
      * Ajout d'une activité dans la BDD
      * @param c
