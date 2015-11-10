@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class Questionary implements Serializable
 {
-    public ArrayList<Question> _questions;
-    public int _nbQuestions;
+    private ArrayList<Question> _questions;
+    private int _nbQuestions;
 
     private Questionary()
     {
@@ -21,5 +21,26 @@ public class Questionary implements Serializable
     {
         _questions = new ArrayList<Question>();
         _nbQuestions = nbQuestions;
+    }
+
+
+    public ArrayList<Question> questions()
+    {
+        return _questions;
+    }
+
+    public void setQuestions(ArrayList<Question> questions)
+    {
+        _questions = questions;
+    }
+
+    public int nbQuestions()
+    {
+        return _nbQuestions;
+    }
+
+    public void setNBQuestion(int value)
+    {
+        _nbQuestions = value;
     }
 }

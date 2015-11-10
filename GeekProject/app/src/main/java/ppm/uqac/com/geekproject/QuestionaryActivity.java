@@ -65,7 +65,7 @@ public class QuestionaryActivity extends AppCompatActivity
                     if (index >=0)
                     {
                         System.out.println("Valeur de index "+index);
-                        _score += _questionary._questions.get(_curQuestion)._possibleChoices.get(index)._weight;
+                        _score += _questionary.questions().get(_curQuestion).possibleChoices().get(index).weight();
                         Log.d(TAG,"LoadedNextQuestion");
                         loadNextQuestion();
                     }
@@ -103,7 +103,7 @@ public class QuestionaryActivity extends AppCompatActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
         _questionary = new Questionary(2);
-        _nbQuestions = _questionary._nbQuestions;
+        _nbQuestions = _questionary.nbQuestions();
 
         // Start du service de génération de questionnaire
         Intent questionnaireGenerator = new Intent(QuestionaryActivity.this,GenerateQuestionaryService.class);
@@ -167,17 +167,17 @@ public class QuestionaryActivity extends AppCompatActivity
                 tv.setClickable(false);
                 tv.setText(""); //Sans cette ligne, si la question précédente a plus de choix, on a toujours la ou les questions en plus qui apparaisent
             }
-            Question quest = _questionary._questions.get(_curQuestion);
-            _totalWeightPossible += quest._bestWeight;
-            _question.setText(quest._description);
+            Question quest = _questionary.questions().get(_curQuestion);
+            _totalWeightPossible += quest.bestWeight();
+            _question.setText(quest.description());
             _questionCpt.setText(String.valueOf(_curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
-            _fact.setText(quest._fact);
+            _fact.setText(quest.fact());
 
-            int nbChoices = quest._possibleChoices.size();
+            int nbChoices = quest.possibleChoices().size();
             for (int i = 0; i < nbChoices; i++)
             {
                 _choices.get(i).setClickable(true);
-                _choices.get(i).setText(quest._possibleChoices.get(i)._description);
+                _choices.get(i).setText(quest.possibleChoices().get(i).description());
             }
         }
         else

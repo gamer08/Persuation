@@ -4,12 +4,32 @@ package ppm.uqac.com.geekproject;
  */
 public class Choice
 {
-    public  String _description;
-    public  int _weight;
+    private  String _description;
+    private  int _weight;
 
     public Choice()
     {
         _description ="";
         _weight =-1;
+    }
+
+    public String description()
+    {
+        return _description;
+    }
+
+    public void setDescription(String value)
+    {
+        _description = value;
+    }
+
+    public int weight()
+    {
+        return _weight;
+    }
+
+    public void setWeight(int value)
+    {
+        _weight = value;
     }
 }

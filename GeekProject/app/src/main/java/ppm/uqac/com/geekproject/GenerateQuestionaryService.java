@@ -54,7 +54,7 @@ public class GenerateQuestionaryService extends IntentService
             Intent callBackIntent = new Intent(GenerateQuestionnaireActions.Broadcast);
 
             callBackIntent.putExtra("questionary", questionary);
-            System.out.println(questionary._questions);
+            System.out.println(questionary.questions());
             LocalBroadcastManager.getInstance(this).sendBroadcast(callBackIntent);
         }
         catch(XmlPullParserException e)
@@ -74,8 +74,8 @@ public class GenerateQuestionaryService extends IntentService
 
     void generate(Questionary questionary) throws XmlPullParserException, IOException
     {
-        _questionsID = new int[questionary._nbQuestions];
-        _nbQuestionsQuestionnaire = questionary._nbQuestions;
+        _questionsID = new int[questionary.nbQuestions()];
+        _nbQuestionsQuestionnaire = questionary.nbQuestions();
         _curQuestion = 0;
 
         XmlResourceParser parser = getApplicationContext().getResources().getXml(R.xml.questions);
@@ -89,10 +89,10 @@ public class GenerateQuestionaryService extends IntentService
                     if (parser.getName().equals("Number"))
                     {
                         _nbQuestionsTotal = Integer.valueOf(parser.nextText());
-                        generateQuestionsID(questionary._nbQuestions);
+                        generateQuestionsID(questionary.nbQuestions());
                     }
                     else if (parser.getName().equals("Questions"))
-                        questionary._questions = parseQuestions(parser);
+                        questionary.setQuestions(parseQuestions(parser));
 
                     break;
 
@@ -131,13 +131,13 @@ public class GenerateQuestionaryService extends IntentService
                             question = null;
                         }
                         else if (parser.getName().equals("BestWeight"))
-                            question._bestWeight = Integer.valueOf(parser.nextText());
+                            question.setBestWeight(Integer.valueOf(parser.nextText()));
                         else if (parser.getName().equals("Description"))
-                            question._description = parser.nextText();
+                            question.setDescription(parser.nextText());
                         else if (parser.getName().equals("Fact"))
-                            question._fact = parser.nextText();
+                            question.setFact(parser.nextText());
                         else if(parser.getName().equals("Choices"))
-                            question._possibleChoices = parseChoices(parser);
+                            question.setPossibleChoices(parseChoices(parser));
                     }
 
                     break;
@@ -183,9 +183,9 @@ public class GenerateQuestionaryService extends IntentService
                     else if (choice != null)
                     {
                         if (parser.getName().equals("Description"))
-                            choice._description = parser.nextText();
+                            choice.setDescription(parser.nextText());
                         else if (parser.getName().equals("Weight"))
-                            choice._weight = Integer.valueOf(parser.nextText());
+                            choice.setWeight(Integer.valueOf(parser.nextText()));
                     }
                     break;
 
