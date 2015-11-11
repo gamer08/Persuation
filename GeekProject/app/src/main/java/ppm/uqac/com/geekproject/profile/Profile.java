@@ -39,24 +39,24 @@ public class Profile implements Serializable
 
     }
 
-    String getUserName()
+    public String getUserName()
     {
         return _userName;
     }
 
 
 
-    Type getType()
+    public Type getType()
     {
         return _type;
     }
 
-    float getScore()
+    public float getScore()
     {
         return _score;
     }
 
-    int getAvatar() { return _avatar; }
+    public int getAvatar() { return _avatar; }
 
     void setType(Type t)
     {
