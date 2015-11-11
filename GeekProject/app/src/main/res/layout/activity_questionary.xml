@@ -114,6 +114,7 @@
 
             android:id="@+id/TV_Fact"
             android:textSize="18sp"
+            android:textColor="@color/text"
             />
     </LinearLayout>
 

@@ -5,7 +5,7 @@
         <Question>
             <ID>0</ID>
             <BestWeight>5</BestWeight>
-            <Description>Quelle est selon vous la meilleure définition d'un geek ?</Description>
+            <Description>Quelle est, selon vous, la meilleure définition d'un geek ?</Description>
             <Fact>Saviez-vous que... Le terme Geek vient du moyen Allemand geck qui désigne un fou et était utilisé déjà au 18ième siècle.</Fact>
             <Choices>
                 <Choice>
@@ -66,7 +66,7 @@
             <ID>3</ID>
             <BestWeight>1</BestWeight>
             <Description> Que veut dire "AFK"?</Description>
-            <Fact>Saviez-vous que... Les acronymes sont utilisé pour raccourcir et faciliter la communication dans plusieurs domaines..</Fact>
+            <Fact>Saviez-vous que... Les acronymes sont utilisés pour raccourcir et faciliter la communication dans plusieurs domaines..</Fact>
             <Choices>
                 <Choice>
                     <Description>Adversaire Fort Killer</Description>
@@ -89,8 +89,8 @@
         <Question>
             <ID>4</ID>
             <BestWeight>1</BestWeight>
-            <Description> Trouvez-vous que les geeks sont des personnes associales</Description>
-            <Fact>Saviez-vous que... La geeklopedie contient de nombreuses informations et fait divers intéressants</Fact>
+            <Description> Trouvez-vous que les geeks sont des personnes associales?</Description>
+            <Fact>Saviez-vous que... La geeklopédie contient de nombreuses informations et faits divers intéressants</Fact>
             <Choices>
                 <Choice>
                     <Description>Oui</Description>
@@ -109,15 +109,15 @@
         <Question>
             <ID>5</ID>
             <BestWeight>3</BestWeight>
-            <Description> Parmis les mots suivants quel est le meilleur synonyme de geek ?</Description>
-            <Fact>Saviez-vous que... Le terme geek à des significations différentes selon le milieu.</Fact>
+            <Description> Parmi les mots suivants, quel est le meilleur synonyme de geek?</Description>
+            <Fact>Saviez-vous que... Le terme geek a des significations différentes selon le milieu.</Fact>
             <Choices>
                 <Choice>
                     <Description>Alien</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>informaticien</Description>
+                    <Description>Informaticien</Description>
                     <Weight>3</Weight>
                 </Choice>
                 <Choice>
@@ -129,23 +129,23 @@
 		<Question>
             <ID>6</ID>
             <BestWeight>2</BestWeight>
-            <Description> Quel est selon vous la meilleure définition du mot geek ?</Description>
-            <Fact>Saviez-vous que... Les définitions sont parfois issue de pensée populaire massivement partagée.</Fact>
+            <Description> Quelle est selon vous la meilleure définition du mot geek?</Description>
+            <Fact>Saviez-vous que... Les définitions sont parfois issues de pensées populaires massivement partagées.</Fact>
             <Choices>
                 <Choice>
-                    <Description>Grand évènement de l'éruption du Kilimandjaro.</Description>
+                    <Description>Grand Evènement de l'Eruption du Kilimandjaro.</Description>
                     <Weight>1</Weight>
                 </Choice>
                 <Choice>
-                    <Description>Grand écervellé enkylosé.</Description>
+                    <Description>Grand Ecervellé EnKylosé.</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>Le terme Geek vient du moyen Allemand geck qui désigne un fou.</Description>
+                    <Description>Le terme geek vient du moyen Allemand "geck" qui désigne un fou.</Description>
                     <Weight>2</Weight>
                 </Choice>
 				 <Choice>
-                    <Description>c'est l'abréviation de Geeklopedie.</Description>
+                    <Description>C'est l'abréviation de Geeklopedie.</Description>
                     <Weight>1</Weight>
                 </Choice>
             </Choices>
@@ -153,19 +153,19 @@
 		<Question>
             <ID>7</ID>
             <BestWeight>4</BestWeight>
-            <Description> Quel est la meilleure traduction francaise du mot geek ?</Description>
-            <Fact>Saviez-vous que... le terme Geek est un terme universel utilisé dans de nombreux pays.</Fact>
+            <Description> Quelle est la meilleure traduction francaise du mot geek ?</Description>
+            <Fact>Saviez-vous que... le terme geek est un terme universel utilisé dans de nombreux pays.</Fact>
             <Choices>
                 <Choice>
-                    <Description>Une personne passionnée par plusieurs domaines.</Description>
+                    <Description>Une personne passionnée par plusieurs domaines</Description>
                     <Weight>4</Weight>
                 </Choice>
                 <Choice>
-                    <Description>Un grand enfant.</Description>
+                    <Description>Un grand enfant</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>Quelqu'un qui a des goûts particuliers et qui est parfois étrange.</Description>
+                    <Description>Quelqu'un qui a des goûts particuliers et qui est parfois étrange</Description>
                     <Weight>1</Weight>
                 </Choice>
             </Choices>
@@ -173,8 +173,8 @@
 		<Question>
             <ID>8</ID>
             <BestWeight>2</BestWeight>
-            <Description> Quelles sont les différence entre un geek et une personne dite normale ?</Description>
-            <Fact>Saviez-vous que... Merci de lire ces faits !</Fact>
+            <Description> Quelles sont les différences entre un geek et une personne dite "normale"?</Description>
+            <Fact>Saviez-vous que... plus on se plante, plus on est cultivé!</Fact>
             <Choices>
                 <Choice>
                     <Description>Aucune, les geeks ont seulement des goûts différents.</Description>
@@ -193,23 +193,23 @@
 		<Question>
             <ID>9</ID>
             <BestWeight>2</BestWeight>
-            <Description> Parmis les personnes suivantes qui est la plus geek ?</Description>
-            <Fact>Saviez-vous que... les geeks ont fait de grande choses pour l'évolution technologique</Fact>
+            <Description> Parmi les personnes suivantes, laquelle est la plus geek ?</Description>
+            <Fact>Saviez-vous que... les geeks ont fait de grandes choses pour l'évolution technologique</Fact>
             <Choices>
                 <Choice>
                     <Description>Ripley</Description>
                     <Weight>2</Weight>
                 </Choice>
                 <Choice>
-                    <Description>le doc de Retour vers le future.</Description>
+                    <Description>Le doc de Retour vers le futur</Description>
                     <Weight>2</Weight>
                 </Choice>
                 <Choice>
-                    <Description>Francois hollande.</Description>
+                    <Description>Francois Hollande</Description>
                     <Weight>0</Weight>
                 </Choice>
 				<Choice>
-                    <Description>Ralph H. Baer.</Description>
+                    <Description>Ralph H. Baer</Description>
                     <Weight>2</Weight>
                 </Choice>
             </Choices>
@@ -218,10 +218,10 @@
             <ID>10</ID>
             <BestWeight>3</BestWeight>
             <Description> Quel est votre film/série préféré ?</Description>
-            <Fact>Saviez-vous que... les domaines de sciences-fictions et autres sont très populaire à l'écran.</Fact>
+            <Fact>Saviez-vous que... les domaines de science-fiction et autres sont très populaires à l'écran.</Fact>
             <Choices>
                 <Choice>
-                    <Description>La matrice</Description>
+                    <Description>Matrix</Description>
                     <Weight>3</Weight>
                 </Choice>
                 <Choice>
@@ -229,11 +229,11 @@
                     <Weight>1</Weight>
                 </Choice>
                 <Choice>
-                    <Description>les films marvel.</Description>
+                    <Description>Les films Marvel (Avengers, Thor...)</Description>
                     <Weight>3</Weight>
                 </Choice>
 				<Choice>
-                    <Description>Questions pour un champion.</Description>
+                    <Description>La petite maison dans la prairie</Description>
                     <Weight>0</Weight>
                 </Choice>
             </Choices>

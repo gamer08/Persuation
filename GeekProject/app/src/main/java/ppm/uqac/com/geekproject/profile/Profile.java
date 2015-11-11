@@ -1,5 +1,7 @@
 package ppm.uqac.com.geekproject.profile;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -101,6 +103,5 @@ public class Profile implements Serializable
             _avatar = R.drawable.geek;
         }
     }
-
 
 }

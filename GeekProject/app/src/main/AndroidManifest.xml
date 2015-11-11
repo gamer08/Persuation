@@ -64,8 +64,6 @@
         <service
             android:name=".profile.GenerateProfileService"
             android:exported="false" />
-
-
     </application>
 
 </manifest>
