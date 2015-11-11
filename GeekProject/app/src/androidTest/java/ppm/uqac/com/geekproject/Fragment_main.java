@@ -15,7 +15,7 @@ public class Fragment_main extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_main,container,false);
+        rootview = inflater.inflate(R.layout.geeklopedie_fragment_main,container,false);
         return rootview;
     }
 }

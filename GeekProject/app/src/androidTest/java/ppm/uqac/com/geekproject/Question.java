@@ -9,14 +9,14 @@ public class Question
 {
     public int _id;
     public String _description;
-    public ArrayList<Choice> _possibleChoices;
+    public ArrayList<ppm.uqac.com.geekproject.questionary.Choice> _possibleChoices;
     public int _bestWeight;
 
     public Question()
     {
         _id = 0;
         _description = "";
-        _possibleChoices = new ArrayList<Choice>();
+        _possibleChoices = new ArrayList<ppm.uqac.com.geekproject.questionary.Choice>();
         _bestWeight = 0;
     }
 }

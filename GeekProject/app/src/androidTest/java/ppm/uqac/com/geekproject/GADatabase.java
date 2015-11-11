@@ -3,10 +3,8 @@ package ppm.uqac.com.geekproject;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.Context;
-import android.content.ContentValues;
 import android.database.Cursor;
-import java.security.PublicKey;
+
 import java.util.ArrayList;
 
 /**
@@ -19,12 +17,12 @@ public class GADatabase extends SQLiteOpenHelper {
     /**
      * Liste d'activité contenue dans la base de données
      */
-    private ArrayList<GA> listActivities;
+    private ArrayList<ppm.uqac.com.geekproject.geekactivity.GA> listActivities;
 
     /**
      * Liste du contenu de la geeklopedie
      */
-    private ArrayList<Content> listContent;
+    private ArrayList<ppm.uqac.com.geekproject.geeklopedie.Content> listContent;
 
     /**
      * Constructeur de la base de donnée des GeekActivity
@@ -34,9 +32,9 @@ public class GADatabase extends SQLiteOpenHelper {
     public GADatabase(Context context)
     {
         super(context, "GeekActivity.db", null, 1);
-        listActivities = new ArrayList<GA>();
+        listActivities = new ArrayList<ppm.uqac.com.geekproject.geekactivity.GA>();
         System.out.println("bdd geek_activity créée");
-        listContent = new ArrayList<Content>();
+        listContent = new ArrayList<ppm.uqac.com.geekproject.geeklopedie.Content>();
         SQLiteDatabase db = this.getWritableDatabase();
 
         onCreate(db);
@@ -84,7 +82,7 @@ public class GADatabase extends SQLiteOpenHelper {
      * Ajout d'une activité dans la BDD
      * @param activity
      */
-    public void addActivity(GA activity)
+    public void addActivity(ppm.uqac.com.geekproject.geekactivity.GA activity)
     {
 
         int done =0;
@@ -106,7 +104,7 @@ public class GADatabase extends SQLiteOpenHelper {
      * Récupération de la liste des activités
      * @return une ArrayList de GA
      */
-    public ArrayList<GA> getActivities()
+    public ArrayList<ppm.uqac.com.geekproject.geekactivity.GA> getActivities()
     {
         //listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -137,7 +135,7 @@ public class GADatabase extends SQLiteOpenHelper {
             else
                 isDone=true;
 
-            GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
+            ppm.uqac.com.geekproject.geekactivity.GA activity = new ppm.uqac.com.geekproject.geekactivity.GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
             listActivities.add(activity);
             System.out.println("non activité " + activity.get_name());
         }
@@ -152,7 +150,7 @@ public class GADatabase extends SQLiteOpenHelper {
      * Ajout d'une activité dans la BDD
      * @param c
      */
-    public void addContent(Content c)
+    public void addContent(ppm.uqac.com.geekproject.geeklopedie.Content c)
     {
 
 
@@ -170,7 +168,7 @@ public class GADatabase extends SQLiteOpenHelper {
      * Récupération du contenu
      * @return une ArrayList de Content
      */
-    public ArrayList<Content> getContent()
+    public ArrayList<ppm.uqac.com.geekproject.geeklopedie.Content> getContent()
     {
         //listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -193,7 +191,7 @@ public class GADatabase extends SQLiteOpenHelper {
             description = activitiesSaved.getString(2);
             url = activitiesSaved.getString(3);
 
-            Content c = new Content(name,description,url);
+            ppm.uqac.com.geekproject.geeklopedie.Content c = new ppm.uqac.com.geekproject.geeklopedie.Content(name,description,url);
 
             listContent.add(c);
             System.out.println("non activité " + c.get_name());

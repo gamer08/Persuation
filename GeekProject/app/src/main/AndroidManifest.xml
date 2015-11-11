@@ -18,17 +18,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreationProfileActivity"
+            android:name=".profile.CreationProfileActivity"
             android:label="@string/title_activity_creation_profile"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ViewProfileActivity"
+            android:name=".profile.ViewProfileActivity"
             android:label="@string/title_activity_view_profile"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".QuestionaryActivity"
+            android:name=".questionary.QuestionaryActivity"
             android:label="@string/title_activity_creation_profile"
             android:screenOrientation="portrait" >
         </activity>
@@ -38,31 +38,31 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".mainmenu.MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".ViewListActivity"
+            android:name=".geekactivity.ViewListActivity"
             android:label="@string/title_activity_view_list"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".GeeklopedieActivity"
+            android:name=".geeklopedie.GeeklopedieActivity"
             android:label="@string/title_activity_geeklopedie2"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
         <!-- Déclaration service -->
         <service
-            android:name=".LoadProfileService"
+            android:name=".profile.LoadProfileService"
             android:exported="false" />
         <service
-            android:name=".GenerateQuestionaryService"
+            android:name=".questionary.GenerateQuestionaryService"
             android:exported="false" />
         <service
-            android:name=".GenerateProfileService"
+            android:name=".profile.GenerateProfileService"
             android:exported="false" />
 
 

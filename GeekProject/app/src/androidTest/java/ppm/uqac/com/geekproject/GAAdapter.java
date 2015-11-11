@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,7 +19,7 @@ public class GAAdapter extends BaseAdapter {
 
 
     // Notre liste de GA
-    private ArrayList<GA> listActivity;
+    private ArrayList<ppm.uqac.com.geekproject.geekactivity.GA> listActivity;
 
     //Le contexte dans lequel est présent notre adapter
     private Context mContext;
@@ -29,7 +28,7 @@ public class GAAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
 
 
-    public GAAdapter(Context context, ArrayList<GA> lista)
+    public GAAdapter(Context context, ArrayList<ppm.uqac.com.geekproject.geekactivity.GA> lista)
     {
         mContext=context;
         listActivity=lista;
@@ -80,7 +79,7 @@ public class GAAdapter extends BaseAdapter {
     }
 
 
-    public GA getItem(int position) {
+    public ppm.uqac.com.geekproject.geekactivity.GA getItem(int position) {
         return listActivity.get(position);
     }
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class GenerateProfileService extends IntentService
 {
-    private ArrayList<Profile.Type> _profilTypes;
+    private ArrayList<ppm.uqac.com.geekproject.profile.Profile.Type> _profilTypes;
     private float _profilSclice;
 
     private static final String TAG = "Generate questionary";
@@ -34,20 +34,20 @@ public class GenerateProfileService extends IntentService
     protected void onHandleIntent(Intent intent)
     {
         Log.d(TAG,"OnHandleIntent");
-        _profilTypes = new ArrayList<Profile.Type>();
+        _profilTypes = new ArrayList<ppm.uqac.com.geekproject.profile.Profile.Type>();
 
-        _profilTypes.add(Profile.Type.ANTIGEEK);
-        _profilTypes.add(Profile.Type.GEEKPERSECUTOR);
-        _profilTypes.add(Profile.Type.NEUTRAL);
-        _profilTypes.add(Profile.Type.GEEKFRIENDLY);
-        _profilTypes.add(Profile.Type.GEEK);
-        _profilTypes.add(Profile.Type.GUEST);
+        _profilTypes.add(ppm.uqac.com.geekproject.profile.Profile.Type.ANTIGEEK);
+        _profilTypes.add(ppm.uqac.com.geekproject.profile.Profile.Type.GEEKPERSECUTOR);
+        _profilTypes.add(ppm.uqac.com.geekproject.profile.Profile.Type.NEUTRAL);
+        _profilTypes.add(ppm.uqac.com.geekproject.profile.Profile.Type.GEEKFRIENDLY);
+        _profilTypes.add(ppm.uqac.com.geekproject.profile.Profile.Type.GEEK);
+        _profilTypes.add(ppm.uqac.com.geekproject.profile.Profile.Type.GUEST);
 
         _profilSclice =0.20f;
 
         float scoreQuestionnaire = intent.getFloatExtra("scoreQuestionnaire", 0);
 
-        Profile profile = new Profile();
+        ppm.uqac.com.geekproject.profile.Profile profile = new ppm.uqac.com.geekproject.profile.Profile();
 
         if (scoreQuestionnaire != Float.MIN_VALUE)
         {
@@ -62,7 +62,7 @@ public class GenerateProfileService extends IntentService
         }
         else
         {
-            profile._type = Profile.Type.GUEST;
+            profile._type = ppm.uqac.com.geekproject.profile.Profile.Type.GUEST;
             profile._userName = "Guest";
             profile._score = Float.MIN_VALUE;
         }

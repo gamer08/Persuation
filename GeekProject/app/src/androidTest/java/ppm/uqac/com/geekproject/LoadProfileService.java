@@ -4,7 +4,6 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,7 +31,7 @@ public class LoadProfileService extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
-        Profile profile = null;
+        ppm.uqac.com.geekproject.profile.Profile profile = null;
         String score ="";
 
 
@@ -41,7 +40,7 @@ public class LoadProfileService extends IntentService
 
         try
         {
-            File file = getApplicationContext().getFileStreamPath(Profile.PROFIL_FILE_NAME);
+            File file = getApplicationContext().getFileStreamPath(ppm.uqac.com.geekproject.profile.Profile.PROFIL_FILE_NAME);
             System.out.println(file.exists());
             /*
             Avant il y avait cette ligne
@@ -50,7 +49,7 @@ public class LoadProfileService extends IntentService
              */
             if (file.exists())
             {
-                FileInputStream in = openFileInput(Profile.PROFIL_FILE_NAME);
+                FileInputStream in = openFileInput(ppm.uqac.com.geekproject.profile.Profile.PROFIL_FILE_NAME);
                 InputStreamReader reader = new InputStreamReader(in);
                 BufferedReader buff = new BufferedReader(reader);
 
@@ -70,7 +69,7 @@ public class LoadProfileService extends IntentService
                 _score = Float.parseFloat(score);
                 _type = _type.substring(_type.indexOf('=') + 1);
 
-                profile = new Profile();
+                profile = new ppm.uqac.com.geekproject.profile.Profile();
 
                 profile._userName = firstName;
                 profile._score = _score;

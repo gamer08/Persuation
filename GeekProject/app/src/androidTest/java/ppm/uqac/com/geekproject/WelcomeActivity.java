@@ -45,7 +45,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public void StartQuestionary(View v)
     {
         this.finish();
-        Intent intent = new Intent(this,QuestionaryActivity.class);
+        Intent intent = new Intent(this, ppm.uqac.com.geekproject.questionary.QuestionaryActivity.class);
         startActivity(intent);
     }
 }

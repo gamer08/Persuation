@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
+
 public class WelcomeActivity extends AppCompatActivity {
 
 

@@ -6,7 +6,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="ppm.uqac.com.geekproject.ViewListActivity"
+    tools:context="ppm.uqac.com.geekproject.geekactivity.ViewListActivity"
     android:background="@color/background">
 
 

@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import ppm.uqac.com.geekproject.geekactivity.GADatabase;
+import ppm.uqac.com.geekproject.profile.Profile;
+
 
 /**
  * Activité de test pour tester le chargement du profil à partir du fichier
@@ -38,11 +41,11 @@ public class StartActivity extends AppCompatActivity
 
 
 
-        _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
+        _profileIntentFilter = new IntentFilter(ppm.uqac.com.geekproject.profile.LoadProfileService.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
 
-        Intent profileLoader = new Intent(this,LoadProfileService.class);
+        Intent profileLoader = new Intent(this, ppm.uqac.com.geekproject.profile.LoadProfileService.class);
         startService(profileLoader);
 
     }
@@ -63,22 +66,22 @@ public class StartActivity extends AppCompatActivity
         @Override
         public void onReceive(Context context, Intent intent)
         {
-            Profile profile = (Profile)intent.getSerializableExtra("profile");
+            ppm.uqac.com.geekproject.profile.Profile profile = (Profile)intent.getSerializableExtra("profile");
             if (profile == null)
             {
                 Intent intentWelcome = new Intent(StartActivity.this, WelcomeActivity.class);
                 startActivity(intentWelcome);
-                GADatabase gadb = new GADatabase(StartActivity.this);
+                ppm.uqac.com.geekproject.geekactivity.GADatabase gadb = new GADatabase(StartActivity.this);
                 // Exemple avec 2 GA
-                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 500, false);
-                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 500, false);
+                ppm.uqac.com.geekproject.geekactivity.GA activity1 = new ppm.uqac.com.geekproject.geekactivity.GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 500, false);
+                ppm.uqac.com.geekproject.geekactivity.GA activity2 = new ppm.uqac.com.geekproject.geekactivity.GA("Lire un article", "Description lecture article", 1, 500, false);
                 gadb.addActivity(activity1);
                 gadb.addActivity(activity2);
             }
             else
             {
                 StartActivity.this.finish();
-                Intent profilActivity = new Intent(getApplicationContext(),MainActivity.class);
+                Intent profilActivity = new Intent(getApplicationContext(), ppm.uqac.com.geekproject.mainmenu.MainActivity.class);
                 /*profilActivity.putExtra("lastName",profile._lastName);
                 profilActivity.putExtra("firstName",profile._firstName);
                 profilActivity.putExtra("type",profile._type.toString());*/

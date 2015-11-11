@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import ppm.uqac.com.geekproject.questionary.Choice;
+import ppm.uqac.com.geekproject.questionary.Question;
+
 /**
  * Service qui permet de générer un questionnaire à partir d'un fichier XML
  */
@@ -45,7 +48,7 @@ public class GenerateQuestionaryService extends IntentService
     protected void onHandleIntent(Intent intent)
     {
         Log.d(TAG, "questionary generated !");
-        Questionary questionary = (Questionary) intent.getSerializableExtra("questionary");
+        ppm.uqac.com.geekproject.questionary.Questionary questionary = (ppm.uqac.com.geekproject.questionary.Questionary) intent.getSerializableExtra("questionary");
 
 
         try
@@ -72,7 +75,7 @@ public class GenerateQuestionaryService extends IntentService
      * @param questionary le questionary a construire
      */
 
-    void generate(Questionary questionary) throws XmlPullParserException, IOException
+    void generate(ppm.uqac.com.geekproject.questionary.Questionary questionary) throws XmlPullParserException, IOException
     {
         _questionsID = new int[questionary._nbQuestions];
         _nbQuestionsQuestionnaire = questionary._nbQuestions;
@@ -108,12 +111,12 @@ public class GenerateQuestionaryService extends IntentService
      * @param parser le parser pour extraire les données
      * @return la liste de questions pour le questionnaire
      */
-    ArrayList<Question> parseQuestions( XmlPullParser parser) throws XmlPullParserException, IOException
+    ArrayList<ppm.uqac.com.geekproject.questionary.Question> parseQuestions( XmlPullParser parser) throws XmlPullParserException, IOException
     {
         int eventType = parser.next();
 
-        ArrayList<Question> questions = new ArrayList<Question>();
-        Question question = null;
+        ArrayList<ppm.uqac.com.geekproject.questionary.Question> questions = new ArrayList<ppm.uqac.com.geekproject.questionary.Question>();
+        ppm.uqac.com.geekproject.questionary.Question question = null;
 
         while (_nextQuestionID != QUESTIONS_ALL_LOADED)
         {
@@ -163,11 +166,11 @@ public class GenerateQuestionaryService extends IntentService
      * @param parser le parser pour extraire les données
      * @return la liste de choix pour une question
      */
-    ArrayList<Choice> parseChoices( XmlPullParser parser) throws XmlPullParserException, IOException
+    ArrayList<ppm.uqac.com.geekproject.questionary.Choice> parseChoices( XmlPullParser parser) throws XmlPullParserException, IOException
     {
         int eventType = parser.next();
-        ArrayList<Choice> choices = new ArrayList<Choice>();
-        Choice choice = null;
+        ArrayList<ppm.uqac.com.geekproject.questionary.Choice> choices = new ArrayList<ppm.uqac.com.geekproject.questionary.Choice>();
+        ppm.uqac.com.geekproject.questionary.Choice choice = null;
 
         while (!parser.getName().equals("Choices"))
         {

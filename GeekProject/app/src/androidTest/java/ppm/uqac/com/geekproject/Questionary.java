@@ -8,18 +8,18 @@ import java.util.ArrayList;
  */
 public class Questionary implements Serializable
 {
-    public ArrayList<Question> _questions;
+    public ArrayList<ppm.uqac.com.geekproject.questionary.Question> _questions;
     public int _nbQuestions;
 
     private Questionary()
     {
-        _questions = new ArrayList<Question>();
+        _questions = new ArrayList<ppm.uqac.com.geekproject.questionary.Question>();
         _nbQuestions = 0;
     }
 
     public Questionary(int nbQuestions)
     {
-        _questions = new ArrayList<Question>();
+        _questions = new ArrayList<ppm.uqac.com.geekproject.questionary.Question>();
         _nbQuestions = nbQuestions;
     }
 }

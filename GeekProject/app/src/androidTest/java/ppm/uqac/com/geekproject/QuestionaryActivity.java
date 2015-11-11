@@ -13,11 +13,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import ppm.uqac.com.geekproject.profile.GenerateProfileService;
+import ppm.uqac.com.geekproject.profile.Profile;
+import ppm.uqac.com.geekproject.questionary.GenerateQuestionaryService;
+import ppm.uqac.com.geekproject.questionary.Question;
 
 
 /*
@@ -27,7 +31,7 @@ public class QuestionaryActivity extends AppCompatActivity
 {
     /*Other data*/
     private int _curQuestion, _nbQuestions, _score, _totalWeightPossible;
-    private Questionary _questionary;
+    private ppm.uqac.com.geekproject.questionary.Questionary _questionary;
     private View.OnClickListener _choiceListener;
 
     /*Service related data*/
@@ -92,18 +96,18 @@ public class QuestionaryActivity extends AppCompatActivity
             tv.setOnClickListener(_choiceListener);
 
         // Déclaration des filtres et diffuseurs pour les services
-        _questionnaireIntentFilter = new IntentFilter(GenerateQuestionaryService.GenerateQuestionnaireActions.Broadcast);
-        _profilIntentFilter = new IntentFilter(GenerateProfileService.GenerateProfilActions.Broadcast);
+        _questionnaireIntentFilter = new IntentFilter(ppm.uqac.com.geekproject.questionary.GenerateQuestionaryService.GenerateQuestionnaireActions.Broadcast);
+        _profilIntentFilter = new IntentFilter(ppm.uqac.com.geekproject.profile.GenerateProfileService.GenerateProfilActions.Broadcast);
 
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
-        _questionary = new Questionary(1);
+        _questionary = new ppm.uqac.com.geekproject.questionary.Questionary(1);
         _nbQuestions = _questionary._nbQuestions;
 
         // Start du service de génération de questionnaire
-        Intent questionnaireGenerator = new Intent(QuestionaryActivity.this,GenerateQuestionaryService.class);
+        Intent questionnaireGenerator = new Intent(ppm.uqac.com.geekproject.questionary.QuestionaryActivity.this, ppm.uqac.com.geekproject.questionary.GenerateQuestionaryService.class);
         questionnaireGenerator.putExtra("questionary", _questionary);
         startService(questionnaireGenerator);
         Log.d(TAG,"End OnCreate");
@@ -120,12 +124,12 @@ public class QuestionaryActivity extends AppCompatActivity
         {
             if (intent.getAction().equals(GenerateQuestionaryService.GenerateQuestionnaireActions.Broadcast))
             {
-                _questionary = (Questionary) intent.getSerializableExtra("questionary");
+                _questionary = (ppm.uqac.com.geekproject.questionary.Questionary) intent.getSerializableExtra("questionary");
                 loadNextQuestion();
             }
             else
             {
-                Profile profile = (Profile)intent.getSerializableExtra("profile");
+                ppm.uqac.com.geekproject.profile.Profile profile = (Profile)intent.getSerializableExtra("profile");
                 Intent nextActivity;
 
                 switch(profile._type)
@@ -135,17 +139,17 @@ public class QuestionaryActivity extends AppCompatActivity
                     case NEUTRAL:
                     case GEEKFRIENDLY:
                     case GEEK:
-                        nextActivity = new Intent(getApplicationContext(),CreationProfileActivity.class);
+                        nextActivity = new Intent(getApplicationContext(), ppm.uqac.com.geekproject.profile.CreationProfileActivity.class);
                         break;
 
                     default:
-                        nextActivity = new Intent(getApplicationContext(),MainActivity.class);
+                        nextActivity = new Intent(getApplicationContext(), ppm.uqac.com.geekproject.mainmenu.MainActivity.class);
                         nextActivity.putExtra("activite","questionnaire");
                         break;
                 }
 
                 nextActivity.putExtra("profile", profile);
-                QuestionaryActivity.this.finish();
+                ppm.uqac.com.geekproject.questionary.QuestionaryActivity.this.finish();
                 System.out.println("valeur profil avant start profilactivity "+profile._score);
                 startActivity(nextActivity);
             }

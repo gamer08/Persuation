@@ -17,6 +17,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.geeklopedie.Content;
+import ppm.uqac.com.geekproject.geeklopedie.ContentAdapter;
+import ppm.uqac.com.geekproject.geeklopedie.Fragment_3;
+import ppm.uqac.com.geekproject.geeklopedie.Fragment_4;
+import ppm.uqac.com.geekproject.geeklopedie.Fragment_5;
+import ppm.uqac.com.geekproject.geeklopedie.Fragment_6;
+import ppm.uqac.com.geekproject.geeklopedie.Fragment_main;
+
 public class GeeklopedieActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -92,10 +100,10 @@ public class GeeklopedieActivity extends AppCompatActivity
         System.out.println(id);
 
         if (id == R.id.antigeek) {
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_1()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new ppm.uqac.com.geekproject.geeklopedie.Fragment_1()).commit();
             // Handle the camera action
         } else if (id == R.id.GeekPersecutor) {
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_2()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new ppm.uqac.com.geekproject.geeklopedie.Fragment_2()).commit();
 
         } else if (id == R.id.Neutral) {
             fm.beginTransaction().replace(R.id.content_frame,new Fragment_3()).commit();
@@ -108,7 +116,7 @@ public class GeeklopedieActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-            GADatabase db = new GADatabase(this);
+            ppm.uqac.com.geekproject.geekactivity.GADatabase db = new ppm.uqac.com.geekproject.geekactivity.GADatabase(this);
             System.out.println("ouverture bd");
 
             InputStream is = getResources().openRawResource(
@@ -128,7 +136,7 @@ public class GeeklopedieActivity extends AppCompatActivity
                     System.out.println("index url: "+line.indexOf("name="));
                     d=line.indexOf(";desc=");
                     u=line.indexOf(";url=");
-                    Content contenu = new Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
+                    ppm.uqac.com.geekproject.geeklopedie.Content contenu = new ppm.uqac.com.geekproject.geeklopedie.Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
                     db.addContent(contenu);
                 }
             } catch (IOException e) {
@@ -146,9 +154,9 @@ public class GeeklopedieActivity extends AppCompatActivity
             System.out.println(List.toString());
 
             // On crée un adapter
-            final ContentAdapter cAdapter = new ContentAdapter(GeeklopedieActivity.this,List);
+            final ppm.uqac.com.geekproject.geeklopedie.ContentAdapter cAdapter = new ContentAdapter(ppm.uqac.com.geekproject.geeklopedie.GeeklopedieActivity.this,List);
 
-            Fragment_6 f6 = new Fragment_6();
+            ppm.uqac.com.geekproject.geeklopedie.Fragment_6 f6 = new Fragment_6();
             fm.beginTransaction().replace(R.id.content_frame,f6).commit();
             f6.setData(cAdapter);
         }

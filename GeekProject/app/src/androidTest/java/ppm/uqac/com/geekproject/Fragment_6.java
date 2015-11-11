@@ -10,13 +10,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import ppm.uqac.com.geekproject.geeklopedie.ContentAdapter;
+
 /**
  * Created by Simon on 23/10/2015.
  */
 public class Fragment_6 extends Fragment {
 
     View rootview;
-    ContentAdapter _cadapter;
+    ppm.uqac.com.geekproject.geeklopedie.ContentAdapter _cadapter;
     ListView _ContentListView;
 
     public void Fragment_6() {
@@ -33,7 +35,7 @@ public class Fragment_6 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Content c = _cadapter.getItem(position);
+                ppm.uqac.com.geekproject.geeklopedie.Content c = _cadapter.getItem(position);
                 Uri uri = Uri.parse(c.get_url()); // Si l'url ne contient pas http:// l'appli plante
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);

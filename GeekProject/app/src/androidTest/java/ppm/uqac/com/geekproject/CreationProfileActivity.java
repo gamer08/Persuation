@@ -26,7 +26,7 @@ public class CreationProfileActivity extends AppCompatActivity
     private Button _saveButton;
     private EditText _userName;
     private TextView _score;
-    private Profile _profile;
+    private ppm.uqac.com.geekproject.profile.Profile _profile;
     private ImageView _avatar;
 
 
@@ -49,7 +49,7 @@ public class CreationProfileActivity extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(CreationProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ppm.uqac.com.geekproject.profile.CreationProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -66,7 +66,7 @@ public class CreationProfileActivity extends AppCompatActivity
         if (intent != null)
         {
             System.out.println("in CPA.if intent non nul");
-            _profile = (Profile) intent.getSerializableExtra("profile");
+            _profile = (ppm.uqac.com.geekproject.profile.Profile) intent.getSerializableExtra("profile");
             _score.setText(String.valueOf(_profile._score));
             //_score.setText((TextView) ((String) _profile.getScore()));
             //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
@@ -136,8 +136,8 @@ public class CreationProfileActivity extends AppCompatActivity
        // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
         try
         {
-            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-            System.out.println(Profile.PROFIL_FILE_NAME);
+            FileOutputStream out = openFileOutput(ppm.uqac.com.geekproject.profile.Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+            System.out.println(ppm.uqac.com.geekproject.profile.Profile.PROFIL_FILE_NAME);
             out.write(userName.getBytes());
 
             out.write(score.getBytes());
@@ -145,7 +145,7 @@ public class CreationProfileActivity extends AppCompatActivity
             out.close();
 
             //Nouvelle activity MainActivity
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, ppm.uqac.com.geekproject.mainmenu.MainActivity.class);
             /*intent.putExtra("userName", _userName.getText().toString());
 
             intent.putExtra("type", _profile._type.toString());*/

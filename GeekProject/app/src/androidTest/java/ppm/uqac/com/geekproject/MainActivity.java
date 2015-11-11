@@ -15,11 +15,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
+import ppm.uqac.com.geekproject.geekactivity.ViewListActivity;
+import ppm.uqac.com.geekproject.profile.ViewProfileActivity;
+
+public class MainActivity extends AppCompatActivity implements ppm.uqac.com.geekproject.geekactivity.GADialog.dialogDoneListener{
     private TextView _userNameTV;
     private TextView _typeTV;
     private ImageView _avatar;
-    private Profile _profile;
+    private ppm.uqac.com.geekproject.profile.Profile _profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             _profile.setLastName((String) intent.getStringExtra("lastName"));
             _profile.setType((Profile.Type) intent.getSerializableExtra("type"));*/
 
-            _profile = (Profile) intent.getSerializableExtra("profile");
+            _profile = (ppm.uqac.com.geekproject.profile.Profile) intent.getSerializableExtra("profile");
 
             System.out.println("firstname   " + _profile.getUserName());
             System.out.println("score   " + _profile.getScore());
@@ -66,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             if(previousActivity.toString().equals("CreateProfil"))
             {
                 //test dialog
-                GADialog myDiag=new GADialog();
+                ppm.uqac.com.geekproject.geekactivity.GADialog myDiag=new ppm.uqac.com.geekproject.geekactivity.GADialog();
                 myDiag.show(getFragmentManager(),"Diag");
             }
             else
@@ -117,13 +120,13 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
     public void onClickActivities(View v)
     {
-        Intent intent = new Intent(this,ViewListActivity.class);
+        Intent intent = new Intent(this, ppm.uqac.com.geekproject.geekactivity.ViewListActivity.class);
         startActivity(intent);
     }
 
     public void onClickContent(View v)
     {
-        Intent intent = new Intent(this,GeeklopedieActivity.class);
+        Intent intent = new Intent(this, ppm.uqac.com.geekproject.geeklopedie.GeeklopedieActivity.class);
         startActivity(intent);
     }
 
@@ -135,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                 .setCancelable(false)
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        MainActivity.this.moveTaskToBack(true);
+                        ppm.uqac.com.geekproject.mainmenu.MainActivity.this.moveTaskToBack(true);
                     }
                 })
                 .setNegativeButton("Non", null)

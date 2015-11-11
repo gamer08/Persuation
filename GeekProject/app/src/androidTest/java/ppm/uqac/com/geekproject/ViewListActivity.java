@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import android.widget.ArrayAdapter;
+
+import ppm.uqac.com.geekproject.geekactivity.GAAdapter;
+import ppm.uqac.com.geekproject.geekactivity.GADatabase;
 
 public class ViewListActivity extends AppCompatActivity {
 
@@ -21,11 +22,11 @@ public class ViewListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_list);
 
         // Ouverture de la BDD
-        GADatabase gadb = new GADatabase(this);
+        ppm.uqac.com.geekproject.geekactivity.GADatabase gadb = new GADatabase(this);
         // Récupération des activités dans la BDD
-        ArrayList<GA> gaList =  gadb.getActivities();
+        ArrayList<ppm.uqac.com.geekproject.geekactivity.GA> gaList =  gadb.getActivities();
         // Constructeur de notre Adapter de GA
-        GAAdapter gaAdapter = new GAAdapter(this, gaList);
+        ppm.uqac.com.geekproject.geekactivity.GAAdapter gaAdapter = new GAAdapter(this, gaList);
         // Récupération de la listView
         ListView gaLV = (ListView) findViewById(R.id.ListView01);
         // Adaptation de la ListView avec notre Adapter

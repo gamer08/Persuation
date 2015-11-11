@@ -21,7 +21,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     private EditText _userNameET;
     private TextView _typeTV;
     private TextView _score;
-    private Profile _profile;
+    private ppm.uqac.com.geekproject.profile.Profile _profile;
     private ImageView _avatar;
 
 
@@ -54,7 +54,7 @@ public class ViewProfileActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ViewProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ppm.uqac.com.geekproject.profile.ViewProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -64,7 +64,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null)
         {
-            _profile = (Profile) intent.getSerializableExtra("profile");
+            _profile = (ppm.uqac.com.geekproject.profile.Profile) intent.getSerializableExtra("profile");
             _userNameET.setText(_profile.getUserName());
 
             _typeTV.setText(_profile.getType().toString());
@@ -126,8 +126,8 @@ public class ViewProfileActivity extends AppCompatActivity {
         // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
         try
         {
-            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-            System.out.println(Profile.PROFIL_FILE_NAME);
+            FileOutputStream out = openFileOutput(ppm.uqac.com.geekproject.profile.Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+            System.out.println(ppm.uqac.com.geekproject.profile.Profile.PROFIL_FILE_NAME);
             out.write(userName.getBytes());
 
             out.write(score.getBytes());
@@ -139,7 +139,7 @@ public class ViewProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this, ppm.uqac.com.geekproject.mainmenu.MainActivity.class);
         this.finish();
         intent.putExtra("profile", _profile);
         intent.putExtra("activite", "ViewProfileActivity");

@@ -21,7 +21,7 @@ public class ContentAdapter extends BaseAdapter {
 
 
     // Liste pour gérer tout le contenu
-    private ArrayList<Content> listContent;
+    private ArrayList<ppm.uqac.com.geekproject.geeklopedie.Content> listContent;
 
 
     private Context mContext;
@@ -30,7 +30,7 @@ public class ContentAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
 
 
-    public ContentAdapter(Context context, ArrayList<Content> list)
+    public ContentAdapter(Context context, ArrayList<ppm.uqac.com.geekproject.geeklopedie.Content> list)
     {
         mContext=context;
         listContent =list;
@@ -73,7 +73,7 @@ public class ContentAdapter extends BaseAdapter {
     }
 
 
-    public Content getItem(int position) {
+    public ppm.uqac.com.geekproject.geeklopedie.Content getItem(int position) {
         return listContent.get(position);
     }
 
