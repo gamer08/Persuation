@@ -11,7 +11,7 @@
         android:textSize="25dp"
         android:layout_gravity="center_horizontal"
         android:textAlignment="center"
-        android:textColor="@color/text">
+        android:textColor="@color/label">
 
     </TextView>
 
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:textColor="@color/text">
+        android:textColor="@color/value">
     </TextView>
 
     <TextView android:text="experience" android:id="@+id/TV_experienceActivity"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textSize="20dp"
-        android:textColor="@color/text">
+        android:textColor="@color/value">
     </TextView>
 
     <TextView android:text="Level"
@@ -35,19 +35,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:textColor="@color/text">
+        android:textColor="@color/value">
     </TextView>
     
-    <!--<Button
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Activité finie"
         android:id="@+id/BT_ActivityDone"
         android:layout_gravity="center_horizontal"
         android:drawableLeft="@drawable/gabutton"
-        android:onClick="onClickActivitiesDone"/>-->
+        android:onClick="onClickActivitiesDone"/>
 
-    <CheckBox
+    <!--<CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Activité"
@@ -55,6 +55,6 @@
         android:layout_gravity="center_horizontal"
         android:onClick="onClickActivitiesDone"
         android:textColor="@color/text"
-        android:textSize="20dp"/>
+        android:textSize="20dp"/>-->
 
 </LinearLayout>

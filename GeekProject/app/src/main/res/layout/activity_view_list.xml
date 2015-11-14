@@ -13,7 +13,7 @@
     <ListView android:id="@+id/ListView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/text">
+        android:textColor="@color/value">
     </ListView>
 </RelativeLayout>
 

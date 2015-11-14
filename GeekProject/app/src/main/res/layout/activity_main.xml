@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textSize="50dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/text"/>
+        android:textColor="@color/value"/>
 
     <ImageView
         android:layout_width="100dp"
@@ -35,7 +35,7 @@
         android:textStyle="bold"
         android:layout_below="@id/image"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/text"/>
+        android:textColor="@color/value"/>
         <!--android:layout_toRightOf="@+id/buttonContent"
         android:layout_toEndOf="@+id/buttonContent"-->
 

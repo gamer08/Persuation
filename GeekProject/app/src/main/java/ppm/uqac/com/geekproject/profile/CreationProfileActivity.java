@@ -121,9 +121,6 @@ public class CreationProfileActivity extends AppCompatActivity
         String userName = "userName=";
         userName = userName.concat(_userName.getText().toString()).concat(System.getProperty("line.separator"));
 
-
-
-
         String score = "score=";
         System.out.println(_score);
         score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));

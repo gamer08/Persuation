@@ -28,6 +28,7 @@ public class Profile implements Serializable
     public float _score;
     public Type _type;
     int _avatar;
+    public Level _level;
 
     public static final String PROFIL_FILE_NAME ="Profile.txt";
 
@@ -39,6 +40,7 @@ public class Profile implements Serializable
         _type = Type.ANTIGEEK;
         _avatar = R.drawable.antigeek;
 
+
     }
 
     public String getUserName()
@@ -46,7 +48,7 @@ public class Profile implements Serializable
         return _userName;
     }
 
-
+   public Level getLevel()  { return _level; }
 
     public Type getType()
     {
@@ -57,6 +59,8 @@ public class Profile implements Serializable
     {
         return _score;
     }
+
+
 
     public int getAvatar() { return _avatar; }
 

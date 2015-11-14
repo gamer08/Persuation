@@ -26,6 +26,7 @@ public class ViewProfileActivity extends AppCompatActivity {
     private TextView _score;
     private Profile _profile;
     private ImageView _avatar;
+    private TextView _levelTV;
 
 
     @Override
@@ -41,6 +42,7 @@ public class ViewProfileActivity extends AppCompatActivity {
         _typeTV = (TextView) findViewById(R.id.TV_Type);
         _score = (TextView) findViewById(R.id.TV_Score);
         _avatar = (ImageView) findViewById(R.id.image);
+        _levelTV = (TextView) findViewById(R.id.TV_Level);
 
         // Listener pour le bouton de sauvegarde des modifications
 
@@ -72,6 +74,7 @@ public class ViewProfileActivity extends AppCompatActivity {
 
             _typeTV.setText(_profile.getType().toString());
             _score.setText(String.valueOf(_profile._score));
+            _levelTV.setText(String.valueOf(_profile._level));
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
             _avatar.setImageBitmap(bMapScaled);

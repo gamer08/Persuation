@@ -16,7 +16,7 @@
         android:paddingTop="50dp"
         android:textSize="24sp"
         android:text="@string/TVL_Score"
-        android:textColor="@color/text"
+        android:textColor="@color/label"
         android:paddingBottom="20dp"
         />
 
@@ -31,7 +31,7 @@
         android:textStyle="bold"
         android:layout_alignTop="@id/TVL_Score"
         android:editable="false"
-        android:textColor="@color/score"
+        android:textColor="@color/value"
         />
 
 
@@ -43,7 +43,7 @@
         android:hint="@string/TV_UserName"
         android:singleLine="true"
         android:layout_alignParentRight="true"
-        android:textColor="@color/text"
+        android:textColor="@color/value"
         android:layout_below="@id/TVL_Score" />
 
 
@@ -57,6 +57,7 @@
         android:text="@string/BTN_Create"
         android:id="@+id/BTN_Save"
         android:layout_below="@id/TV_UserName"
-        android:layout_alignRight="@id/TV_UserName" />
+        android:layout_alignRight="@id/TV_UserName"
+        android:textColor="@color/label"/>
 
 </RelativeLayout>

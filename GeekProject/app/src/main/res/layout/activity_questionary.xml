@@ -19,7 +19,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-       android:textColor="@color/text"
+       android:textColor="@color/value"
         />
 
     <TextView
@@ -34,7 +34,7 @@
         android:layout_alignEnd="@+id/TV_curQuestionCpt"
         android:hint="@string/TV_Question"
         android:textSize="24sp"
-       android:textColor="@color/text"
+       android:textColor="@color/label"
         />
 
 
@@ -67,7 +67,7 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
-                   android:textColor="@color/text"
+                   android:textColor="@color/value"
                     />
 
                 <TextView
@@ -77,7 +77,7 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
-                   android:textColor="@color/text"/>
+                   android:textColor="@color/value"/>
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -86,7 +86,7 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
-                   android:textColor="@color/text"/>
+                   android:textColor="@color/value"/>
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -95,7 +95,7 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
-                   android:textColor="@color/text"/>
+                   android:textColor="@color/value"/>
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -104,7 +104,7 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
-                   android:textColor="@color/text"/>
+                   android:textColor="@color/value"/>
             </LinearLayout>
         </ScrollView>
         <TextView
@@ -114,7 +114,7 @@
 
             android:id="@+id/TV_Fact"
             android:textSize="18sp"
-            android:textColor="@color/text"
+            android:textColor="@color/label"
             />
     </LinearLayout>
 
