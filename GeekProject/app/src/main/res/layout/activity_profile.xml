@@ -47,10 +47,6 @@
         android:layout_below="@id/TVL_Score" />
 
 
-
-
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -17,7 +17,6 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "WelcomeA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_welcome);
     }
 

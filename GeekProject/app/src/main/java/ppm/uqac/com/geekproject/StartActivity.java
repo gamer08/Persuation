@@ -38,12 +38,6 @@ public class StartActivity extends AppCompatActivity
         setContentView(R.layout.activity_start);
 
 
-
-        Toast.makeText(this, "StartA.onCreate", Toast.LENGTH_SHORT).show();
-
-
-
-
         _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);

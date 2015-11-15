@@ -33,7 +33,6 @@ public class GenerateProfileService extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
-        Log.d(TAG,"OnHandleIntent");
         _profilTypes = new ArrayList<Profile.Type>();
 
         _profilTypes.add(Profile.Type.ANTIGEEK);
@@ -65,6 +64,7 @@ public class GenerateProfileService extends IntentService
             profile._type = Profile.Type.GUEST;
             profile._userName = "Guest";
             profile._score = Float.MIN_VALUE;
+            profile._experience = 0;
         }
 
         Intent callBackIntent = new Intent(GenerateProfilActions.Broadcast);

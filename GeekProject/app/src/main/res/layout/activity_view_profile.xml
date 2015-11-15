@@ -19,9 +19,11 @@
     <ProgressBar
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:progress="20"
-        android:max="100" />
+        android:layout_below="@id/image"
+        android:id="@+id/progress_bar"
+        style="@style/LevelBar"
+        android:layout_margin="20dp"
+        android:max="100"/>
 
 
 
@@ -36,7 +38,7 @@
             android:textStyle="bold"
             android:textSize="25dp"
            android:textColor="@color/label"
-           android:layout_below="@id/image" />
+           android:layout_below="@id/progress_bar" />
 
      <EditText
         android:layout_width="match_parent"
@@ -118,6 +120,7 @@
         android:drawableLeft="@drawable/saveicon"
         android:textColor="@color/label"
         />
+
 
 
 </RelativeLayout>

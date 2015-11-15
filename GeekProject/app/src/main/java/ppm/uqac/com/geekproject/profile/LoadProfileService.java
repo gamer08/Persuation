@@ -16,6 +16,7 @@ public class LoadProfileService extends IntentService
     private String _firstName;
     private Float _score;
     private String _type;
+    private double _experience;
 
     private static final String TAG = "LoadProfile Service";
 
@@ -33,6 +34,7 @@ public class LoadProfileService extends IntentService
     {
         Profile profile = null;
         String score ="";
+        String experience="";
 
 
         Log.d(TAG, "Service Started!");
@@ -56,6 +58,9 @@ public class LoadProfileService extends IntentService
                 _firstName = buff.readLine();
                 score = buff.readLine();
                 _type = buff.readLine();
+                experience = buff.readLine();
+
+                System.out.println("In LoadProfileService: experience = " + experience);
 
 
                 buff.close();
@@ -63,42 +68,29 @@ public class LoadProfileService extends IntentService
                 in.close();
 
                 String firstName = _firstName.substring(_firstName.indexOf('=')+1);
-                System.out.println("valeur de score "+score);
+
                 score = score.substring(score.indexOf('=') + 1);
 
+
                 _score = Float.parseFloat(score);
+
                 _type = _type.substring(_type.indexOf('=') + 1);
+                experience = experience.substring(experience.indexOf('=') + 1);
+                _experience = Double.parseDouble(experience);
 
                 profile = new Profile();
 
                 profile._userName = firstName;
                 profile._score = _score;
+                profile._experience = _experience;
                 profile.defineType();
-
-                /*switch (_type)
-                {
-                    case "GEEK":
-                        profile._type=Profile.Type.GEEK;
-                        break;
-                    case "GEEKPERSECUTOR":
-                        profile._type=Profile.Type.GEEKPERSECUTOR;
-                        break;
-                    case "NEUTRAL":
-                        profile._type=Profile.Type.NEUTRAL;
-                        break;
-                    case "GEEKFRIENDLY":
-                        profile._type=Profile.Type.GEEKFRIENDLY;
-                        break;
-                    default:
-                        profile._type = Profile.Type.ANTIGEEK;
-                }*/
-
 
                 System.out.println("résumé profil");
                 System.out.println(firstName);
 
                 System.out.println(_score);
                 System.out.println(profile._type.toString());
+                System.out.println(profile._experience);
                 System.out.println("fin résumé profil");
 
             }

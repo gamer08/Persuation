@@ -145,7 +145,6 @@ public class GADatabase extends SQLiteOpenHelper {
                 System.out.println("GADatabase Bool = " + isDone);
             GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
             listActivities.add(activity);
-            System.out.println("non activité " + activity.get_name());
         }
 
 

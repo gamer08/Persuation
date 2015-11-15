@@ -28,7 +28,8 @@ public class Profile implements Serializable
     public float _score;
     public Type _type;
     int _avatar;
-    public Level _level;
+    public int _level;
+    double _experience;
 
     public static final String PROFIL_FILE_NAME ="Profile.txt";
 
@@ -39,7 +40,8 @@ public class Profile implements Serializable
         _score = 0.0f;
         _type = Type.ANTIGEEK;
         _avatar = R.drawable.antigeek;
-
+        _level = 1;
+        _experience = 0;
 
     }
 
@@ -48,7 +50,7 @@ public class Profile implements Serializable
         return _userName;
     }
 
-   public Level getLevel()  { return _level; }
+
 
     public Type getType()
     {
@@ -59,8 +61,6 @@ public class Profile implements Serializable
     {
         return _score;
     }
-
-
 
     public int getAvatar() { return _avatar; }
 
@@ -107,5 +107,44 @@ public class Profile implements Serializable
             _avatar = R.drawable.geek;
         }
     }
+
+    public boolean isLevelUp()
+    {
+        // Algorithme de
+
+        if (_experience>getLevelLimit())
+        {
+            return true;
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+    public void setLevel()
+    {
+        if (isLevelUp())
+        {
+            _level +=1;
+        }
+    }
+
+    public double getLevelLimit()
+    {
+        return _level * 50 + Math.exp(_level - 1) * 5;
+    }
+
+    public void addExperience(double i)
+    {
+        _experience+=i;
+    }
+
+
+    public double getExperience() { return _experience; }
+
+
+
 
 }

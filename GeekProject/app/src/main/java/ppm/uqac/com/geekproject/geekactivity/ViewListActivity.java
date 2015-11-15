@@ -24,7 +24,6 @@ public class ViewListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "ViewListA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_view_list);
 
         // Ouverture de la BDD

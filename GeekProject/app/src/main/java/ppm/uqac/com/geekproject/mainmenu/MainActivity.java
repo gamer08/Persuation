@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
             System.out.println("firstname   " + _profile.getUserName());
             System.out.println("score   " + _profile.getScore());
+            System.out.println("In MA experience =   " + _profile.getExperience());
 
 
             // on set les text viewer qui ne sont que des informations pour l'utilisateurs

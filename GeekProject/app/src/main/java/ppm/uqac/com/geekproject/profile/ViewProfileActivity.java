@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,15 +36,14 @@ public class ViewProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
-        Toast.makeText(this, "ViewProfileA.onCreate", Toast.LENGTH_SHORT).show();
-
-
-       // _profile = new Profile();
         _userNameET = (EditText) findViewById(R.id.TV_UserName);
         _typeTV = (TextView) findViewById(R.id.TV_Type);
         _score = (TextView) findViewById(R.id.TV_Score);
         _avatar = (ImageView) findViewById(R.id.image);
         _levelTV = (TextView) findViewById(R.id.TV_Level);
+
+
+
 
         // Listener pour le bouton de sauvegarde des modifications
 
@@ -59,7 +60,7 @@ public class ViewProfileActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(ViewProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ViewProfileActivity.this, "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -78,6 +79,17 @@ public class ViewProfileActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
             _avatar.setImageBitmap(bMapScaled);
+
+            // On recupère l'expérience de l'utilisateur
+
+            double xp = _profile.getExperience();
+            int percent = (int) (xp/ _profile.getLevelLimit() *100);
+            System.out.println("In VPA.onCreate total = " + _profile.getLevelLimit());
+            System.out.println("In VPA.onCreate experience = " + xp);
+            System.out.println("In VPA.onCreate purcentage = " + percent);
+            ProgressBar myprogressbar = (ProgressBar)findViewById(R.id.progress_bar);
+            myprogressbar.setProgress(percent);
+
 
         }
 
@@ -124,12 +136,10 @@ public class ViewProfileActivity extends AppCompatActivity {
         String type = "type=";
         type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
 
-        /*String avatar = "avatar=";
-        type = type.concat(_profile._avatar.toString()).concat(System.getProperty("line.separator"));*/
+        String experience = "experience=";
+        experience = experience.concat((String.valueOf(_profile._experience)).concat(System.getProperty("line.separator")));
 
 
-        //File file = new File(getBaseContext().getFilesDir(),PROFIL_FILE_NAME);
-        // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
         try
         {
             FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);

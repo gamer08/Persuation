@@ -7,6 +7,15 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="GeekPersecutor"
-        android:id="@+id/textView2"
+        android:id="@+id/title_geekpersecutor"
         android:layout_gravity="center_horizontal|top" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/image_geekpersecutor"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/geekpersecutor"
+        android:padding="10dp"
+        />
 </FrameLayout>

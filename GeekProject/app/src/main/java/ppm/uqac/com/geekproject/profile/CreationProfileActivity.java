@@ -30,7 +30,6 @@ public class CreationProfileActivity extends AppCompatActivity
     private EditText _userName;
     private TextView _score;
     private Profile _profile;
-    private ImageView _avatar;
 
 
     @Override
@@ -52,7 +51,7 @@ public class CreationProfileActivity extends AppCompatActivity
                 }
                 else
                 {
-                    Toast.makeText(CreationProfileActivity.this, "Vous n'avez pas rempli un champ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreationProfileActivity.this, "Veuillez rentrer un pseudo", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -60,7 +59,6 @@ public class CreationProfileActivity extends AppCompatActivity
 
         _userName = (EditText) findViewById(R.id.TV_UserName);
         _score = (TextView) findViewById(R.id.TV_Score);
-        _avatar = (ImageView) findViewById(R.id.image);
 
         _saveButton = (Button) findViewById(R.id.BTN_Save);
         _saveButton.setOnClickListener(_saveListener);
@@ -68,23 +66,11 @@ public class CreationProfileActivity extends AppCompatActivity
         Intent intent = getIntent();
         if (intent != null)
         {
-            System.out.println("in CPA.if intent non nul");
             _profile = (Profile) intent.getSerializableExtra("profile");
             _score.setText(String.valueOf(_profile._score));
             //_score.setText((TextView) ((String) _profile.getScore()));
             //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
 
-            /*if (_profile != null)
-            {
-                _userName.setText(_profile._userName);
-
-
-
-                /*Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.antigeek);
-                Bitmap bMapScaled = Bitmap.createScaledBitmap(bMap, 480, 320, false);
-                ImageView image = (ImageView) findViewById(R.id.image);
-                _avatar.setImageBitmap(bMapScaled);
-            }*/
         }
     }
 
@@ -117,23 +103,16 @@ public class CreationProfileActivity extends AppCompatActivity
      */
     public void saveProfil()
     {
-        System.out.println("in CPA.saveProfil()");
         String userName = "userName=";
         userName = userName.concat(_userName.getText().toString()).concat(System.getProperty("line.separator"));
-
         String score = "score=";
-        System.out.println(_score);
         score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
-
         String type = "type=";
         type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
+        String experience = "experience=";
+        experience = experience.concat("20".concat(System.getProperty("line.separator")));
 
-        /*String avatar = "avatar=";
-        type = type.concat(_profile._avatar.toString()).concat(System.getProperty("line.separator"));*/
 
-
-        //File file = new File(getBaseContext().getFilesDir(),PROFIL_FILE_NAME);
-       // File file = getApplicationContext().getFileStreamPath(PROFIL_FILE_NAME);
         try
         {
             FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
@@ -142,24 +121,23 @@ public class CreationProfileActivity extends AppCompatActivity
 
             out.write(score.getBytes());
             out.write(type.getBytes());
+            out.write(experience.getBytes());
             out.close();
 
             //Nouvelle activity MainActivity
             Intent intent = new Intent(this,MainActivity.class);
-            /*intent.putExtra("userName", _userName.getText().toString());
-
-            intent.putExtra("type", _profile._type.toString());*/
 
             _profile.setUserName(_userName.getText().toString());
 
             _profile.defineType();
 
-            //intent.putExtra("avatar", _avatar.toString());
+            _profile.addExperience(20);
+
             this.finish();
             intent.putExtra("profile", _profile);
             intent.putExtra("activite", "CreateProfil");
             startActivity(intent);
-            System.out.println("fin save file et type est "+_profile._type.toString());
+            System.out.println("In CPA.save experience =  "+_profile.getExperience());
 
 
         }
