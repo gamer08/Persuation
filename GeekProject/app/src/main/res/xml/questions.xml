@@ -88,7 +88,7 @@
         </Question>
         <Question>
             <ID>4</ID>
-            <BestWeight>1</BestWeight>
+            <BestWeight>2</BestWeight>
             <Description> Trouvez-vous que les geeks sont des personnes associales?</Description>
             <Fact>Saviez-vous que... La geeklopédie contient de nombreuses informations et faits divers intéressants</Fact>
             <Choices>
@@ -198,7 +198,7 @@
             <Choices>
                 <Choice>
                     <Description>Ripley</Description>
-                    <Weight>2</Weight>
+                    <Weight>1</Weight>
                 </Choice>
                 <Choice>
                     <Description>Le doc de Retour vers le futur</Description>
@@ -225,14 +225,14 @@
                     <Weight>3</Weight>
                 </Choice>
                 <Choice>
-                    <Description>MythBuster.</Description>
+                    <Description>MythBuster</Description>
                     <Weight>1</Weight>
                 </Choice>
                 <Choice>
                     <Description>Les films Marvel (Avengers, Thor...)</Description>
                     <Weight>3</Weight>
                 </Choice>
-				<Choice>
+                <Choice>
                     <Description>La petite maison dans la prairie</Description>
                     <Weight>0</Weight>
                 </Choice>

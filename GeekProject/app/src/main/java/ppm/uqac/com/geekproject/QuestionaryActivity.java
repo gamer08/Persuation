@@ -1,4 +1,4 @@
-package ppm.uqac.com.geekproject.questionary;
+package ppm.uqac.com.geekproject;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -13,16 +13,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import org.w3c.dom.Text;
 
-import ppm.uqac.com.geekproject.profile.CreationProfileActivity;
-import ppm.uqac.com.geekproject.profile.GenerateProfileService;
-import ppm.uqac.com.geekproject.mainmenu.MainActivity;
-import ppm.uqac.com.geekproject.profile.Profile;
-import ppm.uqac.com.geekproject.R;
+import java.util.ArrayList;
 
 
 /*
@@ -105,7 +102,7 @@ public class QuestionaryActivity extends AppCompatActivity
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
-        _questionary = new Questionary(5);
+        _questionary = new Questionary(2);
         _nbQuestions = _questionary.nbQuestions();
 
         // Start du service de génération de questionnaire
@@ -215,7 +212,7 @@ public class QuestionaryActivity extends AppCompatActivity
         float scoreQuestionnaire;
 
         if (!isDummyProfile)
-            scoreQuestionnaire = (float)_score / (float)_totalWeightPossible;
+            scoreQuestionnaire = _score / _totalWeightPossible;
         else
             scoreQuestionnaire = Float.MIN_VALUE; // non va donner un profil guest
 
