@@ -113,6 +113,7 @@ public class GeeklopedieActivity extends AppCompatActivity
 
             GADatabase db = new GADatabase(this);
             System.out.println("ouverture bd");
+            System.out.println("fragment contenu");
 
             InputStream is = getResources().openRawResource(
                     getResources().getIdentifier("raw/contenu",
@@ -154,6 +155,9 @@ public class GeeklopedieActivity extends AppCompatActivity
             Fragment_6 f6 = new Fragment_6();
             fm.beginTransaction().replace(R.id.content_frame,f6).commit();
             f6.setData(cAdapter);
+        }else if (id == R.id.nav_videos) {
+            System.out.println("fragment video");
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_Video()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

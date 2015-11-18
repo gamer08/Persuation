@@ -13,9 +13,9 @@ import android.widget.ListView;
 import ppm.uqac.com.geekproject.R;
 
 /**
- * Created by Simon on 23/10/2015.
+ * Created by Simon on 17/11/2015.
  */
-public class Fragment_6 extends Fragment {
+public class Fragment_Video extends Fragment {
 
     View rootview;
     ContentAdapter _cadapter;
@@ -27,11 +27,11 @@ public class Fragment_6 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.fragment_6,container,false);
-        _ContentListView = (ListView) rootview.findViewById(R.id.drawerListgeek);
+        rootview = inflater.inflate(R.layout.fragment_video, container, false);
+        _ContentListView = (ListView) rootview.findViewById(R.id.drawerListVideo);
         _ContentListView.setAdapter(_cadapter);
 
-        _ContentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+  /*      _ContentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
@@ -40,7 +40,7 @@ public class Fragment_6 extends Fragment {
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
             }
-        });
+        });*/
 
         return rootview;
     }
