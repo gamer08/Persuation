@@ -88,10 +88,6 @@ public class GADatabase extends SQLiteOpenHelper {
     {
 
         int done =0;
-
-
-
-
         this.getWritableDatabase().execSQL("INSERT INTO geek_activity (title, description, level, experience, is_done) VALUES ('" +
                 activity.get_name() + "','" +
                 activity.get_description() + "','" +
@@ -103,10 +99,10 @@ public class GADatabase extends SQLiteOpenHelper {
     }
 
     /**
-     * Récupération de la liste des activités
+     * Récupération de la liste des activités que l'utilisateur est en train de réaliser
      * @return une ArrayList de GA
      */
-    public ArrayList<GA> getActivities()
+    public ArrayList<GA> getActivitiesDoing()
     {
 
         listActivities.clear();
@@ -126,8 +122,7 @@ public class GADatabase extends SQLiteOpenHelper {
 
         activitiesSaved.moveToLast();
 
-        for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext())
-        {
+        for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext()) {
             int numActivity = activitiesSaved.getInt(0);
             System.out.println("GADatabase : " + numActivity);
             nameActivity = activitiesSaved.getString(1);
@@ -135,24 +130,61 @@ public class GADatabase extends SQLiteOpenHelper {
             levelActivity = activitiesSaved.getInt(3);
             experienceActivity = activitiesSaved.getInt(4);
             done = activitiesSaved.getInt(5);
-                System.out.println("GADatabase Bool = " + done);
-            if(done == 0)
-                isDone=false;
-            else if (done ==1)
+            System.out.println("GADatabase Bool = " + done);
+            if (done == 0)
             {
-                isDone = true;
-            }
-                System.out.println("GADatabase Bool = " + isDone);
+                isDone = false;
             GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
             listActivities.add(activity);
+           }
         }
-
 
         db.close();
         return listActivities;
 
     }
 
+    public ArrayList<GA> getActivitiesDone()
+    {
+
+        listActivities.clear();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor activitiesSaved = db.rawQuery("SELECT * FROM geek_activity", null);
+
+        String nameActivity;
+        String descriptionActivity;
+        int levelActivity;
+        int experienceActivity;
+        int done;
+        boolean isDone = false;
+
+
+        activitiesSaved.moveToFirst();
+
+
+        activitiesSaved.moveToLast();
+
+        for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext()) {
+            int numActivity = activitiesSaved.getInt(0);
+            System.out.println("GADatabase : " + numActivity);
+            nameActivity = activitiesSaved.getString(1);
+            descriptionActivity = activitiesSaved.getString(2);
+            levelActivity = activitiesSaved.getInt(3);
+            experienceActivity = activitiesSaved.getInt(4);
+            done = activitiesSaved.getInt(5);
+            System.out.println("GADatabase Bool = " + done);
+            if (done == 1)
+            {
+                isDone = false;
+                GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
+                listActivities.add(activity);
+            }
+        }
+
+        db.close();
+        return listActivities;
+
+    }
 
     public void updateActivity(int position)
     {

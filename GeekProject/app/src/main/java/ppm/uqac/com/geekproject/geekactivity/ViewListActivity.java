@@ -1,5 +1,6 @@
 package ppm.uqac.com.geekproject.geekactivity;
 
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,7 +30,7 @@ public class ViewListActivity extends AppCompatActivity {
         // Ouverture de la BDD
         gadb = new GADatabase(this);
         // Récupération des activités dans la BDD
-        gaList =  gadb.getActivities();
+        gaList =  gadb.getActivitiesDoing();
         // Constructeur de notre Adapter de GA
         gaAdapter = new GAAdapter(this, gaList);
         // Récupération de la listView
@@ -38,10 +39,12 @@ public class ViewListActivity extends AppCompatActivity {
         gaLV.setAdapter(gaAdapter);
     }
 
+
     public void onClickActivitiesDone(View v)
     {
         gadb.updateActivity(gaLV.getPositionForView(v)+1);
-        gaList = gadb.getActivities();
+        gaList.clear();
+        gaList = gadb.getActivitiesDoing();
         gaAdapter.updateListView(gaList);
         gaLV.setAdapter(gaAdapter);
     }

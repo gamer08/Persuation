@@ -76,6 +76,7 @@ public class GAAdapter extends BaseAdapter {
         tv_level.setText(lvl);
         String xp = "Experience : " + Integer.toString(listActivity.get(position).get_experience());
         tv_exp.setText(xp);
+        System.out.println("GAADapter -- Bool is done : " + listActivity.get(position));
 
         if(!listActivity.get(position).get_isDone())
         {
@@ -83,7 +84,7 @@ public class GAAdapter extends BaseAdapter {
         }
         else if (listActivity.get(position).get_isDone())
         {
-            bt_activity.setVisibility(View.GONE);
+            bt_activity.setEnabled(false);
         }
 
         return layoutItem;
