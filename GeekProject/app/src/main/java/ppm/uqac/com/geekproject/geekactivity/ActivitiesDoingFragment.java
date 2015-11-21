@@ -51,7 +51,8 @@ public class ActivitiesDoingFragment extends Fragment {
         _gadapter = adapter;
     }
 
-
-
+    public ListView get_ContentListView() {
+        return _ContentListView;
+    }
 
 }

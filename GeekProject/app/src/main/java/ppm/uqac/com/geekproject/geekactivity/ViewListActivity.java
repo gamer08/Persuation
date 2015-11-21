@@ -42,7 +42,7 @@ public class ViewListActivity extends AppCompatActivity {
 
     public void onClickActivitiesDone(View v)
     {
-        gadb.updateActivity(gaLV.getPositionForView(v)+1);
+
         gaList.clear();
         gaList = gadb.getActivitiesDoing();
         gaAdapter.updateListView(gaList);

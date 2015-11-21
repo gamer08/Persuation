@@ -1,9 +1,8 @@
 package ppm.uqac.com.geekproject.geekactivity;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,13 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
+
 
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
-import ppm.uqac.com.geekproject.geekactivity.ActivitiesDoingFragment;
-import ppm.uqac.com.geekproject.geeklopedie.Fragment_main;
+
 
 public class ViewListActivity2 extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,7 +29,9 @@ public class ViewListActivity2 extends AppCompatActivity
 
     GAAdapter gaAdapter;
 
-    ListView gaLV;
+    ActivitiesDoingFragment acDoingFrag;
+
+    FragmentManager fm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +64,8 @@ public class ViewListActivity2 extends AppCompatActivity
         // Constructeur de notre Adapter de GA
         gaAdapter = new GAAdapter(this, gaList);
 
-        FragmentManager fm = getFragmentManager();
-        ActivitiesDoingFragment acDoingFrag = new ActivitiesDoingFragment();
+        fm = getFragmentManager();
+        acDoingFrag = new ActivitiesDoingFragment();
         acDoingFrag.set_gadapter(gaAdapter);
         fm.beginTransaction().replace(R.id.activites_frame,acDoingFrag).commit();
     }
@@ -108,7 +108,7 @@ public class ViewListActivity2 extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        FragmentManager fm = getFragmentManager();
+
 
         if (id == R.id.activitiesDoing) {
 
@@ -117,9 +117,7 @@ public class ViewListActivity2 extends AppCompatActivity
             // Récupération des activités dans la BDD
             gaList =  gadb.getActivitiesDoing();
             // Constructeur de notre Adapter de GA
-            gaAdapter = new GAAdapter(this, gaList);
-
-            ActivitiesDoingFragment acDoingFrag = new ActivitiesDoingFragment();
+            gaAdapter.updateListView(gaList);
             acDoingFrag.set_gadapter(gaAdapter);
             fm.beginTransaction().replace(R.id.activites_frame,acDoingFrag).commit();
 
@@ -130,9 +128,9 @@ public class ViewListActivity2 extends AppCompatActivity
             // Récupération des activités dans la BDD
             gaList =  gadb.getActivitiesDone();
             // Constructeur de notre Adapter de GA
-            gaAdapter = new GAAdapter(this, gaList);
+            gaAdapter.updateListView(gaList);
 
-            ActivitiesDoingFragment acDoingFrag = new ActivitiesDoingFragment();
+            acDoingFrag = new ActivitiesDoingFragment();
             acDoingFrag.set_gadapter(gaAdapter);
             fm.beginTransaction().replace(R.id.activites_frame,acDoingFrag).commit();
         }
@@ -142,14 +140,16 @@ public class ViewListActivity2 extends AppCompatActivity
         return true;
     }
 
-    /*
     public void onClickActivitiesDone(View v)
     {
-        gadb.updateActivity(gaLV.getPositionForView(v)+1);
+        Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.activites_frame);
+        GA activity = gaAdapter.getItem(acDoingFrag.get_ContentListView().getPositionForView(v));
+        System.out.println("ViewListActivity2 : Appuye bouton " + activity.get_name());
+        gadb.updateActivity(activity);
         gaList.clear();
         gaList = gadb.getActivitiesDoing();
         gaAdapter.updateListView(gaList);
-        gaLV.setAdapter(gaAdapter);
+        acDoingFrag.set_gadapter(gaAdapter);
+        fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
     }
-    */
 }

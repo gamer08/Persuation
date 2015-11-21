@@ -175,7 +175,7 @@ public class GADatabase extends SQLiteOpenHelper {
             System.out.println("GADatabase Bool = " + done);
             if (done == 1)
             {
-                isDone = false;
+                isDone = true;
                 GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
                 listActivities.add(activity);
             }
@@ -186,13 +186,13 @@ public class GADatabase extends SQLiteOpenHelper {
 
     }
 
-    public void updateActivity(int position)
+    public void updateActivity(GA activity)
     {
         this.getWritableDatabase().execSQL("UPDATE geek_activity " +
                 "SET is_done = '1' " +
-                "WHERE number_activity = " + position);
+                "WHERE title = '" + activity.get_name() + "'");
         this.getWritableDatabase().close();
-        System.out.println("GADatabase : Activity" + position + "done");
+        System.out.println("GADatabase : Activity" + activity.get_name() + "done");
     }
     /**
      * Ajout d'une activité dans la BDD
