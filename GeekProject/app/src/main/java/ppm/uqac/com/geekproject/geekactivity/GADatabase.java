@@ -27,6 +27,11 @@ public class GADatabase extends SQLiteOpenHelper {
     private ArrayList<Content> listContent;
 
     /**
+     * Liste des video de la geeklopedie
+     */
+    private ArrayList<Content> listVideo;
+
+    /**
      * Constructeur de la base de donnée des GeekActivity
      * Créé la base geek_activity.db et de la table geek_activity
      * @param context : paramètre obligatoire
@@ -37,6 +42,7 @@ public class GADatabase extends SQLiteOpenHelper {
         listActivities = new ArrayList<GA>();
         System.out.println("bdd geek_activity créée");
         listContent = new ArrayList<Content>();
+        listVideo = new ArrayList<Content>();
         SQLiteDatabase db = this.getWritableDatabase();
 
         onCreate(db);
@@ -71,6 +77,17 @@ public class GADatabase extends SQLiteOpenHelper {
                 ")");
 
         System.out.println("table geek_content créée");
+
+        db.execSQL("DROP TABLE IF EXISTS geek_video");
+        //
+        db.execSQL("CREATE TABLE IF NOT EXISTS geek_video(" +
+                "number_content INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name string, " +
+                "description string, " +
+                "url string " +
+                ")");
+
+        System.out.println("table geek_video créée");
     }
 
     @Override
@@ -88,9 +105,6 @@ public class GADatabase extends SQLiteOpenHelper {
     {
 
         int done =0;
-
-
-
 
         this.getWritableDatabase().execSQL("INSERT INTO geek_activity (title, description, level, experience, is_done) VALUES ('" +
                 activity.get_name() + "','" +
@@ -163,19 +177,31 @@ public class GADatabase extends SQLiteOpenHelper {
         System.out.println("GADatabase : Activity" + position + "done");
     }
     /**
-     * Ajout d'une activité dans la BDD
+     * Ajout d'une contenu dans la BDD
      * @param c
      */
     public void addContent(Content c)
     {
-
-
-
         this.getWritableDatabase().execSQL("INSERT INTO geek_content (name, description,url) VALUES ('" +
                 c.get_name() + "','" +
                 c.get_description() + "','" +
                 c.get_url()+
-                 "')");
+                "')");
+        this.getWritableDatabase().close();
+        System.out.println("Content " + c.get_name() + " ajouté");
+    }
+
+    /**
+     * Ajout d'une video dans la BDD
+     * @param c
+     */
+    public void addVideo(Content c)
+    {
+        this.getWritableDatabase().execSQL("INSERT INTO geek_video (name, description,url) VALUES ('" +
+                c.get_name() + "','" +
+                c.get_description() + "','" +
+                c.get_url()+
+                "')");
         this.getWritableDatabase().close();
         System.out.println("Content " + c.get_name() + " ajouté");
     }
@@ -213,6 +239,41 @@ public class GADatabase extends SQLiteOpenHelper {
             System.out.println("non activité " + c.get_name());
         }
         System.out.println("Activités " + listContent.get(0).get_name());
+
+        db.close();
+        return listContent;
+    }
+
+    /**
+     * Récupération du contenu
+     * @return une ArrayList de Content
+     */
+    public ArrayList<Content> getVideo()
+    {
+        //listActivities.clear();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor activitiesSaved = db.rawQuery("SELECT * FROM geek_video", null);
+
+        String name;
+        String description;
+        String url;
+
+        activitiesSaved.moveToFirst();
+        System.out.println("movetofirst " + activitiesSaved.getPosition());
+        activitiesSaved.moveToLast();
+
+        for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext())
+        {
+            name = activitiesSaved.getString(1);
+            description = activitiesSaved.getString(2);
+            url = activitiesSaved.getString(3);
+
+            Content c = new Content(name,description,url);
+
+            listContent.add(c);
+            System.out.println("nom video " + c.get_name());
+        }
+        System.out.println("Vidéo " + listContent.get(0).get_name());
 
         db.close();
         return listContent;

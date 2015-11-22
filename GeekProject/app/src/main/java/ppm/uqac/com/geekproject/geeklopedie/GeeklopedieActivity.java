@@ -155,9 +155,51 @@ public class GeeklopedieActivity extends AppCompatActivity
             Fragment_6 f6 = new Fragment_6();
             fm.beginTransaction().replace(R.id.content_frame,f6).commit();
             f6.setData(cAdapter);
+
         }else if (id == R.id.nav_videos) {
+
             System.out.println("fragment video");
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_Video()).commit();
+
+            GADatabase db = new GADatabase(this);
+            System.out.println("ouverture bd");
+
+            InputStream is = getResources().openRawResource(
+                    getResources().getIdentifier("raw/video",
+                            "raw", getPackageName()));
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            String line = null;
+            int d,u;
+
+            try {
+                while ((line = reader.readLine()) != null) {
+                    System.out.println("index url: "+line.indexOf("name="));
+                    d=line.indexOf(";desc=");
+                    u=line.indexOf(";url=");
+                    Content contenu = new Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
+                    db.addVideo(contenu);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            //
+            // Récupération de tout le contenu
+            ArrayList<Content> List =  db.getVideo();
+
+            // On crée un adapter
+            final VideoAdapter cAdapter = new VideoAdapter(GeeklopedieActivity.this,List);
+
+            Fragment_Video f = new Fragment_Video();
+            fm.beginTransaction().replace(R.id.content_frame,f).commit();
+            f.setData(cAdapter);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
