@@ -1,25 +1,15 @@
 package ppm.uqac.com.geekproject.geeklopedie;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 import ppm.uqac.com.geekproject.R;
 
@@ -75,13 +65,31 @@ public class VideoAdapter extends BaseAdapter {
 
         tv_name.setText(listVideo.get(position).get_name());
         tv_description.setText(listVideo.get(position).get_description());
-        iv_img.setImageResource(R.drawable.vu0hjo52xpu);
+
+        String name_img = listVideo.get(position).get_url();
+        System.out.println(name_img);
+        name_img = name_img.toLowerCase();
+        System.out.println(name_img);
+        switch (name_img)
+        {
+            case "vu0hjo52xpu":
+                iv_img.setImageResource(R.drawable.linkthesun);
+                break;
+            case "wzjvkygubsi":
+                iv_img.setImageResource(R.drawable.cyprienlesgeeks);
+                break;
+            case "2tvy_pbe5na":
+                iv_img.setImageResource(R.drawable.nerdvsgeek);
+                break;
+            default:
+                iv_img.setImageResource(R.drawable.linkthesun);
+                break;
+        }
 
         return layoutItem;
-
     }
 
-    public Bitmap getBitmapFromURL(String src)
+    /*public Bitmap getBitmapFromURL(String src)
     {
         try {
             URL url = new URL(src);
@@ -95,7 +103,7 @@ public class VideoAdapter extends BaseAdapter {
             System.out.println("Error: "+e.getMessage());
             return null;
         }
-    }
+    }*/
 
 
     @Override
