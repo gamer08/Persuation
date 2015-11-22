@@ -18,6 +18,7 @@ import android.widget.Toast;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.geekactivity.GADialog;
 import ppm.uqac.com.geekproject.geekactivity.ViewListActivity;
+import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
 import ppm.uqac.com.geekproject.geeklopedie.GeeklopedieActivity;
 import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.profile.ViewProfileActivity;
@@ -125,7 +126,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
     public void onClickActivities(View v)
     {
-        Intent intent = new Intent(this,ViewListActivity.class);
+        Intent intent = new Intent(this,ViewListActivity2.class);
+        this.finish();
+        intent.putExtra("profile", _profile);
         startActivity(intent);
     }
 
@@ -167,7 +170,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
      */
     @Override
     public void onDone(boolean state) {
-        Intent intent = new Intent(this,ViewListActivity.class);
+        Intent intent = new Intent(this,ViewListActivity2.class);
+        this.finish();
+        intent.putExtra("profile", _profile);
         startActivity(intent);
     }
 }

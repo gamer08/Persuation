@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -67,7 +68,8 @@ public class GAAdapter extends BaseAdapter {
         TextView tv_description = (TextView) layoutItem.findViewById(R.id.TV_DescriptionActivity);
         TextView tv_level = (TextView) layoutItem.findViewById(R.id.TV_LevelActivity);
         TextView tv_exp = (TextView) layoutItem.findViewById(R.id.TV_experienceActivity);
-        Button bt_activity = (Button) layoutItem.findViewById(R.id.BT_ActivityDone);
+        //Button bt_activity = (Button) layoutItem.findViewById(R.id.BT_ActivityDone);
+        CheckBox cb_activity = (CheckBox) layoutItem.findViewById(R.id.checkBox);
         // renseignement des nouveaux champs
 
         tv_name.setText(listActivity.get(position).get_name());
@@ -76,14 +78,17 @@ public class GAAdapter extends BaseAdapter {
         tv_level.setText(lvl);
         String xp = "Experience : " + Integer.toString(listActivity.get(position).get_experience());
         tv_exp.setText(xp);
+        System.out.println("GAADapter -- Bool is done : " + listActivity.get(position).get_isDone());
 
         if(!listActivity.get(position).get_isDone())
         {
-            bt_activity.setEnabled(true);
+            cb_activity.setChecked(false);
+            cb_activity.setEnabled(true);
         }
         else if (listActivity.get(position).get_isDone())
         {
-            bt_activity.setVisibility(View.GONE);
+            cb_activity.setChecked(true);
+            cb_activity.setEnabled(false);
         }
 
         return layoutItem;

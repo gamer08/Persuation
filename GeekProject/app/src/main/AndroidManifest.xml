@@ -70,6 +70,12 @@
         <service
             android:name=".profile.GenerateProfileService"
             android:exported="false" />
+
+        <activity
+            android:name=".geekactivity.ViewListActivity2"
+            android:label="@string/title_activity_view_list2"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>
