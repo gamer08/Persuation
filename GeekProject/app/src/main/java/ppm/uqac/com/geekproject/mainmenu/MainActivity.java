@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,15 +46,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         if (intent != null)
         {
 
-            // recuperation des donnees presentes dans l'intent
-            /*_profile.setUserName((String) intent.getSerializableExtra("firstName"));
-            _profile.setLastName((String) intent.getSerializableExtra("lastName"));
-            _profile.setType((Profile.Type) intent.getSerializableExtra("type"));*/
-
-           /* _profile.setUserName((String) intent.getStringExtra("profile"));
-            _profile.setLastName((String) intent.getStringExtra("lastName"));
-            _profile.setType((Profile.Type) intent.getSerializableExtra("type"));*/
-
             _profile = (Profile) intent.getSerializableExtra("profile");
 
             System.out.println("firstname   " + _profile.getUserName());
@@ -82,6 +74,14 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             {
                 System.out.println(previousActivity.toString());
             }
+
+            if(_profile.getType()== Profile.Type.GUEST)
+            {
+                System.out.println("le type est guest");
+                Button b = (Button) findViewById(R.id.buttonProfil);
+                b.setVisibility(View.INVISIBLE);
+            }
+
         }
 
 
@@ -113,11 +113,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     {
         Intent intent = new Intent(this,ViewProfileActivity.class);
 
-        //System.out.println("in MA.onClickProfil()" + _userNameTV.)
-
-        /*intent.putExtra("username", _userNameTV.getText().toString());
-        intent.putExtra("lastname", _lastNameTV.getText().toString());
-        intent.putExtra("type", _typeTV.getText().toString());*/
         this.finish();
         intent.putExtra("profile", _profile);
 
