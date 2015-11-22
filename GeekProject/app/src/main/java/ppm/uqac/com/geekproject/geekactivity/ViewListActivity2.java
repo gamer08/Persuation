@@ -2,6 +2,7 @@ package ppm.uqac.com.geekproject.geekactivity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
@@ -170,6 +172,9 @@ public class ViewListActivity2 extends AppCompatActivity
         acDoingFrag.set_gadapter(gaAdapter);
         fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
 
+        _profile.addExperience(activity.get_experience());
+        saveExperience();
+
         // Récupération du toast_ga_done
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_ga_done,
@@ -188,6 +193,36 @@ public class ViewListActivity2 extends AppCompatActivity
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
+
+    }
+
+    public void saveExperience()
+    {
+        String userName = "userName=";
+        userName = userName.concat(_profile.getUserName()).concat(System.getProperty("line.separator"));
+
+        String score = "score=";
+        score = score.concat((String.valueOf(_profile.getScore())).concat(System.getProperty("line.separator")));
+
+        String type = "type=";
+        type = type.concat(_profile.getType().toString()).concat(System.getProperty("line.separator"));
+
+        String experience = "experience=";
+        experience = experience.concat((String.valueOf(_profile.getExperience())).concat(System.getProperty("line.separator")));
+        try
+        {
+            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+            System.out.println(Profile.PROFIL_FILE_NAME);
+            out.write(userName.getBytes());
+            out.write(score.getBytes());
+            out.write(type.getBytes());
+            out.write(experience.getBytes());
+            out.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
 }
