@@ -70,8 +70,8 @@ public class StartActivity extends AppCompatActivity
                 startActivity(intentWelcome);
                 GADatabase gadb = new GADatabase(StartActivity.this);
                 // Exemple avec 2 GA
-                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 50, false);
-                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 50, false);
+                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 20, false);
+                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 20, false);
                 GA activity3 = new GA("Augmenter niveau play store", "Passer au niveau 10", 4, 500, false);
                 gadb.addActivity(activity1);
                 gadb.addActivity(activity2);
