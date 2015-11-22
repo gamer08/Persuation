@@ -127,6 +127,8 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     public void onClickActivities(View v)
     {
         Intent intent = new Intent(this,ViewListActivity2.class);
+        this.finish();
+        intent.putExtra("profile", _profile);
         startActivity(intent);
     }
 
@@ -168,7 +170,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
      */
     @Override
     public void onDone(boolean state) {
-        Intent intent = new Intent(this,ViewListActivity.class);
+        Intent intent = new Intent(this,ViewListActivity2.class);
+        this.finish();
+        intent.putExtra("profile", _profile);
         startActivity(intent);
     }
 }

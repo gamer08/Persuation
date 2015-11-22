@@ -8,6 +8,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.geeklopedie.Content;
+import ppm.uqac.com.geekproject.profile.Profile;
 
 /**
  * Created by Arnaud on 15/10/2015.
@@ -25,7 +26,6 @@ public class GADatabase extends SQLiteOpenHelper {
      * Liste du contenu de la geeklopedie
      */
     private ArrayList<Content> listContent;
-
     /**
      * Constructeur de la base de donnée des GeekActivity
      * Créé la base geek_activity.db et de la table geek_activity
@@ -38,7 +38,6 @@ public class GADatabase extends SQLiteOpenHelper {
         System.out.println("bdd geek_activity créée");
         listContent = new ArrayList<Content>();
         SQLiteDatabase db = this.getWritableDatabase();
-
         onCreate(db);
     }
 
@@ -102,7 +101,7 @@ public class GADatabase extends SQLiteOpenHelper {
      * Récupération de la liste des activités que l'utilisateur est en train de réaliser
      * @return une ArrayList de GA
      */
-    public ArrayList<GA> getActivitiesDoing()
+    public ArrayList<GA> getActivitiesDoing(int levelProfile)
     {
 
         listActivities.clear();
@@ -114,7 +113,7 @@ public class GADatabase extends SQLiteOpenHelper {
         int levelActivity;
         int experienceActivity;
         int done;
-        boolean isDone = false;
+        boolean isDone = true;
 
 
         activitiesSaved.moveToFirst();
@@ -123,20 +122,23 @@ public class GADatabase extends SQLiteOpenHelper {
         activitiesSaved.moveToLast();
 
         for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext()) {
-            int numActivity = activitiesSaved.getInt(0);
-            System.out.println("GADatabase : " + numActivity);
-            nameActivity = activitiesSaved.getString(1);
-            descriptionActivity = activitiesSaved.getString(2);
-            levelActivity = activitiesSaved.getInt(3);
-            experienceActivity = activitiesSaved.getInt(4);
-            done = activitiesSaved.getInt(5);
-            System.out.println("GADatabase Bool = " + done);
-            if (done == 0)
+            if(activitiesSaved.getInt(3)<= levelProfile)
             {
-                isDone = false;
-            GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
-            listActivities.add(activity);
-           }
+                int numActivity = activitiesSaved.getInt(0);
+                System.out.println("GADatabase : " + numActivity);
+                nameActivity = activitiesSaved.getString(1);
+                descriptionActivity = activitiesSaved.getString(2);
+                levelActivity = activitiesSaved.getInt(3);
+                experienceActivity = activitiesSaved.getInt(4);
+                done = activitiesSaved.getInt(5);
+                System.out.println("GADatabase Bool = " + done);
+                if (done == 0) {
+                    isDone = false;
+                    GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
+                    listActivities.add(activity);
+                }
+
+            }
         }
 
         db.close();

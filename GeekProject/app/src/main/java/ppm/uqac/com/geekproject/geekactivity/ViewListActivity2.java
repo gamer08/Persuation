@@ -2,7 +2,10 @@ package ppm.uqac.com.geekproject.geekactivity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +15,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
+import ppm.uqac.com.geekproject.profile.Profile;
 
 
 public class ViewListActivity2 extends AppCompatActivity
@@ -32,12 +40,22 @@ public class ViewListActivity2 extends AppCompatActivity
     ActivitiesDoingFragment acDoingFrag;
 
     FragmentManager fm;
+
+    Profile _profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_list2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            _profile = (Profile) intent.getSerializableExtra("profile");
+            System.out.println("ViewListActivity : firstname   " + _profile.getUserName());
+        }
 
         /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +78,7 @@ public class ViewListActivity2 extends AppCompatActivity
         // Ouverture de la BDD
         gadb = new GADatabase(this);
         // Récupération des activités dans la BDD
-        gaList =  gadb.getActivitiesDoing();
+        gaList =  gadb.getActivitiesDoing(_profile.get_level());
         // Constructeur de notre Adapter de GA
         gaAdapter = new GAAdapter(this, gaList);
 
@@ -115,7 +133,7 @@ public class ViewListActivity2 extends AppCompatActivity
             // Ouverture de la BDD
             gadb = new GADatabase(this);
             // Récupération des activités dans la BDD
-            gaList =  gadb.getActivitiesDoing();
+            gaList =  gadb.getActivitiesDoing(_profile.get_level());
             // Constructeur de notre Adapter de GA
             gaAdapter.updateListView(gaList);
             acDoingFrag.set_gadapter(gaAdapter);
@@ -147,9 +165,29 @@ public class ViewListActivity2 extends AppCompatActivity
         System.out.println("ViewListActivity2 : Appuye bouton " + activity.get_name());
         gadb.updateActivity(activity);
         gaList.clear();
-        gaList = gadb.getActivitiesDoing();
+        gaList = gadb.getActivitiesDoing(_profile.get_level());
         gaAdapter.updateListView(gaList);
         acDoingFrag.set_gadapter(gaAdapter);
         fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
+
+        // Récupération du toast_ga_done
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast_ga_done,
+                (ViewGroup) findViewById(R.id.toast_ga_done_id));
+
+        // set a dummy image
+        ImageView image = (ImageView) layout.findViewById(R.id.image);
+        image.setImageResource(R.drawable.gabutton);
+
+        // Insertion du texte dans le textView
+        TextView text = (TextView) layout.findViewById(R.id.text);
+        text.setText("Bravo !!!! Tu as réalisé l'activité " + activity.get_name());
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(layout);
+        toast.show();
+
     }
 }

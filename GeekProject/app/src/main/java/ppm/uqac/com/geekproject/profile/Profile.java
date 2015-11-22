@@ -144,7 +144,7 @@ public class Profile implements Serializable
 
     public double getExperience() { return _experience; }
 
-
-
-
+    public int get_level() {
+        return _level;
+    }
 }

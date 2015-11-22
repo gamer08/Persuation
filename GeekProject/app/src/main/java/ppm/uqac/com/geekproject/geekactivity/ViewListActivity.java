@@ -30,7 +30,7 @@ public class ViewListActivity extends AppCompatActivity {
         // Ouverture de la BDD
         gadb = new GADatabase(this);
         // Récupération des activités dans la BDD
-        gaList =  gadb.getActivitiesDoing();
+        gaList =  gadb.getActivitiesDoing(0);
         // Constructeur de notre Adapter de GA
         gaAdapter = new GAAdapter(this, gaList);
         // Récupération de la listView
@@ -44,7 +44,7 @@ public class ViewListActivity extends AppCompatActivity {
     {
 
         gaList.clear();
-        gaList = gadb.getActivitiesDoing();
+        gaList = gadb.getActivitiesDoing(0);
         gaAdapter.updateListView(gaList);
         gaLV.setAdapter(gaAdapter);
     }
