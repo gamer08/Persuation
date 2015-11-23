@@ -66,10 +66,10 @@ public class ViewProfileActivity2 extends AppCompatActivity
         // TO DO: Faire une table dans la BD pour mettre les badges dedans
         // Mise en place de l'adapteur
 
-        Badge b0 = new Badge("Newbie", "Badge pour avoir créé un profil", R.drawable.badge_newbie);
-        Badge b1 = new Badge("Bronze", "Badge pour avoir atteint le niveau 4", R.drawable.badge_bronze);
-        Badge b2 = new Badge("Argent", "Badge pour avoir atteient le niveau 7", R.drawable.badge_silver);
-        Badge b3 = new Badge("Or", "Badge pour avoir atteint le niveau 10", R.drawable.badge_gold);
+        Badge b0 = new Badge("Newbie", "Badge pour avoir créé un profil", R.drawable.badge_newbie, true);
+        Badge b1 = new Badge("Bronze", "Badge pour avoir atteint le niveau 4", R.drawable.badge_bronze, false);
+        Badge b2 = new Badge("Argent", "Badge pour avoir atteient le niveau 7", R.drawable.badge_silver, false);
+        Badge b3 = new Badge("Or", "Badge pour avoir atteint le niveau 10", R.drawable.badge_gold, false);
 
 
         ArrayList<Badge> l = new ArrayList<>(4);
@@ -126,7 +126,7 @@ public class ViewProfileActivity2 extends AppCompatActivity
 
         if (id == R.id.questionaries)
         {
-            GADatabase db = new GADatabase(this);
+            /*GADatabase db = new GADatabase(this);
 
             InputStream is = getResources().openRawResource(
                     getResources().getIdentifier("raw/contenu",
@@ -161,12 +161,12 @@ public class ViewProfileActivity2 extends AppCompatActivity
             ArrayList<Content> List =  db.getContent();
             System.out.println(List.toString());
 
-            // On crée un adapter
-            final ContentAdapter cAdapter = new ContentAdapter(ViewListActivity2.this,List);
+            // On crée un adapter*/
+            /*final ContentAdapter cAdapter = new ContentAdapter(ViewListActivity2.this,List);
 
             Fragment_6 f6 = new Fragment_6();
             fm.beginTransaction().replace(R.id.content_frame,f6).commit();
-            f6.setData(cAdapter);
+            f6.setData(cAdapter);*/
             fm.beginTransaction().replace(R.id.content_frame, new Fragment_Chart()).commit();
         }
 

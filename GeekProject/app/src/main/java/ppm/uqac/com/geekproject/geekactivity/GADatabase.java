@@ -344,10 +344,11 @@ public class GADatabase extends SQLiteOpenHelper {
      */
     public void addBadge(Badge b)
     {
-        this.getWritableDatabase().execSQL("INSERT INTO geek_badges (name, description, image) VALUES ('" +
+        this.getWritableDatabase().execSQL("INSERT INTO geek_badges (name, description, image, got) VALUES ('" +
                 b.getName() + "','" +
                 b.getDescription() + "','" +
-                b.getImage()+
+                b.getImage()+ "','" +
+                b.isGot() +
                 "')");
         this.getWritableDatabase().close();
     }
@@ -366,6 +367,7 @@ public class GADatabase extends SQLiteOpenHelper {
         String name;
         String description;
         int image;
+        String got;
 
         cursor.moveToFirst();
         System.out.println("movetofirst " + cursor.getPosition());
@@ -377,8 +379,9 @@ public class GADatabase extends SQLiteOpenHelper {
             name = cursor.getString(1);
             description = cursor.getString(2);
             image = Integer.parseInt(cursor.getString(3));
+            got = cursor.getString(4);
 
-            Badge b = new Badge(name,description,image);
+            Badge b = new Badge(name,description,image, Boolean.valueOf(got));
 
             listBadges.add(b);
             System.out.println("Nom du badge =  " + b.getName());

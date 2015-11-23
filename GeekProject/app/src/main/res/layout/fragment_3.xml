@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Le Neutre n'est pas plus antipathique envers les geeks que sympathique. Il ne les soutient pas mais n'éprouve aucune animosité à leurs égards. S'il en croise dans la rue, il les prendra comme des gesn normaux, sans aucune pensée."
         android:id="@+id/textView2"
         android:layout_gravity="left|center_vertical" />
 

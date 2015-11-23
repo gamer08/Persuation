@@ -6,14 +6,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="GeekPersecutor"
+        android:text="GeekFriendly"
         android:id="@+id/title_geekfriendly"
         android:layout_gravity="center_horizontal|top" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/image_geekpersecutor"
+        android:id="@+id/Geekfriendly"
         android:layout_centerHorizontal="true"
         android:src="@drawable/geekfriendly"
         android:padding="10dp"
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Le GeekFreindly n'a rien."
+        android:text="Le GeekFreindly éprouve de la sympathie envers les geeks. Il ne comprend pas tout ce qu'ils font et tout ce qu'ils disent mais il aime échangés avec eux."
         android:id="@+id/textView2"
         android:layout_gravity="left|center_vertical" />
 </FrameLayout>

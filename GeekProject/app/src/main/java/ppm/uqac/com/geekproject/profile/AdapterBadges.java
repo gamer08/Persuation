@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -74,10 +75,12 @@ public class AdapterBadges extends BaseAdapter
         ImageView image = (ImageView) l.findViewById(R.id.badge_image);
         TextView name = (TextView) l.findViewById(R.id.badge_name);
         TextView description = (TextView) l.findViewById(R.id.badge_description);
+        CheckBox got = (CheckBox) l.findViewById(R.id.checkBox_got);
 
         image.setImageResource(_listBadges.get(position).getImage());
         name.setText(_listBadges.get(position).getName());
         description.setText(_listBadges.get(position).getDescription());
+        got.setChecked(_listBadges.get(position).isGot());
 
         // On récupère les informations grâce à la position passée
         // en paramètre

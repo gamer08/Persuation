@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -69,6 +70,20 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             if(previousActivity.toString().equals("CreateProfil"))
             {
                 //test dialog
+
+                Toast t2 = Toast.makeText(MainActivity.this, "Vous avez gagné le badge Newbie", Toast.LENGTH_SHORT);
+                //t2.setGravity(Gravity.BOTTOM, 4,0);
+                t2.show();
+
+                Toast t = Toast.makeText(MainActivity.this, "Vous avez gagné le badge Newbie", Toast.LENGTH_SHORT);
+                ImageView view = new ImageView(this);
+                view.setImageResource(R.drawable.badge_newbie);
+                t.setView(view);
+
+                t.show();
+
+
+
                 GADialog myDiag=new GADialog();
                 myDiag.show(getFragmentManager(),"Diag");
             }

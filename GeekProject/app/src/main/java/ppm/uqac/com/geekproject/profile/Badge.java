@@ -8,12 +8,14 @@ public class Badge
     private String _name;
     private String _description;
     private int _image;
+    private boolean _got;
 
-    public Badge(String n, String d, int i)
+    public Badge(String n, String d, int i, boolean g)
     {
         _name = n;
         _description = d;
         _image = i;
+        _got = g;
     }
 
 
@@ -38,6 +40,16 @@ public class Badge
     }
 
     public int getImage() { return _image; }
+
+    public boolean isGot()
+    {
+        return _got;
+    }
+
+    public void setGet(boolean g)
+    {
+        _got = g;
+    }
 
 
 }
