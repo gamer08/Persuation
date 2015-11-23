@@ -17,5 +17,12 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/geekfriendly"
         android:padding="10dp"
-        />
+        android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Le GeekFreindly n'a rien."
+        android:id="@+id/textView2"
+        android:layout_gravity="left|center_vertical" />
 </FrameLayout>

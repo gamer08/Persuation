@@ -175,6 +175,8 @@ public class ViewListActivity2 extends AppCompatActivity
         _profile.addExperience(activity.get_experience());
         saveExperience();
 
+        System.out.println("Vue du profil après avoir fait une activité : experience = " + _profile.getExperience()  + " niveau = " + _profile.get_level());
+
         // Récupération du toast_ga_done
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast_ga_done,
@@ -209,6 +211,10 @@ public class ViewListActivity2 extends AppCompatActivity
 
         String experience = "experience=";
         experience = experience.concat((String.valueOf(_profile.getExperience())).concat(System.getProperty("line.separator")));
+
+        String level = "level=";
+        level = level.concat((String.valueOf(_profile.get_level())).concat(System.getProperty("line.separator")));
+
         try
         {
             FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
@@ -217,6 +223,7 @@ public class ViewListActivity2 extends AppCompatActivity
             out.write(score.getBytes());
             out.write(type.getBytes());
             out.write(experience.getBytes());
+            out.write(level.getBytes());
             out.close();
         }
         catch (Exception e)

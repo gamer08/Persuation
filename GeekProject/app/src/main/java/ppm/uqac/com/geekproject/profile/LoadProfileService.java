@@ -17,6 +17,7 @@ public class LoadProfileService extends IntentService
     private Float _score;
     private String _type;
     private double _experience;
+    private int _level;
 
     private static final String TAG = "LoadProfile Service";
 
@@ -35,6 +36,7 @@ public class LoadProfileService extends IntentService
         Profile profile = null;
         String score ="";
         String experience="";
+        String level="";
 
 
         Log.d(TAG, "Service Started!");
@@ -59,9 +61,7 @@ public class LoadProfileService extends IntentService
                 score = buff.readLine();
                 _type = buff.readLine();
                 experience = buff.readLine();
-
-                System.out.println("In LoadProfileService: experience = " + experience);
-
+                level = buff.readLine();
 
                 buff.close();
                 reader.close();
@@ -78,20 +78,19 @@ public class LoadProfileService extends IntentService
                 experience = experience.substring(experience.indexOf('=') + 1);
                 _experience = Double.parseDouble(experience);
 
+                level = level.substring(level.indexOf('=') + 1);
+
+                _level = Integer.parseInt(level);
+
                 profile = new Profile();
 
                 profile._userName = firstName;
                 profile._score = _score;
                 profile._experience = _experience;
+                profile._level = _level;
                 profile.defineType();
 
-                System.out.println("résumé profil");
-                System.out.println(firstName);
-
-                System.out.println(_score);
-                System.out.println(profile._type.toString());
-                System.out.println(profile._experience);
-                System.out.println("fin résumé profil");
+               System.out.println("In LoadProfileService: experience = " + profile._experience + " level = " + profile._level);
 
             }
                 Intent callBackIntent = new Intent(LoadProfilActions.Broadcast);

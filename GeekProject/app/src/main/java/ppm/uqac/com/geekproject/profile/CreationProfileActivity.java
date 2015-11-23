@@ -111,6 +111,8 @@ public class CreationProfileActivity extends AppCompatActivity
         type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
         String experience = "experience=";
         experience = experience.concat("20".concat(System.getProperty("line.separator")));
+        String level = "level=";
+        level = level.concat("1".concat(System.getProperty("line.separator")));
 
 
         try
@@ -122,6 +124,7 @@ public class CreationProfileActivity extends AppCompatActivity
             out.write(score.getBytes());
             out.write(type.getBytes());
             out.write(experience.getBytes());
+            out.write(level.getBytes());
             out.close();
 
             //Nouvelle activity MainActivity
@@ -131,13 +134,15 @@ public class CreationProfileActivity extends AppCompatActivity
 
             _profile.defineType();
 
+
             _profile.addExperience(20);
 
             this.finish();
             intent.putExtra("profile", _profile);
             intent.putExtra("activite", "CreateProfil");
             startActivity(intent);
-            System.out.println("In CPA.save experience =  "+_profile.getExperience());
+
+            System.out.println("In CreationProfileActivity: experience = " + _profile._experience + " level = " + _profile._level);
 
 
         }

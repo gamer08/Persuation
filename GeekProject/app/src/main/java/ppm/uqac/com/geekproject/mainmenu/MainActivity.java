@@ -21,8 +21,10 @@ import ppm.uqac.com.geekproject.geekactivity.GADialog;
 import ppm.uqac.com.geekproject.geekactivity.ViewListActivity;
 import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
 import ppm.uqac.com.geekproject.geeklopedie.GeeklopedieActivity;
+import ppm.uqac.com.geekproject.profile.Fragment_Pseudo;
 import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.profile.ViewProfileActivity;
+import ppm.uqac.com.geekproject.profile.ViewProfileActivity2;
 
 public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
     private TextView _userNameTV;
@@ -33,8 +35,8 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "MainA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_main);
+
 
 
         //test pour afficher nom de la personne connecté
@@ -84,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
         }
 
+        System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.get_level());
+
 
     }
 
@@ -111,8 +115,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
     public void onClickProfile(View v)
     {
-        Intent intent = new Intent(this,ViewProfileActivity.class);
+        //Intent intent = new Intent(this,ViewProfileActivity.class);
 
+        Intent intent = new Intent(this, ViewProfileActivity2.class);
         this.finish();
         intent.putExtra("profile", _profile);
 

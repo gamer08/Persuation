@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#EDF7F2</color>
-    <color name="value">#7FC6BC</color>
-    <color name="label">#4BB5C1</color>
+    <color name="background">#f6f7f9</color>
+    <color name="value">#5faeb6</color>
+    <color name="label">#3f6184</color>
+    <color name="elements">#323a45</color>
 </resources>

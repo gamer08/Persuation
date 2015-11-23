@@ -4,11 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.Cursor;
+import android.graphics.Point;
 
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.geeklopedie.Content;
-import ppm.uqac.com.geekproject.profile.Profile;
+import ppm.uqac.com.geekproject.profile.Badge;
 
 /**
  * Created by Arnaud on 15/10/2015.
@@ -33,6 +34,18 @@ public class GADatabase extends SQLiteOpenHelper {
     private ArrayList<Content> listVideo;
 
     /**
+     * Liste des badges
+     */
+
+    private ArrayList<Badge> listBadges;
+
+
+    /**
+     * Liste des questionnaires
+     */
+
+    private ArrayList<Point> listQuestionnaries;
+    /**
      * Constructeur de la base de donnée des GeekActivity
      * Créé la base geek_activity.db et de la table geek_activity
      * @param context : paramètre obligatoire
@@ -41,7 +54,6 @@ public class GADatabase extends SQLiteOpenHelper {
     {
         super(context, "GeekActivity.db", null, 1);
         listActivities = new ArrayList<GA>();
-        System.out.println("bdd geek_activity créée");
         listContent = new ArrayList<Content>();
         listVideo = new ArrayList<Content>();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -65,7 +77,7 @@ public class GADatabase extends SQLiteOpenHelper {
                 "experience INTEGER, " +
                 "is_done INTEGER" +
                 ")");
-        System.out.println("table geek_activity créée");
+
 
         db.execSQL("DROP TABLE IF EXISTS geek_content");
         //
@@ -76,7 +88,7 @@ public class GADatabase extends SQLiteOpenHelper {
                 "url string " +
                 ")");
 
-        System.out.println("table geek_content créée");
+
 
         db.execSQL("DROP TABLE IF EXISTS geek_video");
         db.execSQL("CREATE TABLE IF NOT EXISTS geek_video(" +
@@ -86,7 +98,20 @@ public class GADatabase extends SQLiteOpenHelper {
                 "url string " +
                 ")");
 
-        System.out.println("table geek_video créée");
+        db.execSQL("DROP TABLE IF EXISTS geek_badges");
+        db.execSQL("CREATE TABLE IF NOT EXISTS geek_badges(" +
+                "number_content INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "name string, " +
+                "description string, " +
+                "image int " +
+                ")");
+
+        db.execSQL("DROP TABLE IF EXISTS geek_questionnaries");
+        db.execSQL("CREATE TABLE IF NOT EXISTS geek_questionnaries(" +
+                "number_content INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "number int, " +
+                "result int " +
+                ")");
 
     }
 
@@ -101,10 +126,9 @@ public class GADatabase extends SQLiteOpenHelper {
      * Ajout d'une activité dans la BDD
      * @param activity
      */
-    public void addActivity(GA activity)
-    {
+    public void addActivity(GA activity) {
 
-        int done =0;
+        int done = 0;
         this.getWritableDatabase().execSQL("INSERT INTO geek_activity (title, description, level, experience, is_done) VALUES ('" +
                 activity.get_name() + "','" +
                 activity.get_description() + "','" +
@@ -112,7 +136,6 @@ public class GADatabase extends SQLiteOpenHelper {
                 activity.get_experience() + "','" +
                 done + "')");
         this.getWritableDatabase().close();
-        System.out.println("Activite " + activity.get_name() + " ajoutée");
     }
 
     /**
@@ -211,6 +234,7 @@ public class GADatabase extends SQLiteOpenHelper {
         this.getWritableDatabase().close();
         System.out.println("GADatabase : Activity" + activity.get_name() + "done");
     }
+
     /**
      * Ajout d'une video dans la BDD
      * @param c
@@ -220,10 +244,9 @@ public class GADatabase extends SQLiteOpenHelper {
         this.getWritableDatabase().execSQL("INSERT INTO geek_video (name, description,url) VALUES ('" +
                 c.get_name() + "','" +
                 c.get_description() + "','" +
-                c.get_url()+
+                c.get_url() +
                 "')");
         this.getWritableDatabase().close();
-        System.out.println("Video " + c.get_name() + " ajoutée");
     }
 
     /**
@@ -275,7 +298,6 @@ public class GADatabase extends SQLiteOpenHelper {
                 c.get_url()+
                 "')");
         this.getWritableDatabase().close();
-        System.out.println("Content " + c.get_name() + " ajouté");
     }
 
     /**
@@ -314,6 +336,107 @@ public class GADatabase extends SQLiteOpenHelper {
 
         db.close();
         return listContent;
+    }
+
+    /**
+     * Ajout d'un badge dans la BDD
+     * @param b Badge à ajouter
+     */
+    public void addBadge(Badge b)
+    {
+        this.getWritableDatabase().execSQL("INSERT INTO geek_badges (name, description, image) VALUES ('" +
+                b.getName() + "','" +
+                b.getDescription() + "','" +
+                b.getImage()+
+                "')");
+        this.getWritableDatabase().close();
+    }
+
+
+    /**
+     * Récupération des badges
+     * @return une ArrayList de Badges
+     */
+    public ArrayList<Badge> getBadges()
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM geek_badges", null);
+
+        String name;
+        String description;
+        int image;
+
+        cursor.moveToFirst();
+        System.out.println("movetofirst " + cursor.getPosition());
+        cursor.moveToLast();
+
+
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+        {
+            name = cursor.getString(1);
+            description = cursor.getString(2);
+            image = Integer.parseInt(cursor.getString(3));
+
+            Badge b = new Badge(name,description,image);
+
+            listBadges.add(b);
+            System.out.println("Nom du badge =  " + b.getName());
+        }
+        System.out.println("Badges " + listBadges.get(0).getName());
+
+        db.close();
+        return listBadges;
+    }
+
+    /**
+     * Ajout d'un badge dans la BDD
+     * @param p Résultat d'un questionnaire à rajouter
+     */
+    public void addQuestionary(Point p)
+    {
+        this.getWritableDatabase().execSQL("INSERT INTO geek_questionaries (number, result) VALUES ('" +
+                p.x + "','" +
+                p.y + "','" +
+                "')");
+        this.getWritableDatabase().close();
+    }
+
+
+    /**
+     * Récupération des badges
+     * @return une ArrayList de Points pour le graphique
+     */
+    public ArrayList<Point> getQuestionaries()
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM geek_questionaries", null);
+
+        int number;
+        int result;
+
+
+        cursor.moveToFirst();
+        System.out.println("movetofirst " + cursor.getPosition());
+        cursor.moveToLast();
+
+
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
+        {
+            number = Integer.parseInt(cursor.getString(1));
+            result = Integer.parseInt(cursor.getString(2));
+
+
+            Point p = new Point(number, result);
+
+            listQuestionnaries.add(p);
+            System.out.println("Numéro du questionnaire =  " + p.x);
+        }
+        System.out.println("Questionnaires " + listQuestionnaries.get(0).x);
+
+        db.close();
+        return listQuestionnaries;
     }
 
 

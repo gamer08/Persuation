@@ -27,9 +27,11 @@ public class Profile implements Serializable
     public String _userName;
     public float _score;
     public Type _type;
+    public int _result; // résultat du questionnaire
     int _avatar;
     public int _level;
     double _experience;
+    double _limitExperience; // expéreince à atteindre pour le prochain niveau
 
     public static final String PROFIL_FILE_NAME ="Profile.txt";
 
@@ -42,6 +44,8 @@ public class Profile implements Serializable
         _avatar = R.drawable.antigeek;
         _level = 1;
         _experience = 0;
+        _limitExperience = getLevelLimit();
+        _result = 0;
 
     }
 
@@ -76,44 +80,50 @@ public class Profile implements Serializable
 
     public void defineType()
     {
-        if (_score <=0.2)
+        if (_score <=20)
         {
             _type = Type.ANTIGEEK;
             _avatar = R.drawable.antigeek;
+            _result = 1;
         }
 
-        else if (_score<=0.4 && _score>0.2)
+        else if (_score<=40 && _score>20)
         {
             _type = Type.GEEKPERSECUTOR;
             _avatar = R.drawable.geekpersecutor;
+            _result = 2;
         }
 
-        else if (_score<=0.6 && _score >0.4)
+        else if (_score<=60 && _score >40)
         {
             _type = Type.NEUTRAL;
 
             _avatar = R.drawable.neutral;
+            _result = 3;
         }
 
-        else if (_score<=0.8 && _score >0.6)
+        else if (_score<=80 && _score >60)
         {
             _type = Type.GEEKFRIENDLY;
             _avatar = R.drawable.geekfriendly;
+            _result = 4;
         }
 
         else
         {
             _type = Type.GEEK;
             _avatar = R.drawable.geek;
+            _result = 5;
         }
     }
 
     public boolean isLevelUp()
     {
-        // Algorithme de
 
+        System.out.println("Experience = " + _experience + " limit = " + getLevelLimit());
         if (_experience>getLevelLimit())
         {
+
             return true;
         }
 
@@ -125,9 +135,13 @@ public class Profile implements Serializable
 
     public void setLevel()
     {
-        if (isLevelUp())
+
+        if (isLevelUp()==true)
         {
-            _level +=1;
+
+
+            System.out.println("IN SET LEVEL");
+            _level = _level + 1;
         }
     }
 
@@ -138,7 +152,9 @@ public class Profile implements Serializable
 
     public void addExperience(double i)
     {
+
         _experience+=i;
+        setLevel();
     }
 
 

@@ -1,15 +1,15 @@
 package ppm.uqac.com.geekproject.profile;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Rect;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,10 +19,13 @@ import android.widget.Toast;
 
 import java.io.FileOutputStream;
 
-import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.R;
+import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 
-public class ViewProfileActivity extends AppCompatActivity {
+
+public class Fragment_Pseudo extends Fragment {
+
+    View rootview;
     private EditText _userNameET;
     private TextView _typeTV;
     private TextView _score;
@@ -30,46 +33,41 @@ public class ViewProfileActivity extends AppCompatActivity {
     private ImageView _avatar;
     private TextView _levelTV;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_profile);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        _userNameET = (EditText) findViewById(R.id.TV_UserName);
-        _typeTV = (TextView) findViewById(R.id.TV_Type);
-        _score = (TextView) findViewById(R.id.TV_Score);
-        _avatar = (ImageView) findViewById(R.id.image);
-        _levelTV = (TextView) findViewById(R.id.TV_Level);
+        rootview = inflater.inflate(R.layout.fragment_pseudo, container, false);
+
+        _userNameET = (EditText) rootview.findViewById(R.id.TV_UserName);
+        _typeTV = (TextView) rootview.findViewById(R.id.TV_Type);
+        _score = (TextView) rootview.findViewById(R.id.TV_Score);
+        _avatar = (ImageView) rootview.findViewById(R.id.image);
+        _levelTV = (TextView) rootview.findViewById(R.id.TV_Level);
 
         // Listener pour le bouton de sauvegarde des modifications
 
-        Button buttonModification = (Button)findViewById(R.id.BTN_Modificate);
+        Button buttonModification = (Button) rootview.findViewById(R.id.BTN_Modificate);
 
-        buttonModification.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                if(_userNameET.getText().length() !=0)
-                {
+        buttonModification.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                if (_userNameET.getText().length() != 0) {
                     saveProfil();
 
-                }
-                else
-                {
-                    Toast.makeText(ViewProfileActivity.this, "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getContext(), "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
 
+        // Petite difference dans un fragment pour utiliser le getIntent
 
-        Intent intent = getIntent();
-        if (intent != null)
-        {
+        Intent intent = new Intent(getActivity().getIntent());
+        //Intent intent = getIntent();
+        if (intent != null) {
             _profile = (Profile) intent.getSerializableExtra("profile");
             _userNameET.setText(_profile.getUserName());
-
+            System.out.println("NIVEAU: " + _profile._level);
             _typeTV.setText(_profile.getType().toString());
             _score.setText(String.valueOf(_profile._score));
             _levelTV.setText(String.valueOf(_profile._level));
@@ -80,39 +78,19 @@ public class ViewProfileActivity extends AppCompatActivity {
             // On recupère l'expérience de l'utilisateur
 
             double xp = _profile.getExperience();
-            int percent = (int) (xp/ _profile.getLevelLimit() *100);
-            System.out.println("In VPA.onCreate total = " + _profile.getLevelLimit());
-            System.out.println("In VPA.onCreate experience = " + xp);
-            System.out.println("In VPA.onCreate purcentage = " + percent);
-            ProgressBar myprogressbar = (ProgressBar)findViewById(R.id.progress_bar);
+            int percent = (int) (xp / _profile.getLevelLimit() * 100);
+            System.out.println("Vue du profil: experience = " + xp + " pourcentage = " + percent + " niveau = " + _profile.get_level());
+            ProgressBar myprogressbar = (ProgressBar) rootview.findViewById(R.id.progress_bar);
             myprogressbar.setProgress(percent);
 
 
+
+
         }
 
+        return rootview;
+
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_profile, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 
     /**
      * Sauvegarde les information du profil dans le fichier
@@ -135,16 +113,20 @@ public class ViewProfileActivity extends AppCompatActivity {
 
         String experience = "experience=";
         experience = experience.concat((String.valueOf(_profile._experience)).concat(System.getProperty("line.separator")));
+        String level = "level=";
+        level = level.concat((String.valueOf(_profile._level)).concat(System.getProperty("line.separator")));
 
 
         try
         {
-            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
+            FileOutputStream out = getActivity().openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
             System.out.println(Profile.PROFIL_FILE_NAME);
             out.write(userName.getBytes());
 
             out.write(score.getBytes());
             out.write(type.getBytes());
+            out.write(experience.getBytes());
+            out.write(level.getBytes());
             out.close();
         }
         catch (Exception e)
@@ -152,11 +134,14 @@ public class ViewProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(this,MainActivity.class);
-        this.finish();
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        //Intent intent = new Intent(this,MainActivity.class);
+        getActivity().finish();
         intent.putExtra("profile", _profile);
         intent.putExtra("activite", "ViewProfileActivity");
         startActivity(intent);
         System.out.println("fin save file et type est "+_profile._type.toString());
     }
+
+
 }

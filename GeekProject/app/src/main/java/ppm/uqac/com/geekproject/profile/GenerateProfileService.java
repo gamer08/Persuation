@@ -67,6 +67,9 @@ public class GenerateProfileService extends IntentService
             profile._experience = 0;
         }
 
+
+        System.out.println("In GenerateProfileService: experience = " + profile._experience + " level = " + profile._level);
+
         Intent callBackIntent = new Intent(GenerateProfilActions.Broadcast);
         callBackIntent.putExtra("profile", profile);
         LocalBroadcastManager.getInstance(this).sendBroadcast(callBackIntent);
