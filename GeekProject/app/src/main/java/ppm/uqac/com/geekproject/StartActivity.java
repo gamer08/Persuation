@@ -13,6 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import ppm.uqac.com.geekproject.geekactivity.GA;
+import ppm.uqac.com.geekproject.geekactivity.GADatabase;
+import ppm.uqac.com.geekproject.mainmenu.MainActivity;
+import ppm.uqac.com.geekproject.profile.LoadProfileService;
+import ppm.uqac.com.geekproject.profile.Profile;
+
 
 /**
  * Activité de test pour tester le chargement du profil à partir du fichier
@@ -30,12 +36,6 @@ public class StartActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
-
-
-        Toast.makeText(this, "StartA.onCreate", Toast.LENGTH_SHORT).show();
-
-
 
 
         _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
@@ -70,10 +70,12 @@ public class StartActivity extends AppCompatActivity
                 startActivity(intentWelcome);
                 GADatabase gadb = new GADatabase(StartActivity.this);
                 // Exemple avec 2 GA
-                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 500, false);
-                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 500, false);
+                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 20, false);
+                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 20, false);
+                GA activity3 = new GA("Augmenter niveau play store", "Passer au niveau 10", 4, 500, false);
                 gadb.addActivity(activity1);
                 gadb.addActivity(activity2);
+                gadb.addActivity(activity3);
             }
             else
             {

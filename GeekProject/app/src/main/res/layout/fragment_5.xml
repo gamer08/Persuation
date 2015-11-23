@@ -9,4 +9,21 @@
         android:text="Geek"
         android:id="@+id/textView5"
         android:layout_gravity="center_horizontal|top" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/image_geekpersecutor"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/geek"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Le Geek est en osmose avec son milieu. Il est intéressé et intéressant. Tout ce qui  touche à l'informatique, le cinéma, les séries, les mangas, les bandes dessinnées est fait pour lui! Mais pas que! En effet, il y a toute sorte de Geek et ce terme ne regroupe pas uniquement les domaines cités précedemment. Ainsi, si vous petes un geek, bienvenue dans la plus belle des communautés."
+        android:id="@+id/textView2"
+        android:layout_gravity="left|center_vertical" />
+
 </FrameLayout>

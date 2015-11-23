@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:src="@drawable/welcome2"
+        android:src="@drawable/welcome4"
         android:layout_above="@+id/button"
         />
     <Button
@@ -21,5 +21,6 @@
         android:onClick="StartQuestionary"
         android:layout_marginBottom="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/label"/>
 </RelativeLayout>

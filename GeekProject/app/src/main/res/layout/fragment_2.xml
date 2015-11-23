@@ -7,6 +7,24 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="GeekPersecutor"
-        android:id="@+id/textView2"
+        android:id="@+id/title_geekpersecutor"
         android:layout_gravity="center_horizontal|top" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/image_geekpersecutor"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/geekpersecutor"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Le GeekPersecutor en connaît un peu plus sur les geeks mais il reste toujours des avis négatifs à leur égard. Certains clichés restent bien ancrés dans son esprit et il ne s'en défait pas encore. Il luifaut plus de temps et d'expérience de vie avec des geeks pour s'améliorer."
+        android:id="@+id/textView2"
+        android:layout_gravity="left|center_vertical" />
+
+
 </FrameLayout>

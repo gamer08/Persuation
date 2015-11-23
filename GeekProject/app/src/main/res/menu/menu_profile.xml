@@ -1,0 +1,32 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="ppm.uqac.com.valtests.ProfileActivity">
+
+
+    <item
+        android:title="Profil">
+
+        <menu>
+            <item
+                android:id="@+id/pseudo"
+                android:icon="@android:drawable/ic_menu_more"
+                android:title="Pseudo"/>
+
+            <item
+                android:id="@+id/questionaries"
+                android:icon="@android:drawable/ic_menu_more"
+                android:title="Questionnaires"/>
+
+            <item
+                android:id="@+id/badges"
+                android:icon="@android:drawable/ic_menu_more"
+                android:title="Badges"/>
+
+        </menu>
+
+
+
+    </item>
+
+</menu>

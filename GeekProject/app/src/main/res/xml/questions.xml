@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Data>
-    <Number>3</Number>
+    <Number>11</Number>
     <Questions>
         <Question>
             <ID>0</ID>
             <BestWeight>5</BestWeight>
-            <Description>Quelle est selon vous la meilleure définition d'un geek ?</Description>
+            <Description>Quelle est, selon vous, la meilleure définition d'un geek ?</Description>
+            <Fact>Saviez-vous que... Le terme Geek vient du moyen Allemand geck qui désigne un fou et était utilisé déjà au 18ième siècle.</Fact>
             <Choices>
                 <Choice>
                     <Description>Une personne qui aime les jeux vidéo, l'informatique... </Description>
@@ -29,9 +30,10 @@
             <ID>1</ID>
             <BestWeight>5</BestWeight>
             <Description>Que veux dire cette phrase ? 1 4m g33k</Description>
+            <Fact>Saviez-vous que... Le Leet Speak à été inventé dans les années 1980 pour apporté une diversité à l'écriture traditionnelle.</Fact>
             <Choices>
                 <Choice>
-                    <Description>Génial du leepspeech</Description>
+                    <Description>Génial du Leet Speak</Description>
                     <Weight>5</Weight>
                 </Choice>
                 <Choice>
@@ -40,7 +42,7 @@
                 </Choice>
                 <Choice>
                     <Description>Je n'ai pas de temps à perdre avec cela </Description>
-                    <Weight>-2</Weight>
+                    <Weight>0</Weight>
                 </Choice>
             </Choices>
         </Question>
@@ -48,6 +50,7 @@
             <ID>2</ID>
             <BestWeight>5</BestWeight>
             <Description>Aimez-vous un de ces domaines : informatique, jeux vidéo, manga, science-fiction</Description>
+            <Fact>Saviez-vous que... Le terme Geek n'est souvent associé qu'aux domaines technologiques, mais il s'appliqe à d'autres sphères où le terme utilisé est fan inconditionnel.</Fact>
             <Choices>
                 <Choice>
                     <Description>Oui</Description>
@@ -59,37 +62,181 @@
                 </Choice>
             </Choices>
         </Question>
-
         <Question>
             <ID>3</ID>
             <BestWeight>1</BestWeight>
             <Description> Que veut dire "AFK"?</Description>
+            <Fact>Saviez-vous que... Les acronymes sont utilisés pour raccourcir et faciliter la communication dans plusieurs domaines..</Fact>
             <Choices>
                 <Choice>
-                    <Description>
-                        Adversaire Fort Killer
-                    </Description>
+                    <Description>Adversaire Fort Killer</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>
-                        Away From Knowledge
-                    </Description>
+                    <Description>Away From Knowledge</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>
-                        Aware For Kitchen
-                    </Description>
+                    <Description>Aware For Kitchen</Description>
                     <Weight>0</Weight>
                 </Choice>
                 <Choice>
-                    <Description>
-                        Away From Keyboard
-                    </Description>
+                    <Description>Away From Keyboard</Description>
                     <Weight>1</Weight>
                 </Choice>
             </Choices>
         </Question>
-    </Questions>
+        <Question>
+            <ID>4</ID>
+            <BestWeight>2</BestWeight>
+            <Description> Trouvez-vous que les geeks sont des personnes associales?</Description>
+            <Fact>Saviez-vous que... La geeklopédie contient de nombreuses informations et faits divers intéressants</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Oui</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Non</Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Parfois</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+        <Question>
+            <ID>5</ID>
+            <BestWeight>3</BestWeight>
+            <Description> Parmi les mots suivants, quel est le meilleur synonyme de geek?</Description>
+            <Fact>Saviez-vous que... Le terme geek a des significations différentes selon le milieu.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Alien</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Informaticien</Description>
+                    <Weight>3</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Nerd</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>6</ID>
+            <BestWeight>2</BestWeight>
+            <Description> Quelle est selon vous la meilleure définition du mot geek?</Description>
+            <Fact>Saviez-vous que... Les définitions sont parfois issues de pensées populaires massivement partagées.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Grand Evènement de l'Eruption du Kilimandjaro.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Grand Ecervellé EnKylosé.</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Le terme geek vient du moyen Allemand "geck" qui désigne un fou.</Description>
+                    <Weight>2</Weight>
+                </Choice>
+				 <Choice>
+                    <Description>C'est l'abréviation de Geeklopedie.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>7</ID>
+            <BestWeight>4</BestWeight>
+            <Description> Quelle est la meilleure traduction francaise du mot geek ?</Description>
+            <Fact>Saviez-vous que... le terme geek est un terme universel utilisé dans de nombreux pays.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Une personne passionnée par plusieurs domaines</Description>
+                    <Weight>4</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Un grand enfant</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Quelqu'un qui a des goûts particuliers et qui est parfois étrange</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>8</ID>
+            <BestWeight>2</BestWeight>
+            <Description> Quelles sont les différences entre un geek et une personne dite "normale"?</Description>
+            <Fact>Saviez-vous que... plus on se plante, plus on est cultivé!</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Aucune, les geeks ont seulement des goûts différents.</Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Ils sont gros, laids et louches.</Description>
+                    <Weight>0</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Ils ont des goûts atypiques et vivent en marge de la société.</Description>
+                    <Weight>1</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>9</ID>
+            <BestWeight>2</BestWeight>
+            <Description> Parmi les personnes suivantes, laquelle est la plus geek ?</Description>
+            <Fact>Saviez-vous que... les geeks ont fait de grandes choses pour l'évolution technologique</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Ripley</Description>
+                    <Weight>1</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Le doc de Retour vers le futur</Description>
+                    <Weight>2</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Francois Hollande</Description>
+                    <Weight>0</Weight>
+                </Choice>
+				<Choice>
+                    <Description>Ralph H. Baer</Description>
+                    <Weight>2</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+		<Question>
+            <ID>10</ID>
+            <BestWeight>3</BestWeight>
+            <Description> Quel est votre film/série préféré ?</Description>
+            <Fact>Saviez-vous que... les domaines de science-fiction et autres sont très populaires à l'écran.</Fact>
+            <Choices>
+                <Choice>
+                    <Description>Matrix</Description>
+                    <Weight>3</Weight>
+                </Choice>
+                <Choice>
+                    <Description>MythBuster</Description>
+                    <Weight>1</Weight>
+                </Choice>
+                <Choice>
+                    <Description>Les films Marvel (Avengers, Thor...)</Description>
+                    <Weight>3</Weight>
+                </Choice>
+                <Choice>
+                    <Description>La petite maison dans la prairie</Description>
+                    <Weight>0</Weight>
+                </Choice>
+            </Choices>
+        </Question>
+	</Questions>
 </Data>
