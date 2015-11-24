@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
@@ -25,4 +26,4 @@
         android:text="Le GeekFreindly éprouve de la sympathie envers les geeks. Il ne comprend pas tout ce qu'ils font et tout ce qu'ils disent mais il aime échangés avec eux."
         android:id="@+id/textView2"
         android:layout_gravity="left|center_vertical" />
-</FrameLayout>
+</LinearLayout>

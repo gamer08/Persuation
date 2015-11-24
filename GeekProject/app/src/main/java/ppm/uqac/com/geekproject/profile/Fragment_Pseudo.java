@@ -99,7 +99,8 @@ public class Fragment_Pseudo extends Fragment {
             @Override
             public boolean onLongClick(View v) {
 
-                tv.setText(String.valueOf(_profile.getExperience()));;
+                tv.setText(String.valueOf(_profile.getExperience()));
+                System.out.println("In Pseudo.longClic");
                 return true;
             }
         });

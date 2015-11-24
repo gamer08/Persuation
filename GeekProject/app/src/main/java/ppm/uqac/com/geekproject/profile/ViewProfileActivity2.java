@@ -1,6 +1,8 @@
 package ppm.uqac.com.geekproject.profile;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,6 +32,7 @@ import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
 import ppm.uqac.com.geekproject.geeklopedie.Content;
 import ppm.uqac.com.geekproject.geeklopedie.ContentAdapter;
 import ppm.uqac.com.geekproject.geeklopedie.Fragment_6;
+import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 
 
 public class ViewProfileActivity2 extends AppCompatActivity
@@ -175,6 +178,29 @@ public class ViewProfileActivity2 extends AppCompatActivity
         return true;
 
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        /*new AlertDialog.Builder(this)
+                .setMessage("Voulez-vous vraiment quitter cette application?")
+                .setCancelable(false)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        ViewProfileActivity2.this.moveTaskToBack(true);
+                    }
+                })
+                .setNegativeButton("Non", null)
+                .show();*/
+        System.out.println("Profile: Bouton retour");
+
+        Intent intent = new Intent(this, MainActivity.class);
+        //Intent intent = new Intent(this,MainActivity.class);
+        finish();
+        intent.putExtra("profile",(Profile)  getIntent().getSerializableExtra("profile"));
+        intent.putExtra("activite", "ViewProfileActivity");
+        startActivity(intent);
     }
 
 
