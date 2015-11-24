@@ -28,6 +28,9 @@
     <string name="title_activity_view_list">Liste des activités </string>
     <string name="title_activity_view_content">Geeklopédie</string>
 
+    <!--Id pour API facebook-->
+    <string name="facebook_api_id">939320122771688</string>
+
 
     <string-array name="menuContent">
         <item>AntiGeek</item>

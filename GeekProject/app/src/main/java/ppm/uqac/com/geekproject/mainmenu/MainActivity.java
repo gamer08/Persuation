@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.geekactivity.GADialog;
@@ -33,11 +39,16 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     private ImageView _avatar;
     private Profile _profile;
 
+    // test pour partager sur facebook
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
 
         //test pour afficher nom de la personne connecté
@@ -70,6 +81,24 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             if(previousActivity.toString().equals("CreateProfil"))
             {
                 //test dialog
+                callbackManager = CallbackManager.Factory.create();
+                shareDialog = new ShareDialog(this);
+                Uri uri=Uri.parse("R.drawable.startactivity");
+                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                    System.out.println("if pour afficher partage facebook");
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentTitle("GeekProject")
+                           /* .setImageUrl(uri) */// Pour le moment problème pour mettre une image
+                            .setContentDescription(
+                                    "A commencé à utiliser l'application GeekProject")
+                            .setContentUrl(Uri.parse("http://facebook.com"))
+                            .build();
+
+                    shareDialog.show(linkContent);
+                    System.out.println("fin if pour afficher partage facebook");
+                }
+
+
 
                 Toast t2 = Toast.makeText(MainActivity.this, "Vous avez gagné le badge Newbie", Toast.LENGTH_SHORT);
                 //t2.setGravity(Gravity.BOTTOM, 4,0);
@@ -81,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                 t.setView(view);
 
                 t.show();
-
 
 
                 GADialog myDiag=new GADialog();
@@ -104,6 +132,19 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.get_level());
 
 
+    }
+
+
+    /**
+     * Méthode pour récupérer le resultat du partage sur facebook
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
