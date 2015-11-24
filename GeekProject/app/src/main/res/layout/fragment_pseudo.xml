@@ -1,6 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="fill_parent"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     tools:context="ppm.uqac.com.geekproject.profile.Fragment_Pseudo"
     android:background="@color/background">
@@ -8,106 +9,136 @@
 
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/image"
         android:layout_centerHorizontal="true"
+        android:padding="40dp"
+        android:layout_gravity="center_horizontal" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal">
+
+        <ProgressBar
+            android:layout_width="fill_parent"
+            android:layout_height="25dp"
+            android:id="@+id/progress_bar"
+            style="@style/LevelBar"
+            android:layout_margin="20dp"
+            android:max="100" />
+
+        <TextView
+            android:id="@+id/TV_ProgressBarText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@id/progress_bar"
+            android:layout_alignTop="@id/progress_bar"
+            android:layout_alignRight="@id/progress_bar"
+            android:layout_alignBottom="@id/progress_bar"
+            android:background="@android:color/transparent"
+            android:textAlignment="center"
+            android:padding="10dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TVL_UserName"
+            android:text="Pseudo : "
+            android:editable="false"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:textColor="@color/label"
+            android:layout_below="@id/progress_bar"
+            android:paddingRight="2dp" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_UserName"
+            android:layout_toRightOf="@id/TVL_UserName"
+            android:layout_alignBottom="@id/TVL_UserName"
+            android:singleLine="true"
+            android:textColor="@color/value"
+            android:textSize="20dp"
+            android:background="@drawable/border_tv"
+            android:editable="true" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:padding="10dp"
-        />
+        android:weightSum="1">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TVL_Level"
+            android:editable="false"
+            android:textStyle="bold"
+            android:text="Niveau : "
+            android:textSize="25dp"
+            android:textColor="@color/label"
+            android:layout_below="@id/TVL_UserName"/>
 
-    <ProgressBar
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/image"
-        android:id="@+id/progress_bar"
-        style="@style/LevelBar"
-        android:layout_margin="20dp"
-        android:max="100" />
+        <TextView
+            android:layout_width="44dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_Level"
+            android:layout_toRightOf="@+id/TVL_Level"
+            android:layout_alignBottom="@id/TVL_Level"
+            android:singleLine="true"
+            android:textColor="@color/value"
+            android:editable="false"
+            android:textSize="20dp"
+            android:background="@drawable/border_tv"
+            android:textAlignment="center"
+            android:layout_weight="0.03" />
+    </LinearLayout>
 
-
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TVL_UserName"
-        android:text="Pseudo : "
-        android:editable="false"
-        android:textStyle="bold"
-        android:textSize="25dp"
-        android:textColor="@color/label"
-        android:layout_below="@id/progress_bar" />
-
-    <EditText
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TV_UserName"
-        android:layout_toRightOf="@id/TVL_UserName"
-        android:layout_alignBottom="@id/TVL_UserName"
-        android:singleLine="true"
-        android:textColor="@color/value"
-        />
+        android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TVL_Level"
-        android:editable="false"
-        android:textStyle="bold"
-        android:text="Niveau : "
-        android:textSize="25dp"
-        android:textColor="@color/label"
-        android:layout_below="@id/TVL_UserName"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TVL_Type"
+            android:text="Type de profil :"
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_Level"
-        android:layout_toRightOf="@+id/TVL_Level"
-        android:layout_alignBottom="@id/TVL_Level"
-        android:singleLine="true"
-        android:textColor="@color/value"
-        android:editable="false"
-        />
+            android:textColor="@color/label"
+            android:textStyle="bold"
+            android:layout_below="@id/TVL_Level"
+            android:textSize="25dp"
+            android:paddingRight="2dp" />
 
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_Type"
+            android:editable="false"
+            android:layout_toRightOf="@id/TVL_Type"
+            android:layout_alignBottom="@id/TVL_Type"
+            android:textColor="@color/value"
+            android:textSize="20dp"
+            android:background="@drawable/border_tv"/>
+    </LinearLayout>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TVL_Type"
-        android:text="Type de profil :"
-
-        android:textColor="@color/label"
-        android:textStyle="bold"
-        android:layout_below="@id/TVL_Level"
-        android:textSize="25dp"
-        android:paddingBottom="20dp"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_Type"
-        android:editable="false"
-        android:layout_toRightOf="@id/TVL_Type"
-        android:layout_alignBottom="@id/TVL_Type"
-        android:textColor="@color/value"
-
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_Score"
-        android:paddingTop="10dp"
-        android:singleLine="true"
-        android:visibility="invisible"
-        android:textColor="@color/value"
-        android:layout_below="@id/image"
-        android:text="Pseudo" />
 
     <Button
 
@@ -116,11 +147,13 @@
         android:layout_below="@id/TVL_Type"
         android:id="@+id/BTN_Modificate"
         android:layout_centerHorizontal="true"
-        android:text=" Sauvegarder les modifications"
+        android:text="Sauvegarder"
         android:drawableLeft="@drawable/saveicon"
         android:textColor="@color/value"
-        />
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:drawablePadding="5dp"
+        android:padding="10dp" />
 
 
-
-</RelativeLayout>
+</LinearLayout>

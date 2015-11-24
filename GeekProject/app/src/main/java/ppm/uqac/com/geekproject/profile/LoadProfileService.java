@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
 public class LoadProfileService extends IntentService
 {
     private String _firstName;
-    private Float _score;
     private String _type;
     private double _experience;
     private int _level;
@@ -34,7 +33,6 @@ public class LoadProfileService extends IntentService
     protected void onHandleIntent(Intent intent)
     {
         Profile profile = null;
-        String score ="";
         String experience="";
         String level="";
 
@@ -58,7 +56,6 @@ public class LoadProfileService extends IntentService
                 BufferedReader buff = new BufferedReader(reader);
 
                 _firstName = buff.readLine();
-                score = buff.readLine();
                 _type = buff.readLine();
                 experience = buff.readLine();
                 level = buff.readLine();
@@ -69,10 +66,6 @@ public class LoadProfileService extends IntentService
 
                 String firstName = _firstName.substring(_firstName.indexOf('=')+1);
 
-                score = score.substring(score.indexOf('=') + 1);
-
-
-                _score = Float.parseFloat(score);
 
                 _type = _type.substring(_type.indexOf('=') + 1);
                 experience = experience.substring(experience.indexOf('=') + 1);
@@ -85,7 +78,6 @@ public class LoadProfileService extends IntentService
                 profile = new Profile();
 
                 profile._userName = firstName;
-                profile._score = _score;
                 profile._experience = _experience;
                 profile._level = _level;
                 profile.defineType();

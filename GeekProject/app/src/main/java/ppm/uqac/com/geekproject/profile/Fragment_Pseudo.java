@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.view.View.OnLongClickListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +69,6 @@ public class Fragment_Pseudo extends Fragment {
             _userNameET.setText(_profile.getUserName());
             System.out.println("NIVEAU: " + _profile._level);
             _typeTV.setText(_profile.getType().toString());
-            _score.setText(String.valueOf(_profile._score));
             _levelTV.setText(String.valueOf(_profile._level));
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
@@ -88,6 +87,23 @@ public class Fragment_Pseudo extends Fragment {
 
         }
 
+        // Appui long sur la barre
+
+        final TextView tv = (TextView) rootview.findViewById(R.id.TV_ProgressBarText);
+        ProgressBar pb = (ProgressBar) rootview.findViewById(R.id.progress_bar);
+        pb.setLongClickable(true);
+
+        pb.setOnLongClickListener(new OnLongClickListener() {
+
+
+            @Override
+            public boolean onLongClick(View v) {
+
+                tv.setText(String.valueOf(_profile.getExperience()));;
+                return true;
+            }
+        });
+
         return rootview;
 
     }
@@ -104,10 +120,6 @@ public class Fragment_Pseudo extends Fragment {
 
         String lastName = "lastName=";
 
-
-        String score = "score=";
-        score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
-
         String type = "type=";
         type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
 
@@ -123,7 +135,6 @@ public class Fragment_Pseudo extends Fragment {
             System.out.println(Profile.PROFIL_FILE_NAME);
             out.write(userName.getBytes());
 
-            out.write(score.getBytes());
             out.write(type.getBytes());
             out.write(experience.getBytes());
             out.write(level.getBytes());
