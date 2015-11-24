@@ -27,6 +27,8 @@
     <string name="title_activity_main">Menu principal</string>
     <string name="title_activity_view_list">Liste des activités </string>
     <string name="title_activity_view_content">Geeklopédie</string>
+	
+	 <string name="TV_yourScore">Votre résultat</string>
 
     <!--Id pour API facebook-->
     <string name="facebook_api_id">939320122771688</string>
@@ -58,6 +60,8 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_questionary_summary">Questionary summary</string>
 
 
 </resources>

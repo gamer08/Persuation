@@ -156,6 +156,15 @@ public class Profile implements Serializable
         _experience+=i;
         setLevel();
     }
+	
+	  //Tester pour voir si l'application propose de faire un questionnaire.
+    public boolean testForQuestionaryProgress()
+    {
+        if (_level % 3 == 1)
+            return true;
+        else
+            return false;
+    }
 
 
     public double getExperience() { return _experience; }

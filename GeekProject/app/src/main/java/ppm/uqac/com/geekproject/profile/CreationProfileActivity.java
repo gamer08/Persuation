@@ -67,7 +67,11 @@ public class CreationProfileActivity extends AppCompatActivity
         if (intent != null)
         {
             _profile = (Profile) intent.getSerializableExtra("profile");
-            _score.setText(String.valueOf(_profile._score));
+
+            String formatedScore = String.format("%.1f", _profile._score);
+            formatedScore += " %";
+
+            _score.setText(formatedScore);
             //_score.setText((TextView) ((String) _profile.getScore()));
             //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
 

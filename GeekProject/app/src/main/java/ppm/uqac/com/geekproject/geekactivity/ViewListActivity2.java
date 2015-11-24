@@ -1,8 +1,10 @@
 package ppm.uqac.com.geekproject.geekactivity;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.profile.Profile;
+import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
 
 
 public class ViewListActivity2 extends AppCompatActivity
@@ -195,9 +198,38 @@ public class ViewListActivity2 extends AppCompatActivity
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
-
+		
+		 if (_profile.testForQuestionaryProgress())
+            askForANewQuestionary();
     }
 
+	public void askForANewQuestionary()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Faire un questionnaire");
+        builder.setMessage("Voulez-vous faire un nouveau questionnaire pour évaluer votre progression ?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                Intent newActivity = new Intent(getApplicationContext(), QuestionaryActivity.class);
+                newActivity.putExtra("fromLevelUP",true);
+                ViewListActivity2.this.finish();
+                startActivity(newActivity);
+            }
+        });
+
+        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id)
+            {
+            }
+        });
+
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+        builder.show();
+    }
+	
     public void saveExperience()
     {
         String userName = "userName=";

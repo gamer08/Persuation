@@ -47,6 +47,7 @@ public class WelcomeActivity extends AppCompatActivity {
     {
         this.finish();
         Intent intent = new Intent(this,QuestionaryActivity.class);
+		intent.putExtra("fromLevelUP",false);
         startActivity(intent);
     }
 }

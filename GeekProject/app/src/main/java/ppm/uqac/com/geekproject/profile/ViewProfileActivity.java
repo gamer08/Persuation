@@ -71,7 +71,11 @@ public class ViewProfileActivity extends AppCompatActivity {
             _userNameET.setText(_profile.getUserName());
 
             _typeTV.setText(_profile.getType().toString());
-            _score.setText(String.valueOf(_profile._score));
+
+            String formatedScore = String.format("%.1f", _profile._score);
+            formatedScore += " %";
+            _score.setText(formatedScore);
+
             _levelTV.setText(String.valueOf(_profile._level));
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);

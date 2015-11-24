@@ -85,6 +85,11 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
+        <activity
+            android:name=".questionary.QuestionarySummaryActivity"
+            android:label="@string/title_activity_questionary_summary" >
+        </activity>
+
         <activity android:name=".profile.ViewProfileActivity2"></activity>
     </application>
 
