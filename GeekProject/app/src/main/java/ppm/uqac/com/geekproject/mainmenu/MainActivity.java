@@ -22,6 +22,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 
+import ppm.uqac.com.geekproject.ImageSettings;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.geekactivity.GADialog;
 import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
@@ -68,9 +69,13 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
             _typeTV.setText((_profile.getType()).toString());
 
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
-            Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
-            _avatar.setImageBitmap(bMapScaled);
+            /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
+            Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);*/
+
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
+
+            bm = ImageSettings.getCircleBitmap(bm);
+            _avatar.setImageBitmap(bm);
 
             String previousActivity = (String) intent.getSerializableExtra("activite");
 
