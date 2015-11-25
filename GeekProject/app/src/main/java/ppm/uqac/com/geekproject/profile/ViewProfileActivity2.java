@@ -129,48 +129,12 @@ public class ViewProfileActivity2 extends AppCompatActivity
 
         if (id == R.id.questionaries)
         {
-            /*GADatabase db = new GADatabase(this);
-
-            InputStream is = getResources().openRawResource(
-                    getResources().getIdentifier("raw/contenu",
-                            "raw", getPackageName()));
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            StringBuilder sb = new StringBuilder();
-
-            String line = null;
-            int d,u;
-
-            try
-            {
-                while ((line = reader.readLine()) != null)
-                {
-                    System.out.println("index url: "+line.indexOf("number="));
-                    d=line.indexOf(";result=");
-                    Point p = new Point(Integer.parseInt(line.substring(7,d)),Integer.parseInt(line.substring(d+8)));
-                    db.addQuestionary(p);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            //
-            // Récupération de tout le contenu
-            ArrayList<Content> List =  db.getContent();
-            System.out.println(List.toString());
-
-            // On crée un adapter*/
-            /*final ContentAdapter cAdapter = new ContentAdapter(ViewListActivity2.this,List);
-
-            Fragment_6 f6 = new Fragment_6();
-            fm.beginTransaction().replace(R.id.content_frame,f6).commit();
-            f6.setData(cAdapter);*/
             fm.beginTransaction().replace(R.id.content_frame, new Fragment_Chart()).commit();
+        }
+
+        if (id == R.id.photo)
+        {
+            fm.beginTransaction().replace(R.id.content_frame, new Fragment_Photo()).commit();
         }
 
         mDL.closeDrawer(GravityCompat.START);
