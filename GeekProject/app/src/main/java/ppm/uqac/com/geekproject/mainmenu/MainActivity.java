@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,12 +24,9 @@ import com.facebook.share.widget.ShareDialog;
 
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.geekactivity.GADialog;
-import ppm.uqac.com.geekproject.geekactivity.ViewListActivity;
 import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
 import ppm.uqac.com.geekproject.geeklopedie.GeeklopedieActivity;
-import ppm.uqac.com.geekproject.profile.Fragment_Pseudo;
 import ppm.uqac.com.geekproject.profile.Profile;
-import ppm.uqac.com.geekproject.profile.ViewProfileActivity;
 import ppm.uqac.com.geekproject.profile.ViewProfileActivity2;
 
 public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
@@ -62,9 +58,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
             _profile = (Profile) intent.getSerializableExtra("profile");
 
-            System.out.println("firstname   " + _profile.getUserName());
-            System.out.println("score   " + _profile.getScore());
-            System.out.println("In MA experience =   " + _profile.getExperience());
+            System.out.println("Menu principal: profil: username = " +
+            _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+            " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience());
 
 
             // on set les text viewer qui ne sont que des informations pour l'utilisateurs
@@ -129,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
         }
 
-        System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.get_level());
+        System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
 
 
     }

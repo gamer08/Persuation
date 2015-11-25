@@ -81,7 +81,7 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
                 Profile profile = (Profile)intent.getSerializableExtra("profile");
                 Intent nextActivity;
 
-                switch(profile._type)
+                switch(profile.getType())
                 {
                     case ANTIGEEK:
                     case GEEKPERSECUTOR:
@@ -99,7 +99,8 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
 
                 nextActivity.putExtra("profile", profile);
                 QuestionarySummaryActivity.this.finish();
-                System.out.println("valeur profil avant start profilactivity "+profile._score);
+
+                System.out.println("Fin du questionnaire: profil: score =  " + _scoreQuestionnaire + " et type = " + profile.getType());
                 startActivity(nextActivity);
             }
         }

@@ -3,7 +3,6 @@ package ppm.uqac.com.geekproject.profile;
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,12 +10,13 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 /**Service qui permet de charger le profil s'il existe*/
+
 public class LoadProfileService extends IntentService
 {
-    private String _firstName;
-    private String _type;
-    private double _experience;
+    private String _userName;
+    private float _score;
     private int _level;
+    private double _experience;
 
     private static final String TAG = "LoadProfile Service";
 
@@ -35,54 +35,45 @@ public class LoadProfileService extends IntentService
         Profile profile = null;
         String experience="";
         String level="";
-
-
-        Log.d(TAG, "Service Started!");
+        String score="";
 
 
         try
         {
             File file = getApplicationContext().getFileStreamPath(Profile.PROFIL_FILE_NAME);
-            System.out.println(file.exists());
-            /*
-            Avant il y avait cette ligne
-            if (file != null || file.exists())
-            A quoi sert file != null?
-             */
+
             if (file.exists())
             {
                 FileInputStream in = openFileInput(Profile.PROFIL_FILE_NAME);
                 InputStreamReader reader = new InputStreamReader(in);
                 BufferedReader buff = new BufferedReader(reader);
 
-                _firstName = buff.readLine();
-                _type = buff.readLine();
-                experience = buff.readLine();
+                _userName = buff.readLine();
+                score = buff.readLine();
                 level = buff.readLine();
+                experience = buff.readLine();
 
                 buff.close();
                 reader.close();
                 in.close();
 
-                String firstName = _firstName.substring(_firstName.indexOf('=')+1);
+                String userName = _userName.substring(_userName.indexOf('=')+1);
 
-
-                _type = _type.substring(_type.indexOf('=') + 1);
+                score = score.substring(score.indexOf('=') + 1);
+                _score = Float.parseFloat(score);
+                level = level.substring(level.indexOf('=') + 1);
+                _level = Integer.parseInt(level);
                 experience = experience.substring(experience.indexOf('=') + 1);
                 _experience = Double.parseDouble(experience);
 
-                level = level.substring(level.indexOf('=') + 1);
-
-                _level = Integer.parseInt(level);
-
                 profile = new Profile();
 
-                profile._userName = firstName;
-                profile._experience = _experience;
-                profile._level = _level;
+                profile.setUserName(userName);
+                profile.setScore(_score);
                 profile.defineType();
+                profile.setLevel(_level);
+                profile.setExperience(_experience);
 
-               System.out.println("In LoadProfileService: experience = " + profile._experience + " level = " + profile._level);
 
             }
                 Intent callBackIntent = new Intent(LoadProfilActions.Broadcast);

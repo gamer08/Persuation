@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,7 +67,7 @@ public class CreationProfileActivity extends AppCompatActivity
         {
             _profile = (Profile) intent.getSerializableExtra("profile");
 
-            String formatedScore = String.format("%.1f", _profile._score);
+            String formatedScore = String.format("%.1f", _profile.getScore());
             formatedScore += " %";
 
             _score.setText(formatedScore);
@@ -107,54 +106,32 @@ public class CreationProfileActivity extends AppCompatActivity
      */
     public void saveProfil()
     {
-        String userName = "userName=";
-        userName = userName.concat(_userName.getText().toString()).concat(System.getProperty("line.separator"));
-        String score = "score=";
-        score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
-        String type = "type=";
-        type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
-        String experience = "experience=";
-        experience = experience.concat("20".concat(System.getProperty("line.separator")));
-        String level = "level=";
-        level = level.concat("1".concat(System.getProperty("line.separator")));
+        _profile.setUserName(_userName.getText().toString());
+        _profile.setLevel(1);
+        _profile.defineType();
+        _profile.addExperience(20);
 
+        System.out.println("Fin de création du profil et avant sauvegarde: profil: username = " +
+                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience() );
 
-        try
-        {
-            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-            System.out.println(Profile.PROFIL_FILE_NAME);
-            out.write(userName.getBytes());
+        // Sauvegarde
 
-            out.write(score.getBytes());
-            out.write(type.getBytes());
-            out.write(experience.getBytes());
-            out.write(level.getBytes());
-            out.close();
+        Intent intentSave = new Intent(this, SaveProfileService.class);
+        intentSave.putExtra("profile", _profile);
+        startService(intentSave);
 
-            //Nouvelle activity MainActivity
-            Intent intent = new Intent(this,MainActivity.class);
+        System.out.println("Fin de création du profil et après sauvegarde: profil: username = " +
+                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience());
 
-            _profile.setUserName(_userName.getText().toString());
+        //Nouvelle activity MainActivity
+        Intent intent = new Intent(this,MainActivity.class);
 
-            _profile.defineType();
-
-
-            _profile.addExperience(20);
-
-            this.finish();
-            intent.putExtra("profile", _profile);
-            intent.putExtra("activite", "CreateProfil");
-            startActivity(intent);
-
-            System.out.println("In CreationProfileActivity: experience = " + _profile._experience + " level = " + _profile._level);
-
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
+        this.finish();
+        intent.putExtra("profile", _profile);
+        intent.putExtra("activite", "CreateProfil");
+        startActivity(intent);
 
 
     }

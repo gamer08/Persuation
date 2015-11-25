@@ -21,6 +21,7 @@ import java.io.FileOutputStream;
 
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
+import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
 
 
 public class Fragment_Pseudo extends Fragment {
@@ -67,9 +68,8 @@ public class Fragment_Pseudo extends Fragment {
         if (intent != null) {
             _profile = (Profile) intent.getSerializableExtra("profile");
             _userNameET.setText(_profile.getUserName());
-            System.out.println("NIVEAU: " + _profile._level);
             _typeTV.setText(_profile.getType().toString());
-            _levelTV.setText(String.valueOf(_profile._level));
+            _levelTV.setText(String.valueOf(_profile.getLevel()));
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
             _avatar.setImageBitmap(bMapScaled);
@@ -78,7 +78,7 @@ public class Fragment_Pseudo extends Fragment {
 
             double xp = _profile.getExperience();
             int percent = (int) (xp / _profile.getLevelLimit() * 100);
-            System.out.println("Vue du profil: experience = " + xp + " pourcentage = " + percent + " niveau = " + _profile.get_level());
+            System.out.println("Vue du profil: experience = " + xp + " pourcentage = " + percent + " niveau = " + _profile.getLevel());
             ProgressBar myprogressbar = (ProgressBar) rootview.findViewById(R.id.progress_bar);
             myprogressbar.setProgress(percent);
 
@@ -114,37 +114,24 @@ public class Fragment_Pseudo extends Fragment {
      */
     public void saveProfil()
     {
-        System.out.println("in CPA.saveProfil()");
-        String userName = "userName=";
-        userName = userName.concat(_userNameET.getText().toString()).concat(System.getProperty("line.separator"));
+        System.out.println("in Fragment_Pseudo.saveProfil()");
+
+
         _profile.setUserName(_userNameET.getText().toString());
 
-        String lastName = "lastName=";
+        Intent intentSave = new Intent(getActivity(),SaveProfileService.class);
+        intentSave.putExtra("profile", _profile);
 
-        String type = "type=";
-        type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
+        System.out.println("Fin de modification du profil et avant sauvegarde: profil: username = " +
+                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience());
 
-        String experience = "experience=";
-        experience = experience.concat((String.valueOf(_profile._experience)).concat(System.getProperty("line.separator")));
-        String level = "level=";
-        level = level.concat((String.valueOf(_profile._level)).concat(System.getProperty("line.separator")));
+        getActivity().startService(intentSave);
 
+        System.out.println("Fin de modification du profil et après sauvegarde: profil: username = " +
+                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience());
 
-        try
-        {
-            FileOutputStream out = getActivity().openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-            System.out.println(Profile.PROFIL_FILE_NAME);
-            out.write(userName.getBytes());
-
-            out.write(type.getBytes());
-            out.write(experience.getBytes());
-            out.write(level.getBytes());
-            out.close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
         //Intent intent = new Intent(this,MainActivity.class);
@@ -152,7 +139,7 @@ public class Fragment_Pseudo extends Fragment {
         intent.putExtra("profile", _profile);
         intent.putExtra("activite", "ViewProfileActivity");
         startActivity(intent);
-        System.out.println("fin save file et type est "+_profile._type.toString());
+
     }
 
 

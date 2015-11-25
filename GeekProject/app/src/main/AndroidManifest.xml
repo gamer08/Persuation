@@ -37,11 +37,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".profile.ViewProfileActivity"
-            android:label="@string/title_activity_view_profile"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".questionary.QuestionaryActivity"
             android:label="@string/title_activity_creation_profile"
             android:screenOrientation="portrait" >
@@ -77,6 +72,10 @@
             android:exported="false" />
         <service
             android:name=".profile.GenerateProfileService"
+            android:exported="false" />
+
+        <service
+            android:name=".profile.SaveProfileService"
             android:exported="false" />
 
         <activity

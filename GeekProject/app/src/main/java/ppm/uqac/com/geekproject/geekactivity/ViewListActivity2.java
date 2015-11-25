@@ -22,13 +22,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.facebook.FacebookSdk;
 
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.profile.Profile;
+import ppm.uqac.com.geekproject.profile.SaveProfileService;
 import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
 
 
@@ -59,7 +59,7 @@ public class ViewListActivity2 extends AppCompatActivity
         if (intent != null)
         {
             _profile = (Profile) intent.getSerializableExtra("profile");
-            System.out.println("ViewListActivity : firstname   " + _profile.getUserName());
+
         }
 
         /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -83,7 +83,7 @@ public class ViewListActivity2 extends AppCompatActivity
         // Ouverture de la BDD
         gadb = new GADatabase(this);
         // Récupération des activités dans la BDD
-        gaList =  gadb.getActivitiesDoing(_profile.get_level());
+        gaList =  gadb.getActivitiesDoing(_profile.getLevel());
         // Constructeur de notre Adapter de GA
         gaAdapter = new GAAdapter(this, gaList);
 
@@ -138,7 +138,7 @@ public class ViewListActivity2 extends AppCompatActivity
             // Ouverture de la BDD
             gadb = new GADatabase(this);
             // Récupération des activités dans la BDD
-            gaList =  gadb.getActivitiesDoing(_profile.get_level());
+            gaList =  gadb.getActivitiesDoing(_profile.getLevel());
             // Constructeur de notre Adapter de GA
             gaAdapter.updateListView(gaList);
             acDoingFrag.set_gadapter(gaAdapter);
@@ -170,7 +170,7 @@ public class ViewListActivity2 extends AppCompatActivity
         System.out.println("ViewListActivity2 : Appuye bouton " + activity.get_name());
         gadb.updateActivity(activity);
         gaList.clear();
-        gaList = gadb.getActivitiesDoing(_profile.get_level());
+        gaList = gadb.getActivitiesDoing(_profile.getLevel());
         gaAdapter.updateListView(gaList);
         acDoingFrag.set_gadapter(gaAdapter);
         fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
@@ -178,7 +178,7 @@ public class ViewListActivity2 extends AppCompatActivity
         _profile.addExperience(activity.get_experience());
         saveExperience();
 
-        System.out.println("Vue du profil après avoir fait une activité : experience = " + _profile.getExperience()  + " niveau = " + _profile.get_level());
+        System.out.println("Vue du profil après avoir fait une activité : experience = " + _profile.getExperience()  + " niveau = " + _profile.getLevel());
 
         // Récupération du toast_ga_done
         LayoutInflater inflater = getLayoutInflater();
@@ -232,36 +232,9 @@ public class ViewListActivity2 extends AppCompatActivity
 	
     public void saveExperience()
     {
-        String userName = "userName=";
-        userName = userName.concat(_profile.getUserName()).concat(System.getProperty("line.separator"));
-
-        String score = "score=";
-        score = score.concat((String.valueOf(_profile.getScore())).concat(System.getProperty("line.separator")));
-
-        String type = "type=";
-        type = type.concat(_profile.getType().toString()).concat(System.getProperty("line.separator"));
-
-        String experience = "experience=";
-        experience = experience.concat((String.valueOf(_profile.getExperience())).concat(System.getProperty("line.separator")));
-
-        String level = "level=";
-        level = level.concat((String.valueOf(_profile.get_level())).concat(System.getProperty("line.separator")));
-
-        try
-        {
-            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-            System.out.println(Profile.PROFIL_FILE_NAME);
-            out.write(userName.getBytes());
-            out.write(score.getBytes());
-            out.write(type.getBytes());
-            out.write(experience.getBytes());
-            out.write(level.getBytes());
-            out.close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        Intent intentSave = new Intent(this, SaveProfileService.class);
+        intentSave.putExtra("profile", _profile);
+        startService(intentSave);
 
     }
 }
