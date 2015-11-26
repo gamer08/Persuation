@@ -215,6 +215,7 @@ public class ViewListActivity2 extends AppCompatActivity
             {
                 Intent newActivity = new Intent(getApplicationContext(), QuestionaryActivity.class);
                 newActivity.putExtra("fromLevelUP",true);
+                newActivity.putExtra("profile",_profile);
                 ViewListActivity2.this.finish();
                 startActivity(newActivity);
             }

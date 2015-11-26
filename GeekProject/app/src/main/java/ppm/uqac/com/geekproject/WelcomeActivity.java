@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -48,6 +49,9 @@ public class WelcomeActivity extends AppCompatActivity {
         this.finish();
         Intent intent = new Intent(this,QuestionaryActivity.class);
 		intent.putExtra("fromLevelUP",false);
+
+        Profile profile = null;
+        intent.putExtra("profile",profile);
         startActivity(intent);
     }
 }

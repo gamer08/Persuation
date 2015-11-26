@@ -142,7 +142,7 @@ public class Profile implements Serializable
 	  //Tester pour voir si l'application propose de faire un questionnaire.
     public boolean testForQuestionaryProgress()
     {
-        if (_level % 3 == 1)
+        if (_level != 1 && _level % 3 == 1)
             return true;
         else
             return false;

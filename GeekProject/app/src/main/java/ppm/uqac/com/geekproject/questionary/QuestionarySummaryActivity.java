@@ -30,6 +30,7 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
     private float _scoreQuestionnaire;
 
     private TextView _scoreView;
+    private Profile _profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -54,10 +55,15 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         {
             fromLevelUP = intent.getBooleanExtra("fromLevelUP", false);
             _scoreQuestionnaire = intent.getFloatExtra("scoreQuestionnaire",0);
+            _profile = (Profile)intent.getSerializableExtra("profile");
+
         }
 
         String formatedScore = String.format("%.1f", (_scoreQuestionnaire * 100));
         formatedScore += (" %");
+
+        if (_profile !=null)
+            _profile.setScore(_scoreQuestionnaire *100);
 
         _scoreView.setText(formatedScore);
 
@@ -78,10 +84,10 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         {
             if (intent.getAction().equals(GenerateProfileService.GenerateProfilActions.Broadcast))
             {
-                Profile profile = (Profile)intent.getSerializableExtra("profile");
+                _profile = (Profile)intent.getSerializableExtra("profile");
                 Intent nextActivity;
 
-                switch(profile.getType())
+                switch(_profile.getType())
                 {
                     case ANTIGEEK:
                     case GEEKPERSECUTOR:
@@ -97,10 +103,10 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
                         break;
                 }
 
-                nextActivity.putExtra("profile", profile);
+                nextActivity.putExtra("profile", _profile);
                 QuestionarySummaryActivity.this.finish();
 
-                System.out.println("Fin du questionnaire: profil: score =  " + _scoreQuestionnaire + " et type = " + profile.getType());
+                System.out.println("Fin du questionnaire: profil: score =  " + _scoreQuestionnaire + " et type = " + _profile.getType());
                 startActivity(nextActivity);
             }
         }
@@ -189,6 +195,7 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("profile", _profile);
                 intent.putExtra("activite","questionnaire");
                 QuestionarySummaryActivity.this.finish();
                 startActivity(intent);

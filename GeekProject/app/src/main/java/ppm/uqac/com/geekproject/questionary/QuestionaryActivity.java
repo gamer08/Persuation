@@ -35,6 +35,7 @@ public class QuestionaryActivity extends AppCompatActivity
     private Questionary _questionary;
     private View.OnClickListener _choiceListener;
     private boolean _fromLevelUP;
+    private Profile _profile;
 
     /*Service related data*/
     private Receiver _receiver;
@@ -61,7 +62,10 @@ public class QuestionaryActivity extends AppCompatActivity
         //On regarde si on vient d'un level UP.
         Intent intent = getIntent();
         if (intent != null)
-            _fromLevelUP = intent.getBooleanExtra("fromLevelUP",false);
+        {
+            _fromLevelUP = intent.getBooleanExtra("fromLevelUP", false);
+            _profile = (Profile) intent.getSerializableExtra("profile");
+        }
 
         _choiceListener = new View.OnClickListener()
         {
@@ -83,7 +87,7 @@ public class QuestionaryActivity extends AppCompatActivity
             }
         };
 
-        _curQuestion = -1;
+        this._curQuestion = -1;
         _score = _totalWeightPossible = 0 ;
 
         // Références vers les objets de l'Activité
@@ -142,17 +146,17 @@ public class QuestionaryActivity extends AppCompatActivity
    * */
     void loadNextQuestion()
     {
-        _curQuestion++;
-        if (_curQuestion != _nbQuestions)
+        this._curQuestion++;
+        if (this._curQuestion != _nbQuestions)
         {
             for (TextView tv : _choices) {
                 tv.setClickable(false);
                 tv.setText(""); //Sans cette ligne, si la question précédente a plus de choix, on a toujours la ou les questions en plus qui apparaisent
             }
-            Question quest = _questionary.questions().get(_curQuestion);
+            Question quest = _questionary.questions().get(this._curQuestion);
             _totalWeightPossible += quest.bestWeight();
             _question.setText(quest.description());
-            _questionCpt.setText(String.valueOf(_curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
+            _questionCpt.setText(String.valueOf(this._curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
             _fact.setText(quest.fact());
 
             int nbChoices = quest.possibleChoices().size();
@@ -170,8 +174,9 @@ public class QuestionaryActivity extends AppCompatActivity
 
             newActivity.putExtra("fromLevelUP",_fromLevelUP);
             newActivity.putExtra("scoreQuestionnaire",scoreQuestionnaire);
+            newActivity.putExtra("profile",_profile);
 
-            QuestionaryActivity.this.finish();
+            this.finish();
             startActivity(newActivity);
         }
     }
@@ -205,6 +210,23 @@ public class QuestionaryActivity extends AppCompatActivity
     public void onBackPressed()
     {
         System.out.println("Bouton retour");
+
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(_receiver);
+       // _receiver.abortBroadcast();
+        _receiver = null;
+        _questionnaireIntentFilter = null;
+        for (Question q :_questionary.questions())
+        {
+            q.possibleChoices().clear();
+        }
+        _questionary.questions().clear();
+        _questionary = null;
 
     }
 }
