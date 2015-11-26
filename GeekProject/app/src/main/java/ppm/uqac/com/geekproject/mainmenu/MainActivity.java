@@ -36,9 +36,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     private ImageView _avatar;
     private Profile _profile;
 
-    // test pour partager sur facebook
-    CallbackManager callbackManager;
-    ShareDialog shareDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,26 +79,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
             if(previousActivity.toString().equals("CreateProfil"))
             {
-                //test dialog
-                callbackManager = CallbackManager.Factory.create();
-                shareDialog = new ShareDialog(this);
-                Uri uri=Uri.parse("R.drawable.startactivity");
-                if (ShareDialog.canShow(ShareLinkContent.class)) {
-                    System.out.println("if pour afficher partage facebook");
-                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                            .setContentTitle("GeekProject")
-                           /* .setImageUrl(uri) */// Pour le moment problème pour mettre une image
-                            .setContentDescription(
-                                    "A commencé à utiliser l'application GeekProject")
-                            .setContentUrl(Uri.parse("http://facebook.com"))
-                            .build();
-
-                    shareDialog.show(linkContent);
-                    System.out.println("fin if pour afficher partage facebook");
-                }
-
-
-
                 Toast t2 = Toast.makeText(MainActivity.this, "Vous avez gagné le badge Newbie", Toast.LENGTH_SHORT);
                 //t2.setGravity(Gravity.BOTTOM, 4,0);
                 t2.show();
@@ -136,17 +114,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     }
 
 
-    /**
-     * Méthode pour récupérer le resultat du partage sur facebook
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
-    @Override
-    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -186,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         Intent intent = new Intent(this,ViewListActivity2.class);
         this.finish();
         intent.putExtra("profile", _profile);
+        intent.putExtra("firsttime",false);
         startActivity(intent);
     }
 
@@ -230,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         Intent intent = new Intent(this,ViewListActivity2.class);
         this.finish();
         intent.putExtra("profile", _profile);
+        intent.putExtra("firsttime", true);
         startActivity(intent);
     }
 }

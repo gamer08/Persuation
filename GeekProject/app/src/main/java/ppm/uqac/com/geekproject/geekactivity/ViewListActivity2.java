@@ -3,9 +3,9 @@ package ppm.uqac.com.geekproject.geekactivity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,10 +23,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
+import com.facebook.CallbackManager;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
+import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.profile.SaveProfileService;
 import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
@@ -47,6 +50,13 @@ public class ViewListActivity2 extends AppCompatActivity
     FragmentManager fm;
 
     Profile _profile;
+
+    Boolean _firsttime=false;
+
+    // Variables pour le partage sur facebook
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,17 +69,9 @@ public class ViewListActivity2 extends AppCompatActivity
         if (intent != null)
         {
             _profile = (Profile) intent.getSerializableExtra("profile");
-
+            _firsttime = (Boolean) intent.getSerializableExtra("firsttime");
         }
 
-        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,9 +101,73 @@ public class ViewListActivity2 extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(_firsttime==true) {
+                new AlertDialog.Builder(this)
+                        .setMessage("Voulez-vous partager vos progrès sur facebook?")
+                        .setCancelable(false)
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //test dialog
+                                callbackManager = CallbackManager.Factory.create();
+                                shareDialog = new ShareDialog(ViewListActivity2.this);
+                                Uri uri = Uri.parse("R.drawable.startactivity");
+                                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                                    System.out.println("if pour afficher partage facebook");
+                                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                            .setContentTitle("GeekProject")
+                                             /* .setImageUrl(uri) */// Pour le moment problème pour mettre une image
+                                            .setContentDescription(
+                                                    "A commencé à utiliser l'application GeekProject")
+                                            .setContentUrl(Uri.parse("http://facebook.com"))
+                                            .build();
+
+                                    shareDialog.show(linkContent);
+                                    System.out.println("fin if pour afficher partage facebook");
+                                }
+                                //Ouverture MainActivity
+                                Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                main.putExtra("profile",_profile);
+                                main.putExtra("activite","ViewListActivity");
+                                ViewListActivity2.this.finish();
+                                startActivity(main);
+                            }
+                        })
+                        .setNegativeButton("Non",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //Ouverture MainActivity
+                                Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                main.putExtra("profile",_profile);
+                                main.putExtra("activite","ViewListActivity");
+                                ViewListActivity2.this.finish();
+                                startActivity(main);
+                            }
+                        })
+                        .show();
+                System.out.println("Bouton retour");
+            }else
+            {
+                //Ouverture MainActivity
+                Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                main.putExtra("profile",_profile);
+                main.putExtra("activite","ViewListActivity");
+                ViewListActivity2.this.finish();
+                startActivity(main);
+            }
         }
     }
+
+    /**
+     * Méthode pour récupérer le resultat du partage sur facebook
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
