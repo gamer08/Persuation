@@ -28,6 +28,7 @@ import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.Database.GADatabase;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.Profile;

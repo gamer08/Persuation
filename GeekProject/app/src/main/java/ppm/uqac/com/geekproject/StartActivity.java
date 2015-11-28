@@ -11,10 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import ppm.uqac.com.geekproject.geekactivity.GA;
-import ppm.uqac.com.geekproject.geekactivity.GADatabase;
+import ppm.uqac.com.geekproject.Database.GADatabase;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.LoadProfileService;
 import ppm.uqac.com.geekproject.profile.Profile;

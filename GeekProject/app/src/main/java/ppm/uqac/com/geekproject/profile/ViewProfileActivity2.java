@@ -1,12 +1,7 @@
 package ppm.uqac.com.geekproject.profile;
 
-import android.app.AlertDialog;
 import android.app.FragmentManager;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,22 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
-import ppm.uqac.com.geekproject.geekactivity.GADatabase;
-import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
-import ppm.uqac.com.geekproject.geeklopedie.Content;
-import ppm.uqac.com.geekproject.geeklopedie.ContentAdapter;
-import ppm.uqac.com.geekproject.geeklopedie.Fragment_6;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 
 

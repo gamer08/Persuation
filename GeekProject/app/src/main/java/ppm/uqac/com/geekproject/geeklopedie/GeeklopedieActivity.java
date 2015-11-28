@@ -18,7 +18,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
-import ppm.uqac.com.geekproject.geekactivity.GADatabase;
+import ppm.uqac.com.geekproject.Database.GADatabase;
+import ppm.uqac.com.geekproject.Database.ContentDatabase;
 
 public class GeeklopedieActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,7 +112,7 @@ public class GeeklopedieActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_share) {
 
-            GADatabase db = new GADatabase(this);
+            ContentDatabase db = new ContentDatabase(this);
             System.out.println("ouverture bd");
             System.out.println("fragment contenu");
 
@@ -160,7 +161,7 @@ public class GeeklopedieActivity extends AppCompatActivity
 
             System.out.println("fragment video");
 
-            GADatabase db = new GADatabase(this);
+            ContentDatabase db = new ContentDatabase(this);
             System.out.println("ouverture bd");
 
             InputStream is = getResources().openRawResource(
