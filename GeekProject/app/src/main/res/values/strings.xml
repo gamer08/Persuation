@@ -29,6 +29,7 @@
     <string name="title_activity_view_content">Geeklopédie</string>
 	
 	 <string name="TV_yourScore">Votre résultat</string>
+    <string name="BTN_WelcomeStart">Démarrer questionnaire</string>
 
     <!--Id pour API facebook-->
     <string name="facebook_api_id">939320122771688</string>

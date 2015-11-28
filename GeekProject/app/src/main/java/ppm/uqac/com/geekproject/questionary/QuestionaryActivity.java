@@ -149,10 +149,13 @@ public class QuestionaryActivity extends AppCompatActivity
         this._curQuestion++;
         if (this._curQuestion != _nbQuestions)
         {
-            for (TextView tv : _choices) {
+            for (TextView tv : _choices)
+            {
+                tv.setVisibility(View.INVISIBLE);
                 tv.setClickable(false);
                 tv.setText(""); //Sans cette ligne, si la question précédente a plus de choix, on a toujours la ou les questions en plus qui apparaisent
             }
+
             Question quest = _questionary.questions().get(this._curQuestion);
             _totalWeightPossible += quest.bestWeight();
             _question.setText(quest.description());
@@ -162,6 +165,7 @@ public class QuestionaryActivity extends AppCompatActivity
             int nbChoices = quest.possibleChoices().size();
             for (int i = 0; i < nbChoices; i++)
             {
+                _choices.get(i).setVisibility(View.VISIBLE);
                 _choices.get(i).setClickable(true);
                 _choices.get(i).setText(quest.possibleChoices().get(i).description());
             }
