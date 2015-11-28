@@ -45,7 +45,7 @@ public class ViewListActivity2 extends AppCompatActivity
 
     GAAdapter gaAdapter;
 
-    ActivitiesDoingFragment acDoingFrag;
+    Fragment_GA fragment_ga;
 
     FragmentManager fm;
 
@@ -88,11 +88,14 @@ public class ViewListActivity2 extends AppCompatActivity
         gaList =  gadb.getActivitiesDoing(_profile.getLevel());
         // Constructeur de notre Adapter de GA
         gaAdapter = new GAAdapter(this, gaList);
-
+        if(_firsttime)
+            gaAdapter.setFirstTime(true);
         fm = getFragmentManager();
-        acDoingFrag = new ActivitiesDoingFragment();
-        acDoingFrag.set_gadapter(gaAdapter);
-        fm.beginTransaction().replace(R.id.activites_frame,acDoingFrag).commit();
+        fragment_ga = new Fragment_GA();
+        fragment_ga.set_gadapter(gaAdapter);
+
+        fm.beginTransaction().replace(R.id.activities_frame, fragment_ga).commit();
+
     }
 
     @Override
@@ -197,8 +200,6 @@ public class ViewListActivity2 extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
-
         if (id == R.id.activitiesDoing) {
 
             // Ouverture de la BDD
@@ -207,8 +208,8 @@ public class ViewListActivity2 extends AppCompatActivity
             gaList =  gadb.getActivitiesDoing(_profile.getLevel());
             // Constructeur de notre Adapter de GA
             gaAdapter.updateListView(gaList);
-            acDoingFrag.set_gadapter(gaAdapter);
-            fm.beginTransaction().replace(R.id.activites_frame,acDoingFrag).commit();
+            fragment_ga.set_gadapter(gaAdapter);
+            fm.beginTransaction().detach(fragment_ga).attach(fragment_ga).commit();
 
         } else if (id == R.id.activitiesDone) {
 
@@ -219,9 +220,8 @@ public class ViewListActivity2 extends AppCompatActivity
             // Constructeur de notre Adapter de GA
             gaAdapter.updateListView(gaList);
 
-            acDoingFrag = new ActivitiesDoingFragment();
-            acDoingFrag.set_gadapter(gaAdapter);
-            fm.beginTransaction().replace(R.id.activites_frame,acDoingFrag).commit();
+            fragment_ga.set_gadapter(gaAdapter);
+            fm.beginTransaction().detach(fragment_ga).attach(fragment_ga).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -231,14 +231,14 @@ public class ViewListActivity2 extends AppCompatActivity
 
     public void onClickActivitiesDone(View v)
     {
-        Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.activites_frame);
-        GA activity = gaAdapter.getItem(acDoingFrag.get_ContentListView().getPositionForView(v));
+        Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.activities_frame);
+        GA activity = gaAdapter.getItem(fragment_ga.get_ContentListView().getPositionForView(v));
         System.out.println("ViewListActivity2 : Appuye bouton " + activity.get_name());
         gadb.updateActivity(activity);
         gaList.clear();
         gaList = gadb.getActivitiesDoing(_profile.getLevel());
         gaAdapter.updateListView(gaList);
-        acDoingFrag.set_gadapter(gaAdapter);
+        fragment_ga.set_gadapter(gaAdapter);
         fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
 
         _profile.addExperience(activity.get_experience());
@@ -303,5 +303,10 @@ public class ViewListActivity2 extends AppCompatActivity
         intentSave.putExtra("profile", _profile);
         startService(intentSave);
 
+    }
+
+    public boolean getIsFirstTime()
+    {
+        return _firsttime;
     }
 }

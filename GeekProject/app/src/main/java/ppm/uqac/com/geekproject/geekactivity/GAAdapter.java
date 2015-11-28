@@ -31,6 +31,17 @@ public class GAAdapter extends BaseAdapter {
     //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
     private LayoutInflater mInflater;
 
+    private TextView tv_name;
+
+    private TextView tv_description;
+
+    private TextView tv_level;
+
+    private TextView tv_exp;
+
+    private CheckBox cb_activity;
+
+    private boolean firstTime = false;
 
     public GAAdapter(Context context, ArrayList<GA> lista)
     {
@@ -52,7 +63,6 @@ public class GAAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent)
     {
         LinearLayout layoutItem;
-
         // Récupération du layout lié à notre GA
         if(convertView==null)
         {
@@ -64,12 +74,11 @@ public class GAAdapter extends BaseAdapter {
 
         // Récupération des différents champs du layout
 
-        TextView tv_name = (TextView) layoutItem.findViewById(R.id.TV_NameActivity);
-        TextView tv_description = (TextView) layoutItem.findViewById(R.id.TV_DescriptionActivity);
-        TextView tv_level = (TextView) layoutItem.findViewById(R.id.TV_LevelActivity);
-        TextView tv_exp = (TextView) layoutItem.findViewById(R.id.TV_experienceActivity);
-        //Button bt_activity = (Button) layoutItem.findViewById(R.id.BT_ActivityDone);
-        CheckBox cb_activity = (CheckBox) layoutItem.findViewById(R.id.checkBox);
+        tv_name = (TextView) layoutItem.findViewById(R.id.TV_NameActivity);
+        tv_description = (TextView) layoutItem.findViewById(R.id.TV_DescriptionActivity);
+        tv_level = (TextView) layoutItem.findViewById(R.id.TV_LevelActivity);
+        tv_exp = (TextView) layoutItem.findViewById(R.id.TV_experienceActivity);
+        cb_activity = (CheckBox) layoutItem.findViewById(R.id.checkBox);
         // renseignement des nouveaux champs
 
         tv_name.setText(listActivity.get(position).get_name());
@@ -82,14 +91,16 @@ public class GAAdapter extends BaseAdapter {
         if(!listActivity.get(position).get_isDone())
         {
             cb_activity.setChecked(false);
-            cb_activity.setEnabled(true);
+            if(firstTime)
+            cb_activity.setEnabled(false);
+            else if (!firstTime)
+                cb_activity.setEnabled(true);
         }
         else if (listActivity.get(position).get_isDone())
         {
             cb_activity.setChecked(true);
             cb_activity.setEnabled(false);
         }
-
         return layoutItem;
 
     }
@@ -107,4 +118,6 @@ public class GAAdapter extends BaseAdapter {
     {
         listActivity = lista;
     }
+
+    public void setFirstTime(boolean first) {firstTime = first;}
 }

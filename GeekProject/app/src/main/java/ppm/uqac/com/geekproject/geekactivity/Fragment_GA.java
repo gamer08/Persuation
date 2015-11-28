@@ -18,7 +18,7 @@ import ppm.uqac.com.geekproject.geeklopedie.Content;
 import ppm.uqac.com.geekproject.geeklopedie.ContentAdapter;
 
 
-public class ActivitiesDoingFragment extends Fragment {
+public class Fragment_GA extends Fragment {
 
 
     View rootview;
@@ -39,6 +39,7 @@ public class ActivitiesDoingFragment extends Fragment {
         // Inflate the layout for this fragment
         rootview = inflater.inflate(R.layout.fragment_activities_doing, container, false);
         _ContentListView = (ListView) rootview.findViewById(R.id.ListView01);
+
         _ContentListView.setAdapter(_gadapter);
 
 
