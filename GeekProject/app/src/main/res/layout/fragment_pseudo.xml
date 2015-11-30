@@ -30,7 +30,8 @@
             android:id="@+id/progress_bar"
             style="@style/LevelBar"
             android:layout_margin="20dp"
-            android:max="100" />
+            android:max="100"
+            android:longClickable="true"/>
 
         <TextView
             android:id="@+id/TV_ProgressBarText"
@@ -42,7 +43,8 @@
             android:layout_alignBottom="@id/progress_bar"
             android:background="@android:color/transparent"
             android:textAlignment="center"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:longClickable="true" />
     </RelativeLayout>
 
     <LinearLayout
@@ -161,8 +163,7 @@
         android:textSize="20dp"
         android:layout_gravity="center_horizontal"
         android:drawablePadding="5dp"
-        android:padding="10dp"
-        android:layout_weight="0.125" />
+        android:padding="10dp" />
 
 
 </LinearLayout>

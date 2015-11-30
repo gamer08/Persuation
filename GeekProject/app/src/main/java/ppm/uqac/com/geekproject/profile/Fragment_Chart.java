@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.profile;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ public class Fragment_Chart extends Fragment {
 
     View rootview;
     LineChart mChart;
+    private Profile _profile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,14 +58,23 @@ public class Fragment_Chart extends Fragment {
 
         ArrayList<Entry> yVals = new ArrayList<Entry>();
 
-        for (int i = 1; i < 6; i++) {
+        /*for (int i = 1; i < 6; i++) {
 
             float mult = (range + 1);
             float val = (float) (Math.random() * mult) + 3;// + (float)
             // ((mult *
             // 0.1) / 10);
             yVals.add(new Entry(val, i));
+        }*/
+
+        Intent intent = new Intent(getActivity().getIntent());
+        //Intent intent = getIntent();
+        if (intent != null)
+        {
+            _profile = (Profile) intent.getSerializableExtra("profile");
         }
+
+        yVals.add(new Entry(_profile._scores.get(0), 0));
 
         // create a dataset and give it a type
         LineDataSet set1 = new LineDataSet(yVals, "Résultat des questionnaires");

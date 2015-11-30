@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.profile;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 import ppm.uqac.com.geekproject.R;
 
@@ -27,6 +28,7 @@ public class Profile implements Serializable
     private int _avatar;
     private double _limitExperience; // expéreince à atteindre pour le prochain niveau
     public static final String PROFIL_FILE_NAME ="Profile.txt";
+    public HashMap<Integer, Float> _scores;
 
 
     public Profile()
@@ -38,6 +40,7 @@ public class Profile implements Serializable
         _level = 1;
         _experience = 0;
         _limitExperience = getLevelLimit();
+        _scores = new HashMap<Integer, Float>();
 
     }
 
@@ -146,6 +149,11 @@ public class Profile implements Serializable
             return true;
         else
             return false;
+    }
+
+    public void addScore(int i, float f)
+    {
+        _scores.put(i, f);
     }
 
 }

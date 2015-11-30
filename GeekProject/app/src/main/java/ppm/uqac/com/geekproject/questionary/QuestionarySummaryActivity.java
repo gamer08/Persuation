@@ -63,7 +63,11 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         formatedScore += (" %");
 
         if (_profile !=null)
+        {
             _profile.setScore(_scoreQuestionnaire *100);
+            _profile.addScore(_profile._scores.size()+1,_scoreQuestionnaire*100); // on ajoute un résultat dans la table de hachage du profil
+        }
+
 
         _scoreView.setText(formatedScore);
 

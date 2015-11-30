@@ -55,7 +55,7 @@ public class Fragment_Pseudo extends Fragment {
                     saveProfil();
 
                 } else {
-                    Toast.makeText(getContext(), "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -91,7 +91,6 @@ public class Fragment_Pseudo extends Fragment {
 
         final TextView tv = (TextView) rootview.findViewById(R.id.TV_ProgressBarText);
         ProgressBar pb = (ProgressBar) rootview.findViewById(R.id.progress_bar);
-        pb.setLongClickable(true);
 
         pb.setOnLongClickListener(new OnLongClickListener() {
 
