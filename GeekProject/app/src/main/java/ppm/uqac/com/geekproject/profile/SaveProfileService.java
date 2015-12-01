@@ -30,10 +30,18 @@ public class SaveProfileService extends IntentService
         String lastScore = "lastScore=";
         String level = "level=";
         String experience = "experience=";
+        String nbQuestionaries = "nb=";
+        String scores = "";
         userName = userName.concat(profile.getUserName()).concat(System.getProperty("line.separator"));
         lastScore = lastScore.concat((String.valueOf(profile.getScore())).concat(System.getProperty("line.separator")));
         level = level.concat((String.valueOf(profile.getLevel())).concat(System.getProperty("line.separator")));
         experience = experience.concat((String.valueOf(profile.getExperience())).concat(System.getProperty("line.separator")));
+        nbQuestionaries = nbQuestionaries.concat(String.valueOf(profile.getNbQuestionaries())).concat(System.getProperty("line.separator"));
+
+        for (int i =0; i<profile.getNbQuestionaries(); i++)
+        {
+            scores = scores.concat((String.valueOf(profile._scores.get(i))).concat(System.getProperty("line.separator")));
+        }
 
 
         try
@@ -43,6 +51,8 @@ public class SaveProfileService extends IntentService
             out.write(lastScore.getBytes());
             out.write(level.getBytes());
             out.write(experience.getBytes());
+            out.write(nbQuestionaries.getBytes());
+            out.write(scores.getBytes());
             out.close();
         }
         catch (Exception e)

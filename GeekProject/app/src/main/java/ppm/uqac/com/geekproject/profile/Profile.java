@@ -1,6 +1,9 @@
 package ppm.uqac.com.geekproject.profile;
 
+import android.widget.Toast;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import ppm.uqac.com.geekproject.R;
@@ -28,7 +31,8 @@ public class Profile implements Serializable
     private int _avatar;
     private double _limitExperience; // expéreince à atteindre pour le prochain niveau
     public static final String PROFIL_FILE_NAME ="Profile.txt";
-    public HashMap<Integer, Float> _scores;
+    public ArrayList<Float> _scores;
+    private int _nbQuestionaries;
 
 
     public Profile()
@@ -40,7 +44,8 @@ public class Profile implements Serializable
         _level = 1;
         _experience = 0;
         _limitExperience = getLevelLimit();
-        _scores = new HashMap<Integer, Float>();
+        _scores = new ArrayList<Float>();
+        _nbQuestionaries = 0;
 
     }
 
@@ -87,6 +92,8 @@ public class Profile implements Serializable
         }
     }
 
+    public void setNbQuestionaries (int n) {_nbQuestionaries = n; }
+
     // Getters
 
     public String getUserName() { return _userName; }
@@ -106,6 +113,7 @@ public class Profile implements Serializable
         return _level * 50 + Math.exp(_level - 1) * 5;
     }
 
+    public int getNbQuestionaries() { return _nbQuestionaries; }
 
 
     public boolean isLevelUp()
@@ -124,22 +132,39 @@ public class Profile implements Serializable
         }
     }
 
-    public void updateLevel()
+    /**
+     * Cette méthode checke si il y a une montée de niveau et renvoie un bool
+     * utilisable dans les activités pour afficher un toast
+     * @return
+     */
+    public boolean updateLevel()
     {
 
         if (isLevelUp()==true)
         {
             System.out.println("IN SET LEVEL");
             _level = _level + 1;
+
+            return true;
+
+        }
+
+        else
+        {
+            return false;
         }
     }
 
 
-
-    public void addExperience(double i)
+    /**
+     * Ajoute de l'expérience et va upadater le niveau
+     * @param i Expérience acquise
+     * @return Un booléen qui va indiquer aux activités s'il y a eu level up ou non
+     */
+    public boolean addExperience(double i)
     {
         _experience+=i;
-        updateLevel();
+        return updateLevel();
     }
 	
 	  //Tester pour voir si l'application propose de faire un questionnaire.
@@ -151,9 +176,10 @@ public class Profile implements Serializable
             return false;
     }
 
-    public void addScore(int i, float f)
+    public void updateScores()
     {
-        _scores.put(i, f);
+        _scores.add(getScore());
+        _nbQuestionaries+=1;
     }
 
 }

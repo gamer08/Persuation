@@ -242,10 +242,6 @@ public class ViewListActivity2 extends AppCompatActivity
         fragment_ga.set_gadapter(gaAdapter);
         fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
 
-        _profile.addExperience(activity.get_experience());
-        saveExperience();
-
-        System.out.println("Vue du profil après avoir fait une activité : experience = " + _profile.getExperience()  + " niveau = " + _profile.getLevel());
 
         // Récupération du toast_ga_done
         LayoutInflater inflater = getLayoutInflater();
@@ -265,8 +261,18 @@ public class ViewListActivity2 extends AppCompatActivity
         toast.setDuration(Toast.LENGTH_LONG);
         toast.setView(layout);
         toast.show();
-		
-		 if (_profile.testForQuestionaryProgress())
+
+        if (_profile.addExperience(activity.get_experience()) == true)
+        {
+            Toast.makeText(this, "Bravo! Tu es maintenant niveau " + _profile.getLevel(), Toast.LENGTH_SHORT).show();
+        };
+
+        saveExperience();
+
+        System.out.println("Vue du profil après avoir fait une activité : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
+
+
+        if (_profile.testForQuestionaryProgress())
             askForANewQuestionary();
     }
 

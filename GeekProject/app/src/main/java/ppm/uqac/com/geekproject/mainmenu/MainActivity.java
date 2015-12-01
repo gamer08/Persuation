@@ -102,14 +102,16 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             if(_profile.getType()== Profile.Type.GUEST)
             {
                 System.out.println("le type est guest");
-                Button b = (Button) findViewById(R.id.buttonProfil);
+                ImageView b = (ImageView) findViewById(R.id.buttonProfil);
                 b.setVisibility(View.INVISIBLE);
             }
 
         }
 
-        System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
+        //System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
 
+
+        System.out.println("In Main - Scores = " + _profile._scores);
 
     }
 

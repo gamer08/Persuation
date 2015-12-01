@@ -10,12 +10,15 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.Set;
 
 import ppm.uqac.com.geekproject.R;
 
@@ -46,17 +49,19 @@ public class Fragment_Chart extends Fragment {
         /*Calendar c = Calendar.getInstance();
         int days = c.get(Calendar.DAY_OF_YEAR);*/
 
-        Calendar now = Calendar.getInstance();
+        //Calendar now = Calendar.getInstance();
 
-        ArrayList<String> xVals = new ArrayList<String>();
+        /*ArrayList<String> xVals = new ArrayList<String>();
         int count = 5;
         int range = 5;
         for (int i = 0; i < 5; i++) {
             //xVals.add((i) + "lal");
             xVals.add(now.get(Calendar.DATE)+i + "." + (now.get(Calendar.MONTH)+1) +"" );
-        }
+        }*/
 
-        ArrayList<Entry> yVals = new ArrayList<Entry>();
+        /*ArrayList<String> xVals = new ArrayList<String>();
+
+        ArrayList<Entry> yVals = new ArrayList<Entry>();*/
 
         /*for (int i = 1; i < 6; i++) {
 
@@ -74,10 +79,22 @@ public class Fragment_Chart extends Fragment {
             _profile = (Profile) intent.getSerializableExtra("profile");
         }
 
-        yVals.add(new Entry(_profile._scores.get(0), 0));
+
+        System.out.println("In Fragment_Chart- Scores = " + _profile._scores);
+
+        // Parcours de la table des scores
+
+
+        /*for (int i = 1; i<=_profile._scores.size(); i++)
+        {
+            System.out.println("Score: " + _profile._scores.get(i - 1) + " et Numero = " + i);
+            xVals.add(i+"");
+            yVals.add(new Entry(_profile._scores.get(i-1), i));
+        }*/
+
 
         // create a dataset and give it a type
-        LineDataSet set1 = new LineDataSet(yVals, "Résultat des questionnaires");
+        /*LineDataSet set1 = new LineDataSet(yVals, "Résultat des questionnaires");
         // set1.setFillAlpha(110);
         // set1.setFillColor(Color.RED);
 
@@ -105,7 +122,50 @@ public class Fragment_Chart extends Fragment {
         mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         mChart.getAxisRight().setEnabled(false);
 
+        mChart.setData(data);*/
+
+        // Liste d'entrées
+
+        ArrayList<Entry> points = new ArrayList<Entry>();
+
+        // Abscisses
+
+        ArrayList<String> xVals = new ArrayList<String>();
+
+        for (int i = 1; i<=10; i++)
+        {
+            xVals.add(i + "");
+        }
+
+
+        for (int i = 1; i<_profile._scores.size()+1; i++)
+        {
+            System.out.println("Nombre de questionnaires = " +_profile._scores.size());
+
+            points.add(new Entry(_profile._scores.get(i-1), i-1));
+
+        }
+
+        // LineSet créé à partir de ces entrées
+
+        LineDataSet set = new LineDataSet(points, "Résultats des questionnaires");
+
+
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+
+        set.setCircleColor(Color.RED);
+        set.setColor(Color.BLUE);
+
+        LineData data = new LineData(xVals, set);
+
+        YAxis yAxis = mChart.getAxisLeft();
+        yAxis.setAxisMaxValue(100);
+        mChart.getAxisRight().setEnabled(false);
+        mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         mChart.setData(data);
+        mChart.invalidate();
+
+
 
 
     }

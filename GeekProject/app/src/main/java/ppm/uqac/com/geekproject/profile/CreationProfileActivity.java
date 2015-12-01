@@ -112,8 +112,9 @@ public class CreationProfileActivity extends AppCompatActivity
         _profile.addExperience(20);
 
         System.out.println("Fin de création du profil et avant sauvegarde: profil: username = " +
-                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
-                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience() );
+                _profile.getUserName() + " et score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience() +
+                " et nb de questionnaires = " + _profile.getNbQuestionaries() );
 
         // Sauvegarde
 
@@ -122,8 +123,9 @@ public class CreationProfileActivity extends AppCompatActivity
         startService(intentSave);
 
         System.out.println("Fin de création du profil et après sauvegarde: profil: username = " +
-                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
-                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience());
+                _profile.getUserName() + "et score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience() +
+                " et nb de questionnaires = " + _profile.getNbQuestionaries() );
 
         //Nouvelle activity MainActivity
         Intent intent = new Intent(this,MainActivity.class);
