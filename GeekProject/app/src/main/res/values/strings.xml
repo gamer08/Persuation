@@ -15,7 +15,7 @@
     <string name="TVL_UserName">Pseudo</string>
     <string name="TV_UserName">Entrez votre pseudo</string>
     <string name="TVL_Level">Niveau: </string>
-    <string name="TVL_Score">Score</string>
+    <string name="TVL_Score">Votre Score: </string>
     <string name="TV_Dialog">Allons voir les différentes activités que nous vous avons concocté!</string>
     <string name="BTN_Create">Créer</string>
     <string name="BTN_Modificate">Modifier</string>
