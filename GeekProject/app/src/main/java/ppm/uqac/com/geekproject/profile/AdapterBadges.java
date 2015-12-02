@@ -34,19 +34,21 @@ public class AdapterBadges extends BaseAdapter
         _inflater = LayoutInflater.from(_context);
     }
 
-
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return _listBadges.size();
     }
 
     @Override
-    public Object getItem(int position) {
+    public Object getItem(int position)
+    {
         return _listBadges.get(position);
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
 
@@ -66,11 +68,10 @@ public class AdapterBadges extends BaseAdapter
 
         // On récupère le layout lié à notre Badge
 
-        if (convertView == null) {
+        if (convertView == null)
             l = (RelativeLayout) _inflater.inflate(R.layout.badge_layout, parent, false);
-        } else {
+        else
             l = (RelativeLayout) convertView;
-        }
 
         ImageView image = (ImageView) l.findViewById(R.id.badge_image);
         TextView name = (TextView) l.findViewById(R.id.badge_name);
@@ -85,9 +86,7 @@ public class AdapterBadges extends BaseAdapter
         // On récupère les informations grâce à la position passée
         // en paramètre
 
-
         return l;
 
     }
-
 }

@@ -39,11 +39,7 @@ public class SaveProfileService extends IntentService
         nbQuestionaries = nbQuestionaries.concat(String.valueOf(profile.getNbQuestionaries())).concat(System.getProperty("line.separator"));
 
         for (int i =0; i<profile.getNbQuestionaries(); i++)
-        {
             scores = scores.concat((String.valueOf(profile._scores.get(i))).concat(System.getProperty("line.separator")));
-        }
-
-
         try
         {
             FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
@@ -59,8 +55,5 @@ public class SaveProfileService extends IntentService
         {
             e.printStackTrace();
         }
-
     }
-
-
 }

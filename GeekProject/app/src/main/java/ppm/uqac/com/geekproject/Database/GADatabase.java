@@ -15,9 +15,8 @@ import ppm.uqac.com.geekproject.profile.Badge;
  * Created by Arnaud on 15/10/2015.
  * Cette classe gère les interactions avec la base de données des GeekActivity
  */
-public class GADatabase extends SQLiteOpenHelper {
-
-
+public class GADatabase extends SQLiteOpenHelper
+{
     /**
      * Liste d'activité contenue dans la base de données
      */
@@ -26,15 +25,13 @@ public class GADatabase extends SQLiteOpenHelper {
     /**
      * Liste des badges
      */
-
     private ArrayList<Badge> listBadges;
-
 
     /**
      * Liste des questionnaires
      */
-
     private ArrayList<Point> listQuestionnaries;
+
     /**
      * Constructeur de la base de donnée des GeekActivity
      * Créé la base geek_activity.db et de la table geek_activity
@@ -53,7 +50,8 @@ public class GADatabase extends SQLiteOpenHelper {
      * @param db : correspond à la base de donnée
      */
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)
+    {
         //juste pour avoir moins de ligne
         //db.execSQL("DROP TABLE IF EXISTS geek_activity");
         //
@@ -81,12 +79,11 @@ public class GADatabase extends SQLiteOpenHelper {
                 "number int, " +
                 "result int " +
                 ")");
-
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion,
-                          int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
         db.execSQL("DROP TABLE IF EXISTS geek_activity");
         onCreate(db);
     }
@@ -95,8 +92,8 @@ public class GADatabase extends SQLiteOpenHelper {
      * Ajout d'une activité dans la BDD
      * @param activity
      */
-    public void addActivity(GA activity) {
-
+    public void addActivity(GA activity)
+    {
         int done = 0;
         this.getWritableDatabase().execSQL("INSERT INTO geek_activity (title, description, level, experience, is_done) VALUES ('" +
                 activity.get_name() + "','" +
@@ -113,7 +110,6 @@ public class GADatabase extends SQLiteOpenHelper {
      */
     public ArrayList<GA> getActivitiesDoing(int levelProfile)
     {
-
         listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor activitiesSaved = db.rawQuery("SELECT * FROM geek_activity", null);
@@ -125,9 +121,7 @@ public class GADatabase extends SQLiteOpenHelper {
         int done;
         boolean isDone = true;
 
-
         activitiesSaved.moveToFirst();
-
 
         activitiesSaved.moveToLast();
 
@@ -142,23 +136,22 @@ public class GADatabase extends SQLiteOpenHelper {
                 experienceActivity = activitiesSaved.getInt(4);
                 done = activitiesSaved.getInt(5);
                 System.out.println("GADatabase Bool = " + done);
-                if (done == 0) {
+                if (done == 0)
+                {
                     isDone = false;
                     GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
                     listActivities.add(activity);
                 }
-
             }
         }
 
+        activitiesSaved.close();
         db.close();
         return listActivities;
-
     }
 
     public ArrayList<GA> getActivitiesDone()
     {
-
         listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor activitiesSaved = db.rawQuery("SELECT * FROM geek_activity", null);
@@ -170,11 +163,11 @@ public class GADatabase extends SQLiteOpenHelper {
         int done;
         boolean isDone = false;
 
-
         activitiesSaved.moveToFirst();
         activitiesSaved.moveToLast();
 
-        for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext()) {
+        for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext())
+        {
             int numActivity = activitiesSaved.getInt(0);
             System.out.println("GADatabase : " + numActivity);
             nameActivity = activitiesSaved.getString(1);
@@ -191,6 +184,7 @@ public class GADatabase extends SQLiteOpenHelper {
             }
         }
 
+        activitiesSaved.close();
         db.close();
         return listActivities;
     }
@@ -203,6 +197,4 @@ public class GADatabase extends SQLiteOpenHelper {
         this.getWritableDatabase().close();
         System.out.println("GADatabase : Activity" + activity.get_name() + "done");
     }
-
-
 }

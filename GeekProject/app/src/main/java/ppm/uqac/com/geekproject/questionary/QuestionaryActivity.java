@@ -1,9 +1,8 @@
 package ppm.uqac.com.geekproject.questionary;
 
-import android.app.AlertDialog;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
@@ -18,12 +17,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import ppm.uqac.com.geekproject.profile.CreationProfileActivity;
-import ppm.uqac.com.geekproject.profile.GenerateProfileService;
-import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.R;
-
 
 /*
 * L'activité de questionnaire qui permet à l'utilisateur de se créer un profil.
@@ -203,9 +198,7 @@ public class QuestionaryActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings)
-        {
             return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -214,7 +207,6 @@ public class QuestionaryActivity extends AppCompatActivity
     public void onBackPressed()
     {
         System.out.println("Bouton retour");
-
     }
 
     @Override
@@ -225,12 +217,11 @@ public class QuestionaryActivity extends AppCompatActivity
        // _receiver.abortBroadcast();
         _receiver = null;
         _questionnaireIntentFilter = null;
+
         for (Question q :_questionary.questions())
-        {
             q.possibleChoices().clear();
-        }
+
         _questionary.questions().clear();
         _questionary = null;
-
     }
 }

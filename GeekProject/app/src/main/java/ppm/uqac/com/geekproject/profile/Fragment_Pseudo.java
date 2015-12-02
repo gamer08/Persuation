@@ -17,12 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
-
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
-import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
-
 
 public class Fragment_Pseudo extends Fragment {
 
@@ -49,23 +45,24 @@ public class Fragment_Pseudo extends Fragment {
 
         Button buttonModification = (Button) rootview.findViewById(R.id.BTN_Modificate);
 
-        buttonModification.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                if (_userNameET.getText().length() != 0) {
+        buttonModification.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (_userNameET.getText().length() != 0)
                     saveProfil();
-
-                } else {
+                 else
                     Toast.makeText(getActivity(), "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
-                }
+
             }
         });
-
 
         // Petite difference dans un fragment pour utiliser le getIntent
 
         Intent intent = new Intent(getActivity().getIntent());
         //Intent intent = getIntent();
-        if (intent != null) {
+        if (intent != null)
+        {
             _profile = (Profile) intent.getSerializableExtra("profile");
             _userNameET.setText(_profile.getUserName());
             _typeTV.setText(_profile.getType().toString());
@@ -81,10 +78,6 @@ public class Fragment_Pseudo extends Fragment {
             System.out.println("Vue du profil: experience = " + xp + " pourcentage = " + percent + " niveau = " + _profile.getLevel());
             ProgressBar myprogressbar = (ProgressBar) rootview.findViewById(R.id.progress_bar);
             myprogressbar.setProgress(percent);
-
-
-
-
         }
 
         // Appui long sur la barre
@@ -92,9 +85,8 @@ public class Fragment_Pseudo extends Fragment {
         final TextView tv = (TextView) rootview.findViewById(R.id.TV_ProgressBarText);
         ProgressBar pb = (ProgressBar) rootview.findViewById(R.id.progress_bar);
 
-        pb.setOnLongClickListener(new OnLongClickListener() {
-
-
+        pb.setOnLongClickListener(new OnLongClickListener()
+        {
             @Override
             public boolean onLongClick(View v) {
 
@@ -105,7 +97,6 @@ public class Fragment_Pseudo extends Fragment {
         });
 
         return rootview;
-
     }
 
     /**
@@ -114,7 +105,6 @@ public class Fragment_Pseudo extends Fragment {
     public void saveProfil()
     {
         System.out.println("in Fragment_Pseudo.saveProfil()");
-
 
         _profile.setUserName(_userNameET.getText().toString());
 
@@ -138,8 +128,5 @@ public class Fragment_Pseudo extends Fragment {
         intent.putExtra("profile", _profile);
         intent.putExtra("activite", "ViewProfileActivity");
         startActivity(intent);
-
     }
-
-
 }

@@ -16,9 +16,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.Set;
 
 import ppm.uqac.com.geekproject.R;
 
@@ -32,20 +29,16 @@ public class Fragment_Chart extends Fragment {
     private Profile _profile;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         rootview = inflater.inflate(R.layout.fragment_chart,container,false);
         mChart = (LineChart) rootview.findViewById(R.id.chart1);
         createChart();
         return rootview;
-
-
     }
 
     public void createChart()
     {
-
         /*Calendar c = Calendar.getInstance();
         int days = c.get(Calendar.DAY_OF_YEAR);*/
 
@@ -75,10 +68,7 @@ public class Fragment_Chart extends Fragment {
         Intent intent = new Intent(getActivity().getIntent());
         //Intent intent = getIntent();
         if (intent != null)
-        {
             _profile = (Profile) intent.getSerializableExtra("profile");
-        }
-
 
         System.out.println("In Fragment_Chart- Scores = " + _profile._scores);
 
@@ -133,9 +123,8 @@ public class Fragment_Chart extends Fragment {
         ArrayList<String> xVals = new ArrayList<String>();
 
         for (int i = 1; i<=10; i++)
-        {
             xVals.add(i + "");
-        }
+
 
 
         for (int i = 1; i<_profile._scores.size()+1; i++)
@@ -143,14 +132,11 @@ public class Fragment_Chart extends Fragment {
             System.out.println("Nombre de questionnaires = " +_profile._scores.size());
 
             points.add(new Entry(_profile._scores.get(i-1), i-1));
-
         }
 
         // LineSet créé à partir de ces entrées
 
         LineDataSet set = new LineDataSet(points, "Résultats des questionnaires");
-
-
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         set.setCircleColor(Color.RED);
@@ -164,11 +150,5 @@ public class Fragment_Chart extends Fragment {
         mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         mChart.setData(data);
         mChart.invalidate();
-
-
-
-
     }
-
-
 }

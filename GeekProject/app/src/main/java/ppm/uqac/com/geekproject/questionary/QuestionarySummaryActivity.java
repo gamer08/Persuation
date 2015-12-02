@@ -56,7 +56,6 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
             fromLevelUP = intent.getBooleanExtra("fromLevelUP", false);
             _scoreQuestionnaire = intent.getFloatExtra("scoreQuestionnaire",0);
             _profile = (Profile)intent.getSerializableExtra("profile");
-
         }
 
         String formatedScore = String.format("%.1f", (_scoreQuestionnaire * 100));
@@ -135,9 +134,7 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings)
-        {
             return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }

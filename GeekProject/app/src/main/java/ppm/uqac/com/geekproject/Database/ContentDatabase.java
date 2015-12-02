@@ -56,8 +56,8 @@ public class ContentDatabase extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion,
-                          int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
         db.execSQL("DROP TABLE IF EXISTS geek_content");
         onCreate(db);
     }
@@ -90,11 +90,9 @@ public class ContentDatabase extends SQLiteOpenHelper {
         String description;
         String url;
 
-
         activitiesSaved.moveToFirst();
         System.out.println("movetofirst " + activitiesSaved.getPosition());
         activitiesSaved.moveToLast();
-
 
         for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext())
         {
@@ -109,6 +107,7 @@ public class ContentDatabase extends SQLiteOpenHelper {
         }
         System.out.println("Videos " + listVideo.get(0).get_name());
 
+        activitiesSaved.close();
         db.close();
         return listVideo;
     }
@@ -147,7 +146,6 @@ public class ContentDatabase extends SQLiteOpenHelper {
         System.out.println("movetofirst " + activitiesSaved.getPosition());
         activitiesSaved.moveToLast();
 
-
         for(activitiesSaved.moveToFirst(); !activitiesSaved.isAfterLast(); activitiesSaved.moveToNext())
         {
             name = activitiesSaved.getString(1);
@@ -161,6 +159,7 @@ public class ContentDatabase extends SQLiteOpenHelper {
         }
         System.out.println("Activités " + listContent.get(0).get_name());
 
+        activitiesSaved.close();
         db.close();
         return listContent;
     }

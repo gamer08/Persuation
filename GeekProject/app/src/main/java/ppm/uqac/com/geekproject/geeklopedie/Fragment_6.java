@@ -15,26 +15,29 @@ import ppm.uqac.com.geekproject.R;
 /**
  * Created by Simon on 23/10/2015.
  */
-public class Fragment_6 extends Fragment {
-
+public class Fragment_6 extends Fragment
+{
     View rootview;
     ContentAdapter _cadapter;
     ListView _ContentListView;
 
-    public void Fragment_6() {
+    public void Fragment_6()
+    {
 
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    {
         rootview = inflater.inflate(R.layout.fragment_6,container,false);
         _ContentListView = (ListView) rootview.findViewById(R.id.drawerListgeek);
         _ContentListView.setAdapter(_cadapter);
 
-        _ContentListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        _ContentListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                    long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
                 Content c = _cadapter.getItem(position);
                 Uri uri = Uri.parse(c.get_url()); // Si l'url ne contient pas http:// l'appli plante
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -45,7 +48,8 @@ public class Fragment_6 extends Fragment {
         return rootview;
     }
 
-    public void setData(ContentAdapter cAdapter) {
+    public void setData(ContentAdapter cAdapter)
+    {
         _cadapter = cAdapter;
         System.out.println(_cadapter);
     }

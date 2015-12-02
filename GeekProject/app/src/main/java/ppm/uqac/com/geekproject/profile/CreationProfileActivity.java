@@ -1,6 +1,5 @@
 package ppm.uqac.com.geekproject.profile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
-
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.R;
 
@@ -23,13 +20,11 @@ import ppm.uqac.com.geekproject.R;
  */
 public class CreationProfileActivity extends AppCompatActivity
 {
-
     private View.OnClickListener _saveListener;
     private Button _saveButton;
     private EditText _userName;
     private TextView _score;
     private Profile _profile;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,14 +40,9 @@ public class CreationProfileActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 if(_userName.getText().length() !=0)
-                {
                     saveProfil();
-                }
                 else
-                {
                     Toast.makeText(CreationProfileActivity.this, "Veuillez rentrer un pseudo", Toast.LENGTH_LONG).show();
-                }
-
             }
         };
 
@@ -73,7 +63,6 @@ public class CreationProfileActivity extends AppCompatActivity
             _score.setText(formatedScore);
             //_score.setText((TextView) ((String) _profile.getScore()));
             //Oubli du "e" a la fin de profil. Dans le fichier GenerateProfileService.java ligne 62 on a profile
-
         }
     }
 
@@ -94,9 +83,8 @@ public class CreationProfileActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
             return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -134,8 +122,6 @@ public class CreationProfileActivity extends AppCompatActivity
         intent.putExtra("profile", _profile);
         intent.putExtra("activite", "CreateProfil");
         startActivity(intent);
-
-
     }
 
     @Override

@@ -36,10 +36,8 @@ import ppm.uqac.com.geekproject.profile.SaveProfileService;
 import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
 
 
-public class ViewListActivity2 extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
-
+public class ViewListActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+{
     GADatabase gadb;
 
     ArrayList<GA> gaList;
@@ -59,12 +57,12 @@ public class ViewListActivity2 extends AppCompatActivity
     ShareDialog shareDialog;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_list2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         Intent intent = getIntent();
         if (intent != null)
@@ -75,8 +73,8 @@ public class ViewListActivity2 extends AppCompatActivity
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
+                                                                R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -89,33 +87,40 @@ public class ViewListActivity2 extends AppCompatActivity
         gaList =  gadb.getActivitiesDoing(_profile.getLevel());
         // Constructeur de notre Adapter de GA
         gaAdapter = new GAAdapter(this, gaList);
+
         if(_firsttime)
             gaAdapter.setFirstTime(true);
+
         fm = getFragmentManager();
         fragment_ga = new Fragment_GA();
         fragment_ga.set_gadapter(gaAdapter);
 
         fm.beginTransaction().replace(R.id.activities_frame, fragment_ga).commit();
-
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+        if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            if(_firsttime==true) {
+        else
+        {
+            if(_firsttime==true)
+            {
                 new AlertDialog.Builder(this)
                         .setMessage("Voulez-vous partager vos progrès sur facebook?")
                         .setCancelable(false)
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
                                 //test dialog
                                 callbackManager = CallbackManager.Factory.create();
                                 shareDialog = new ShareDialog(ViewListActivity2.this);
                                 Uri uri = Uri.parse("R.drawable.startactivity");
-                                if (ShareDialog.canShow(ShareLinkContent.class)) {
+                                if (ShareDialog.canShow(ShareLinkContent.class))
+                                {
                                     System.out.println("if pour afficher partage facebook");
                                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                             .setContentTitle("GeekProject")
@@ -136,8 +141,10 @@ public class ViewListActivity2 extends AppCompatActivity
                                 startActivity(main);
                             }
                         })
-                        .setNegativeButton("Non",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
+                        .setNegativeButton("Non",new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog, int id)
+                            {
                                 //Ouverture MainActivity
                                 Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                 main.putExtra("profile",_profile);
@@ -145,10 +152,10 @@ public class ViewListActivity2 extends AppCompatActivity
                                 ViewListActivity2.this.finish();
                                 startActivity(main);
                             }
-                        })
-                        .show();
+                        }).show();
                 System.out.println("Bouton retour");
-            }else
+            }
+            else
             {
                 //Ouverture MainActivity
                 Intent main = new Intent(getApplicationContext(), MainActivity.class);
@@ -167,42 +174,45 @@ public class ViewListActivity2 extends AppCompatActivity
      * @param data
      */
     @Override
-    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.view_list_activity2, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
             return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.activitiesDoing) {
-
+        if (id == R.id.activitiesDoing)
+        {
             // Ouverture de la BDD
             gadb = new GADatabase(this);
             // Récupération des activités dans la BDD
@@ -212,7 +222,9 @@ public class ViewListActivity2 extends AppCompatActivity
             fragment_ga.set_gadapter(gaAdapter);
             fm.beginTransaction().detach(fragment_ga).attach(fragment_ga).commit();
 
-        } else if (id == R.id.activitiesDone) {
+        }
+        else if (id == R.id.activitiesDone)
+        {
 
             // Ouverture de la BDD
             gadb = new GADatabase(this);
@@ -245,8 +257,7 @@ public class ViewListActivity2 extends AppCompatActivity
 
         // Récupération du toast_ga_done
         LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast_ga_done,
-                (ViewGroup) findViewById(R.id.toast_ga_done_id));
+        View layout = inflater.inflate(R.layout.toast_ga_done, (ViewGroup) findViewById(R.id.toast_ga_done_id));
 
         // set a dummy image
         ImageView image = (ImageView) layout.findViewById(R.id.image);
@@ -263,14 +274,11 @@ public class ViewListActivity2 extends AppCompatActivity
         toast.show();
 
         if (_profile.addExperience(activity.get_experience()) == true)
-        {
             Toast.makeText(this, "Bravo! Tu es maintenant niveau " + _profile.getLevel(), Toast.LENGTH_SHORT).show();
-        };
 
         saveExperience();
 
         System.out.println("Vue du profil après avoir fait une activité : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
-
 
         if (_profile.testForQuestionaryProgress())
             askForANewQuestionary();
@@ -294,7 +302,8 @@ public class ViewListActivity2 extends AppCompatActivity
             }
         });
 
-        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Non", new DialogInterface.OnClickListener()
+        {
             public void onClick(DialogInterface dialog, int id)
             {
             }
@@ -309,7 +318,6 @@ public class ViewListActivity2 extends AppCompatActivity
         Intent intentSave = new Intent(this, SaveProfileService.class);
         intentSave.putExtra("profile", _profile);
         startService(intentSave);
-
     }
 
     public boolean getIsFirstTime()

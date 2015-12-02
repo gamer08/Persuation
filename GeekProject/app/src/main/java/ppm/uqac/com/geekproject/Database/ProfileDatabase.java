@@ -20,13 +20,11 @@ public class ProfileDatabase extends SQLiteOpenHelper {
     /**
      * Liste des badges
      */
-
     private ArrayList<Badge> listBadges;
 
     /**
      * Liste des questionnaires
      */
-
     private ArrayList<Point> listQuestionnaries;
 
     public ProfileDatabase(Context context)
@@ -37,7 +35,8 @@ public class ProfileDatabase extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db)
+    {
 
         // Création de la BDD pour les badges
         db.execSQL("DROP TABLE IF EXISTS geek_badges");
@@ -58,8 +57,8 @@ public class ProfileDatabase extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion,
-                          int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
+    {
         db.execSQL("DROP TABLE IF EXISTS geek_activity");
         onCreate(db);
     }
@@ -86,7 +85,6 @@ public class ProfileDatabase extends SQLiteOpenHelper {
      */
     public ArrayList<Badge> getBadges()
     {
-
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM geek_badges", null);
 
@@ -98,7 +96,6 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         cursor.moveToFirst();
         System.out.println("movetofirst " + cursor.getPosition());
         cursor.moveToLast();
-
 
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
         {
@@ -114,6 +111,7 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         }
         System.out.println("Badges " + listBadges.get(0).getName());
 
+        cursor.close();
         db.close();
         return listBadges;
     }
@@ -145,17 +143,14 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         int number;
         int result;
 
-
         cursor.moveToFirst();
         System.out.println("movetofirst " + cursor.getPosition());
         cursor.moveToLast();
-
 
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
         {
             number = Integer.parseInt(cursor.getString(1));
             result = Integer.parseInt(cursor.getString(2));
-
 
             Point p = new Point(number, result);
 
@@ -164,8 +159,8 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         }
         System.out.println("Questionnaires " + listQuestionnaries.get(0).x);
 
+        cursor.close();
         db.close();
         return listQuestionnaries;
     }
 }
-

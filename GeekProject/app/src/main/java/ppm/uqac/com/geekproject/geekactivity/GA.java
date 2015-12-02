@@ -4,14 +4,13 @@ package ppm.uqac.com.geekproject.geekactivity;
  * Created by Arnaud on 12/10/2015.
  * Cette classe rassemble les caractéristiques d'une GA
  */
-public class GA {
+public class GA
+{
     private String _name;
     private String _description;
     private int _level;
     private int _experience;
     private boolean _isDone;
-
-
 
     /**
      * Constructeur de la classe GeekActivity
@@ -43,24 +42,28 @@ public class GA {
      * Methode qui permet le retour du nom de l'activité
      * @return
      */
-    public String get_name() {
+    public String get_name()
+    {
         return _name;
     }
 
-    public String get_description() {
+    public String get_description()
+    {
         return _description;
     }
 
-    public int get_level() {
+    public int get_level()
+    {
         return _level;
     }
 
-    public int get_experience() {
+    public int get_experience()
+    {
         return _experience;
     }
 
-    public boolean get_isDone() {
+    public boolean get_isDone()
+    {
         return _isDone;
     }
-
 }

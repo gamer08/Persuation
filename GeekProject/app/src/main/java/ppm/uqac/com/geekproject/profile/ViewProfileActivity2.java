@@ -19,10 +19,8 @@ import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 
 
-public class ViewProfileActivity2 extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
-
+public class ViewProfileActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+{
     private DrawerLayout mDL;
     private ListView mLV;
     private String[] mItems;
@@ -30,7 +28,8 @@ public class ViewProfileActivity2 extends AppCompatActivity
     private Profile _profile;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile2);
         Toast t = Toast.makeText(getApplicationContext(), "ND.create", Toast.LENGTH_SHORT);
@@ -38,8 +37,7 @@ public class ViewProfileActivity2 extends AppCompatActivity
 
 
         mDL = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDL, R.string.drawer_open, R.string.drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDL, R.string.drawer_open, R.string.drawer_close);
         mDL.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -65,18 +63,19 @@ public class ViewProfileActivity2 extends AppCompatActivity
         l.add(b2);
         l.add(b3);
         _adapter = new AdapterBadges(this, l);
-
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_profile, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -99,9 +98,7 @@ public class ViewProfileActivity2 extends AppCompatActivity
         int id = menuItem.getItemId();
 
         if (id == R.id.pseudo)
-        {
             fm.beginTransaction().replace(R.id.content_frame, new Fragment_Pseudo()).commit();
-        }
 
         if (id == R.id.badges)
         {
@@ -117,15 +114,11 @@ public class ViewProfileActivity2 extends AppCompatActivity
         }
 
         if (id == R.id.photo)
-        {
             fm.beginTransaction().replace(R.id.content_frame, new Fragment_Photo()).commit();
-        }
 
         mDL.closeDrawer(GravityCompat.START);
 
         return true;
-
-
     }
 
     @Override
@@ -150,7 +143,4 @@ public class ViewProfileActivity2 extends AppCompatActivity
         intent.putExtra("activite", "ViewProfileActivity");
         startActivity(intent);
     }
-
-
-
 }

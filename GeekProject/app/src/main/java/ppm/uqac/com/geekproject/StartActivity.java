@@ -24,11 +24,8 @@ import ppm.uqac.com.geekproject.profile.Profile;
  * */
 public class StartActivity extends AppCompatActivity
 {
-
     private Receiver _receiver;
     private IntentFilter _profileIntentFilter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,27 +33,21 @@ public class StartActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-
         _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
 
         Intent profileLoader = new Intent(this,LoadProfileService.class);
         startService(profileLoader);
-
     }
-
 
     /**
      * Classe interne
      */
     private class Receiver extends BroadcastReceiver
     {
-
-
         private Receiver()
         {
-
         }
 
         @Override
@@ -105,27 +96,10 @@ public class StartActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
             return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
-
-    /**
-     * Clic sur le bouton pour aller voir le profil
-     * @param v
-     */
-    public void onButtonProfileClick (View v)
-    {
-        // do something
-
-        Button buttonProfile = (Button) v;
-        //((Button)v).setText("clicked");
-
-
-    }
-
-
 }
 

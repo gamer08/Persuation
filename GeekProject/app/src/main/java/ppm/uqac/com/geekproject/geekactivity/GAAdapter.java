@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,10 +17,8 @@ import ppm.uqac.com.geekproject.R;
  * Created by Arnaud on 18/10/2015.
  * Cette classe est l'Adapter de GA. Elle permet d'afficher les diférentes GA dans la classe ViewListActivity
  */
-public class GAAdapter extends BaseAdapter {
-
-
-
+public class GAAdapter extends BaseAdapter
+{
     // Notre liste de GA
     private ArrayList<GA> listActivity;
 
@@ -49,7 +46,8 @@ public class GAAdapter extends BaseAdapter {
         listActivity=lista;
         mInflater = LayoutInflater.from(mContext);
     }
-    public int getCount() {
+    public int getCount()
+    {
         return listActivity.size();
     }
 
@@ -92,7 +90,7 @@ public class GAAdapter extends BaseAdapter {
         {
             cb_activity.setChecked(false);
             if(firstTime)
-            cb_activity.setEnabled(false);
+                cb_activity.setEnabled(false);
             else if (!firstTime)
                 cb_activity.setEnabled(true);
         }
@@ -102,15 +100,15 @@ public class GAAdapter extends BaseAdapter {
             cb_activity.setEnabled(false);
         }
         return layoutItem;
-
     }
 
-
-    public GA getItem(int position) {
+    public GA getItem(int position)
+    {
         return listActivity.get(position);
     }
 
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
 
@@ -119,5 +117,8 @@ public class GAAdapter extends BaseAdapter {
         listActivity = lista;
     }
 
-    public void setFirstTime(boolean first) {firstTime = first;}
+    public void setFirstTime(boolean first)
+    {
+        firstTime = first;
+    }
 }

@@ -4,7 +4,6 @@ package ppm.uqac.com.geekproject.geeklopedie;
  * Created by Simon on 21/10/2015.
  */
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,20 +16,15 @@ import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
 
-
-public class ContentAdapter extends BaseAdapter {
-
-
-
+public class ContentAdapter extends BaseAdapter
+{
     // Liste pour gérer tout le contenu
     private ArrayList<Content> listContent;
-
 
     private Context mContext;
 
     //Sert pour afficher le layout
     private LayoutInflater mInflater;
-
 
     public ContentAdapter(Context context, ArrayList<Content> list)
     {
@@ -38,7 +32,9 @@ public class ContentAdapter extends BaseAdapter {
         listContent =list;
         mInflater = LayoutInflater.from(mContext);
     }
-    public int getCount() {
+
+    public int getCount()
+    {
         return listContent.size();
     }
 
@@ -71,17 +67,16 @@ public class ContentAdapter extends BaseAdapter {
         tv_description.setText(listContent.get(position).get_description());
 
         return layoutItem;
-
     }
 
 
-    public Content getItem(int position) {
+    public Content getItem(int position)
+    {
         return listContent.get(position);
     }
 
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
-
-
 }

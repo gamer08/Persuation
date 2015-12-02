@@ -12,10 +12,10 @@
     android:weightSum="1">
 
     <ImageView
+        tools:ignore="ContentDescription"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:src="@drawable/welcome4"
-        android:layout_above="@+id/button"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.8" />
     <Button
@@ -24,10 +24,8 @@
         android:text="@string/BTN_WelcomeStart"
         android:id="@+id/button"
         android:onClick="StartQuestionary"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:textColor="@color/label"
         android:layout_weight="0.10"
         android:layout_gravity="center_horizontal"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 </LinearLayout>

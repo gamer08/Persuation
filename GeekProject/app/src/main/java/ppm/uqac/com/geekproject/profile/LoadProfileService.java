@@ -41,7 +41,6 @@ public class LoadProfileService extends IntentService
         String score="";
         String nbQuestionaries="";
 
-
         try
         {
             File file = getApplicationContext().getFileStreamPath(Profile.PROFIL_FILE_NAME);
@@ -58,7 +57,6 @@ public class LoadProfileService extends IntentService
                 experience = buff.readLine();
                 nbQuestionaries = buff.readLine();
 
-
                 /**
                  * On s'occupe du nb de questionnaires d'abord
                  */
@@ -71,15 +69,11 @@ public class LoadProfileService extends IntentService
                 profile = new Profile();
                 profile.setNbQuestionaries(_nbQuestionaries);
 
-
-
                 for (int i=1; i<=_nbQuestionaries; i++)
                 {
                     //profile._scores.add(Float.parseFloat(buff.readLine()));
 
                     System.out.println("Ligne particuliere dans fichier: " + buff.readLine());
-
-
                 }
 
                 buff.close();
@@ -95,18 +89,11 @@ public class LoadProfileService extends IntentService
                 experience = experience.substring(experience.indexOf('=') + 1);
                 _experience = Double.parseDouble(experience);
 
-
-
-
-
                 profile.setUserName(userName);
                 profile.setScore(_score);
                 profile.defineType();
                 profile.setLevel(_level);
                 profile.setExperience(_experience);
-
-
-
             }
                 Intent callBackIntent = new Intent(LoadProfilActions.Broadcast);
                 callBackIntent.putExtra("profile", profile);
@@ -116,6 +103,5 @@ public class LoadProfileService extends IntentService
         {
             e.printStackTrace();
         }
-
     }
 }

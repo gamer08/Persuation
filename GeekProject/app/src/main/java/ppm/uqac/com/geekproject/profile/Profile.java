@@ -1,10 +1,7 @@
 package ppm.uqac.com.geekproject.profile;
 
-import android.widget.Toast;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import ppm.uqac.com.geekproject.R;
 
@@ -46,16 +43,82 @@ public class Profile implements Serializable
         _limitExperience = getLevelLimit();
         _scores = new ArrayList<Float>();
         _nbQuestionaries = 0;
-
     }
 
     // Setters
 
-    public void setUserName(String f) { _userName = f; }
-    public void setScore(float s) { _score = s; }
-    public void setLevel(int l) { _level = l; }
-    public void setExperience (double e) { _experience = e; }
-    public void setType (Type t) { _type = t; } // utilisée uniquement quand le score est parafait (fans GenerateProfileService
+    public void setUserName(String f)
+    {
+        _userName = f;
+    }
+
+    public void setScore(float s)
+    {
+        _score = s;
+    }
+
+    public void setLevel(int l)
+    {
+        _level = l;
+    }
+
+    public void setExperience (double e)
+    {
+        _experience = e;
+    }
+
+    public void setType (Type t)
+    {
+        _type = t;
+    }
+
+    public String getUserName()
+    {
+        return _userName;
+    }
+
+    public float getScore()
+    {
+        return _score;
+    }
+
+    public int getLevel()
+    {
+        return _level;
+    }
+
+    public double getExperience()
+    {
+        return _experience;
+    }
+
+    public Type getType()
+    {
+        return _type;
+    }
+
+    public int getAvatar()
+    {
+        return _avatar;
+    }
+
+    public double getLevelLimit()
+    {
+        return _level * 50 + Math.exp(_level - 1) * 5;
+    }
+
+    public int getNbQuestionaries()
+    {
+        return _nbQuestionaries;
+    }
+
+    public void setNbQuestionaries (int n)
+    {
+        _nbQuestionaries = n;
+    }
+
+
+    // utilisée uniquement quand le score est parafait (fans GenerateProfileService
 
     // Utilisée pour déterminer le type en fonction du dernier score obtenu au questionnaire
     public void defineType()
@@ -75,7 +138,6 @@ public class Profile implements Serializable
         else if (_score<=60 && _score >40)
         {
             _type = Type.NEUTRAL;
-
             _avatar = R.drawable.neutral;
         }
 
@@ -84,7 +146,6 @@ public class Profile implements Serializable
             _type = Type.GEEKFRIENDLY;
             _avatar = R.drawable.geekfriendly;
         }
-
         else
         {
             _type = Type.GEEK;
@@ -92,44 +153,13 @@ public class Profile implements Serializable
         }
     }
 
-    public void setNbQuestionaries (int n) {_nbQuestionaries = n; }
-
-    // Getters
-
-    public String getUserName() { return _userName; }
-
-    public float getScore() { return _score; }
-
-    public int getLevel() { return _level;}
-
-    public double getExperience() { return _experience; }
-
-    public Type getType() { return _type; }
-
-    public int getAvatar() { return _avatar; }
-
-    public double getLevelLimit()
-    {
-        return _level * 50 + Math.exp(_level - 1) * 5;
-    }
-
-    public int getNbQuestionaries() { return _nbQuestionaries; }
-
-
     public boolean isLevelUp()
     {
-
         System.out.println("Experience = " + _experience + " limit = " + getLevelLimit());
         if (_experience>getLevelLimit())
-        {
-
             return true;
-        }
-
         else
-        {
             return false;
-        }
     }
 
     /**
@@ -139,20 +169,15 @@ public class Profile implements Serializable
      */
     public boolean updateLevel()
     {
-
-        if (isLevelUp()==true)
+        if (isLevelUp())
         {
             System.out.println("IN SET LEVEL");
             _level = _level + 1;
 
             return true;
-
         }
-
         else
-        {
             return false;
-        }
     }
 
 
@@ -181,5 +206,4 @@ public class Profile implements Serializable
         _scores.add(getScore());
         _nbQuestionaries+=1;
     }
-
 }
