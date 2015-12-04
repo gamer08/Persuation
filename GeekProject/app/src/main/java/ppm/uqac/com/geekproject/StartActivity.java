@@ -63,13 +63,15 @@ public class StartActivity extends AppCompatActivity
                 GA activity1 = new GA("Lire la définition d un Geek", "Vous pouvez trouver un article présentant un geek dans la geeklopédie --> contenu", 1, 20, false, "");
                 GA activity2 = new GA("Regarder la vidéo Youtube Cyprien : Les GEEK", "Vous pouvez trouver cette vidéo dans la geeklopédie --> vidéo", 1, 20, false, "");
                 GA activity3 = new GA("Aller consulter la section de la geeklopédie qui correspond à votre profil", "Vous pouvez trouver cette vidéo dans la geeklopédie", 1, 20, false, "");
-                GA activity4 = new GA("Regarder une vidéo Culture GEEK", "Culture GEEK est une émission diffusé sur BFMTV qui présente les nouvelles technologies", 1, 20, false, "http://www.bfmtv.com/mediaplayer/replay/culture-geek/");
-                GA activity5 = new GA("Augmenter votre niveau de jeux sur le play store", "Passer au niveau 10", 4, 500, false, "");
+                GA activity4 = new GA("Regarder une vidéo Culture GEEK", "Culture GEEK est une émission diffusé sur BFMTV qui présente les nouvelles technologies", 2, 50, false, "http://www.bfmtv.com/mediaplayer/replay/culture-geek/");
+                GA activity5 = new GA("Installer l application AppyGeek", "AppyGeek est une application qui permet de suivre toute l actualité Tech", 2, 50, false, "https://play.google.com/store/apps/details?id=com.mobilesrepublic.appygeek&hl=fr_CA");
+                GA activity6 = new GA("Augmenter votre niveau de jeux sur le play store", "Passer au niveau 10", 4, 500, false, "");
                 gadb.addActivity(activity1);
                 gadb.addActivity(activity2);
                 gadb.addActivity(activity3);
                 gadb.addActivity(activity4);
                 gadb.addActivity(activity5);
+                gadb.addActivity(activity6);
             }
             else
             {
