@@ -15,10 +15,10 @@ import ppm.uqac.com.geekproject.R;
 /**
  * Created by Simon on 23/10/2015.
  */
-public class Fragment_6 extends Fragment
+public class Fragment_Web extends Fragment
 {
     View rootview;
-    ContentAdapter _cadapter;
+    AdapterContent _cadapter;
     ListView _ContentListView;
 
     public void Fragment_6()
@@ -38,7 +38,7 @@ public class Fragment_6 extends Fragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Content c = _cadapter.getItem(position);
+                ItemContent c = _cadapter.getItem(position);
                 Uri uri = Uri.parse(c.get_url()); // Si l'url ne contient pas http:// l'appli plante
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
@@ -48,7 +48,7 @@ public class Fragment_6 extends Fragment
         return rootview;
     }
 
-    public void setData(ContentAdapter cAdapter)
+    public void setData(AdapterContent cAdapter)
     {
         _cadapter = cAdapter;
         System.out.println(_cadapter);

@@ -2,17 +2,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="6">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Antigeek"
+        android:text="@string/mefiant_title"
         android:id="@+id/title_antigeek"
         android:layout_gravity="center_horizontal|top"
-        />
+        android:padding="10dp" />
 
     <ImageView
         android:layout_width="100dp"
@@ -24,10 +25,36 @@
         android:layout_gravity="center_horizontal|bottom" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="L'Antigeek voit en un geek, une créature étrange et dangereuse qu'il faut anéantir. Il ne supporte pas son apparence, sa manière de vivre et son comportement. En général, l'Antigeek se réfugie dans des clichés véhiculés par les différents médias sans se forger sa propre opinion et sans apprendre à connaître les personnes qu'il cache derrière le mot geek. Si vous êtes un Antigeek, nous vous conseillions d'utiliser cette application faite par et pour des geeks. Ne restez pas dans votre monde dépourvu d'intelligence et c'est avec cette application que vous allez commencer à grandir. "
+        android:layout_width="fill_parent"
+        android:layout_height="187dp"
+        android:text="@string/mefiant_description"
         android:id="@+id/textView2"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_gravity="left|center_vertical"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="148dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conseil: "
+            android:id="@+id/textView4"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:text="@string/mefiant_advice"
+            android:id="@+id/textView3"
+            android:textStyle="bold"
+            android:background="@drawable/border_advice"
+            android:gravity="center_horizontal"
+            android:layout_weight="1.08"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
 
 </LinearLayout>

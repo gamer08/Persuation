@@ -34,9 +34,12 @@
         android:layout_alignRight="@+id/TV_curQuestionCpt"
         android:layout_alignEnd="@+id/TV_curQuestionCpt"
         android:hint="@string/TV_Question"
-        android:textSize="24sp"
+        android:textSize="30dp"
        android:textColor="@color/label"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:gravity="center_vertical|center_horizontal" />
 
 
     <LinearLayout
@@ -52,7 +55,7 @@
             android:layout_height="0dp"
             android:id="@+id/SV_Choices"
             android:layout_centerHorizontal="true"
-            android:layout_weight="8">
+            android:layout_weight="7">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -63,75 +66,97 @@
 
                 <TextView
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:id="@+id/TV_Choice1"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
                    android:textColor="@color/value"
-                    android:background="@drawable/border_tv"
+                    android:background="@drawable/border_question"
                     android:layout_gravity="center_horizontal"
                     android:textAlignment="center"
                     android:gravity="center" />
 
                 <TextView
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:id="@+id/TV_Choice2"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
                    android:textColor="@color/value"
-                    android:background="@drawable/border_tv"
+                    android:background="@drawable/border_question"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center" />
 
                 <TextView
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:id="@+id/TV_Choice3"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
                    android:textColor="@color/value"
-                    android:background="@drawable/border_tv"
+                    android:background="@drawable/border_question"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center" />
 
                 <TextView
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:id="@+id/TV_Choice4"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
                    android:textColor="@color/value"
-                    android:background="@drawable/border_tv"
+                    android:background="@drawable/border_question"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center" />
 
                 <TextView
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:id="@+id/TV_Choice5"
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:layout_marginTop="20dp"
                    android:textColor="@color/value"
-                    android:background="@drawable/border_tv"
+                    android:background="@drawable/border_question"
                     android:layout_gravity="center_horizontal"
                     android:gravity="center" />
             </LinearLayout>
         </ScrollView>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
 
-            android:id="@+id/TV_Fact"
-            android:textSize="18sp"
-            android:textColor="@color/label"
-            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="400dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Saviez-vous que..."
+                android:id="@+id/tv_saviez_vous"
+                android:layout_marginLeft="30dp"
+                android:layout_gravity="left"
+                android:textStyle="bold"
+                android:textSize="25dp" />
+
+            <TextView
+                android:layout_width="350dp"
+                android:layout_weight="0.62"
+                android:layout_height="50dp"
+
+                android:id="@+id/TV_Fact"
+                android:textSize="20dp"
+                android:textColor="@color/value"
+                android:background="@drawable/border_advice"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical|center_horizontal" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

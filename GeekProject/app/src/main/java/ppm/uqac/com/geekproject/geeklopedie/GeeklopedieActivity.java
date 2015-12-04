@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.Database.ContentDatabase;
 
@@ -98,16 +99,69 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
         System.out.println(id);
 
         if (id == R.id.antigeek)
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_1()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_1Mefiant()).commit();
          else if (id == R.id.GeekPersecutor)   // Handle the camera action
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_2()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_2Sceptique()).commit();
          else if (id == R.id.Neutral)
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_3()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_3Neutral()).commit();
         else if (id == R.id.Geekfriendly)
             fm.beginTransaction().replace(R.id.content_frame,new Fragment_4()).commit();
         else if (id == R.id.Geek)
             fm.beginTransaction().replace(R.id.content_frame,new Fragment_5()).commit();
-        else if (id == R.id.nav_share)
+
+        else if (id == R.id.nav_wiki)
+        {
+            WikiDatabase db = new WikiDatabase(this);
+
+            InputStream is = getResources().openRawResource(getResources().getIdentifier("raw/contenu", "raw", getPackageName()));
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            String line = null;
+            int n,d;
+
+            try
+            {
+                while ((line = reader.readLine()) != null)
+                {
+                    System.out.println("indice pour ;def= : "+line.indexOf(";def="));
+                    d=line.indexOf(";def=");
+
+                    System.out.println("Name du word = " + line.substring(5,d));
+                    //ItemWiki word = new ItemWiki(line.substring(5,d),line.substring(d+11));
+                    //db.addWord(word);
+                }
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            finally
+            {
+                try
+                {
+                    is.close();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+            //
+            // Récupération de tout le contenu
+            ArrayList<ItemWiki> list =  db.getWords();
+
+            // On crée un adapter
+            final AdapterWiki adapter = new AdapterWiki(GeeklopedieActivity.this,list);
+
+            Fragment_Wiki f = new Fragment_Wiki();
+            fm.beginTransaction().replace(R.id.content_frame,f).commit();
+            f.setData(adapter);
+
+            db.close();
+        }
+        else if (id == R.id.nav_web)
         {
             ContentDatabase db = new ContentDatabase(this);
             System.out.println("ouverture bd");
@@ -130,7 +184,7 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
                     System.out.println("index url: "+line.indexOf("name="));
                     d=line.indexOf(";desc=");
                     u=line.indexOf(";url=");
-                    Content contenu = new Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
+                    ItemContent contenu = new ItemContent(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
                     db.addContent(contenu);
                 }
             }
@@ -151,13 +205,13 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
             }
             //
             // Récupération de tout le contenu
-            ArrayList<Content> List =  db.getContent();
+            ArrayList<ItemContent> List =  db.getContent();
             System.out.println(List.toString());
 
             // On crée un adapter
-            final ContentAdapter cAdapter = new ContentAdapter(GeeklopedieActivity.this,List);
+            final AdapterContent cAdapter = new AdapterContent(GeeklopedieActivity.this,List);
 
-            Fragment_6 f6 = new Fragment_6();
+            Fragment_Web f6 = new Fragment_Web();
             fm.beginTransaction().replace(R.id.content_frame,f6).commit();
             f6.setData(cAdapter);
 
@@ -185,7 +239,7 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
                     System.out.println("index url: "+line.indexOf("name="));
                     d=line.indexOf(";desc=");
                     u=line.indexOf(";url=");
-                    Content contenu = new Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
+                    ItemContent contenu = new ItemContent(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
                     db.addVideo(contenu);
                 }
             }
@@ -206,10 +260,10 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
             }
 
             // Récupération de tout le contenu
-            ArrayList<Content> List =  db.getVideo();
+            ArrayList<ItemContent> List =  db.getVideo();
 
             // On crée un adapter
-            final VideoAdapter cAdapter = new VideoAdapter(GeeklopedieActivity.this,List);
+            final AdapterVideo cAdapter = new AdapterVideo(GeeklopedieActivity.this,List);
 
             Fragment_Video f = new Fragment_Video();
             fm.beginTransaction().replace(R.id.content_frame,f).commit();

@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -75,6 +77,13 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
             createProfileCreationLayout(linearLayout);
         else
             createSummaryLayout(linearLayout);
+
+        // Fonts
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
+
+        TextView tv = (TextView) findViewById(R.id.TV_yourScore);
+        _scoreView.setTypeface(typeFace);
+        tv.setTypeface(typeFace);
     }
 
     private class Receiver extends BroadcastReceiver
@@ -145,7 +154,9 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
 
         TextView question = new TextView(this);
         question.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        question.setText("Voulez-vous créer un profil?");
+        question.setText("Voulez-vous creer un profil?");
+
+        question.setTextColor(getResources().getColor(R.color.value));
         parentLayout.addView(question);
 
         subLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -155,32 +166,37 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
 
         Button yes = new Button(this);
         yes.setText("Oui");
+        yes.setTextColor(getResources().getColor(R.color.value));
         yes.setLayoutParams(param);
 
-        yes.setOnClickListener(new View.OnClickListener()
-        {
+        yes.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 createProfile(false);
             }
         });
 
         Button no = new Button(this);
         no.setText("Non");
+        no.setTextColor(getResources().getColor(R.color.value));
         no.setLayoutParams(param);
 
-        no.setOnClickListener(new View.OnClickListener()
-        {
+        no.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 createProfile(true);
             }
         });
 
         subLayout.addView(yes);
         subLayout.addView(no);
+
+        // Fonts
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
+
+        no.setTypeface(typeFace);
+        yes.setTypeface(typeFace);
+        question.setTypeface(typeFace);
 
         parentLayout.addView(subLayout);
     }

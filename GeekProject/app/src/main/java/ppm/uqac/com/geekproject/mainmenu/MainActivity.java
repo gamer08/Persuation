@@ -5,22 +5,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
-import com.facebook.share.model.ShareLinkContent;
-import com.facebook.share.widget.ShareDialog;
 
 import ppm.uqac.com.geekproject.ImageSettings;
 import ppm.uqac.com.geekproject.R;
@@ -110,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
         //System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
 
+
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
+        _userNameTV.setTypeface(typeFace);
+        _typeTV.setTypeface(typeFace);
 
         System.out.println("In Main - Scores = " + _profile._scores);
 

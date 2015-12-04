@@ -7,7 +7,7 @@ import android.database.Cursor;
 
 import java.util.ArrayList;
 
-import ppm.uqac.com.geekproject.geeklopedie.Content;
+import ppm.uqac.com.geekproject.geeklopedie.ItemContent;
 
 /**
  * Created by Arnaud on 28/11/2015.
@@ -17,18 +17,18 @@ public class ContentDatabase extends SQLiteOpenHelper {
     /**
      * Liste du contenu de la geeklopedie
      */
-    private ArrayList<Content> listContent;
+    private ArrayList<ItemContent> listContent;
 
     /**
      * Liste des videos de la geeklopedie
      */
-    private ArrayList<Content> listVideo;
+    private ArrayList<ItemContent> listVideo;
 
     public ContentDatabase(Context context)
     {
         super(context, "GeekActivity.db", null, 1);
-        listContent = new ArrayList<Content>();
-        listVideo = new ArrayList<Content>();
+        listContent = new ArrayList<ItemContent>();
+        listVideo = new ArrayList<ItemContent>();
         SQLiteDatabase db = this.getWritableDatabase();
         onCreate(db);
     }
@@ -66,7 +66,7 @@ public class ContentDatabase extends SQLiteOpenHelper {
      * Ajout d'une video dans la BDD
      * @param c
      */
-    public void addVideo(Content c)
+    public void addVideo(ItemContent c)
     {
         this.getWritableDatabase().execSQL("INSERT INTO geek_video (name, description,url) VALUES ('" +
                 c.get_name() + "','" +
@@ -78,9 +78,9 @@ public class ContentDatabase extends SQLiteOpenHelper {
 
     /**
      * Récupération des vidéos
-     * @return une ArrayList de Content
+     * @return une ArrayList de ItemContent
      */
-    public ArrayList<Content> getVideo()
+    public ArrayList<ItemContent> getVideo()
     {
         //listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -100,7 +100,7 @@ public class ContentDatabase extends SQLiteOpenHelper {
             description = activitiesSaved.getString(2);
             url = activitiesSaved.getString(3);
 
-            Content c = new Content(name,description,url);
+            ItemContent c = new ItemContent(name,description,url);
 
             listVideo.add(c);
             System.out.println("nom vidéo " + c.get_name());
@@ -116,7 +116,7 @@ public class ContentDatabase extends SQLiteOpenHelper {
      * Ajout d'un contenu dans la BDD
      * @param c
      */
-    public void addContent(Content c)
+    public void addContent(ItemContent c)
     {
         this.getWritableDatabase().execSQL("INSERT INTO geek_content (name, description,url) VALUES ('" +
                 c.get_name() + "','" +
@@ -128,9 +128,9 @@ public class ContentDatabase extends SQLiteOpenHelper {
 
     /**
      * Récupération du contenu
-     * @return une ArrayList de Content
+     * @return une ArrayList de ItemContent
      */
-    public ArrayList<Content> getContent()
+    public ArrayList<ItemContent> getContent()
     {
         //listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
@@ -152,7 +152,7 @@ public class ContentDatabase extends SQLiteOpenHelper {
             description = activitiesSaved.getString(2);
             url = activitiesSaved.getString(3);
 
-            Content c = new Content(name,description,url);
+            ItemContent c = new ItemContent(name,description,url);
 
             listContent.add(c);
             System.out.println("non activité " + c.get_name());

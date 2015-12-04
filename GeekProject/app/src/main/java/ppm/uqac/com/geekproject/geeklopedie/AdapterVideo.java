@@ -16,10 +16,10 @@ import ppm.uqac.com.geekproject.R;
 /**
  * Created by Simon on 17/11/2015.
  */
-public class VideoAdapter extends BaseAdapter {
+public class AdapterVideo extends BaseAdapter {
 
     // Liste pour gérer tout le contenu
-    private ArrayList<Content> listVideo;
+    private ArrayList<ItemContent> listVideo;
 
 
     private Context mContext;
@@ -28,7 +28,7 @@ public class VideoAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
 
 
-    public VideoAdapter(Context context, ArrayList<Content> list)
+    public AdapterVideo(Context context, ArrayList<ItemContent> list)
     {
         mContext=context;
         listVideo =list;
@@ -112,7 +112,7 @@ public class VideoAdapter extends BaseAdapter {
     }
 
 
-    public Content getItem(int position) {
+    public ItemContent getItem(int position) {
         return listVideo.get(position);
     }
 

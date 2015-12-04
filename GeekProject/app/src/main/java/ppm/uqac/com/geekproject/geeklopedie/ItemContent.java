@@ -4,19 +4,19 @@ package ppm.uqac.com.geekproject.geeklopedie;
  * Created by Simon on 20/10/2015.
  * Classe pour gérer le contenu de la geeklopedie
  */
-public class Content
+public class ItemContent
 {
     private String _name;
     private String _description;
     private String _url;
 
     /**
-     * Constructeur de la classe GeekActivity
+     * Constructeur de la classe ItemContent
      * @param n: nom de la GA
      * @param d: description de la GA
      * @param url: url du contenu a voir.
      */
-    public Content(String n, String d, String url)
+    public ItemContent(String n, String d, String url)
     {
         _name = n;
         _description=d;

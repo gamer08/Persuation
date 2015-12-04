@@ -16,17 +16,17 @@ import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.R;
 
-public class ContentAdapter extends BaseAdapter
+public class AdapterContent extends BaseAdapter
 {
     // Liste pour gérer tout le contenu
-    private ArrayList<Content> listContent;
+    private ArrayList<ItemContent> listContent;
 
     private Context mContext;
 
     //Sert pour afficher le layout
     private LayoutInflater mInflater;
 
-    public ContentAdapter(Context context, ArrayList<Content> list)
+    public AdapterContent(Context context, ArrayList<ItemContent> list)
     {
         mContext=context;
         listContent =list;
@@ -70,7 +70,7 @@ public class ContentAdapter extends BaseAdapter
     }
 
 
-    public Content getItem(int position)
+    public ItemContent getItem(int position)
     {
         return listContent.get(position);
     }

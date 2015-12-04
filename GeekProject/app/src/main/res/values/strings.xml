@@ -28,7 +28,7 @@
     <string name="title_activity_view_list">Liste des activités </string>
     <string name="title_activity_view_content">Geeklopédie</string>
 	
-	 <string name="TV_yourScore">Votre résultat</string>
+	 <string name="TV_yourScore">Votre resultat:</string>
     <string name="BTN_WelcomeStart">Questionnaire</string>
 
     <!--Id pour API facebook-->
@@ -63,6 +63,31 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="title_activity_questionary_summary">Questionary summary</string>
+
+
+    <string name="mefiant_title">Méfiant</string>
+    <string name="mefiant_description">
+        Le méfiant voit en un geek, une créature étrange et dangereuse qu\'il faut anéantir.
+            Il ne supporte pas son apparence, sa manière de vivre et son comportement.
+            En général, le Méfiant se réfugie dans des clichés véhiculés par les différents médias
+            sans se forger sa propre opinion et sans apprendre à connaître les personnes qu\'il cache
+            derrière le mot geek. Si vous êtes un Antigeek, nous vous conseillions d\'utiliser cette
+            application faite par et pour des geeks. Ne restez pas dans votre monde dépourvu
+            de bon sens et c\'est avec cette application que vous allez commencer à grandir.
+    </string>
+
+    <string name="mefiant_advice">Utilise cette application pour atteindre au moins le range de Neutre</string>
+
+    <string name="sceptical_title">Sceptique</string>
+    <string name="sceptical_description">
+        Le Sceptique en connaît un peu plus sur les geeks mais il reste toujours des avis
+        négatifs à leur égard. Certains clichés restent bien ancrés dans son esprit et il ne s\'en
+        défait pas encore. Il lui faut plus de temps et d\'expérience de vie avec des geeks pour
+        s\'améliorer.
+    </string>
+
+    <string name="sceptical_advice">Ne restez pas dans vos retrenchements. Poursuivez-vos efforts!</string>
+
 
 
 </resources>

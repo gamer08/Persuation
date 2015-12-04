@@ -11,7 +11,7 @@ import ppm.uqac.com.geekproject.R;
 /**
  * Created by Simon on 23/10/2015.
  */
-public class Fragment_3 extends Fragment
+public class Fragment_3Neutral extends Fragment
 {
     View rootview;
 

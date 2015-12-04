@@ -4,13 +4,13 @@ package ppm.uqac.com.geekproject.geeklopedie;
  * Created by Simon on 22/11/2015.
  */
 
-public class VideoItem
+public class ItemVideo
 {
     private int imageId;
     private String title;
     private String desc;
 
-    public VideoItem(int imageId, String title, String desc)
+    public ItemVideo(int imageId, String title, String desc)
     {
         this.imageId = imageId;
         this.title = title;

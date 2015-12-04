@@ -20,7 +20,7 @@ import ppm.uqac.com.geekproject.R;
 public class Fragment_Video extends Fragment
 {
     View rootview;
-    VideoAdapter _cadapter;
+    AdapterVideo _cadapter;
     ListView _VideoListView;
 
     public void Fragment_Video()
@@ -40,7 +40,7 @@ public class Fragment_Video extends Fragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Content c = _cadapter.getItem(position);
+                ItemContent c = _cadapter.getItem(position);
                 Uri uri = Uri.parse("https://www.youtube.com/watch?v="+c.get_url()); // Si l'url ne contient pas http:// l'appli plante
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
@@ -50,7 +50,7 @@ public class Fragment_Video extends Fragment
         return rootview;
     }
 
-    public void setData(VideoAdapter cAdapter)
+    public void setData(AdapterVideo cAdapter)
     {
         _cadapter = cAdapter;
         System.out.println(_cadapter);

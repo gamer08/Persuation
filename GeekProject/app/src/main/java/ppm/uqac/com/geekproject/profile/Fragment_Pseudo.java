@@ -43,7 +43,7 @@ public class Fragment_Pseudo extends Fragment {
 
         // Listener pour le bouton de sauvegarde des modifications
 
-        Button buttonModification = (Button) rootview.findViewById(R.id.BTN_Modificate);
+        ImageView buttonModification = (ImageView) rootview.findViewById(R.id.BTN_Modificate);
 
         buttonModification.setOnClickListener(new Button.OnClickListener()
         {

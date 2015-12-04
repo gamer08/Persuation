@@ -1,11 +1,16 @@
 package ppm.uqac.com.geekproject;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
@@ -17,6 +22,29 @@ public class WelcomeActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+
+        // Fonts
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
+
+        TextView tv1 = (TextView) findViewById(R.id.tv_keep);
+        TextView tv2 = (TextView) findViewById(R.id.tv_calm);
+        TextView tv3 = (TextView) findViewById(R.id.tv_and);
+        TextView tv4 = (TextView) findViewById(R.id.tv_click);
+        TextView tv5 = (TextView) findViewById(R.id.tv_here);
+
+        ArrayList<TextView> a = new ArrayList<>();
+        a.add(tv1);
+        a.add(tv2);
+        a.add(tv3);
+        a.add(tv4);
+        a.add(tv5);
+
+        for (TextView t : a)
+        {
+            t.setTypeface(typeFace);
+        }
+
     }
 
     @Override
