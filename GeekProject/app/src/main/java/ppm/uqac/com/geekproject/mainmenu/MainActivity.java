@@ -24,7 +24,7 @@ import ppm.uqac.com.geekproject.geekactivity.GADialog;
 import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
 import ppm.uqac.com.geekproject.geeklopedie.GeeklopedieActivity;
 import ppm.uqac.com.geekproject.profile.Profile;
-import ppm.uqac.com.geekproject.profile.ViewProfileActivity2;
+import ppm.uqac.com.geekproject.profile.ViewProfileActivity;
 
 public class MainActivity extends AppCompatActivity implements GADialog.dialogDoneListener{
     private TextView _userNameTV;
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     {
         //Intent intent = new Intent(this,ViewProfileActivity.class);
 
-        Intent intent = new Intent(this, ViewProfileActivity2.class);
+        Intent intent = new Intent(this, ViewProfileActivity.class);
         this.finish();
         intent.putExtra("profile", _profile);
 

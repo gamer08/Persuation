@@ -19,7 +19,7 @@ import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 
 
-public class ViewProfileActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class ViewProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     private DrawerLayout mDL;
     private ListView mLV;
@@ -102,7 +102,7 @@ public class ViewProfileActivity2 extends AppCompatActivity implements Navigatio
 
         if (id == R.id.badges)
         {
-            System.out.println("In ViewProfileActivity2.clicsurBadges");
+            System.out.println("In ViewProfileActivity.clicsurBadges");
             Fragment_Badges f = new Fragment_Badges();
             f.setAdapter(_adapter);
             fm.beginTransaction().replace(R.id.content_frame, f).commit();
@@ -129,7 +129,7 @@ public class ViewProfileActivity2 extends AppCompatActivity implements Navigatio
                 .setCancelable(false)
                 .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        ViewProfileActivity2.this.moveTaskToBack(true);
+                        ViewProfileActivity.this.moveTaskToBack(true);
                     }
                 })
                 .setNegativeButton("Non", null)
