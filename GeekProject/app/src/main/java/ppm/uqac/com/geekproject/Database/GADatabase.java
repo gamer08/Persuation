@@ -61,23 +61,8 @@ public class GADatabase extends SQLiteOpenHelper
                 "description string, " +
                 "level INTEGER, " +
                 "experience INTEGER, " +
-                "is_done INTEGER" +
-                ")");
-
-
-        db.execSQL("DROP TABLE IF EXISTS geek_badges");
-        db.execSQL("CREATE TABLE IF NOT EXISTS geek_badges(" +
-                "number_content INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name string, " +
-                "description string, " +
-                "image int " +
-                ")");
-
-        db.execSQL("DROP TABLE IF EXISTS geek_questionnaries");
-        db.execSQL("CREATE TABLE IF NOT EXISTS geek_questionnaries(" +
-                "number_content INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "number int, " +
-                "result int " +
+                "is_done INTEGER, " +
+                "url string" +
                 ")");
     }
 
@@ -95,12 +80,13 @@ public class GADatabase extends SQLiteOpenHelper
     public void addActivity(GA activity)
     {
         int done = 0;
-        this.getWritableDatabase().execSQL("INSERT INTO geek_activity (title, description, level, experience, is_done) VALUES ('" +
+        this.getWritableDatabase().execSQL("INSERT INTO geek_activity (title, description, level, experience, is_done, url) VALUES ('" +
                 activity.get_name() + "','" +
                 activity.get_description() + "','" +
                 activity.get_level() + "','" +
                 activity.get_experience() + "','" +
-                done + "')");
+                done + "','" +
+                activity.get_url() + "')");
         this.getWritableDatabase().close();
     }
 
@@ -120,6 +106,8 @@ public class GADatabase extends SQLiteOpenHelper
         int experienceActivity;
         int done;
         boolean isDone = true;
+        String url;
+
 
         activitiesSaved.moveToFirst();
 
@@ -135,11 +123,12 @@ public class GADatabase extends SQLiteOpenHelper
                 levelActivity = activitiesSaved.getInt(3);
                 experienceActivity = activitiesSaved.getInt(4);
                 done = activitiesSaved.getInt(5);
-                System.out.println("GADatabase Bool = " + done);
+                url = activitiesSaved.getString(6);
+                System.out.println("GADatabase url = " + url);
                 if (done == 0)
                 {
                     isDone = false;
-                    GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
+                    GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone, url);
                     listActivities.add(activity);
                 }
             }
@@ -162,6 +151,7 @@ public class GADatabase extends SQLiteOpenHelper
         int experienceActivity;
         int done;
         boolean isDone = false;
+        String url;
 
         activitiesSaved.moveToFirst();
         activitiesSaved.moveToLast();
@@ -175,11 +165,12 @@ public class GADatabase extends SQLiteOpenHelper
             levelActivity = activitiesSaved.getInt(3);
             experienceActivity = activitiesSaved.getInt(4);
             done = activitiesSaved.getInt(5);
-            System.out.println("GADatabase Bool = " + done);
+            url = activitiesSaved.getString(6);
+            System.out.println("GADatabase url = " + url);
             if (done == 1)
             {
                 isDone = true;
-                GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone);
+                GA activity = new GA(nameActivity, descriptionActivity, levelActivity, experienceActivity, isDone, url);
                 listActivities.add(activity);
             }
         }

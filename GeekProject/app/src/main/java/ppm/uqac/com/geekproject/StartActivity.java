@@ -60,12 +60,16 @@ public class StartActivity extends AppCompatActivity
                 startActivity(intentWelcome);
                 GADatabase gadb = new GADatabase(StartActivity.this);
                 // Exemple avec 2 GA
-                GA activity1 = new GA("Regarder cette vidéo sur Youtube", "Description de visonnage de la vidéo", 1, 20, false);
-                GA activity2 = new GA("Lire un article", "Description lecture article", 1, 20, false);
-                GA activity3 = new GA("Augmenter niveau play store", "Passer au niveau 10", 4, 500, false);
+                GA activity1 = new GA("Lire la définition d un Geek", "Vous pouvez trouver un article présentant un geek dans la geeklopédie --> contenu", 1, 20, false, "");
+                GA activity2 = new GA("Regarder la vidéo Youtube Cyprien : Les GEEK", "Vous pouvez trouver cette vidéo dans la geeklopédie --> vidéo", 1, 20, false, "");
+                GA activity3 = new GA("Aller consulter la section de la geeklopédie qui correspond à votre profil", "Vous pouvez trouver cette vidéo dans la geeklopédie", 1, 20, false, "");
+                GA activity4 = new GA("Regarder une vidéo Culture GEEK", "Culture GEEK est une émission diffusé sur BFMTV qui présente les nouvelles technologies", 1, 20, false, "http://www.bfmtv.com/mediaplayer/replay/culture-geek/");
+                GA activity5 = new GA("Augmenter votre niveau de jeux sur le play store", "Passer au niveau 10", 4, 500, false, "");
                 gadb.addActivity(activity1);
                 gadb.addActivity(activity2);
                 gadb.addActivity(activity3);
+                gadb.addActivity(activity4);
+                gadb.addActivity(activity5);
             }
             else
             {

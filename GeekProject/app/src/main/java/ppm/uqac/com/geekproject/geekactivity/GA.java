@@ -12,6 +12,10 @@ public class GA
     private int _experience;
     private boolean _isDone;
 
+
+
+    private String _url;
+
     /**
      * Constructeur de la classe GeekActivity
      * @param _n: nom de la GA
@@ -20,13 +24,14 @@ public class GA
      * @param _xp : expérience obtenue lorsque l'utilisateur a fait la GA
      * @param _done: indique si l'utilisateur a déjà effectué l'acitivté ou non
      */
-    public GA(String _n, String _d, int _lvl, int _xp, boolean _done)
+    public GA(String _n, String _d, int _lvl, int _xp, boolean _done, String url)
     {
         _name = _n;
         _description=_d;
         _level=_lvl;
         _experience= _xp;
         _isDone = _done;
+        _url = url;
     }
 
     /**
@@ -66,4 +71,5 @@ public class GA
     {
         return _isDone;
     }
+    public String get_url() { return _url; }
 }

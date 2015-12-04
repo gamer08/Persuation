@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.geekactivity;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,8 @@ public class GAAdapter extends BaseAdapter
 
     private boolean firstTime = false;
 
+    private TextView tv_url;
+
     public GAAdapter(Context context, ArrayList<GA> lista)
     {
         mContext=context;
@@ -77,14 +80,23 @@ public class GAAdapter extends BaseAdapter
         tv_level = (TextView) layoutItem.findViewById(R.id.TV_LevelActivity);
         tv_exp = (TextView) layoutItem.findViewById(R.id.TV_experienceActivity);
         cb_activity = (CheckBox) layoutItem.findViewById(R.id.checkBox);
+        tv_url = (TextView) layoutItem.findViewById(R.id.TV_UrlActivity);
         // renseignement des nouveaux champs
 
         tv_name.setText(listActivity.get(position).get_name());
         tv_description.setText(listActivity.get(position).get_description());
-        String lvl ="level : " + Integer.toString(listActivity.get(position).get_level());
+        String lvl ="Level : " + Integer.toString(listActivity.get(position).get_level());
         tv_level.setText(lvl);
         String xp = "Experience : " + Integer.toString(listActivity.get(position).get_experience());
         tv_exp.setText(xp);
+        System.out.println("GA adapter url : " + listActivity.get(position).get_url());
+        tv_url.setText("");
+        if (listActivity.get(position).get_url().length() !=0)
+        {
+            tv_url.setText("Cliquer ici pour ouvrir la vidéo");
+            tv_url.setPaintFlags(tv_url.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        }
+
 
         if(!listActivity.get(position).get_isDone())
         {

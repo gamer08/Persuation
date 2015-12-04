@@ -324,4 +324,12 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
     {
         return _firsttime;
     }
+
+    public void onClickActivitiesUrl(View v)
+    {
+        GA activity = gaAdapter.getItem(fragment_ga.get_ContentListView().getPositionForView(v));
+        Uri uri = Uri.parse(activity.get_url()); // Si l'url ne contient pas http:// l'appli plante
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
+    }
 }
