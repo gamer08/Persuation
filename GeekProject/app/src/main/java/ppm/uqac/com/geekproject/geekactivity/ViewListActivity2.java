@@ -255,26 +255,10 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
 
 
-        // Récupération du toast_ga_done
-        LayoutInflater inflater = getLayoutInflater();
-        View layout = inflater.inflate(R.layout.toast_ga_done, (ViewGroup) findViewById(R.id.toast_ga_done_id));
-
-        // set a dummy image
-        ImageView image = (ImageView) layout.findViewById(R.id.image);
-        image.setImageResource(R.drawable.gabutton);
-
-        // Insertion du texte dans le textView
-        TextView text = (TextView) layout.findViewById(R.id.text);
-        text.setText("Bravo !!!! Tu as réalisé l'activité " + activity.get_name());
-
-        Toast toast = new Toast(getApplicationContext());
-        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-        toast.setDuration(Toast.LENGTH_LONG);
-        toast.setView(layout);
-        toast.show();
+        Toast.makeText(this, "Bravo! Tu as réalisé l'activité " + activity.get_name(), Toast.LENGTH_SHORT).show();
 
         if (_profile.addExperience(activity.get_experience()) == true)
-            Toast.makeText(this, "Bravo! Tu es maintenant niveau " + _profile.getLevel(), Toast.LENGTH_SHORT).show();
+            addLevel(currentFragment);
 
         saveExperience();
 
@@ -290,22 +274,18 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         builder.setTitle("Faire un questionnaire");
         builder.setMessage("Voulez-vous faire un nouveau questionnaire pour évaluer votre progression ?");
         builder.setCancelable(false);
-        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int id)
-            {
+        builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
                 Intent newActivity = new Intent(getApplicationContext(), QuestionaryActivity.class);
-                newActivity.putExtra("fromLevelUP",true);
-                newActivity.putExtra("profile",_profile);
+                newActivity.putExtra("fromLevelUP", true);
+                newActivity.putExtra("profile", _profile);
                 ViewListActivity2.this.finish();
                 startActivity(newActivity);
             }
         });
 
-        builder.setNegativeButton("Non", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int id)
-            {
+        builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
             }
         });
 
@@ -331,5 +311,14 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         Uri uri = Uri.parse(activity.get_url()); // Si l'url ne contient pas http:// l'appli plante
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
+    }
+
+    public void addLevel(Fragment currentFragment)
+    {
+        Toast.makeText(this, "Bravo! Tu es maintenant niveau " + _profile.getLevel(), Toast.LENGTH_SHORT).show();
+        gaList = gadb.getActivitiesDoing(_profile.getLevel());
+        gaAdapter.updateListView(gaList);
+        fragment_ga.set_gadapter(gaAdapter);
+        fm.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
     }
 }

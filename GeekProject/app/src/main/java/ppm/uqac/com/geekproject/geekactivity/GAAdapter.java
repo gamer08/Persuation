@@ -93,7 +93,12 @@ public class GAAdapter extends BaseAdapter
         tv_url.setText("");
         if (listActivity.get(position).get_url().length() !=0)
         {
-            tv_url.setText("Cliquer ici pour ouvrir la vidéo");
+            if(listActivity.get(position).get_name().equals("Installer l application AppyGeek"))
+            {
+                tv_url.setText("Cliquer ici pour télécharger l'application");
+            }
+            else if (listActivity.get(position).get_name().equals("Regarder une vidéo Culture GEEK"))
+                tv_url.setText("Cliquer ici pour ouvrir la vidéo");
             tv_url.setPaintFlags(tv_url.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         }
 
