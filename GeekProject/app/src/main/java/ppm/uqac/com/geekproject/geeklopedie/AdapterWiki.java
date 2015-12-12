@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.geeklopedie;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,15 @@ public class AdapterWiki extends BaseAdapter
         TextView tv_name = (TextView) layoutItem.findViewById(R.id.name_wiki);
         TextView tv_definition = (TextView) layoutItem.findViewById(R.id.definition_wiki);
 
+        tv_name.setText(_listWiki.get(position).getName());
+        tv_definition.setText(_listWiki.get(position).getDefinition());
+
+        // Font
+        Typeface typeFace= Typeface.createFromAsset(getContext().getAssets(), "octapost.ttf");
+
+        tv_name.setTypeface(typeFace);
+        tv_definition.setTypeface(typeFace);
+
 
         return layoutItem;
     }
@@ -77,4 +87,6 @@ public class AdapterWiki extends BaseAdapter
     {
         return position;
     }
+
+    public Context getContext() { return mContext; }
 }

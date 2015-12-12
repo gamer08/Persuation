@@ -34,9 +34,9 @@ public class GenerateProfileService extends IntentService
     {
         _profilTypes = new ArrayList<Profile.Type>();
 
-        _profilTypes.add(Profile.Type.ANTIGEEK);
-        _profilTypes.add(Profile.Type.GEEKPERSECUTOR);
-        _profilTypes.add(Profile.Type.NEUTRAL);
+        _profilTypes.add(Profile.Type.MEFIANT);
+        _profilTypes.add(Profile.Type.SCEPTIQUE);
+        _profilTypes.add(Profile.Type.NEUTRE);
         _profilTypes.add(Profile.Type.GEEKFRIENDLY);
         _profilTypes.add(Profile.Type.GEEK);
         _profilTypes.add(Profile.Type.GUEST);

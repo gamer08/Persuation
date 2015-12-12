@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -105,9 +104,9 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
 
                 switch(_profile.getType())
                 {
-                    case ANTIGEEK:
-                    case GEEKPERSECUTOR:
-                    case NEUTRAL:
+                    case MEFIANT:
+                    case SCEPTIQUE:
+                    case NEUTRE:
                     case GEEKFRIENDLY:
                     case GEEK:
                         nextActivity = new Intent(getApplicationContext(),CreationProfileActivity.class);

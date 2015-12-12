@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.geeklopedie;
 
 import android.app.FragmentManager;
+import android.content.ClipData;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,9 +18,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.Database.GADatabase;
 import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.Database.ContentDatabase;
+import ppm.uqac.com.geekproject.geekactivity.Fragment_GA;
+import ppm.uqac.com.geekproject.geekactivity.GAAdapter;
 
 public class GeeklopedieActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -111,61 +115,27 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
 
         else if (id == R.id.nav_wiki)
         {
+
+            // Ouverture de la BDD
+
             WikiDatabase db = new WikiDatabase(this);
+            ArrayList<ItemWiki> list = new ArrayList<>();
 
-            InputStream is = getResources().openRawResource(getResources().getIdentifier("raw/contenu", "raw", getPackageName()));
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            StringBuilder sb = new StringBuilder();
-
-            String line = null;
-            int n,d;
-
-            try
-            {
-                while ((line = reader.readLine()) != null)
-                {
-                    System.out.println("indice pour ;def= : "+line.indexOf(";def="));
-                    d=line.indexOf(";def=");
-
-                    System.out.println("Name du word = " + line.substring(5,d));
-                    //ItemWiki word = new ItemWiki(line.substring(5,d),line.substring(d+11));
-                    //db.addWord(word);
-                }
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-            finally
-            {
-                try
-                {
-                    is.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            //
-            // Récupération de tout le contenu
-            ArrayList<ItemWiki> list =  db.getWords();
-
+            list = db.getWords();
             // On crée un adapter
-            final AdapterWiki adapter = new AdapterWiki(GeeklopedieActivity.this,list);
+
+            AdapterWiki adapter = new AdapterWiki(GeeklopedieActivity.this,list);
 
             Fragment_Wiki f = new Fragment_Wiki();
-            fm.beginTransaction().replace(R.id.content_frame,f).commit();
             f.setData(adapter);
+            fm.beginTransaction().replace(R.id.content_frame,f).commit();
+
 
             db.close();
         }
         else if (id == R.id.nav_web)
         {
             ContentDatabase db = new ContentDatabase(this);
-            System.out.println("ouverture bd");
-            System.out.println("fragment contenu");
 
             InputStream is = getResources().openRawResource(getResources().getIdentifier("raw/contenu", "raw", getPackageName()));
 

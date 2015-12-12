@@ -12,9 +12,9 @@ public class Profile implements Serializable
 {
     public enum Type
     {
-        ANTIGEEK,
-        GEEKPERSECUTOR,
-        NEUTRAL,
+        MEFIANT,
+        SCEPTIQUE,
+        NEUTRE,
         GEEKFRIENDLY,
         GEEK,
         GUEST
@@ -36,7 +36,7 @@ public class Profile implements Serializable
     {
         _userName  ="";
         _score = 0.0f;
-        _type = Type.ANTIGEEK;
+        _type = Type.MEFIANT;
         _avatar = R.drawable.mistrustful;
         _level = 1;
         _experience = 0;
@@ -125,19 +125,19 @@ public class Profile implements Serializable
     {
         if (_score <=20)
         {
-            _type = Type.ANTIGEEK;
+            _type = Type.MEFIANT;
             _avatar = R.drawable.mistrustful;
         }
 
         else if (_score<=40 && _score>20)
         {
-            _type = Type.GEEKPERSECUTOR;
+            _type = Type.SCEPTIQUE;
             _avatar = R.drawable.skeptical;
         }
 
         else if (_score<=60 && _score >40)
         {
-            _type = Type.NEUTRAL;
+            _type = Type.NEUTRE;
             _avatar = R.drawable.neutral;
         }
 

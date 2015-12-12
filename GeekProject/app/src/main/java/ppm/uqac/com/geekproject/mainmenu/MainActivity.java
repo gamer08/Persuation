@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 
+import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.ImageSettings;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.geekactivity.GADialog;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        System.out.println("IN MAIN");
+        WikiDatabase db = new WikiDatabase(MainActivity.this);
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 

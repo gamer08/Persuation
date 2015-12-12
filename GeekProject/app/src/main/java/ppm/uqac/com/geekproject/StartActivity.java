@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.geekactivity.GA;
 import ppm.uqac.com.geekproject.Database.GADatabase;
+import ppm.uqac.com.geekproject.geeklopedie.ItemWiki;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.LoadProfileService;
 import ppm.uqac.com.geekproject.profile.Profile;
@@ -72,6 +74,20 @@ public class StartActivity extends AppCompatActivity
                 gadb.addActivity(activity4);
                 gadb.addActivity(activity5);
                 gadb.addActivity(activity6);
+
+
+                WikiDatabase wdb = new WikiDatabase(StartActivity.this);
+
+                ItemWiki i1 = new ItemWiki("Geek", "Etre humain passionnee par " +
+                        "toutes sortes de dommaines (informatique, jeux videos, cinema...");
+
+                ItemWiki i2 = new ItemWiki("AFK", "(Away From Keyboard) La personne est momentanement" +
+                        " indisponible et ne pourra pas repondre aux messages.");
+
+                wdb.addWord(i1);
+                wdb.addWord(i2);
+
+                wdb.getWords();
             }
             else
             {
