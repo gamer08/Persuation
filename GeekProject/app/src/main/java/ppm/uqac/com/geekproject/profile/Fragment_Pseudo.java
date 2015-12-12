@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.view.View.OnLongClickListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -95,6 +96,13 @@ public class Fragment_Pseudo extends Fragment {
                 return true;
             }
         });
+
+
+        Typeface typeFace= Typeface.createFromAsset(getActivity().getAssets(), "octapost.ttf");
+        _typeTV.setTypeface(typeFace);
+        _levelTV.setTypeface(typeFace);
+        _userNameET.setTypeface(typeFace);
+
 
         return rootview;
     }

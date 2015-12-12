@@ -2,6 +2,7 @@ package ppm.uqac.com.geekproject.profile;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -63,6 +65,9 @@ public class ViewProfileActivity extends AppCompatActivity implements Navigation
         l.add(b2);
         l.add(b3);
         _adapter = new AdapterBadges(this, l);
+
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
+
     }
 
     @Override

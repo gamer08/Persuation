@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.profile;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,6 +84,10 @@ public class AdapterBadges extends BaseAdapter
         description.setText(_listBadges.get(position).getDescription());
         got.setChecked(_listBadges.get(position).isGot());
 
+
+        Typeface typeFace= Typeface.createFromAsset(_context.getAssets(), "octapost.ttf");
+        name.setTypeface(typeFace);
+        description.setTypeface(typeFace);
         // On récupère les informations grâce à la position passée
         // en paramètre
 

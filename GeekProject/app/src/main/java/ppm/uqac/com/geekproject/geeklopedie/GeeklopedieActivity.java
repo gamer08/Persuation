@@ -99,15 +99,15 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
         System.out.println(id);
 
         if (id == R.id.antigeek)
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_1Mefiant()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_1Mistrustful()).commit();
          else if (id == R.id.GeekPersecutor)   // Handle the camera action
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_2Sceptique()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_2Sckeptical()).commit();
          else if (id == R.id.Neutral)
             fm.beginTransaction().replace(R.id.content_frame,new Fragment_3Neutral()).commit();
         else if (id == R.id.Geekfriendly)
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_4()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_4GeekFriendly()).commit();
         else if (id == R.id.Geek)
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_5()).commit();
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_5Geek()).commit();
 
         else if (id == R.id.nav_wiki)
         {

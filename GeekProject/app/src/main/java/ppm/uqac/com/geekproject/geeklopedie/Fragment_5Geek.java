@@ -11,14 +11,15 @@ import ppm.uqac.com.geekproject.R;
 /**
  * Created by Simon on 23/10/2015.
  */
-public class Fragment_2Sceptique extends Fragment
+public class Fragment_5Geek extends Fragment
 {
+
     View rootview;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        rootview = inflater.inflate(R.layout.fragment_sceptique,container,false);
+        rootview = inflater.inflate(R.layout.fragment_5geek,container,false);
         return rootview;
     }
 }

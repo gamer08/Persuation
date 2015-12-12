@@ -18,7 +18,7 @@ public class Fragment_3Neutral extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        rootview = inflater.inflate(R.layout.fragment_3,container,false);
+        rootview = inflater.inflate(R.layout.fragment_3neutral,container,false);
         return rootview;
     }
 }
