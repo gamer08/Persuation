@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
 import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.geekactivity.GA;
 import ppm.uqac.com.geekproject.Database.GADatabase;
@@ -19,6 +26,7 @@ import ppm.uqac.com.geekproject.geeklopedie.ItemWiki;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.LoadProfileService;
 import ppm.uqac.com.geekproject.profile.Profile;
+import ppm.uqac.com.geekproject.questionary.Question;
 
 
 /**
@@ -56,8 +64,7 @@ public class StartActivity extends AppCompatActivity
         public void onReceive(Context context, Intent intent)
         {
             Profile profile = (Profile)intent.getSerializableExtra("profile");
-            if (profile == null)
-            {
+            if (profile == null) {
                 Intent intentWelcome = new Intent(StartActivity.this, WelcomeActivity.class);
                 startActivity(intentWelcome);
                 GADatabase gadb = new GADatabase(StartActivity.this);
@@ -75,19 +82,23 @@ public class StartActivity extends AppCompatActivity
                 gadb.addActivity(activity5);
                 gadb.addActivity(activity6);
 
+                try
+                {
+                    getWiki();
+                }
 
-                WikiDatabase wdb = new WikiDatabase(StartActivity.this);
 
-                ItemWiki i1 = new ItemWiki("Geek", "Etre humain passionnee par " +
-                        "toutes sortes de dommaines (informatique, jeux videos, cinema...");
+                catch (XmlPullParserException e)
+                {
 
-                ItemWiki i2 = new ItemWiki("AFK", "(Away From Keyboard) La personne est momentanement" +
-                        " indisponible et ne pourra pas repondre aux messages.");
+                }
 
-                wdb.addWord(i1);
-                wdb.addWord(i2);
+                catch (IOException e)
+                {
 
-                wdb.getWords();
+                }
+
+
             }
             else
             {
@@ -123,5 +134,60 @@ public class StartActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    public void getWiki() throws XmlPullParserException, IOException
+    {
+        System.out.println("In getwiki()");
+        XmlResourceParser parser = getApplicationContext().getResources().getXml(R.xml.wiki);
+        int eventType = parser.next();
+
+        WikiDatabase wdb = new WikiDatabase(StartActivity.this);
+        String name="";
+        String definition="";
+
+        boolean b = false;
+
+        while (b == false)
+        {
+
+            switch (eventType) {
+                case XmlPullParser.START_TAG:
+
+
+                    if (parser.getName().equals("Nom"))
+                    {
+                        name = parser.nextText();
+                    }
+
+                    else if (parser.getName().equals("Definition"))
+                    {
+                        definition = parser.nextText();
+                        wdb.addWord(new ItemWiki(name, definition));
+
+                    }
+
+                    else if (parser.getName().equals("Fin"))
+                    {
+                        System.out.println( parser.nextText());
+                        b = true;
+                    }
+
+                    break;
+
+                default:
+                    break;
+            }
+
+            eventType = parser.next();
+
+        }
+
+
+
+    }
+
+
 }
 
