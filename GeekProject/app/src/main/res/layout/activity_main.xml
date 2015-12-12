@@ -29,7 +29,7 @@
         android:layout_height="100dp"
         android:id="@+id/image"
         android:padding="15dp"
-        android:src="@drawable/antigeek"
+        android:src="@drawable/mistrustful"
         android:layout_below="@+id/TV_UserName"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"

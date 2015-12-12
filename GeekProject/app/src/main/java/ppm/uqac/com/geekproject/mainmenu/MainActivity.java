@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
         //System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
 
-
+        // Font
         Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
         _userNameTV.setTypeface(typeFace);
         _typeTV.setTypeface(typeFace);

@@ -10,25 +10,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/mefiant_title"
+        android:text="@string/mistrustful_title"
         android:id="@+id/title_antigeek"
         android:layout_gravity="center_horizontal|top"
+        android:textColor="@color/value"
         android:padding="10dp" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/image_antigeek"
+        android:id="@+id/mistrustful_image"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/antigeek"
+        android:src="@drawable/mistrustful"
         android:padding="10dp"
         android:layout_gravity="center_horizontal|bottom" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="187dp"
-        android:text="@string/mefiant_description"
-        android:id="@+id/textView2"
+        android:textColor="@color/value"
+        android:text="@string/mistrustful_description"
+        android:id="@+id/mistrustful_description"
         android:layout_gravity="left|center_vertical"
         android:padding="10dp" />
 
@@ -41,16 +43,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Conseil: "
-            android:id="@+id/textView4"
+            android:textColor="@color/value"
+            android:id="@+id/TV_advice"
             android:layout_gravity="center_vertical"
             android:paddingRight="10dp" />
 
         <TextView
             android:layout_width="265dp"
             android:layout_height="wrap_content"
-            android:text="@string/mefiant_advice"
-            android:id="@+id/textView3"
+            android:text="@string/mistrustful_advice"
+            android:id="@+id/mistrustful_advice"
             android:textStyle="bold"
+            android:textColor="@color/value"
             android:background="@drawable/border_advice"
             android:gravity="center_horizontal"
             android:layout_weight="1.08"

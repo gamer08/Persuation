@@ -37,7 +37,7 @@ public class Profile implements Serializable
         _userName  ="";
         _score = 0.0f;
         _type = Type.ANTIGEEK;
-        _avatar = R.drawable.antigeek;
+        _avatar = R.drawable.mistrustful;
         _level = 1;
         _experience = 0;
         _limitExperience = getLevelLimit();
@@ -126,13 +126,13 @@ public class Profile implements Serializable
         if (_score <=20)
         {
             _type = Type.ANTIGEEK;
-            _avatar = R.drawable.antigeek;
+            _avatar = R.drawable.mistrustful;
         }
 
         else if (_score<=40 && _score>20)
         {
             _type = Type.GEEKPERSECUTOR;
-            _avatar = R.drawable.geekpersecutor;
+            _avatar = R.drawable.skeptical;
         }
 
         else if (_score<=60 && _score >40)

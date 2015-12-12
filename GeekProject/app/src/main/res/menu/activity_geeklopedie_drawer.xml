@@ -3,8 +3,11 @@
 
     <item android:title="Explications profils">
     <menu>
-        <item android:id="@+id/antigeek" android:icon="@drawable/antigeek_icon"
-            android:title="Antigeek" />
+        <item
+            android:id="@+id/antigeek"
+            android:icon="@drawable/antigeek_icon"
+            android:title="Antigeek"
+            />
         <item android:id="@+id/GeekPersecutor" android:icon="@drawable/geekpersecutor_icon"
             android:title="GeekPersecutor" />
         <item android:id="@+id/Neutral" android:icon="@drawable/neutral_icon"

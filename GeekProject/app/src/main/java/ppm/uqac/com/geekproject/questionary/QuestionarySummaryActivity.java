@@ -82,8 +82,11 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
 
         TextView tv = (TextView) findViewById(R.id.TV_yourScore);
+        TextView tv2 = (TextView) findViewById(R.id.TV_Score);
         _scoreView.setTypeface(typeFace);
         tv.setTypeface(typeFace);
+        tv2.setTypeface(typeFace);
+
     }
 
     private class Receiver extends BroadcastReceiver

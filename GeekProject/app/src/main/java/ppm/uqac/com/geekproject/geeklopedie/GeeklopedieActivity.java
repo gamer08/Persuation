@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.geeklopedie;
 
 import android.app.FragmentManager;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -258,6 +260,7 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
                     e.printStackTrace();
                 }
             }
+
 
             // Récupération de tout le contenu
             ArrayList<ItemContent> List =  db.getVideo();

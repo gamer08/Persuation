@@ -7,24 +7,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Neutre"
-        android:id="@+id/title_neutre"
-        android:layout_gravity="center_horizontal|top" />
+        android:text="@string/neutral_title"
+        android:id="@+id/title_neutral"
+        android:textColor="@color/value"
+        android:layout_gravity="center_horizontal|top"
+        android:padding="10dp" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/image_geekpersecutor"
+        android:id="@+id/image_neutral"
         android:layout_centerHorizontal="true"
         android:src="@drawable/neutral"
         android:padding="10dp"
         android:layout_gravity="center_horizontal|bottom" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Le Neutre n'est pas plus antipathique envers les geeks que sympathique. Il ne les soutient pas mais n'éprouve aucune animosité à leurs égards. S'il en croise dans la rue, il les prendra comme des gesn normaux, sans aucune pensée."
-        android:id="@+id/textView2"
-        android:layout_gravity="left|center_vertical" />
+        android:layout_width="fill_parent"
+        android:layout_height="187dp"
+        android:text="@string/neutral_description"
+        android:id="@+id/description_neutral"
+        android:textColor="@color/value"
+        android:layout_gravity="left|center_vertical"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="148dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conseil: "
+            android:textColor="@color/value"
+            android:id="@+id/TV_advice"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:text="@string/neutral_advice"
+            android:id="@+id/neutral_advice"
+            android:textStyle="bold"
+            android:textColor="@color/value"
+            android:background="@drawable/border_advice"
+            android:gravity="center_horizontal"
+            android:layout_weight="1.08"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
 
 </LinearLayout>
