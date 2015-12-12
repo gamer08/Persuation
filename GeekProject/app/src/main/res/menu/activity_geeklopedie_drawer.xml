@@ -4,18 +4,17 @@
     <item android:title="Explications profils">
     <menu>
         <item
-            android:id="@+id/antigeek"
-            android:icon="@drawable/antigeek_icon"
-            android:title="Antigeek"
+            android:id="@+id/mistrustful"
+            android:icon="@drawable/mistrustful_icon"
+            android:title="Mefiant"
             />
-        <item android:id="@+id/GeekPersecutor" android:icon="@drawable/geekpersecutor_icon"
-            android:title="GeekPersecutor" />
+        <item android:id="@+id/skeptical" android:icon="@drawable/skeptical_icon"
+            android:title="Sceptique" />
         <item android:id="@+id/Neutral" android:icon="@drawable/neutral_icon"
-            android:title="Neutral" />
+            android:title="Neutre" />
         <item android:id="@+id/Geekfriendly" android:icon="@drawable/geekfriendly_icon"
-            android:title="Geekfriendly" />
+            android:title="Geek Friendly" />
         <item android:id="@+id/Geek" android:icon="@drawable/geek_icon"
-            android:src="@drawable/geek_icon"
             android:title="Geek" />
         </menu>
     </item>

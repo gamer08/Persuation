@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/mistrustful_title"
-        android:id="@+id/title_antigeek"
+        android:id="@+id/title_mistrustful"
         android:layout_gravity="center_horizontal|top"
         android:textColor="@color/value"
         android:padding="10dp" />

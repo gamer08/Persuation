@@ -1,7 +1,6 @@
 package ppm.uqac.com.geekproject.geeklopedie;
 
 import android.app.FragmentManager;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -100,9 +98,9 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
         int id = item.getItemId();
         System.out.println(id);
 
-        if (id == R.id.antigeek)
+        if (id == R.id.mistrustful)
             fm.beginTransaction().replace(R.id.content_frame,new Fragment_1Mistrustful()).commit();
-         else if (id == R.id.GeekPersecutor)   // Handle the camera action
+         else if (id == R.id.skeptical)   // Handle the camera action
             fm.beginTransaction().replace(R.id.content_frame,new Fragment_2Sckeptical()).commit();
          else if (id == R.id.Neutral)
             fm.beginTransaction().replace(R.id.content_frame,new Fragment_3Neutral()).commit();

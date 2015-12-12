@@ -28,7 +28,7 @@ public class Fragment_1Mistrustful extends Fragment
         // Font
         Typeface typeFace= Typeface.createFromAsset(getActivity().getAssets(), "octapost.ttf");
 
-        TextView tv1 = (TextView) rootview.findViewById(R.id.title_antigeek);
+        TextView tv1 = (TextView) rootview.findViewById(R.id.title_mistrustful);
         TextView tv2 = (TextView) rootview.findViewById(R.id.mistrustful_description);
         TextView tv3 = (TextView) rootview.findViewById(R.id.TV_advice);
         TextView tv4 = (TextView) rootview.findViewById(R.id.mistrustful_advice);
