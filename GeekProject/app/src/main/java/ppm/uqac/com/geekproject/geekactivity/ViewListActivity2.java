@@ -10,6 +10,7 @@ import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -37,6 +38,8 @@ import com.facebook.share.widget.ShareDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -135,13 +138,12 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
             drawer.closeDrawer(GravityCompat.START);
         else
         {
-            _firsttime=true;
             if(_firsttime==true)
             {
                 new AlertDialog.Builder(this)
-                        .setMessage("Voulez-vous partager vos progrès sur facebook?")
+                        .setMessage("Voulez-vous partager vos progrès?")
                         .setCancelable(false)
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Facebook", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 //test dialog
                                 FacebookSdk.sdkInitialize(getApplicationContext());
@@ -161,6 +163,15 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                     shareDialog.show(linkContent);
                                 }
                             }
+                        })
+                        .setNeutralButton("Autre réseau", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                sharingIntent.setType("text/plain");
+                                sharingIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
+                                startActivity(Intent.createChooser(sharingIntent, "Partager avec"));
+                            }
+
                         })
                         .setNegativeButton("Non",new DialogInterface.OnClickListener()
                         {
