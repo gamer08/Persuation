@@ -39,6 +39,8 @@ public class SaveProfileService extends IntentService
         nbQuestionaries = nbQuestionaries.concat(String.valueOf(profile.getNbQuestionaries())).concat(System.getProperty("line.separator"));
 
         System.out.println("In SaveProfileService, nb de questionnaires = " + profile.getNbQuestionaries());
+        System.out.println("In SaveProfileService, scores = " + profile.getScore());
+        System.out.println(" et dans la liste des scores: " + profile._scores.get(profile.getNbQuestionaries()-1));
 
         for (int i =0; i<profile.getNbQuestionaries(); i++)
             scores = scores.concat((String.valueOf(profile._scores.get(i))).concat(System.getProperty("line.separator")));
