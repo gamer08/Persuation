@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.Html;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -140,7 +141,6 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
             drawer.closeDrawer(GravityCompat.START);
         else
         {
-            _firsttime=true;
             if(_firsttime==true)
             {
                 new AlertDialog.Builder(this)
@@ -167,38 +167,56 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                 }
                             }
                         })
-                        .setNeutralButton("Autre réseau", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Autre réseau social", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                List<Intent> targetedShareIntents = new ArrayList<Intent>();
-                                Intent shareInent = new Intent(Intent.ACTION_SEND);
-                                shareInent.setType("text/plain");
-                                List<ResolveInfo> resInfo = ViewListActivity2.this.getPackageManager().queryIntentActivities(shareInent, 0);
 
                                 ArrayList<String> wantedPackage = new ArrayList<>();
-                                wantedPackage.add("com.google.android.apps.plus");
-                                wantedPackage.add("com.google.android.gm");
-                                wantedPackage.add("com.snapchat.android");
-                                wantedPackage.add("com.android.mms");
-                                wantedPackage.add("com.skype.raider");
+                                wantedPackage.add("com.google.android.gm"); // Gmail
+                                wantedPackage.add("com.snapchat.android"); // Snapchat
+                                wantedPackage.add("com.android.mms"); // MMS SMS
+                                wantedPackage.add("com.skype.raider"); // Skype
+                                wantedPackage.add("com.facebook.messenger"); //Facebook messenger
 
-                                if (!resInfo.isEmpty()) {
-                                    for (ResolveInfo info : resInfo) {
-                                        Intent targetedShare = new Intent(android.content.Intent.ACTION_SEND);
-                                        targetedShare.setType("text/plain");
-                                        String infoPackageName = info.activityInfo.packageName.toLowerCase();
-                                        System.out.println("nom du package : "+infoPackageName);
-                                        if (wantedPackage.contains(infoPackageName)) {
-                                            targetedShare.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
-                                            System.out.println("info du package : " + info.activityInfo.packageName.toLowerCase());
-                                            targetedShare.setPackage(info.activityInfo.packageName.toLowerCase());
-                                            targetedShareIntents.add(targetedShare);
-                                            wantedPackage.remove(infoPackageName);
-                                        }
+                                List<Intent> targetedShareIntents = new ArrayList<Intent>();
+                                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                shareIntent.setType("image/jpeg");//("text/plain");
+                                List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                                for (ResolveInfo resolveInfo : resInfo) {
+                                    String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                    Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                    targetedShareIntent.setType("image/jpeg");
+                                    System.out.println(packageName);
+                                    System.out.println(resolveInfo.activityInfo.name.toLowerCase());
+                                    if (TextUtils.equals(resolveInfo.activityInfo.name, "com.twitter.android.composer.ComposerActivity")) {
+                                        targetedShareIntent.setPackage(packageName);
+                                        targetedShareIntent.setClassName(
+                                                resolveInfo.activityInfo.packageName,
+                                                resolveInfo.activityInfo.name);
+                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
+                                        targetedShareIntents.add(targetedShareIntent);
+                                        wantedPackage.remove(packageName);
+                                    }else if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.google.android.libraries.social.gateway.gatewayactivity")){
+                                       System.out.println("google plus");
+                                        targetedShareIntent.setPackage(packageName);
+                                        targetedShareIntent.setClassName(
+                                                resolveInfo.activityInfo.packageName,
+                                                resolveInfo.activityInfo.name);
+                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
+                                        targetedShareIntents.add(targetedShareIntent);
+                                        wantedPackage.remove(packageName);
                                     }
-                                    Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Partager via");
-                                    chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
-                                    startActivity(chooserIntent);
+                                    else if(wantedPackage.contains(packageName))
+                                    {
+                                        targetedShareIntent.setPackage(resolveInfo.activityInfo.packageName.toLowerCase());
+                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
+                                        targetedShareIntents.add(targetedShareIntent);
+                                        wantedPackage.remove(packageName);
+                                    }
                                 }
+                                Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
+                                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
+                                startActivity(chooserIntent);
+                                _firsttime=false;
                             }
 
                         })
