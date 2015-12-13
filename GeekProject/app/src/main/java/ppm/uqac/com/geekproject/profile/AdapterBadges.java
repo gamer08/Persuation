@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -65,14 +66,14 @@ public class AdapterBadges extends BaseAdapter
     {
 
         System.out.println("In Adapter.getView");
-        RelativeLayout l;
+        LinearLayout l;
 
         // On récupère le layout lié à notre Badge
 
         if (convertView == null)
-            l = (RelativeLayout) _inflater.inflate(R.layout.badge_layout, parent, false);
+            l = (LinearLayout) _inflater.inflate(R.layout.badge_layout, parent, false);
         else
-            l = (RelativeLayout) convertView;
+            l = (LinearLayout) convertView;
 
         ImageView image = (ImageView) l.findViewById(R.id.badge_image);
         TextView name = (TextView) l.findViewById(R.id.badge_name);
