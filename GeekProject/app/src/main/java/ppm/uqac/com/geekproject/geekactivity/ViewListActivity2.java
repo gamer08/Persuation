@@ -8,8 +8,10 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -138,6 +140,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
             drawer.closeDrawer(GravityCompat.START);
         else
         {
+            _firsttime=true;
             if(_firsttime==true)
             {
                 new AlertDialog.Builder(this)
@@ -166,10 +169,36 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                         })
                         .setNeutralButton("Autre réseau", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                sharingIntent.setType("text/plain");
-                                sharingIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
-                                startActivity(Intent.createChooser(sharingIntent, "Partager avec"));
+                                List<Intent> targetedShareIntents = new ArrayList<Intent>();
+                                Intent shareInent = new Intent(Intent.ACTION_SEND);
+                                shareInent.setType("text/plain");
+                                List<ResolveInfo> resInfo = ViewListActivity2.this.getPackageManager().queryIntentActivities(shareInent, 0);
+
+                                ArrayList<String> wantedPackage = new ArrayList<>();
+                                wantedPackage.add("com.google.android.apps.plus");
+                                wantedPackage.add("com.google.android.gm");
+                                wantedPackage.add("com.snapchat.android");
+                                wantedPackage.add("com.android.mms");
+                                wantedPackage.add("com.skype.raider");
+
+                                if (!resInfo.isEmpty()) {
+                                    for (ResolveInfo info : resInfo) {
+                                        Intent targetedShare = new Intent(android.content.Intent.ACTION_SEND);
+                                        targetedShare.setType("text/plain");
+                                        String infoPackageName = info.activityInfo.packageName.toLowerCase();
+                                        System.out.println("nom du package : "+infoPackageName);
+                                        if (wantedPackage.contains(infoPackageName)) {
+                                            targetedShare.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
+                                            System.out.println("info du package : " + info.activityInfo.packageName.toLowerCase());
+                                            targetedShare.setPackage(info.activityInfo.packageName.toLowerCase());
+                                            targetedShareIntents.add(targetedShare);
+                                            wantedPackage.remove(infoPackageName);
+                                        }
+                                    }
+                                    Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Partager via");
+                                    chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
+                                    startActivity(chooserIntent);
+                                }
                             }
 
                         })
