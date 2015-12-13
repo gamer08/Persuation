@@ -148,45 +148,20 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                 callbackManager = CallbackManager.Factory.create();
                                 shareDialog = new ShareDialog(ViewListActivity2.this);
 
-
-                                if (ShareDialog.canShow(ShareLinkContent.class)) {
-                                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                                            .setContentTitle("Hello Facebook")
-                                            .setContentDescription(
-                                                    "The 'Hello Facebook' sample  showcases simple Facebook integration")
-                                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
-                                            .build();
-
-                                    shareDialog.show(linkContent);
-                                }
-                              /*  if (ShareDialog.canShow(ShareLinkContent.class))
+                                if (ShareDialog.canShow(ShareLinkContent.class))
                                 {
-                                    System.out.println("if pour afficher partage facebook");
                                     LoginManager.getInstance().logInWithReadPermissions(
                                             ViewListActivity2.this,
                                             Arrays.asList("user_friends"));
                                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                             .setContentTitle("GeekProject")
-                                             // .setImageUrl(uri) // Pour le moment problème pour mettre une image
-                                .
-                                setContentDescription("A commencé à utiliser l'application GeekProject")
-                                        .setContentUrl(Uri.parse("http://facebook.com"))
-                                        .build();
-                                shareDialog.show(linkContent);
-                                System.out.println("fin if pour afficher partage facebook");
-                            }*/
-
-                            //Ouverture MainActivity
-                            /*Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                            main.putExtra("profile",_profile);
-                            main.putExtra("activite","ViewListActivity");
-                            ViewListActivity2.this.
-
-                           // finish();
-
-                            startActivity(main);*/
-                        }
-            })
+                                            .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                            .setContentUrl(Uri.parse("http://facebook.com"))
+                                            .build();
+                                    shareDialog.show(linkContent);
+                                }
+                            }
+                        })
                         .setNegativeButton("Non",new DialogInterface.OnClickListener()
                         {
                             public void onClick(DialogInterface dialog, int id)
@@ -213,67 +188,6 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         }
     }
 
-    //Test facebook
-
-// Private method to handle Facebook login and callback
-    private void onFblogin() {
-        callbackmanager = CallbackManager.Factory.create();
-        System.out.println("fblogin");
-        // Set permissions
-       // LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("publish_actions", "user_photos", "public_profile"));
-        LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList("publish_actions"));
-
-        LoginManager.getInstance().registerCallback(callbackmanager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-
-                        System.out.println("Success");
-                        GraphRequest.newMeRequest(
-                                loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                                    @Override
-                                    public void onCompleted(JSONObject json, GraphResponse response) {
-                                        if (response.getError() != null) {
-                                            // handle error
-                                            System.out.println("ERROR");
-                                        } else {
-                                            System.out.println("Success");
-                                            try {
-
-                                                String jsonresult = String.valueOf(json);
-                                                System.out.println("JSON Result" + jsonresult);
-
-                                                String str_email = json.getString("email");
-                                                String str_id = json.getString("id");
-                                                String str_firstname = json.getString("first_name");
-                                                String str_lastname = json.getString("last_name");
-
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    }
-
-                                }).executeAsync();
-
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        Log.d("cancel", "On cancel");
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-                        Log.d("error", error.toString());
-                    }
-                });
-
-        System.out.println("fin fblogin");
-    }
-
-
-    //Fin test
 
     /**
      * Méthode pour récupérer le resultat du partage sur facebook
