@@ -11,7 +11,9 @@
         android:text="@string/TV_Dialog"
         android:id="@+id/TV_Dialog"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/value" />
 
     <Button
         android:layout_width="wrap_content"
@@ -20,7 +22,7 @@
         android:id="@+id/buttonDialog"
         android:onClick="onClickActivities"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/label"
+        android:textColor="@color/value"
         />
 
 

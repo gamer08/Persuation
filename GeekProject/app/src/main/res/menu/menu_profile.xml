@@ -23,11 +23,6 @@
                 android:icon="@android:drawable/ic_menu_more"
                 android:title="Badges"/>
 
-            <item
-                android:id="@+id/photo"
-                android:icon="@android:drawable/ic_menu_more"
-                android:title="Photo"/>
-
         </menu>
 
 

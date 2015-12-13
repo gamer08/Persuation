@@ -52,7 +52,6 @@ public class QuestionaryActivity extends AppCompatActivity
     {
         //Log.d(TAG, "OnCreate");
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "QuestionaryA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_questionary);
 
         //On regarde si on vient d'un level UP.
@@ -82,6 +81,8 @@ public class QuestionaryActivity extends AppCompatActivity
                 }
             }
         };
+
+
 
         this._curQuestion = -1;
         _score = _totalWeightPossible = 0 ;
@@ -130,6 +131,9 @@ public class QuestionaryActivity extends AppCompatActivity
         _question.setTypeface(typeFace);
         _questionCpt.setTypeface(typeFace);
         _fact.setTypeface(typeFace);
+
+        TextView t = (TextView) findViewById(R.id.tv_saviez_vous);
+        t.setTypeface(typeFace);
     }
 
     private class Receiver extends BroadcastReceiver

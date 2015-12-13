@@ -143,12 +143,13 @@
                 android:layout_gravity="left"
                 android:textStyle="bold"
                 android:textColor="@color/value"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:paddingBottom="2dp" />
 
             <TextView
                 android:layout_width="350dp"
                 android:layout_weight="0.62"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
 
                 android:id="@+id/TV_Fact"
                 android:textSize="20dp"
