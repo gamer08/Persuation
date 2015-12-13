@@ -16,6 +16,8 @@ public class Badge
         _description = d;
         _image = i;
         _got = g;
+
+        System.out.println("Nouveau badge avec comme id = " + _image);
     }
 
 

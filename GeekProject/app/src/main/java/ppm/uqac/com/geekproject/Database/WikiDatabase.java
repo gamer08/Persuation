@@ -4,13 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Point;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import ppm.uqac.com.geekproject.geeklopedie.ItemWiki;
-import ppm.uqac.com.geekproject.profile.Badge;
 
 /**
  * Created by Valentin on 02/12/2015.

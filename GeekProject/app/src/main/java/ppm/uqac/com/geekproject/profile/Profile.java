@@ -206,4 +206,6 @@ public class Profile implements Serializable
         _scores.add(getScore());
         _nbQuestionaries+=1;
     }
+
+
 }

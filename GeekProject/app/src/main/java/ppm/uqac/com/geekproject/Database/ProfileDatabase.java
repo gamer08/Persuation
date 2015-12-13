@@ -5,11 +5,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Point;
 
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.profile.Badge;
 
 /**
@@ -31,6 +31,8 @@ public class ProfileDatabase extends SQLiteOpenHelper {
     {
         super(context, "GeekActivity.db", null, 1);
         SQLiteDatabase db = this.getWritableDatabase();
+        listBadges = new ArrayList<Badge>();
+        listQuestionnaries = new ArrayList<Point>();
         onCreate(db);
     }
 
@@ -39,12 +41,12 @@ public class ProfileDatabase extends SQLiteOpenHelper {
     {
 
         // Création de la BDD pour les badges
-        db.execSQL("DROP TABLE IF EXISTS geek_badges");
         db.execSQL("CREATE TABLE IF NOT EXISTS geek_badges(" +
                 "number_content INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name string, " +
                 "description string, " +
-                "image int " +
+                "image int, " +
+                "got boolean" +
                 ")");
 
         // Création de la BDD pour le résultat des questions
@@ -67,13 +69,15 @@ public class ProfileDatabase extends SQLiteOpenHelper {
      * Ajout d'un badge dans la BDD
      * @param b Badge à ajouter
      */
-    public void addBadge(Badge b)
+    public void addBadge(String n, String d, int i, boolean b)
     {
+
+        System.out.println("Ajout d'un badge avec comme id = " + i);
         this.getWritableDatabase().execSQL("INSERT INTO geek_badges (name, description, image, got) VALUES ('" +
-                b.getName() + "','" +
-                b.getDescription() + "','" +
-                b.getImage()+ "','" +
-                b.isGot() +
+                n + "','" +
+                d + "','" +
+                i + "','" +
+                b +
                 "')");
         this.getWritableDatabase().close();
     }
@@ -85,12 +89,15 @@ public class ProfileDatabase extends SQLiteOpenHelper {
      */
     public ArrayList<Badge> getBadges()
     {
+
+        listBadges.clear();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM geek_badges", null);
 
+        int n=0;
         String name;
         String description;
-        int image;
+        int image=0;
         String got;
 
         cursor.moveToFirst();
@@ -99,17 +106,54 @@ public class ProfileDatabase extends SQLiteOpenHelper {
 
         for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext())
         {
+
             name = cursor.getString(1);
+            System.out.println("Nom du badge =  " + name);
             description = cursor.getString(2);
-            image = Integer.parseInt(cursor.getString(3));
+            n = Integer.parseInt(cursor.getString(3));
             got = cursor.getString(4);
+
+
+
+
+            switch (n)
+            {
+                case (0):
+                    image = R.drawable.badge_newbie;
+
+                    break;
+                case (1):
+                    image = R.drawable.badge_bronze;
+                    break;
+                case (2):
+                    image = R.drawable.badge_silver;
+                    break;
+                case (3):
+                    image = R.drawable.badge_gold;
+                    break;
+                case (4):
+                    image = R.drawable.badge_sapphire;
+                    break;
+                case (5):
+                    image = R.drawable.badge_ruby;
+                    break;
+                case(6):
+                    image = R.drawable.badge_emerald;
+                    break;
+                case (7):
+                    image = R.drawable.badge_amethyst;
+                    break;
+
+                default:
+                    break;
+            }
+
 
             Badge b = new Badge(name,description,image, Boolean.valueOf(got));
 
             listBadges.add(b);
-            System.out.println("Nom du badge =  " + b.getName());
+
         }
-        System.out.println("Badges " + listBadges.get(0).getName());
 
         cursor.close();
         db.close();
@@ -162,5 +206,17 @@ public class ProfileDatabase extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return listQuestionnaries;
+    }
+
+
+    public void gainBadge(Badge b)
+    {
+
+        System.out.println("GAIN BADGE IN PDB");
+        this.getWritableDatabase().execSQL("UPDATE geek_badges " +
+                "SET got = true " +
+                "WHERE name = '" + b.getName() + "'");
+        this.getWritableDatabase().close();
+        System.out.println("Obtention d'un badge " + b.getName() + " a ete obtenu " + b.isGot());
     }
 }

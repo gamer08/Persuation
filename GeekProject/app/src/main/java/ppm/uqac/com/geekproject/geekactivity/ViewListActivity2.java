@@ -9,8 +9,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,19 +18,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import ppm.uqac.com.geekproject.Database.GADatabase;
+import ppm.uqac.com.geekproject.Database.ProfileDatabase;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.Profile;
@@ -293,6 +288,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         if (_profile.addExperience(activity.get_experience()) == true)
             addLevel(currentFragment);
 
+        checkBadges(); // pour voir s'il y a eu gain de badge
         saveExperience();
 
         System.out.println("Vue du profil après avoir fait une activité : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
@@ -349,6 +345,8 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
     public void addLevel(Fragment currentFragment)
     {
         Toast.makeText(this, "Bravo! Tu es maintenant niveau " + _profile.getLevel(), Toast.LENGTH_SHORT).show();
+
+
         gaList = gadb.getActivitiesDoing(_profile.getLevel());
         gaAdapter.updateListView(gaList);
         fragment_ga.set_gadapter(gaAdapter);
@@ -373,6 +371,31 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
             i++;
         }
         return isApp;
+    }
+
+
+    public void checkBadges()
+    {
+        if (_profile.getLevel() == 4)
+        {
+            ProfileDatabase pdb = new ProfileDatabase(this);
+            pdb.gainBadge(pdb.getBadges().get(1));
+            Toast.makeText(this, "Tu as gagné un nouveau badge! ", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (_profile.getLevel() == 7)
+        {
+            ProfileDatabase pdb = new ProfileDatabase(this);
+            pdb.gainBadge(pdb.getBadges().get(2));
+            Toast.makeText(this, "Tu as gagné un nouveau badge! ", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (_profile.getLevel() == 10)
+        {
+            ProfileDatabase pdb = new ProfileDatabase(this);
+            pdb.gainBadge(pdb.getBadges().get(3));
+            Toast.makeText(this, "Tu as gagné un nouveau badge! ", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 

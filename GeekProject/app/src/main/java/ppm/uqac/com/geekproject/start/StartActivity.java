@@ -1,4 +1,4 @@
-package ppm.uqac.com.geekproject;
+package ppm.uqac.com.geekproject.start;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,15 +10,14 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.R;
+import ppm.uqac.com.geekproject.Database.ProfileDatabase;
 import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.geekactivity.GA;
 import ppm.uqac.com.geekproject.Database.GADatabase;
@@ -26,7 +25,6 @@ import ppm.uqac.com.geekproject.geeklopedie.ItemWiki;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.LoadProfileService;
 import ppm.uqac.com.geekproject.profile.Profile;
-import ppm.uqac.com.geekproject.questionary.Question;
 
 
 /**
@@ -85,6 +83,7 @@ public class StartActivity extends AppCompatActivity
                 try
                 {
                     getWiki();
+                    getBadges();
                 }
 
 
@@ -137,40 +136,31 @@ public class StartActivity extends AppCompatActivity
 
 
 
-    public void getWiki() throws XmlPullParserException, IOException
-    {
+    public void getWiki() throws XmlPullParserException, IOException {
         System.out.println("In getwiki()");
         XmlResourceParser parser = getApplicationContext().getResources().getXml(R.xml.wiki);
         int eventType = parser.next();
 
         WikiDatabase wdb = new WikiDatabase(StartActivity.this);
-        String name="";
-        String definition="";
+        String name = "";
+        String definition = "";
 
         boolean b = false;
 
-        while (b == false)
-        {
+        while (b == false) {
 
             switch (eventType) {
                 case XmlPullParser.START_TAG:
 
 
-                    if (parser.getName().equals("Nom"))
-                    {
+                    if (parser.getName().equals("Nom")) {
                         name = parser.nextText();
-                    }
-
-                    else if (parser.getName().equals("Definition"))
-                    {
+                    } else if (parser.getName().equals("Definition")) {
                         definition = parser.nextText();
                         wdb.addWord(new ItemWiki(name, definition));
 
-                    }
-
-                    else if (parser.getName().equals("Fin"))
-                    {
-                        System.out.println( parser.nextText());
+                    } else if (parser.getName().equals("Fin")) {
+                        System.out.println(parser.nextText());
                         b = true;
                     }
 
@@ -184,10 +174,69 @@ public class StartActivity extends AppCompatActivity
 
         }
 
-
-
     }
 
 
+        public void getBadges() throws XmlPullParserException, IOException
+        {
+
+
+            XmlResourceParser parser = getApplicationContext().getResources().getXml(R.xml.badges);
+            int eventType = parser.next();
+
+            ProfileDatabase db = new ProfileDatabase(StartActivity.this);
+            String name = "";
+            String description = "";
+            String image;
+
+            boolean b = false;
+
+            while (b == false) {
+
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+
+
+                        if (parser.getName().equals("Nom")) {
+                            name = parser.nextText();
+                        }
+
+                        else if (parser.getName().equals("Description"))
+                        {
+                            description = parser.nextText();
+
+                        }
+
+                        else if (parser.getName().equals("ID"))
+                        {
+                            image = parser.nextText();
+                            System.out.println("Id trouvé  = " + image);
+                            db.addBadge(name, description, Integer.parseInt(image), false);
+                        }
+
+
+                        else if (parser.getName().equals("Fin")) {
+                            System.out.println(parser.nextText());
+                            b = true;
+                        }
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+                eventType = parser.next();
+
+            }
+        }
+
+
+
+
+
 }
+
+
+
 

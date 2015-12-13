@@ -1,4 +1,4 @@
-package ppm.uqac.com.geekproject;
+package ppm.uqac.com.geekproject.mainmenu;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

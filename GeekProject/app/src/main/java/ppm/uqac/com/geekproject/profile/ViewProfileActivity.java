@@ -12,11 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.Database.ProfileDatabase;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 
@@ -50,20 +50,13 @@ public class ViewProfileActivity extends AppCompatActivity implements Navigation
         fm.beginTransaction().replace(R.id.content_frame, new Fragment_Pseudo()).commit();
 
 
-        // TO DO: Faire une table dans la BD pour mettre les badges dedans
-        // Mise en place de l'adapteur
-
-        Badge b0 = new Badge("Newbie", "Badge pour avoir créé un profil", R.drawable.badge_newbie, true);
-        Badge b1 = new Badge("Bronze", "Badge pour avoir atteint le niveau 4", R.drawable.badge_bronze, false);
-        Badge b2 = new Badge("Argent", "Badge pour avoir atteient le niveau 7", R.drawable.badge_silver, false);
-        Badge b3 = new Badge("Or", "Badge pour avoir atteint le niveau 10", R.drawable.badge_gold, false);
 
 
-        ArrayList<Badge> l = new ArrayList<>(4);
-        l.add(b0);
-        l.add(b1);
-        l.add(b2);
-        l.add(b3);
+
+        ArrayList<Badge> l = new ArrayList<>();
+        ProfileDatabase db = new ProfileDatabase(this);
+
+        l = db.getBadges();
         _adapter = new AdapterBadges(this, l);
 
         Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");

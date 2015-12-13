@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@color/background"
-    android:padding="10dp">
+    android:paddingBottom="25dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,14 +12,13 @@
         android:text="Nom"
         android:textColor="@color/value"
         android:textSize="30dp"
-        android:paddingBottom="10dp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Définition"
-        android:textColor="@color/value"
+        android:textColor="@color/label"
         android:id="@+id/definition_wiki"
         android:textSize="25dp"
         android:textStyle="italic" />

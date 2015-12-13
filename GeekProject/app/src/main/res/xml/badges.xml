@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data>
+    <Badges>
+
+        <Badge>
+            <Nom>Newbie</Nom>
+
+            <Description>Badge pour avoir cree un profil</Description>
+
+            <ID>0</ID>
+
+        </Badge>
+
+        <Badge>
+            <Nom>Bronze</Nom>
+
+            <Description>Badge pour avoir atteint le niveau 4</Description>
+
+            <ID>1</ID>
+
+        </Badge>
+
+        <Badge>
+            <Nom>Argent</Nom>
+
+            <Description>Badge pour avoir atteient le niveau 7</Description>
+
+            <ID>2</ID>
+
+        </Badge>
+
+        <Badge>
+            <Nom>Or</Nom>
+
+            <Description>Badge pour avoir atteint le niveau 10</Description>
+
+            <ID>3</ID>
+
+        </Badge>
+
+        <Badge>
+            <Nom>Saphir</Nom>
+
+            <Description>Badge pour avoir termine 5 activites</Description>
+
+            <ID>4</ID>
+
+        </Badge>
+
+        <Badge>
+            <Nom>Rubis</Nom>
+
+            <Description>Badge pour avoir termine 10 activites</Description>
+
+            <ID>5</ID>
+
+        </Badge>
+
+        <Badge>
+            <Nom>Emeraude</Nom>
+
+            <Description>Badge pour avoir eu un score superieur au questionnaire a 80%</Description>
+
+            <ID>6</ID>
+
+        </Badge>
+
+        <Badge>
+            <Nom>Amethyste</Nom>
+
+            <Description>Badge pour avoir eu un score de 100% au questionnaire</Description>
+
+            <ID>7</ID>
+
+        </Badge>
+
+    </Badges>
+
+    <Fin>
+        Ceci est la fin de ce fichier
+    </Fin>
+</Data>

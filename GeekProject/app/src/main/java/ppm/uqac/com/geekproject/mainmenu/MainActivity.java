@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 
+import ppm.uqac.com.geekproject.Database.ProfileDatabase;
 import ppm.uqac.com.geekproject.Database.WikiDatabase;
-import ppm.uqac.com.geekproject.ImageSettings;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.geekactivity.GADialog;
 import ppm.uqac.com.geekproject.geekactivity.ViewListActivity2;
@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                 Toast t = Toast.makeText(MainActivity.this, "Vous avez gagné le badge Newbie", Toast.LENGTH_SHORT);
                 ImageView view = new ImageView(this);
                 view.setImageResource(R.drawable.badge_newbie);
+
+                ProfileDatabase pdb = new ProfileDatabase(this);
+                pdb.gainBadge(pdb.getBadges().get(0));
                 t.setView(view);
 
                 t.show();
@@ -116,6 +119,23 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         _typeTV.setTypeface(typeFace);
 
         System.out.println("In Main - Scores = " + _profile._scores);
+
+        // Test par rapport au dernier questionnaire pour le gain de badge
+
+        if (_profile.getScore() >80)
+        {
+            ProfileDatabase pdb = new ProfileDatabase(this);
+            pdb.gainBadge(pdb.getBadges().get(6));
+            Toast.makeText(this, "Tu as gagné un nouveau badge! ", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (_profile.getScore() == 100)
+        {
+            ProfileDatabase pdb = new ProfileDatabase(this);
+            pdb.gainBadge(pdb.getBadges().get(7));
+            Toast.makeText(this, "Tu as gagné un nouveau badge! ", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 

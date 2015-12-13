@@ -1,7 +1,6 @@
 package ppm.uqac.com.geekproject.geeklopedie;
 
 import android.app.FragmentManager;
-import android.content.ClipData;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,12 +17,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import ppm.uqac.com.geekproject.Database.GADatabase;
 import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.Database.ContentDatabase;
-import ppm.uqac.com.geekproject.geekactivity.Fragment_GA;
-import ppm.uqac.com.geekproject.geekactivity.GAAdapter;
 
 public class GeeklopedieActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {

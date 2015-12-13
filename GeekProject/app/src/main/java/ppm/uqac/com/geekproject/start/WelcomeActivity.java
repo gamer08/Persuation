@@ -1,4 +1,4 @@
-package ppm.uqac.com.geekproject;
+package ppm.uqac.com.geekproject.start;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,10 +8,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
 
@@ -44,6 +46,8 @@ public class WelcomeActivity extends AppCompatActivity
         {
             t.setTypeface(typeFace);
         }
+
+
 
     }
 
