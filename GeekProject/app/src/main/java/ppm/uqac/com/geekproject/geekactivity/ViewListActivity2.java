@@ -6,9 +6,11 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInstaller;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,9 +23,22 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ppm.uqac.com.geekproject.Database.GADatabase;
@@ -55,6 +70,8 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
     PackageManager pm;
 
     // Variables pour le partage sur facebook
+    // Creating Facebook CallbackManager Value
+    public static CallbackManager callbackmanager;
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 
@@ -118,41 +135,58 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
             drawer.closeDrawer(GravityCompat.START);
         else
         {
+            _firsttime=true;
             if(_firsttime==true)
             {
                 new AlertDialog.Builder(this)
                         .setMessage("Voulez-vous partager vos progrès sur facebook?")
                         .setCancelable(false)
-                        .setPositiveButton("Oui", new DialogInterface.OnClickListener()
-                        {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
                                 //test dialog
+                                FacebookSdk.sdkInitialize(getApplicationContext());
                                 callbackManager = CallbackManager.Factory.create();
                                 shareDialog = new ShareDialog(ViewListActivity2.this);
-                                Uri uri = Uri.parse("R.drawable.startactivity");
-                                if (ShareDialog.canShow(ShareLinkContent.class))
-                                {
-                                    System.out.println("if pour afficher partage facebook");
+
+
+                                if (ShareDialog.canShow(ShareLinkContent.class)) {
                                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                                            .setContentTitle("GeekProject")
-                                             /* .setImageUrl(uri) */// Pour le moment problème pour mettre une image
+                                            .setContentTitle("Hello Facebook")
                                             .setContentDescription(
-                                                    "A commencé à utiliser l'application GeekProject")
-                                            .setContentUrl(Uri.parse("http://facebook.com"))
+                                                    "The 'Hello Facebook' sample  showcases simple Facebook integration")
+                                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
                                             .build();
 
                                     shareDialog.show(linkContent);
-                                    System.out.println("fin if pour afficher partage facebook");
                                 }
-                                //Ouverture MainActivity
-                                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                main.putExtra("profile",_profile);
-                                main.putExtra("activite","ViewListActivity");
-                                ViewListActivity2.this.finish();
-                                startActivity(main);
-                            }
-                        })
+                              /*  if (ShareDialog.canShow(ShareLinkContent.class))
+                                {
+                                    System.out.println("if pour afficher partage facebook");
+                                    LoginManager.getInstance().logInWithReadPermissions(
+                                            ViewListActivity2.this,
+                                            Arrays.asList("user_friends"));
+                                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                            .setContentTitle("GeekProject")
+                                             // .setImageUrl(uri) // Pour le moment problème pour mettre une image
+                                .
+                                setContentDescription("A commencé à utiliser l'application GeekProject")
+                                        .setContentUrl(Uri.parse("http://facebook.com"))
+                                        .build();
+                                shareDialog.show(linkContent);
+                                System.out.println("fin if pour afficher partage facebook");
+                            }*/
+
+                            //Ouverture MainActivity
+                            /*Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                            main.putExtra("profile",_profile);
+                            main.putExtra("activite","ViewListActivity");
+                            ViewListActivity2.this.
+
+                           // finish();
+
+                            startActivity(main);*/
+                        }
+            })
                         .setNegativeButton("Non",new DialogInterface.OnClickListener()
                         {
                             public void onClick(DialogInterface dialog, int id)
@@ -179,6 +213,68 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         }
     }
 
+    //Test facebook
+
+// Private method to handle Facebook login and callback
+    private void onFblogin() {
+        callbackmanager = CallbackManager.Factory.create();
+        System.out.println("fblogin");
+        // Set permissions
+       // LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("publish_actions", "user_photos", "public_profile"));
+        LoginManager.getInstance().logInWithPublishPermissions(this, Arrays.asList("publish_actions"));
+
+        LoginManager.getInstance().registerCallback(callbackmanager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+
+                        System.out.println("Success");
+                        GraphRequest.newMeRequest(
+                                loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                                    @Override
+                                    public void onCompleted(JSONObject json, GraphResponse response) {
+                                        if (response.getError() != null) {
+                                            // handle error
+                                            System.out.println("ERROR");
+                                        } else {
+                                            System.out.println("Success");
+                                            try {
+
+                                                String jsonresult = String.valueOf(json);
+                                                System.out.println("JSON Result" + jsonresult);
+
+                                                String str_email = json.getString("email");
+                                                String str_id = json.getString("id");
+                                                String str_firstname = json.getString("first_name");
+                                                String str_lastname = json.getString("last_name");
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    }
+
+                                }).executeAsync();
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d("cancel", "On cancel");
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                        Log.d("error", error.toString());
+                    }
+                });
+
+        System.out.println("fin fblogin");
+    }
+
+
+    //Fin test
+
     /**
      * Méthode pour récupérer le resultat du partage sur facebook
      * @param requestCode
@@ -190,6 +286,11 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
     {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        Intent main = new Intent(getApplicationContext(), MainActivity.class);
+        main.putExtra("profile",_profile);
+        main.putExtra("activite","ViewListActivity");
+        ViewListActivity2.this.finish();
+        startActivity(main);
     }
 
 
