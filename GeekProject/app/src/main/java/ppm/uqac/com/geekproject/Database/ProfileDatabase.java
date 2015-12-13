@@ -214,7 +214,7 @@ public class ProfileDatabase extends SQLiteOpenHelper {
 
         System.out.println("GAIN BADGE IN PDB");
         this.getWritableDatabase().execSQL("UPDATE geek_badges " +
-                "SET got = true " +
+                "SET got = 'true' " +
                 "WHERE name = '" + b.getName() + "'");
         this.getWritableDatabase().close();
         System.out.println("Obtention d'un badge " + b.getName() + " a ete obtenu " + b.isGot());
