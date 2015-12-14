@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GeekProject</string>
+    <string name="app_name">À qui le geek-tu?</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="hello_worldMain">Hello world! depuis le mainActivity</string>
