@@ -56,7 +56,7 @@
             android:textStyle="bold"
             android:textColor="@color/value"
             android:background="@drawable/border_advice"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:layout_weight="1.08"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
