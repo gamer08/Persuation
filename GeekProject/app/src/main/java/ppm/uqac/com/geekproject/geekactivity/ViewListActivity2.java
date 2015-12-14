@@ -24,6 +24,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
@@ -146,37 +147,32 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                 new AlertDialog.Builder(this)
                         .setMessage("Voulez-vous partager vos progrès?")
                         .setCancelable(false)
-                        .setPositiveButton("Facebook", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                //test dialog
-                                FacebookSdk.sdkInitialize(getApplicationContext());
-                                callbackManager = CallbackManager.Factory.create();
-                                shareDialog = new ShareDialog(ViewListActivity2.this);
+                        .setIcon(R.drawable.facebook)
+                     .setNeutralButton("Facebook", new DialogInterface.OnClickListener() {
+                         public void onClick(DialogInterface dialog, int id) {
+                             //test dialog
+                             FacebookSdk.sdkInitialize(getApplicationContext());
+                             callbackManager = CallbackManager.Factory.create();
+                             shareDialog = new ShareDialog(ViewListActivity2.this);
+                             if (ShareDialog.canShow(ShareLinkContent.class)) {
+                                 LoginManager.getInstance().logInWithReadPermissions(
+                                         ViewListActivity2.this,
+                                         Arrays.asList("user_friends"));
+                                 ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                         .setContentTitle("GeekProject")
+                                         .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                         .setContentUrl(Uri.parse("http://facebook.com"))
+                                         .build();
+                                 shareDialog.show(linkContent);
+                                 _firsttime = false;
+                             }
+                         }
+                     })
 
-                                if (ShareDialog.canShow(ShareLinkContent.class))
-                                {
-                                    LoginManager.getInstance().logInWithReadPermissions(
-                                            ViewListActivity2.this,
-                                            Arrays.asList("user_friends"));
-                                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                                            .setContentTitle("GeekProject")
-                                            .setContentDescription("A commencé à utiliser l'application GeekProject")
-                                            .setContentUrl(Uri.parse("http://facebook.com"))
-                                            .build();
-                                    shareDialog.show(linkContent);
-                                }
-                            }
-                        })
-                        .setNeutralButton("Autre réseau social", new DialogInterface.OnClickListener() {
+                        .setNeutralButton("Twitter", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
                                 ArrayList<String> wantedPackage = new ArrayList<>();
-                                wantedPackage.add("com.google.android.gm"); // Gmail
-                                wantedPackage.add("com.snapchat.android"); // Snapchat
-                                wantedPackage.add("com.android.mms"); // MMS SMS
-                                wantedPackage.add("com.skype.raider"); // Skype
-                                wantedPackage.add("com.facebook.messenger"); //Facebook messenger
-
+                                wantedPackage.add("com.google.android.gm");
                                 List<Intent> targetedShareIntents = new ArrayList<Intent>();
                                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                                 shareIntent.setType("image/jpeg");//("text/plain");
@@ -185,30 +181,13 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                     String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
                                     Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
                                     targetedShareIntent.setType("image/jpeg");
-                                    System.out.println(packageName);
-                                    System.out.println(resolveInfo.activityInfo.name.toLowerCase());
                                     if (TextUtils.equals(resolveInfo.activityInfo.name, "com.twitter.android.composer.ComposerActivity")) {
                                         targetedShareIntent.setPackage(packageName);
                                         targetedShareIntent.setClassName(
                                                 resolveInfo.activityInfo.packageName,
                                                 resolveInfo.activityInfo.name);
-                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
-                                        targetedShareIntents.add(targetedShareIntent);
-                                        wantedPackage.remove(packageName);
-                                    }else if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.google.android.libraries.social.gateway.gatewayactivity")){
-                                       System.out.println("google plus");
-                                        targetedShareIntent.setPackage(packageName);
-                                        targetedShareIntent.setClassName(
-                                                resolveInfo.activityInfo.packageName,
-                                                resolveInfo.activityInfo.name);
-                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
-                                        targetedShareIntents.add(targetedShareIntent);
-                                        wantedPackage.remove(packageName);
-                                    }
-                                    else if(wantedPackage.contains(packageName))
-                                    {
-                                        targetedShareIntent.setPackage(resolveInfo.activityInfo.packageName.toLowerCase());
-                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, "J'ai commencé à utiliser l'application GeekProject");
+                                        String message = "Par rapport aux geeks, je suis "+_profile.getType()+" et je suis de niveau "+_profile.getLevel();
+                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                         targetedShareIntents.add(targetedShareIntent);
                                         wantedPackage.remove(packageName);
                                     }
@@ -216,7 +195,34 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                 Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
                                 chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
                                 startActivity(chooserIntent);
-                                _firsttime=false;
+                                _firsttime = false;
+
+                            }
+                        })
+
+                        .setNeutralButton("Google+", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                ArrayList<String> wantedPackage = new ArrayList<>();
+                                List<Intent> targetedShareIntents = new ArrayList<Intent>();
+                                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                shareIntent.setType("image/jpeg");//("text/plain");
+                                List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                                for (ResolveInfo resolveInfo : resInfo) {
+                                    String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                    Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                    targetedShareIntent.setType("image/jpeg");
+                                    if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.google.android.libraries.social.gateway.gatewayactivity")) {
+                                        System.out.println("google plus");
+                                        targetedShareIntent.setPackage(packageName);
+                                        targetedShareIntent.setClassName(
+                                                resolveInfo.activityInfo.packageName,
+                                                resolveInfo.activityInfo.name);
+                                        String message = "Par rapport aux geeks, je suis " + _profile.getType() + " et je suis de niveau " + _profile.getLevel();
+                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                        startActivity(targetedShareIntent);
+                                    }
+                                }
+                                _firsttime = false;
                             }
 
                         })
