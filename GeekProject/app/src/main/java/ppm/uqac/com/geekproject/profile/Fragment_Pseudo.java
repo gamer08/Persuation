@@ -1,7 +1,6 @@
 package ppm.uqac.com.geekproject.profile;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
