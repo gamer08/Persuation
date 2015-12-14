@@ -10,12 +10,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-
 import java.io.IOException;
-
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.Database.ProfileDatabase;
 import ppm.uqac.com.geekproject.Database.WikiDatabase;
@@ -44,7 +41,6 @@ public class StartActivity extends AppCompatActivity
         _profileIntentFilter = new IntentFilter(LoadProfileService.LoadProfilActions.Broadcast);
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver, _profileIntentFilter);
-
         Intent profileLoader = new Intent(this,LoadProfileService.class);
         startService(profileLoader);
     }
@@ -85,19 +81,14 @@ public class StartActivity extends AppCompatActivity
                     getWiki();
                     getBadges();
                 }
-
-
                 catch (XmlPullParserException e)
                 {
 
                 }
-
                 catch (IOException e)
                 {
 
                 }
-
-
             }
             else
             {
@@ -126,8 +117,6 @@ public class StartActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -139,34 +128,26 @@ public class StartActivity extends AppCompatActivity
         WikiDatabase wdb = new WikiDatabase(StartActivity.this);
         String name = "";
         String definition = "";
-
         boolean b = false;
 
         while (b == false) {
 
             switch (eventType) {
                 case XmlPullParser.START_TAG:
-
-
                     if (parser.getName().equals("Nom")) {
                         name = parser.nextText();
                     } else if (parser.getName().equals("Definition")) {
                         definition = parser.nextText();
                         wdb.addWord(new ItemWiki(name, definition));
-
                     } else if (parser.getName().equals("Fin")) {
                         System.out.println(parser.nextText());
                         b = true;
                     }
-
                     break;
-
                 default:
                     break;
             }
-
             eventType = parser.next();
-
         }
 
     }
@@ -174,11 +155,8 @@ public class StartActivity extends AppCompatActivity
 
         public void getBadges() throws XmlPullParserException, IOException
         {
-
-
             XmlResourceParser parser = getApplicationContext().getResources().getXml(R.xml.badges);
             int eventType = parser.next();
-
             ProfileDatabase db = new ProfileDatabase(StartActivity.this);
             String name = "";
             String description = "";
@@ -190,46 +168,30 @@ public class StartActivity extends AppCompatActivity
 
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
-
-
                         if (parser.getName().equals("Nom")) {
                             name = parser.nextText();
                         }
-
                         else if (parser.getName().equals("Description"))
                         {
                             description = parser.nextText();
-
                         }
-
                         else if (parser.getName().equals("ID"))
                         {
                             image = parser.nextText();
                             System.out.println("Id trouvé  = " + image);
                             db.addBadge(name, description, Integer.parseInt(image), false);
                         }
-
-
                         else if (parser.getName().equals("Fin")) {
                             System.out.println(parser.nextText());
                             b = true;
                         }
-
                         break;
-
                     default:
                         break;
                 }
-
                 eventType = parser.next();
-
             }
         }
-
-
-
-
-
 }
 
 

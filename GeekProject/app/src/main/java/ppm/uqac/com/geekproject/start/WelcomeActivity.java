@@ -23,7 +23,6 @@ public class WelcomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-
         // Fonts
         Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
 
@@ -42,9 +41,6 @@ public class WelcomeActivity extends AppCompatActivity
         {
             t.setTypeface(typeFace);
         }
-
-
-
     }
 
     @Override
@@ -62,7 +58,6 @@ public class WelcomeActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -71,7 +66,6 @@ public class WelcomeActivity extends AppCompatActivity
         this.finish();
         Intent intent = new Intent(this,QuestionaryActivity.class);
 		intent.putExtra("fromLevelUP",false);
-
         Profile profile = null;
         intent.putExtra("profile",profile);
         startActivity(intent);
