@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#f6f7f9</color>
-    <color name="value">#3f6184</color>
-    <color name="label">#323a45</color>
+    <!--<color name="background">#008080</color>
+    <color name="value">#FEFEFE</color>
+    <color name="label">#CEEDE9</color>-->
+
+    <color name="value">#0B6908</color>
+    <color name="label">#696969</color>
+    <color name="background">#000000</color>
 </resources>

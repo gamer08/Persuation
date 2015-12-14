@@ -1,162 +1,126 @@
 package ppm.uqac.com.geekproject.profile;
 
-import android.content.Context;
+import android.app.FragmentManager;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Rect;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
+import java.util.ArrayList;
 
-import ppm.uqac.com.geekproject.mainmenu.MainActivity;
+import ppm.uqac.com.geekproject.Database.ProfileDatabase;
 import ppm.uqac.com.geekproject.R;
+import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 
-public class ViewProfileActivity extends AppCompatActivity {
-    private EditText _userNameET;
-    private TextView _typeTV;
-    private TextView _score;
+
+public class ViewProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+{
+    private DrawerLayout mDL;
+    private ListView mLV;
+    private String[] mItems;
+    AdapterBadges _adapter;
     private Profile _profile;
-    private ImageView _avatar;
-    private TextView _levelTV;
-
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_profile);
-
-        _userNameET = (EditText) findViewById(R.id.TV_UserName);
-        _typeTV = (TextView) findViewById(R.id.TV_Type);
-        _score = (TextView) findViewById(R.id.TV_Score);
-        _avatar = (ImageView) findViewById(R.id.image);
-        _levelTV = (TextView) findViewById(R.id.TV_Level);
-
-        // Listener pour le bouton de sauvegarde des modifications
-
-        Button buttonModification = (Button)findViewById(R.id.BTN_Modificate);
-
-        buttonModification.setOnClickListener(new Button.OnClickListener()
-        {
-            public void onClick(View v)
-            {
-                if(_userNameET.getText().length() !=0)
-                {
-                    saveProfil();
-
-                }
-                else
-                {
-                    Toast.makeText(ViewProfileActivity.this, "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+        setContentView(R.layout.activity_view_profile2);
+        Toast t = Toast.makeText(getApplicationContext(), "ND.create", Toast.LENGTH_SHORT);
+        t.show();
 
 
+        mDL = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDL, R.string.drawer_open, R.string.drawer_close);
+        mDL.setDrawerListener(toggle);
+        toggle.syncState();
 
-        Intent intent = getIntent();
-        if (intent != null)
-        {
-            _profile = (Profile) intent.getSerializableExtra("profile");
-            _userNameET.setText(_profile.getUserName());
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-            _typeTV.setText(_profile.getType().toString());
-            _score.setText(String.valueOf(_profile._score));
-            _levelTV.setText(String.valueOf(_profile._level));
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
-            Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
-            _avatar.setImageBitmap(bMapScaled);
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.content_frame, new Fragment_Pseudo()).commit();
 
-            // On recupère l'expérience de l'utilisateur
+        ArrayList<Badge> l = new ArrayList<>();
+        ProfileDatabase db = new ProfileDatabase(this);
 
-            double xp = _profile.getExperience();
-            int percent = (int) (xp/ _profile.getLevelLimit() *100);
-            System.out.println("In VPA.onCreate total = " + _profile.getLevelLimit());
-            System.out.println("In VPA.onCreate experience = " + xp);
-            System.out.println("In VPA.onCreate purcentage = " + percent);
-            ProgressBar myprogressbar = (ProgressBar)findViewById(R.id.progress_bar);
-            myprogressbar.setProgress(percent);
+        l = db.getBadges();
+        _adapter = new AdapterBadges(this, l);
 
-
-        }
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
 
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_view_profile, menu);
+        getMenuInflater().inflate(R.menu.menu_profile, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        return false;
     }
 
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-    /**
-     * Sauvegarde les information du profil dans le fichier
-     */
-    public void saveProfil()
+        FragmentManager fm = getFragmentManager();
+        int id = menuItem.getItemId();
+
+        if (id == R.id.pseudo)
+            fm.beginTransaction().replace(R.id.content_frame, new Fragment_Pseudo()).commit();
+
+        if (id == R.id.badges)
+        {
+            System.out.println("In ViewProfileActivity.clicsurBadges");
+            Fragment_Badges f = new Fragment_Badges();
+            f.setAdapter(_adapter);
+            fm.beginTransaction().replace(R.id.content_frame, f).commit();
+        }
+
+        if (id == R.id.questionaries)
+        {
+            fm.beginTransaction().replace(R.id.content_frame, new Fragment_Chart()).commit();
+        }
+
+
+        mDL.closeDrawer(GravityCompat.START);
+
+        return true;
+    }
+
+    @Override
+    public void onBackPressed()
     {
-        System.out.println("in CPA.saveProfil()");
-        String userName = "userName=";
-        userName = userName.concat(_userNameET.getText().toString()).concat(System.getProperty("line.separator"));
-        _profile.setUserName(_userNameET.getText().toString());
+        /*new AlertDialog.Builder(this)
+                .setMessage("Voulez-vous vraiment quitter cette application?")
+                .setCancelable(false)
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        ViewProfileActivity.this.moveTaskToBack(true);
+                    }
+                })
+                .setNegativeButton("Non", null)
+                .show();*/
+        System.out.println("Profile: Bouton retour");
 
-        String lastName = "lastName=";
-
-
-        String score = "score=";
-        score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
-
-        String type = "type=";
-        type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
-
-        String experience = "experience=";
-        experience = experience.concat((String.valueOf(_profile._experience)).concat(System.getProperty("line.separator")));
-
-
-        try
-        {
-            FileOutputStream out = openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-            System.out.println(Profile.PROFIL_FILE_NAME);
-            out.write(userName.getBytes());
-
-            out.write(score.getBytes());
-            out.write(type.getBytes());
-            out.close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        Intent intent = new Intent(this,MainActivity.class);
-        this.finish();
-        intent.putExtra("profile", _profile);
+        Intent intent = new Intent(this, MainActivity.class);
+        //Intent intent = new Intent(this,MainActivity.class);
+        finish();
+        intent.putExtra("profile",(Profile)  getIntent().getSerializableExtra("profile"));
         intent.putExtra("activite", "ViewProfileActivity");
         startActivity(intent);
-        System.out.println("fin save file et type est "+_profile._type.toString());
     }
 }

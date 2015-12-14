@@ -17,14 +17,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import ppm.uqac.com.geekproject.Database.WikiDatabase;
 import ppm.uqac.com.geekproject.R;
-import ppm.uqac.com.geekproject.geekactivity.GADatabase;
+import ppm.uqac.com.geekproject.Database.ContentDatabase;
 
-public class GeeklopedieActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+public class GeeklopedieActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geeklopedie);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -40,8 +41,8 @@ public class GeeklopedieActivity extends AppCompatActivity
         });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
+                                                                R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -53,40 +54,40 @@ public class GeeklopedieActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
+
+        if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        else
             super.onBackPressed();
-        }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.geeklopedie2, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         // Handle navigation view item clicks here.
 
         FragmentManager fm = getFragmentManager();
@@ -94,30 +95,39 @@ public class GeeklopedieActivity extends AppCompatActivity
         int id = item.getItemId();
         System.out.println(id);
 
-        if (id == R.id.antigeek) {
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_1()).commit();
-            // Handle the camera action
-        } else if (id == R.id.GeekPersecutor) {
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_2()).commit();
+        if (id == R.id.mistrustful)
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_1Mistrustful()).commit();
+         else if (id == R.id.skeptical)   // Handle the camera action
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_2Sckeptical()).commit();
+         else if (id == R.id.Neutral)
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_3Neutral()).commit();
+        else if (id == R.id.Geekfriendly)
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_4GeekFriendly()).commit();
+        else if (id == R.id.Geek)
+            fm.beginTransaction().replace(R.id.content_frame,new Fragment_5Geek()).commit();
 
-        } else if (id == R.id.Neutral) {
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_3()).commit();
+        else if (id == R.id.nav_wiki)
+        {
 
-        } else if (id == R.id.Geekfriendly) {
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_4()).commit();
+            // Ouverture de la BDD
+            WikiDatabase db = new WikiDatabase(this);
+            ArrayList<ItemWiki> list = new ArrayList<>();
+            list = db.getWords();
 
-        } else if (id == R.id.Geek) {
-            fm.beginTransaction().replace(R.id.content_frame,new Fragment_5()).commit();
+            // On crée un adapter
+            AdapterWiki adapter = new AdapterWiki(GeeklopedieActivity.this,list);
 
-        } else if (id == R.id.nav_share) {
+            Fragment_Wiki f = new Fragment_Wiki();
+            f.setData(adapter);
+            fm.beginTransaction().replace(R.id.content_frame,f).commit();
+            //fermeture de la database
+            db.close();
+        }
+        else if (id == R.id.nav_web)
+        {
+            ContentDatabase db = new ContentDatabase(this);
 
-            GADatabase db = new GADatabase(this);
-            System.out.println("ouverture bd");
-            System.out.println("fragment contenu");
-
-            InputStream is = getResources().openRawResource(
-                    getResources().getIdentifier("raw/contenu",
-                            "raw", getPackageName()));
+            InputStream is = getResources().openRawResource(getResources().getIdentifier("raw/contenu", "raw", getPackageName()));
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();
@@ -125,81 +135,98 @@ public class GeeklopedieActivity extends AppCompatActivity
             String line = null;
             int d,u;
 
-            try {
-                while ((line = reader.readLine()) != null) {
-        /*sb.append(line).append('\n');
-        System.out.println("while "+sb.toString());*/
+            try
+            {
+                while ((line = reader.readLine()) != null)
+                {
                     System.out.println("index url: "+line.indexOf("name="));
                     d=line.indexOf(";desc=");
                     u=line.indexOf(";url=");
-                    Content contenu = new Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
+                    ItemContent contenu = new ItemContent(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
                     db.addContent(contenu);
                 }
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
-            } finally {
-                try {
+            }
+            finally
+            {
+                try
+                {
                     is.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e)
+                {
                     e.printStackTrace();
                 }
             }
-            //
             // Récupération de tout le contenu
-            ArrayList<Content> List =  db.getContent();
+            ArrayList<ItemContent> List =  db.getContent();
             System.out.println(List.toString());
 
             // On crée un adapter
-            final ContentAdapter cAdapter = new ContentAdapter(GeeklopedieActivity.this,List);
+            final AdapterContent cAdapter = new AdapterContent(GeeklopedieActivity.this,List);
 
-            Fragment_6 f6 = new Fragment_6();
+            Fragment_Web f6 = new Fragment_Web();
             fm.beginTransaction().replace(R.id.content_frame,f6).commit();
             f6.setData(cAdapter);
 
-        }else if (id == R.id.nav_videos) {
-
+            db.close();
+        }
+        else if (id == R.id.nav_videos)
+        {
             System.out.println("fragment video");
 
-            GADatabase db = new GADatabase(this);
+            ContentDatabase db = new ContentDatabase(this);
             System.out.println("ouverture bd");
 
-            InputStream is = getResources().openRawResource(
-                    getResources().getIdentifier("raw/video",
-                            "raw", getPackageName()));
-
+            InputStream is = getResources().openRawResource(getResources().getIdentifier("raw/video", "raw", getPackageName()));
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();
 
             String line = null;
             int d,u;
 
-            try {
-                while ((line = reader.readLine()) != null) {
+            try
+            {
+                while ((line = reader.readLine()) != null)
+                {
                     System.out.println("index url: "+line.indexOf("name="));
                     d=line.indexOf(";desc=");
                     u=line.indexOf(";url=");
-                    Content contenu = new Content(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
+                    ItemContent contenu = new ItemContent(line.substring(5,d),line.substring(d+6,u),line.substring(u+5));
                     db.addVideo(contenu);
                 }
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
-            } finally {
-                try {
+            }
+            finally
+            {
+                try
+                {
                     is.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e)
+                {
                     e.printStackTrace();
                 }
             }
-            //
+
+
             // Récupération de tout le contenu
-            ArrayList<Content> List =  db.getVideo();
+            ArrayList<ItemContent> List =  db.getVideo();
 
             // On crée un adapter
-            final VideoAdapter cAdapter = new VideoAdapter(GeeklopedieActivity.this,List);
+            final AdapterVideo cAdapter = new AdapterVideo(GeeklopedieActivity.this,List);
 
             Fragment_Video f = new Fragment_Video();
             fm.beginTransaction().replace(R.id.content_frame,f).commit();
             f.setData(cAdapter);
+
+            db.close();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

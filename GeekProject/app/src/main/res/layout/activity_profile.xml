@@ -1,59 +1,81 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/background"
-    >
+    android:weightSum="100">
 
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="405dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:id="@+id/TVL_Score"
-        android:paddingTop="50dp"
-        android:textSize="24sp"
-        android:text="@string/TVL_Score"
-        android:textColor="@color/label"
-        android:paddingBottom="20dp"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/TVL_Score"
+            android:paddingTop="50dp"
+            android:textSize="50dp"
+            android:text="@string/TVL_Score"
+            android:textColor="@color/label"
+            android:paddingBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:padding="50dp"
+            android:layout_weight="30"
+            android:gravity="center_horizontal" />
 
-    <TextView
-        android:text="lalala"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_Score"
-        android:textSize="30sp"
-        android:paddingTop="50dp"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:layout_alignTop="@id/TVL_Score"
-        android:editable="false"
-        android:textColor="@color/value"
-        />
+        <TextView
+            android:text="lalala"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_Score"
+            android:textSize="50dp"
+            android:paddingTop="0dp"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:layout_alignTop="@id/TVL_Score"
+            android:editable="false"
+            android:textColor="@color/value"
+            android:padding="50dp"
+            android:layout_gravity="center_horizontal"
+            android:autoText="true"
+            android:layout_weight="30"
+            android:gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="153dp">
+
+        <EditText
+            android:layout_width="293dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/TV_UserName"
+            android:textSize="24sp"
+            android:hint="@string/TV_UserName"
+            android:singleLine="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/value"
+            android:layout_below="@id/TVL_Score"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:text="@string/BTN_Create"
+            android:id="@+id/BTN_Save"
+            android:layout_below="@id/TV_UserName"
+            android:layout_alignRight="@id/TV_UserName"
+            android:textColor="@color/label"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp" />
+    </LinearLayout>
 
 
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TV_UserName"
-        android:textSize="24sp"
-        android:hint="@string/TV_UserName"
-        android:singleLine="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/value"
-        android:layout_below="@id/TVL_Score" />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/BTN_Create"
-        android:id="@+id/BTN_Save"
-        android:layout_below="@id/TV_UserName"
-        android:layout_alignRight="@id/TV_UserName"
-        android:textColor="@color/label"/>
-
-</RelativeLayout>
+</LinearLayout>

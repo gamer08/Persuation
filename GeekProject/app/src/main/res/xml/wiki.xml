@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data>
+    <Mots>
+
+        <Mot>
+            <Nom>
+                Geek
+            </Nom>
+
+            <Definition>
+                Etre humain passionnee par toutes sortes de dommaines (informatique, jeux videos, cinema...
+            </Definition>
+        </Mot>
+
+        <Mot>
+            <Nom>
+                AFK
+            </Nom>
+
+            <Definition>
+                (Away From Keyboard) La personne est momentanement indisponible et ne pourra pas repondre aux messages
+            </Definition>
+        </Mot>
+
+        <Mot>
+            <Nom>
+                Nerd
+            </Nom>
+
+            <Definition>
+                Autre appellation du geek
+            </Definition>
+        </Mot>
+
+        <Mot>
+            <Nom>
+                No Life
+            </Nom>
+
+            <Definition>
+                Appellation pejorative des personnes qui passent beaucoup de temps sur un ordinateur, une tele, une console de jeu...
+            </Definition>
+        </Mot>
+
+
+        <Mot>
+            <Nom>
+                WoW
+            </Nom>
+
+            <Definition>
+                Abreviation de World of Warcraft, un celebre jeu en ligne
+            </Definition>
+        </Mot>
+
+        <Mot>
+            <Nom>
+                Newbie
+            </Nom>
+
+            <Definition>
+                Personne debutant dans un domaine, et aussi dans un jeu video.
+            </Definition>
+        </Mot>
+
+        <Mot>
+            <Nom>
+                Offline
+            </Nom>
+
+            <Definition>
+                Mode de jeu qui ne necessite pas Internet.
+            </Definition>
+        </Mot>
+
+        <Mot>
+            <Nom>
+                Fake
+            </Nom>
+
+            <Definition>
+                Qui designe quelque chose de faux comme des photos ou videos trafiquees, des articles mensongers, des rumeurs non fondees...
+            </Definition>
+        </Mot>
+
+        <Mot>
+            <Nom>
+                Google est ton ami
+            </Nom>
+
+            <Definition>
+                Pourquoi ne pas utiliser Google pour chercher une reponse a ta question ?
+            </Definition>
+        </Mot>
+
+    </Mots>
+
+    <Fin>
+        Ceci est la fin de ce fichier
+    </Fin>
+
+</Data>

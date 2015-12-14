@@ -1,32 +1,38 @@
 <resources>
-    <string name="app_name">GeekProject</string>
+    <string name="app_name">À qui le geek-tu?</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="hello_worldMain">Hello world! depuis le mainActivity</string>
-    <string name="action_settings">Paramètres</string>
+    <string name="action_settings">Parametres</string>
     <string name="TV_curQuestionCpt">1 sur 5</string>
-    <string name="TV_Question">Répondez à la question</string>
+    <string name="TV_Question">Repondez a la question</string>
     <string name="TV_Choice1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et velit pretium, ultrices orci vitae, porttitor quam. Nam eget justo varius, euismod arcu vel, malesuada elit. In tincidunt dapibus eros, id lobortis sem vestibulum vel. Aenean id dapibus sem. Ut dignissim in velit quis turpis duis.</string>
     <string name="TV_Choice2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dolor augue, gravida id risus a, placerat sagittis urna. Nunc libero elit, fermentum nec convallis quis, vestibulum eu quam. Proin a dapibus mi. Pellentesque quis leo nec erat ornare auctor ac sit amet ligula. Morbi ac dapibus eros nullam.</string>
     <string name="TV_Choice3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et massa felis. Mauris facilisis condimentum nunc, vel egestas lacus dignissim eu. Fusce condimentum, eros at semper egestas, mauris turpis viverra nunc, at ornare massa turpis quis massa. Pellentesque felis nibh, sagittis eget volutpat.</string>
     <string name="TV_Choice4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacus nunc, consequat eget lorem ac, molestie iaculis purus. Suspendisse sit amet dapibus sem. Proin dapibus sem quis sapien efficitur, vitae sagittis tellus porttitor. Vivamus et quam at massa placerat bibendum. Maecenas posuere nulla sed. </string>
     <string name="TV_Choice5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rutrum dui dapibus, luctus ligula ut, faucibus augue. Curabitur vitae eleifend sapien. Mauris eget mollis enim. Sed vel tellus dignissim, feugiat tortor vitae, facilisis risus. In eu nulla vitae diam molestie laoreet. Curabitur massa nunc. </string>
-    <!--<string name="title_activity_profile">ViewProfileActivity2</string>-->
+    <!--<string name="title_activity_profile">ViewProfileActivity</string>-->
     <string name="TVL_UserName">Pseudo</string>
     <string name="TV_UserName">Entrez votre pseudo</string>
     <string name="TVL_Level">Niveau: </string>
-    <string name="TVL_Score">Score</string>
-    <string name="TV_Dialog">Allons voir les différentes activités que nous vous avons concocté!</string>
-    <string name="BTN_Create">Créer</string>
+    <string name="TVL_Score">Votre Score: </string>
+    <string name="TV_Dialog">Allons voir les differentes activites que nous vous avons concocte!</string>
+    <string name="BTN_Create">Creer</string>
     <string name="BTN_Modificate">Modifier</string>
     <string name="BTN_Dialog">Allons-y!</string>
     <string name="title_activity_start">Quel geek caches-tu en toi?</string>
     <string name="title_activity_view_profile">Profil</string>
-    <string name="title_activity_creation_profile">Création du profil</string>
+    <string name="title_activity_creation_profile">Creation du profil</string>
     <string name="title_activity_welcome">Bienvenue!</string>
-    <string name="title_activity_main">Menu principal</string>
-    <string name="title_activity_view_list">Liste des activités </string>
-    <string name="title_activity_view_content">Geeklopédie</string>
+    <string name="title_activity_main">Menu Principal</string>
+    <string name="title_activity_view_list">Liste des activites </string>
+    <string name="title_activity_view_content">Geeklopedie</string>
+	
+	 <string name="TV_yourScore">Votre resultat:</string>
+    <string name="BTN_WelcomeStart">Questionnaire</string>
+
+    <!--Id pour API facebook-->
+    <string name="facebook_api_id">939320122771688</string>
 
 
     <string-array name="menuContent">
@@ -40,7 +46,7 @@
 
     <string name="drawer_open">Open Navigation Drawer</string>
     <string name="drawer_close">Close Navigation Drawer</string>
-    <string name="title_activity_geeklopedie2">geeklopedie2</string>
+    <string name="title_activity_geeklopedie2">Geeklopedie</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -55,6 +61,71 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_activity_questionary_summary">Questionary summary</string>
+
+
+    <string name="mistrustful_title">Mefiant</string>
+    <string name="mistrustful_description">
+        Le mefiant voit en un geek, une creature etrange et dangereuse qu\'il faut aneantir.
+            Il ne supporte pas son apparence, sa maniere de vivre et son comportement.
+            En general, le Mefiant se refugie dans des cliches vehicules par les differents medias
+            sans se forger sa propre opinion et sans apprendre a connaître les personnes qu\'il cache
+            derriere le mot geek. Si vous êtes un Antigeek, nous vous conseillions d\'utiliser cette
+            application faite par et pour des geeks. Ne restez pas dans votre monde depourvu
+            de bon sens et c\'est avec cette application que vous allez commencer a grandir.
+    </string>
+
+    <string name="mistrustful_advice">Utilise cette application pour atteindre au moins le range de Neutre</string>
+
+    <string name="skeptical_title">Sceptique</string>
+    <string name="skeptical_description">
+        Le Sceptique en connaît un peu plus sur les geeks mais il reste toujours des avis
+        negatifs a leur egard. Certains cliches restent bien ancres dans son esprit et il ne s\'en
+        defait pas encore. Il lui faut plus de temps et d\'experience de vie avec des geeks pour
+        s\'ameliorer.
+    </string>
+
+    <string name="skeptical_advice">Ne restez pas dans vos retrenchements. Poursuivez-vos efforts!</string>
+
+    <string name="neutral_title">Neutre</string>
+    <string name="neutral_description">
+        Le Neutre n\'eprouve pas d\'animosite envers les geeks mais il ne s\'y interesse pas.
+        Pour lui, ce sont des personnes comme tout le monde qui ne sortent pas du lot mais les
+        respecte comme être humain.
+    </string>
+
+    <string name="neutral_advice">
+        Votre position est tout a fait acceptable. Interessez-vous cependant a cette culture, on ne
+        sait jamais...
+    </string>
+
+
+    <string name="geekfriendly_title">Geek Friendly</string>
+    <string name="geekfriendly_description">
+        Le Geek Friendly apprecie les geeks. Il les trouve attachant et s\'interesse a leur monde.
+        Il ne comprend pas tout leur vocabulaire et leurs façon de voir les choses mais est tres
+        ouvert pour aller leur parler.
+    </string>
+
+    <string name="geekfriendly_advice">
+        Allez sur des blogs, des sites internets de personnes qui se declarent geek, faites des liens
+        entre les mots que vous rencontrez dans vos lectures et ceux qu\'ils emploient...
+    </string>
+
+    <string name="geek_title">Geek</string>
+    <string name="geek_description">
+        Le Geek est la personnalite a la mode. Le XXIeme siecle est fait pour lui. Tout lui tend les
+        bras: les jeux videos dont les budgets ont depasse ceux du cinema, les cinema bien sûr,
+        la television, les livres, BDs et mangas, la musique commes les BO de jeux videos...
+        Le geek est aussi doue avec les nouvelles technologies et pourra aider plus d\'une personne
+        avec son savoir faire. Il est le heros des temps modernes
+    </string>
+
+    <string name="geek_advice">
+        Aidez les personnes qui ne comprennent pas les geeks a changer d\'avis et partagez cette
+        application!
+    </string>
 
 
 </resources>

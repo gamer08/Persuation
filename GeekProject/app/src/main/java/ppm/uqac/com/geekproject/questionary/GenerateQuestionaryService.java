@@ -21,17 +21,13 @@ import ppm.uqac.com.geekproject.R;
 
 public class GenerateQuestionaryService extends IntentService
 {
-
     private static final String TAG = "Generate questionary";
-
-
     private int _nbQuestionsTotal;
     private int _nbQuestionsQuestionnaire;
     private int _nextQuestionID;
     private int _curQuestion;
     private static final int QUESTIONS_ALL_LOADED =-1;
     private int[] _questionsID;
-
 
     public final class GenerateQuestionnaireActions
     {
@@ -49,12 +45,10 @@ public class GenerateQuestionaryService extends IntentService
         Log.d(TAG, "questionary generated !");
         Questionary questionary = (Questionary) intent.getSerializableExtra("questionary");
 
-
         try
         {
             generate(questionary);
             Intent callBackIntent = new Intent(GenerateQuestionnaireActions.Broadcast);
-
             callBackIntent.putExtra("questionary", questionary);
             System.out.println(questionary.questions());
             LocalBroadcastManager.getInstance(this).sendBroadcast(callBackIntent);
@@ -113,7 +107,6 @@ public class GenerateQuestionaryService extends IntentService
     ArrayList<Question> parseQuestions( XmlPullParser parser) throws XmlPullParserException, IOException
     {
         int eventType = parser.next();
-
         ArrayList<Question> questions = new ArrayList<Question>();
         Question question = null;
 
@@ -203,7 +196,6 @@ public class GenerateQuestionaryService extends IntentService
             }
           eventType =  parser.next();
         }
-
         return choices;
     }
 

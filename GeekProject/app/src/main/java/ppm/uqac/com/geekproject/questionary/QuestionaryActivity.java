@@ -1,11 +1,11 @@
 package ppm.uqac.com.geekproject.questionary;
 
-import android.app.AlertDialog;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Typeface;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,16 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import ppm.uqac.com.geekproject.profile.CreationProfileActivity;
-import ppm.uqac.com.geekproject.profile.GenerateProfileService;
-import ppm.uqac.com.geekproject.mainmenu.MainActivity;
 import ppm.uqac.com.geekproject.profile.Profile;
 import ppm.uqac.com.geekproject.R;
-
 
 /*
 * L'activité de questionnaire qui permet à l'utilisateur de se créer un profil.
@@ -34,10 +29,12 @@ public class QuestionaryActivity extends AppCompatActivity
     private int _curQuestion, _nbQuestions, _score, _totalWeightPossible;
     private Questionary _questionary;
     private View.OnClickListener _choiceListener;
+    private boolean _fromLevelUP;
+    private Profile _profile;
 
     /*Service related data*/
     private Receiver _receiver;
-    private IntentFilter _questionnaireIntentFilter, _profilIntentFilter;
+    private IntentFilter _questionnaireIntentFilter;
 
 
     /*Interesting View*/
@@ -54,8 +51,16 @@ public class QuestionaryActivity extends AppCompatActivity
     {
         //Log.d(TAG, "OnCreate");
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "QuestionaryA.onCreate", Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_questionary);
+
+        //On regarde si on vient d'un level UP.
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            _fromLevelUP = intent.getBooleanExtra("fromLevelUP", false);
+            _profile = (Profile) intent.getSerializableExtra("profile");
+        }
+
         _choiceListener = new View.OnClickListener()
         {
             @Override
@@ -76,7 +81,9 @@ public class QuestionaryActivity extends AppCompatActivity
             }
         };
 
-        _curQuestion = -1;
+
+
+        this._curQuestion = -1;
         _score = _totalWeightPossible = 0 ;
 
         // Références vers les objets de l'Activité
@@ -99,11 +106,9 @@ public class QuestionaryActivity extends AppCompatActivity
 
         // Déclaration des filtres et diffuseurs pour les services
         _questionnaireIntentFilter = new IntentFilter(GenerateQuestionaryService.GenerateQuestionnaireActions.Broadcast);
-        _profilIntentFilter = new IntentFilter(GenerateProfileService.GenerateProfilActions.Broadcast);
 
         _receiver = new Receiver();
         LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_questionnaireIntentFilter);
-        LocalBroadcastManager.getInstance(this).registerReceiver(_receiver,_profilIntentFilter);
 
         _questionary = new Questionary(5);
         _nbQuestions = _questionary.nbQuestions();
@@ -113,6 +118,21 @@ public class QuestionaryActivity extends AppCompatActivity
         questionnaireGenerator.putExtra("questionary", _questionary);
         startService(questionnaireGenerator);
         Log.d(TAG,"End OnCreate");
+
+        // Fonts
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
+
+        for (TextView t : _choices)
+        {
+            t.setTypeface(typeFace);
+        }
+
+        _question.setTypeface(typeFace);
+        _questionCpt.setTypeface(typeFace);
+        _fact.setTypeface(typeFace);
+
+        TextView t = (TextView) findViewById(R.id.tv_saviez_vous);
+        t.setTypeface(typeFace);
     }
 
     private class Receiver extends BroadcastReceiver
@@ -129,32 +149,6 @@ public class QuestionaryActivity extends AppCompatActivity
                 _questionary = (Questionary) intent.getSerializableExtra("questionary");
                 loadNextQuestion();
             }
-            else
-            {
-                Profile profile = (Profile)intent.getSerializableExtra("profile");
-                Intent nextActivity;
-
-                switch(profile._type)
-                {
-                    case ANTIGEEK:
-                    case GEEKPERSECUTOR:
-                    case NEUTRAL:
-                    case GEEKFRIENDLY:
-                    case GEEK:
-                        nextActivity = new Intent(getApplicationContext(),CreationProfileActivity.class);
-                        break;
-
-                    default:
-                        nextActivity = new Intent(getApplicationContext(),MainActivity.class);
-                        nextActivity.putExtra("activite","questionnaire");
-                        break;
-                }
-
-                nextActivity.putExtra("profile", profile);
-                QuestionaryActivity.this.finish();
-                System.out.println("valeur profil avant start profilactivity "+profile._score);
-                startActivity(nextActivity);
-            }
         }
     }
 
@@ -163,65 +157,43 @@ public class QuestionaryActivity extends AppCompatActivity
    * */
     void loadNextQuestion()
     {
-        _curQuestion++;
-        if (_curQuestion != _nbQuestions)
+        this._curQuestion++;
+        if (this._curQuestion != _nbQuestions)
         {
-            for (TextView tv : _choices) {
+            for (TextView tv : _choices)
+            {
+                tv.setVisibility(View.INVISIBLE);
                 tv.setClickable(false);
                 tv.setText(""); //Sans cette ligne, si la question précédente a plus de choix, on a toujours la ou les questions en plus qui apparaisent
             }
-            Question quest = _questionary.questions().get(_curQuestion);
+
+            Question quest = _questionary.questions().get(this._curQuestion);
             _totalWeightPossible += quest.bestWeight();
             _question.setText(quest.description());
-            _questionCpt.setText(String.valueOf(_curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
+            _questionCpt.setText(String.valueOf(this._curQuestion + 1).concat(" of ").concat(String.valueOf(_nbQuestions)));
             _fact.setText(quest.fact());
 
             int nbChoices = quest.possibleChoices().size();
             for (int i = 0; i < nbChoices; i++)
             {
+                _choices.get(i).setVisibility(View.VISIBLE);
                 _choices.get(i).setClickable(true);
                 _choices.get(i).setText(quest.possibleChoices().get(i).description());
             }
         }
         else
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Création d'un profil");
-            builder.setMessage("Voulez-vous créer un profil ?");
-            builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    createProfile(false);
-                }
-            });
+            Intent newActivity = new Intent(getApplicationContext(),QuestionarySummaryActivity.class);
 
-            builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id)
-                {
-                    createProfile(true);
-                }
-            });
+            float scoreQuestionnaire = (float)_score / (float)_totalWeightPossible;
 
-            builder.setIcon(android.R.drawable.ic_dialog_alert);
-            builder.show();
+            newActivity.putExtra("fromLevelUP",_fromLevelUP);
+            newActivity.putExtra("scoreQuestionnaire",scoreQuestionnaire);
+            newActivity.putExtra("profile",_profile);
 
-
-
+            this.finish();
+            startActivity(newActivity);
         }
-    }
-
-    public void createProfile(boolean isDummyProfile)
-    {
-        float scoreQuestionnaire;
-
-        if (!isDummyProfile)
-            scoreQuestionnaire = (float)_score / (float)_totalWeightPossible;
-        else
-            scoreQuestionnaire = Float.MIN_VALUE; // non va donner un profil guest
-
-        Intent profilGenerator = new Intent(this, GenerateProfileService.class);
-        profilGenerator.putExtra("scoreQuestionnaire", scoreQuestionnaire);
-        startService(profilGenerator);
     }
 
     @Override
@@ -240,12 +212,6 @@ public class QuestionaryActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -253,6 +219,21 @@ public class QuestionaryActivity extends AppCompatActivity
     public void onBackPressed()
     {
         System.out.println("Bouton retour");
+    }
 
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(_receiver);
+       // _receiver.abortBroadcast();
+        _receiver = null;
+        _questionnaireIntentFilter = null;
+
+        for (Question q :_questionary.questions())
+            q.possibleChoices().clear();
+
+        _questionary.questions().clear();
+        _questionary = null;
     }
 }

@@ -3,7 +3,6 @@ package ppm.uqac.com.geekproject.profile;
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -35,9 +34,9 @@ public class GenerateProfileService extends IntentService
     {
         _profilTypes = new ArrayList<Profile.Type>();
 
-        _profilTypes.add(Profile.Type.ANTIGEEK);
-        _profilTypes.add(Profile.Type.GEEKPERSECUTOR);
-        _profilTypes.add(Profile.Type.NEUTRAL);
+        _profilTypes.add(Profile.Type.MEFIANT);
+        _profilTypes.add(Profile.Type.SCEPTIQUE);
+        _profilTypes.add(Profile.Type.NEUTRE);
         _profilTypes.add(Profile.Type.GEEKFRIENDLY);
         _profilTypes.add(Profile.Type.GEEK);
         _profilTypes.add(Profile.Type.GUEST);
@@ -50,25 +49,29 @@ public class GenerateProfileService extends IntentService
 
         if (scoreQuestionnaire != Float.MIN_VALUE)
         {
-            profile._score = scoreQuestionnaire * 100;
+            profile.setScore(scoreQuestionnaire * 100);
             int slice = (int) (scoreQuestionnaire / _profilSclice);
 
             //Pour gérer le cas où le score est parfait et obtenir la bonne tranche de profile.
             if (slice == 5)
                 slice -= 1;
 
-            profile._type = _profilTypes.get(slice);
+            profile.setType(_profilTypes.get(slice));
+
+            // on met à jour la table des scores
+            profile.updateScores();
+
+            System.out.println("In GenerateProfileService - Scores = " + profile._scores);
         }
         else
         {
-            profile._type = Profile.Type.GUEST;
-            profile._userName = "Guest";
-            profile._score = Float.MIN_VALUE;
-            profile._experience = 0;
+            profile.setUserName("Guest");
+            profile.setType(Profile.Type.GUEST);
+            profile.setScore(Float.MIN_VALUE);
+            profile.setLevel(0);
+            profile.setExperience(0);
         }
 
-
-        System.out.println("In GenerateProfileService: experience = " + profile._experience + " level = " + profile._level);
 
         Intent callBackIntent = new Intent(GenerateProfilActions.Broadcast);
         callBackIntent.putExtra("profile", profile);

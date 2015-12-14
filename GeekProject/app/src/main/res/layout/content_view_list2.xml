@@ -11,7 +11,7 @@
     tools:context="ppm.uqac.com.geekproject.geekactivity.ViewListActivity2">
 
     <FrameLayout
-        android:id="@+id/activites_frame"
+        android:id="@+id/activities_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
 

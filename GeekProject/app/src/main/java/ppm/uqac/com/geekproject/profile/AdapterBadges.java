@@ -1,13 +1,14 @@
 package ppm.uqac.com.geekproject.profile;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -34,19 +35,21 @@ public class AdapterBadges extends BaseAdapter
         _inflater = LayoutInflater.from(_context);
     }
 
-
     @Override
-    public int getCount() {
+    public int getCount()
+    {
         return _listBadges.size();
     }
 
     @Override
-    public Object getItem(int position) {
+    public Object getItem(int position)
+    {
         return _listBadges.get(position);
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId(int position)
+    {
         return position;
     }
 
@@ -62,15 +65,13 @@ public class AdapterBadges extends BaseAdapter
     {
 
         System.out.println("In Adapter.getView");
-        RelativeLayout l;
+        LinearLayout l;
 
         // On récupère le layout lié à notre Badge
-
-        if (convertView == null) {
-            l = (RelativeLayout) _inflater.inflate(R.layout.badge_layout, parent, false);
-        } else {
-            l = (RelativeLayout) convertView;
-        }
+        if (convertView == null)
+            l = (LinearLayout) _inflater.inflate(R.layout.badge_layout, parent, false);
+        else
+            l = (LinearLayout) convertView;
 
         ImageView image = (ImageView) l.findViewById(R.id.badge_image);
         TextView name = (TextView) l.findViewById(R.id.badge_name);
@@ -82,12 +83,14 @@ public class AdapterBadges extends BaseAdapter
         description.setText(_listBadges.get(position).getDescription());
         got.setChecked(_listBadges.get(position).isGot());
 
+
+        Typeface typeFace= Typeface.createFromAsset(_context.getAssets(), "octapost.ttf");
+        name.setTypeface(typeFace);
+        description.setTypeface(typeFace);
         // On récupère les informations grâce à la position passée
         // en paramètre
-
 
         return l;
 
     }
-
 }

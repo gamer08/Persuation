@@ -1,0 +1,46 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:background="@color/background">
+
+    <TextView android:text="@string/TV_yourScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:id="@+id/TV_yourScore"
+        android:textSize="50dp"
+        android:textColor="@color/value"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/TV_Score"
+        android:textSize="80dp"
+        android:hint="100%"
+        android:gravity="center|center_horizontal"
+        android:textColor="@color/value"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp">
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/LL_CustomFill"
+        android:layout_below="@+id/LL_Score"
+        android:paddingTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
+    </LinearLayout>
+
+
+</LinearLayout>

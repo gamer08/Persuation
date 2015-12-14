@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/geekfriendly_title"
+        android:textColor="@color/value"
+        android:id="@+id/title_geekfriendly"
+        android:layout_gravity="center_horizontal|top"
+        android:padding="10dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/image_geekfriendly"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/geekfriendly"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="187dp"
+        android:textColor="@color/value"
+        android:text="@string/geekfriendly_description"
+        android:id="@+id/description_geekfriendly"
+        android:layout_gravity="left|center_vertical"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="148dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conseil: "
+            android:textColor="@color/value"
+            android:id="@+id/TV_advice"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:layout_width="265dp"
+            android:layout_height="83dp"
+            android:text="@string/geekfriendly_advice"
+            android:id="@+id/geekfriendly_advice"
+            android:textStyle="bold"
+            android:textColor="@color/value"
+            android:background="@drawable/border_advice"
+            android:layout_weight="1.08"
+            android:layout_gravity="center_vertical"
+            android:gravity="center" />
+    </LinearLayout>
+
+</LinearLayout>

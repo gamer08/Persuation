@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="6">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/mistrustful_title"
+        android:id="@+id/title_mistrustful"
+        android:layout_gravity="center_horizontal|top"
+        android:textColor="@color/value"
+        android:padding="10dp" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/mistrustful_image"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/mistrustful"
+        android:padding="10dp"
+        android:layout_gravity="center_horizontal|bottom" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="187dp"
+        android:textColor="@color/value"
+        android:text="@string/mistrustful_description"
+        android:id="@+id/mistrustful_description"
+        android:layout_gravity="left|center_vertical"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="148dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Conseil: "
+            android:textColor="@color/value"
+            android:id="@+id/TV_advice"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="10dp" />
+
+        <TextView
+            android:layout_width="265dp"
+            android:layout_height="45dp"
+            android:text="@string/mistrustful_advice"
+            android:id="@+id/mistrustful_advice"
+            android:textStyle="bold"
+            android:textColor="@color/value"
+            android:background="@drawable/border_advice"
+            android:gravity="center"
+            android:layout_weight="1.08"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
+</LinearLayout>

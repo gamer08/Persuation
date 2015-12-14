@@ -3,24 +3,28 @@
 
     <item android:title="Explications profils">
     <menu>
-        <item android:id="@+id/antigeek" android:icon="@drawable/antigeek_icon"
-            android:title="Antigeek" />
-        <item android:id="@+id/GeekPersecutor" android:icon="@drawable/geekpersecutor_icon"
-            android:title="GeekPersecutor" />
+        <item
+            android:id="@+id/mistrustful"
+            android:icon="@drawable/mistrustful_icon"
+            android:title="Mefiant"
+            />
+        <item android:id="@+id/skeptical" android:icon="@drawable/skeptical_icon"
+            android:title="Sceptique" />
         <item android:id="@+id/Neutral" android:icon="@drawable/neutral_icon"
-            android:title="Neutral" />
+            android:title="Neutre" />
         <item android:id="@+id/Geekfriendly" android:icon="@drawable/geekfriendly_icon"
-            android:title="Geekfriendly" />
+            android:title="Geek Friendly" />
         <item android:id="@+id/Geek" android:icon="@drawable/geek_icon"
-            android:src="@drawable/geek_icon"
             android:title="Geek" />
         </menu>
     </item>
 
     <item android:title="En apprendre davantage sur les geeks">
         <menu>
-            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_dialog_dialer"
-                android:title="Contenu" />
+            <item android:id="@+id/nav_wiki" android:icon="@android:drawable/ic_dialog_dialer"
+                android:title="Wiki" />
+            <item android:id="@+id/nav_web" android:icon="@android:drawable/ic_dialog_dialer"
+                android:title="Web" />
             <item android:id="@+id/nav_videos" android:icon="@android:drawable/ic_media_play"
                 android:title="Vidéos" />
         </menu>

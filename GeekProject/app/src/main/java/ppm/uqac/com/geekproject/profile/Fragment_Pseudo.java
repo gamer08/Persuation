@@ -1,11 +1,11 @@
 package ppm.uqac.com.geekproject.profile;
 
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
+import android.graphics.Typeface;
+import android.view.View.OnLongClickListener;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileOutputStream;
-
 import ppm.uqac.com.geekproject.R;
 import ppm.uqac.com.geekproject.mainmenu.MainActivity;
-
 
 public class Fragment_Pseudo extends Fragment {
 
@@ -45,32 +42,30 @@ public class Fragment_Pseudo extends Fragment {
         _levelTV = (TextView) rootview.findViewById(R.id.TV_Level);
 
         // Listener pour le bouton de sauvegarde des modifications
+        ImageView buttonModification = (ImageView) rootview.findViewById(R.id.BTN_Modificate);
 
-        Button buttonModification = (Button) rootview.findViewById(R.id.BTN_Modificate);
-
-        buttonModification.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                if (_userNameET.getText().length() != 0) {
+        buttonModification.setOnClickListener(new Button.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                if (_userNameET.getText().length() != 0)
                     saveProfil();
+                 else
+                    Toast.makeText(getActivity(), "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
 
-                } else {
-                    Toast.makeText(getContext(), "Veuillez entrer un pseudo conforme", Toast.LENGTH_LONG).show();
-                }
             }
         });
-
 
         // Petite difference dans un fragment pour utiliser le getIntent
 
         Intent intent = new Intent(getActivity().getIntent());
         //Intent intent = getIntent();
-        if (intent != null) {
+        if (intent != null)
+        {
             _profile = (Profile) intent.getSerializableExtra("profile");
             _userNameET.setText(_profile.getUserName());
-            System.out.println("NIVEAU: " + _profile._level);
             _typeTV.setText(_profile.getType().toString());
-            _score.setText(String.valueOf(_profile._score));
-            _levelTV.setText(String.valueOf(_profile._level));
+            _levelTV.setText(String.valueOf(_profile.getLevel()));
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
             Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);
             _avatar.setImageBitmap(bMapScaled);
@@ -79,17 +74,41 @@ public class Fragment_Pseudo extends Fragment {
 
             double xp = _profile.getExperience();
             int percent = (int) (xp / _profile.getLevelLimit() * 100);
-            System.out.println("Vue du profil: experience = " + xp + " pourcentage = " + percent + " niveau = " + _profile.get_level());
+            System.out.println("Vue du profil: experience = " + xp + " pourcentage = " + percent + " niveau = " + _profile.getLevel());
             ProgressBar myprogressbar = (ProgressBar) rootview.findViewById(R.id.progress_bar);
             myprogressbar.setProgress(percent);
-
-
-
-
         }
 
-        return rootview;
+        // Appui long sur la barre
 
+        final TextView tv = (TextView) rootview.findViewById(R.id.TV_ProgressBarText);
+        ProgressBar pb = (ProgressBar) rootview.findViewById(R.id.progress_bar);
+
+        pb.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                tv.setText(String.valueOf(_profile.getExperience()));
+                System.out.println("In Pseudo.longClic");
+                return true;
+            }
+        });
+
+
+        Typeface typeFace= Typeface.createFromAsset(getActivity().getAssets(), "octapost.ttf");
+        _typeTV.setTypeface(typeFace);
+        _levelTV.setTypeface(typeFace);
+        _userNameET.setTypeface(typeFace);
+
+        TextView t1 = (TextView) rootview.findViewById(R.id.TVL_Level);
+        TextView t2 = (TextView) rootview.findViewById(R.id.TVL_Type);
+        TextView t3 = (TextView) rootview.findViewById(R.id.TVL_UserName);
+
+        t1.setTypeface(typeFace);
+        t2.setTypeface(typeFace);
+        t3.setTypeface(typeFace);
+
+        return rootview;
     }
 
     /**
@@ -97,51 +116,28 @@ public class Fragment_Pseudo extends Fragment {
      */
     public void saveProfil()
     {
-        System.out.println("in CPA.saveProfil()");
-        String userName = "userName=";
-        userName = userName.concat(_userNameET.getText().toString()).concat(System.getProperty("line.separator"));
+        System.out.println("in Fragment_Pseudo.saveProfil()");
+
         _profile.setUserName(_userNameET.getText().toString());
 
-        String lastName = "lastName=";
+        Intent intentSave = new Intent(getActivity(),SaveProfileService.class);
+        intentSave.putExtra("profile", _profile);
 
+        System.out.println("Fin de modification du profil et avant sauvegarde: profil: username = " +
+                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience());
 
-        String score = "score=";
-        score = score.concat(_score.getText().toString()).concat(System.getProperty("line.separator"));
+        getActivity().startService(intentSave);
 
-        String type = "type=";
-        type = type.concat(_profile._type.toString()).concat(System.getProperty("line.separator"));
+        System.out.println("Fin de modification du profil et après sauvegarde: profil: username = " +
+                _profile.getUserName() + "score =  " + _profile.getScore() + " et type = " + _profile.getType() +
+                " et level = " + _profile.getLevel() + " et experience = " + _profile.getExperience());
 
-        String experience = "experience=";
-        experience = experience.concat((String.valueOf(_profile._experience)).concat(System.getProperty("line.separator")));
-        String level = "level=";
-        level = level.concat((String.valueOf(_profile._level)).concat(System.getProperty("line.separator")));
-
-
-        try
-        {
-            FileOutputStream out = getActivity().openFileOutput(Profile.PROFIL_FILE_NAME, Context.MODE_PRIVATE);
-            System.out.println(Profile.PROFIL_FILE_NAME);
-            out.write(userName.getBytes());
-
-            out.write(score.getBytes());
-            out.write(type.getBytes());
-            out.write(experience.getBytes());
-            out.write(level.getBytes());
-            out.close();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
-        //Intent intent = new Intent(this,MainActivity.class);
         getActivity().finish();
         intent.putExtra("profile", _profile);
         intent.putExtra("activite", "ViewProfileActivity");
         startActivity(intent);
-        System.out.println("fin save file et type est "+_profile._type.toString());
     }
-
-
 }
