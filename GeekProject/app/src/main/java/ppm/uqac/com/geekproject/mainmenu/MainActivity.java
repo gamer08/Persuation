@@ -81,9 +81,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
             _typeTV.setText((_profile.getType()).toString());
 
-            /*Bitmap bitmap = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
-            Bitmap bMapScaled = Bitmap.createScaledBitmap(bitmap, 640, 640, false);*/
-
             Bitmap bm = BitmapFactory.decodeResource(getResources(), _profile.getAvatar());
 
             bm = ImageSettings.getCircleBitmap(bm);
@@ -107,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
                 t.show();
 
-
                 GADialog myDiag=new GADialog();
                 myDiag.show(getFragmentManager(),"Diag");
             }
@@ -125,8 +121,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
 
         }
-
-        //System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
 
         // Font
         Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
@@ -152,8 +146,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         }
 
         this.socialNetwork();
-
-
     }
 
     public void socialNetwork(){
@@ -181,8 +173,6 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         iB1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                ArrayList<String> wantedPackage = new ArrayList<>();
-                List<Intent> targetedShareIntents = new ArrayList<Intent>();
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("image/jpeg");//("text/plain");
                 List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
@@ -283,12 +273,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
 
     public void onClickProfile(View v)
     {
-        //Intent intent = new Intent(this,ViewProfileActivity.class);
-
         Intent intent = new Intent(this, ViewProfileActivity.class);
         this.finish();
         intent.putExtra("profile", _profile);
-
         startActivity(intent);
     }
 
