@@ -102,6 +102,42 @@
         android:padding="5dp"
         android:layout_weight="0.1" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.2">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonFacebook"
+            android:layout_below="@+id/buttonProfil"
+
+            android:src="@drawable/facebook"
+            android:layout_weight="0.2"
+            android:padding="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonGoogle"
+            android:layout_below="@+id/buttonProfil"
+            android:src="@drawable/google"
+            android:layout_weight="0.2"
+            android:padding="5dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonTwitter"
+            android:layout_below="@+id/buttonProfil"
+            android:src="@drawable/twitter"
+            android:layout_weight="0.2"
+            android:padding="5dp" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -77,7 +77,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
 
     // Variables pour le partage sur facebook
     // Creating Facebook CallbackManager Value
-    public static CallbackManager callbackmanager;
+
     CallbackManager callbackManager;
     ShareDialog shareDialog;
 

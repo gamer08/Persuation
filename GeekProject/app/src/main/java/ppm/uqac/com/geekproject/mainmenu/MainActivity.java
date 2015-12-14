@@ -3,20 +3,33 @@ package ppm.uqac.com.geekproject.mainmenu;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import ppm.uqac.com.geekproject.Database.ProfileDatabase;
 import ppm.uqac.com.geekproject.Database.WikiDatabase;
@@ -33,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     private ImageView _avatar;
     private Profile _profile;
 
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
 
 
     @Override
@@ -109,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                 b.setVisibility(View.INVISIBLE);
             }
 
+
         }
 
         //System.out.println("Vue du profil dans le main menu : experience = " + _profile.getExperience() + " niveau = " + _profile.getLevel());
@@ -136,10 +152,99 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
             Toast.makeText(this, "Tu as gagné un nouveau badge! ", Toast.LENGTH_SHORT).show();
         }
 
+        this.socialNetwork();
+
 
     }
 
+    public void socialNetwork(){
+        ImageView iB1 = (ImageView) findViewById(R.id.buttonGoogle);
+        ImageView iB2 = (ImageView) findViewById(R.id.buttonFacebook);
+        ImageView iB3 = (ImageView) findViewById(R.id.buttonTwitter);
 
+        iB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                ArrayList<String> wantedPackage = new ArrayList<>();
+                List<Intent> targetedShareIntents = new ArrayList<Intent>();
+                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");//("text/plain");
+                List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                for (ResolveInfo resolveInfo : resInfo) {
+                    String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                    Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    targetedShareIntent.setType("image/jpeg");
+                    if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.google.android.libraries.social.gateway.gatewayactivity")) {
+                        System.out.println("google plus");
+                        targetedShareIntent.setPackage(packageName);
+                        targetedShareIntent.setClassName(
+                                resolveInfo.activityInfo.packageName,
+                                resolveInfo.activityInfo.name);
+                        String message = "Par rapport aux geeks, je suis " + _profile.getType() + " et je suis de niveau " + _profile.getLevel();
+                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                    }
+                }
+                Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
+                startActivity(chooserIntent);
+            }
+        });
+
+        iB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                FacebookSdk.sdkInitialize(getApplicationContext());
+                callbackManager = CallbackManager.Factory.create();
+                shareDialog = new ShareDialog(MainActivity.this);
+                String message = "Par rapport aux geeks, je suis "+_profile.getType()+" et je suis de niveau "+_profile.getLevel();
+                if (ShareDialog.canShow(ShareLinkContent.class))
+                {
+                    LoginManager.getInstance().logInWithReadPermissions(
+                            MainActivity.this,
+                            Arrays.asList("user_friends"));
+                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                            .setContentTitle("GeekProject")
+                            .setContentDescription(message)
+                            .setContentUrl(Uri.parse("http://facebook.com"))
+                            .build();
+                    shareDialog.show(linkContent);
+                }
+            }
+        });
+
+
+        iB3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                ArrayList<String> wantedPackage = new ArrayList<>();
+                wantedPackage.add("com.google.android.gm");
+                List<Intent> targetedShareIntents = new ArrayList<Intent>();
+                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");//("text/plain");
+                List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                for (ResolveInfo resolveInfo : resInfo) {
+                    String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                    Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    targetedShareIntent.setType("image/jpeg");
+                    if (TextUtils.equals(resolveInfo.activityInfo.name, "com.twitter.android.composer.ComposerActivity")) {
+                        targetedShareIntent.setPackage(packageName);
+                        targetedShareIntent.setClassName(
+                                resolveInfo.activityInfo.packageName,
+                                resolveInfo.activityInfo.name);
+                        String message = "Par rapport aux geeks, je suis "+_profile.getType()+" et je suis de niveau "+_profile.getLevel();
+                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                        targetedShareIntents.add(targetedShareIntent);
+                        wantedPackage.remove(packageName);
+                    }
+                }
+                Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
+                startActivity(chooserIntent);
+            }
+        });
+
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
