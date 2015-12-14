@@ -68,7 +68,6 @@ public class AdapterBadges extends BaseAdapter
         LinearLayout l;
 
         // On récupère le layout lié à notre Badge
-
         if (convertView == null)
             l = (LinearLayout) _inflater.inflate(R.layout.badge_layout, parent, false);
         else

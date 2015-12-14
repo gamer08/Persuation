@@ -110,7 +110,6 @@ public class CreationProfileActivity extends AppCompatActivity
                 " et nb de questionnaires = " + _profile.getNbQuestionaries() );
 
         // Sauvegarde
-
         Intent intentSave = new Intent(this, SaveProfileService.class);
         intentSave.putExtra("profile", _profile);
         startService(intentSave);

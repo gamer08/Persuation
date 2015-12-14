@@ -42,7 +42,6 @@ public class Fragment_Pseudo extends Fragment {
         _levelTV = (TextView) rootview.findViewById(R.id.TV_Level);
 
         // Listener pour le bouton de sauvegarde des modifications
-
         ImageView buttonModification = (ImageView) rootview.findViewById(R.id.BTN_Modificate);
 
         buttonModification.setOnClickListener(new Button.OnClickListener()
@@ -101,7 +100,6 @@ public class Fragment_Pseudo extends Fragment {
         _levelTV.setTypeface(typeFace);
         _userNameET.setTypeface(typeFace);
 
-
         TextView t1 = (TextView) rootview.findViewById(R.id.TVL_Level);
         TextView t2 = (TextView) rootview.findViewById(R.id.TVL_Type);
         TextView t3 = (TextView) rootview.findViewById(R.id.TVL_UserName);
@@ -109,7 +107,6 @@ public class Fragment_Pseudo extends Fragment {
         t1.setTypeface(typeFace);
         t2.setTypeface(typeFace);
         t3.setTypeface(typeFace);
-
 
         return rootview;
     }
@@ -138,7 +135,6 @@ public class Fragment_Pseudo extends Fragment {
 
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
-        //Intent intent = new Intent(this,MainActivity.class);
         getActivity().finish();
         intent.putExtra("profile", _profile);
         intent.putExtra("activite", "ViewProfileActivity");

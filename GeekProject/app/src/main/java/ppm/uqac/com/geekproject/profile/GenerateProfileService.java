@@ -59,7 +59,6 @@ public class GenerateProfileService extends IntentService
             profile.setType(_profilTypes.get(slice));
 
             // on met à jour la table des scores
-
             profile.updateScores();
 
             System.out.println("In GenerateProfileService - Scores = " + profile._scores);

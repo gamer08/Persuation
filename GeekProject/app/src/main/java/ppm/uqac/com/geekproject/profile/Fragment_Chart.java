@@ -39,32 +39,6 @@ public class Fragment_Chart extends Fragment {
 
     public void createChart()
     {
-        /*Calendar c = Calendar.getInstance();
-        int days = c.get(Calendar.DAY_OF_YEAR);*/
-
-        //Calendar now = Calendar.getInstance();
-
-        /*ArrayList<String> xVals = new ArrayList<String>();
-        int count = 5;
-        int range = 5;
-        for (int i = 0; i < 5; i++) {
-            //xVals.add((i) + "lal");
-            xVals.add(now.get(Calendar.DATE)+i + "." + (now.get(Calendar.MONTH)+1) +"" );
-        }*/
-
-        /*ArrayList<String> xVals = new ArrayList<String>();
-
-        ArrayList<Entry> yVals = new ArrayList<Entry>();*/
-
-        /*for (int i = 1; i < 6; i++) {
-
-            float mult = (range + 1);
-            float val = (float) (Math.random() * mult) + 3;// + (float)
-            // ((mult *
-            // 0.1) / 10);
-            yVals.add(new Entry(val, i));
-        }*/
-
         Intent intent = new Intent(getActivity().getIntent());
         //Intent intent = getIntent();
         if (intent != null)
@@ -72,60 +46,14 @@ public class Fragment_Chart extends Fragment {
 
         System.out.println("In Fragment_Chart- Scores = " + _profile._scores);
 
-        // Parcours de la table des scores
-
-
-        /*for (int i = 1; i<=_profile._scores.size(); i++)
-        {
-            System.out.println("Score: " + _profile._scores.get(i - 1) + " et Numero = " + i);
-            xVals.add(i+"");
-            yVals.add(new Entry(_profile._scores.get(i-1), i));
-        }*/
-
-
-        // create a dataset and give it a type
-        /*LineDataSet set1 = new LineDataSet(yVals, "Résultat des questionnaires");
-        // set1.setFillAlpha(110);
-        // set1.setFillColor(Color.RED);
-
-        // set the line to be drawn like this "- - - - - -"
-        set1.enableDashedLine(10f, 5f, 0f);
-        set1.enableDashedHighlightLine(10f, 5f, 0f);
-        //set1.setColor(Color.BLUE);
-        //set1.setCircleColor(Color.RED);
-        set1.setLineWidth(1f);
-        set1.setCircleSize(3f);
-        set1.setDrawCircleHole(false);
-        set1.setValueTextSize(9f);
-        //set1.setFillAlpha(65);
-        set1.setFillColor(Color.GREEN);
-
-
-        ArrayList<LineDataSet> dataSets = new ArrayList<LineDataSet>();
-        dataSets.add(set1); // add the datasets
-
-        // create a data object with the datasets
-        LineData data = new LineData(xVals, dataSets);
-
-        // set data
-
-        mChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-        mChart.getAxisRight().setEnabled(false);
-
-        mChart.setData(data);*/
-
         // Liste d'entrées
-
         ArrayList<Entry> points = new ArrayList<Entry>();
 
         // Abscisses
-
         ArrayList<String> xVals = new ArrayList<String>();
 
         for (int i = 1; i<=10; i++)
             xVals.add(i + "");
-
-
 
         for (int i = 1; i<_profile._scores.size()+1; i++)
         {
@@ -135,7 +63,6 @@ public class Fragment_Chart extends Fragment {
         }
 
         // LineSet créé à partir de ces entrées
-
         LineDataSet set = new LineDataSet(points, "Résultats des questionnaires");
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
 

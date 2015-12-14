@@ -21,14 +21,10 @@ public class Fragment_Badges extends Fragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-
         _rootview = inflater.inflate(R.layout.fragment_badges,container,false);
         _lvBadges = (ListView) _rootview.findViewById(R.id.listBadges);
         _lvBadges.setAdapter(_adapter);
         return _rootview;
-
-
     }
 
 
