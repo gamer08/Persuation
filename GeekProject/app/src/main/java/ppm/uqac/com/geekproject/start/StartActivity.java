@@ -127,14 +127,9 @@ public class StartActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-            return true;
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
     public void getWiki() throws XmlPullParserException, IOException {
         System.out.println("In getwiki()");

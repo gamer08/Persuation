@@ -54,11 +54,6 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".geekactivity.ViewListActivity"
-            android:label="@string/title_activity_view_list"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".geeklopedie.GeeklopedieActivity"
             android:label="@string/title_activity_geeklopedie2"
             android:screenOrientation="portrait"
