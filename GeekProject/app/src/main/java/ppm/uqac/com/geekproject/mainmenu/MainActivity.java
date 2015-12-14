@@ -161,6 +161,28 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         ImageView iB1 = (ImageView) findViewById(R.id.buttonGoogle);
         ImageView iB2 = (ImageView) findViewById(R.id.buttonFacebook);
         ImageView iB3 = (ImageView) findViewById(R.id.buttonTwitter);
+        iB1.setVisibility(View.INVISIBLE);
+        iB2.setVisibility(View.INVISIBLE);
+        iB3.setVisibility(View.INVISIBLE);
+
+        ArrayList<String> wantedPackage = new ArrayList<>();
+        List<Intent> targetedShareIntents = new ArrayList<Intent>();
+        Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+        shareIntent.setType("image/jpeg");//("text/plain");
+        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+        for (ResolveInfo resolveInfo : resInfo) {
+            System.out.println(resolveInfo.activityInfo.name);
+            if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.google.android.libraries.social.gateway.gatewayactivity")) {
+                iB1.setVisibility(View.VISIBLE);
+            }
+            else  if (TextUtils.equals(resolveInfo.activityInfo.packageName.toLowerCase(),"com.facebook.katana")) {
+                iB2.setVisibility(View.VISIBLE);
+            } else  if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.twitter.android.composer.ComposerActivity")) {
+                iB3.setVisibility(View.VISIBLE);
+            }
+
+        }
+
 
         iB1.setOnClickListener(new View.OnClickListener() {
             @Override
