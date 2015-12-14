@@ -1,2 +1,4 @@
 name=La figure du « geek »;desc=Page web;url=http://trans.revues.org/370
-name=Définition du mot geek:;desc=Page web;url=http://okki666.free.fr/docmaster/articles/linux096.htm
+name=Définition du mot geek;desc=Page web;url=http://okki666.free.fr/docmaster/articles/linux096.htm
+name=Les Geeks;desc=Site web de la bande dessinée "Les Geeks";url=http://www.lesgeeks.net/
+name=InnerGeek;desc=Site web recensant plusieurs questions en rapport avec les geeks;url=http://www.innergeek.us/francais.html

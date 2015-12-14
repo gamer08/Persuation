@@ -170,7 +170,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
-                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application A qui le geek-tu?")
                                                                 .setContentUrl(Uri.parse("http://facebook.com"))
                                                                 .build();
                                                         shareDialog.show(linkContent);
@@ -191,7 +191,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
@@ -212,7 +212,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
@@ -249,7 +249,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
-                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application A qui le geek-tu?")
                                                                 .setContentUrl(Uri.parse("http://facebook.com"))
                                                                 .build();
                                                         shareDialog.show(linkContent);
@@ -270,7 +270,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
@@ -310,7 +310,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
-                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application A qui le geek-tu?")
                                                                 .setContentUrl(Uri.parse("http://facebook.com"))
                                                                 .build();
                                                         shareDialog.show(linkContent);
@@ -331,7 +331,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
@@ -368,7 +368,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
-                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application A qui le geek-tu?")
                                                                 .setContentUrl(Uri.parse("http://facebook.com"))
                                                                 .build();
                                                         shareDialog.show(linkContent);
@@ -411,7 +411,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
@@ -432,7 +432,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
@@ -470,7 +470,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
@@ -510,7 +510,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                             targetedShareIntent.setClassName(
                                                                     resolveInfo.activityInfo.packageName,
                                                                     resolveInfo.activityInfo.name);
-                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            String message = "J'ai commencé à utiliser l'application A qui le geek-tu?";
                                                             targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                                                             startActivity(targetedShareIntent);
                                                         }
