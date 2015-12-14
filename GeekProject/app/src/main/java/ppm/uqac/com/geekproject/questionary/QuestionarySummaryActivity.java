@@ -120,7 +120,6 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
 
                 nextActivity.putExtra("profile", _profile);
                 QuestionarySummaryActivity.this.finish();
-
                 System.out.println("Fin du questionnaire: profil: score =  " + _scoreQuestionnaire + " et type = " + _profile.getType());
                 startActivity(nextActivity);
             }
@@ -142,7 +141,6 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -166,7 +164,6 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         yes.setText("Oui");
         yes.setTextColor(getResources().getColor(R.color.value));
         yes.setLayoutParams(param);
-
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +175,6 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         no.setText("Non");
         no.setTextColor(getResources().getColor(R.color.value));
         no.setLayoutParams(param);
-
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,7 +191,6 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         no.setTypeface(typeFace);
         yes.setTypeface(typeFace);
         question.setTypeface(typeFace);
-
         parentLayout.addView(subLayout);
     }
 
@@ -204,7 +199,6 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
         Button ok = new Button(this);
         ok.setText("ok");
         parentLayout.addView(ok);
-
         ok.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -217,14 +211,13 @@ public class QuestionarySummaryActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public void createProfile(boolean isDummyProfile)
     {
-        if (isDummyProfile)
+        if (isDummyProfile) {
             _scoreQuestionnaire = Float.MIN_VALUE;
-
+        }
         Intent profilGenerator = new Intent(this, GenerateProfileService.class);
         profilGenerator.putExtra("scoreQuestionnaire", _scoreQuestionnaire);
         startService(profilGenerator);

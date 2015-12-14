@@ -49,7 +49,6 @@ public class GenerateQuestionaryService extends IntentService
         {
             generate(questionary);
             Intent callBackIntent = new Intent(GenerateQuestionnaireActions.Broadcast);
-
             callBackIntent.putExtra("questionary", questionary);
             System.out.println(questionary.questions());
             LocalBroadcastManager.getInstance(this).sendBroadcast(callBackIntent);
@@ -108,7 +107,6 @@ public class GenerateQuestionaryService extends IntentService
     ArrayList<Question> parseQuestions( XmlPullParser parser) throws XmlPullParserException, IOException
     {
         int eventType = parser.next();
-
         ArrayList<Question> questions = new ArrayList<Question>();
         Question question = null;
 
@@ -198,7 +196,6 @@ public class GenerateQuestionaryService extends IntentService
             }
           eventType =  parser.next();
         }
-
         return choices;
     }
 
