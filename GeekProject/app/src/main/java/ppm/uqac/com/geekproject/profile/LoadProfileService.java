@@ -71,7 +71,7 @@ public class LoadProfileService extends IntentService
 
                 for (int i=1; i<=_nbQuestionaries; i++)
                 {
-                    //profile._scores.add(Float.parseFloat(buff.readLine()));
+                    profile._scores.add(Float.parseFloat(buff.readLine()));
 
                     System.out.println("Ligne particuliere dans fichier: " + buff.readLine());
                 }

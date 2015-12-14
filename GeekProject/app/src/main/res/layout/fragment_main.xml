@@ -6,7 +6,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Geeklopédie"
+        android:text="Bienvenue dans la Geeklopedie!"
         android:id="@+id/textViewGeeklopedie"
-        android:layout_gravity="center_horizontal|top" />
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="25dp"
+        android:textColor="@color/value" />
+
+    <TextView
+        android:layout_width="246dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Glissez votre doigt de la gauche vers la droite..."
+        android:id="@+id/TV_finger"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/label" />
 </FrameLayout>
