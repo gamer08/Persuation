@@ -76,7 +76,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".geekactivity.ViewListActivity2"
+            android:name=".geekactivity.ViewListActivity"
             android:label="Liste des Activités"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>

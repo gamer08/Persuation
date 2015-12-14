@@ -41,7 +41,7 @@ import ppm.uqac.com.geekproject.profile.SaveProfileService;
 import ppm.uqac.com.geekproject.questionary.QuestionaryActivity;
 
 
-public class ViewListActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class ViewListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
     GADatabase gadb;
 
@@ -163,10 +163,10 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                 case 0:
                                                     FacebookSdk.sdkInitialize(getApplicationContext());
                                                     callbackManager = CallbackManager.Factory.create();
-                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    shareDialog = new ShareDialog(ViewListActivity.this);
                                                     if (ShareDialog.canShow(ShareLinkContent.class)) {
                                                         LoginManager.getInstance().logInWithReadPermissions(
-                                                                ViewListActivity2.this,
+                                                                ViewListActivity.this,
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
@@ -223,7 +223,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     _firsttime = false;
                                                     break;
@@ -242,10 +242,10 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                 case 0:
                                                     FacebookSdk.sdkInitialize(getApplicationContext());
                                                     callbackManager = CallbackManager.Factory.create();
-                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    shareDialog = new ShareDialog(ViewListActivity.this);
                                                     if (ShareDialog.canShow(ShareLinkContent.class)) {
                                                         LoginManager.getInstance().logInWithReadPermissions(
-                                                                ViewListActivity2.this,
+                                                                ViewListActivity.this,
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
@@ -282,7 +282,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     _firsttime = false;
                                                     break;
@@ -303,10 +303,10 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                 case 0:
                                                     FacebookSdk.sdkInitialize(getApplicationContext());
                                                     callbackManager = CallbackManager.Factory.create();
-                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    shareDialog = new ShareDialog(ViewListActivity.this);
                                                     if (ShareDialog.canShow(ShareLinkContent.class)) {
                                                         LoginManager.getInstance().logInWithReadPermissions(
-                                                                ViewListActivity2.this,
+                                                                ViewListActivity.this,
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
@@ -342,7 +342,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     _firsttime = false;
                                                     break;
@@ -361,10 +361,10 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                 case 0:
                                                     FacebookSdk.sdkInitialize(getApplicationContext());
                                                     callbackManager = CallbackManager.Factory.create();
-                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    shareDialog = new ShareDialog(ViewListActivity.this);
                                                     if (ShareDialog.canShow(ShareLinkContent.class)) {
                                                         LoginManager.getInstance().logInWithReadPermissions(
-                                                                ViewListActivity2.this,
+                                                                ViewListActivity.this,
                                                                 Arrays.asList("user_friends"));
                                                         ShareLinkContent linkContent = new ShareLinkContent.Builder()
                                                                 .setContentTitle("GeekProject")
@@ -379,7 +379,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     _firsttime = false;
                                                     break;
@@ -443,7 +443,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     break;
                                             }
@@ -481,7 +481,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     break;
                                             }
@@ -521,7 +521,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     break;
                                             }
@@ -538,7 +538,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     Intent main = new Intent(getApplicationContext(), MainActivity.class);
                                                     main.putExtra("profile", _profile);
                                                     main.putExtra("activite", "ViewListActivity");
-                                                    ViewListActivity2.this.finish();
+                                                    ViewListActivity.this.finish();
                                                     startActivity(main);
                                                     break;
                                             }
@@ -555,7 +555,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                 Intent main = new Intent(getApplicationContext(), MainActivity.class);
                 main.putExtra("profile",_profile);
                 main.putExtra("activite","ViewListActivity");
-                ViewListActivity2.this.finish();
+                ViewListActivity.this.finish();
                 startActivity(main);
             }
         }
@@ -576,7 +576,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         Intent main = new Intent(getApplicationContext(), MainActivity.class);
         main.putExtra("profile",_profile);
         main.putExtra("activite","ViewListActivity");
-        ViewListActivity2.this.finish();
+        ViewListActivity.this.finish();
         startActivity(main);
     }
 
@@ -643,7 +643,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         boolean isApp = false;
         Fragment currentFragment = this.getFragmentManager().findFragmentById(R.id.activities_frame);
         GA activity = gaAdapter.getItem(fragment_ga.get_ContentListView().getPositionForView(v));
-        System.out.println("ViewListActivity2 : Appuye bouton " + activity.get_name());
+        System.out.println("ViewListActivity : Appuye bouton " + activity.get_name());
         if(activity.get_name().equals("Installer l application AppyGeek"))
         {
             isApp = searchApps("com.mobilesrepublic.appygeek");
@@ -692,7 +692,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                 Intent newActivity = new Intent(getApplicationContext(), QuestionaryActivity.class);
                 newActivity.putExtra("fromLevelUP", true);
                 newActivity.putExtra("profile", _profile);
-                ViewListActivity2.this.finish();
+                ViewListActivity.this.finish();
                 startActivity(newActivity);
             }
         });
