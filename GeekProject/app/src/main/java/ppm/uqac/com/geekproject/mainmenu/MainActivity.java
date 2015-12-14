@@ -182,11 +182,9 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                                 resolveInfo.activityInfo.name);
                         String message = "Par rapport aux geeks, je suis " + _profile.getType() + " et je suis de niveau " + _profile.getLevel();
                         targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                        startActivity(targetedShareIntent);
                     }
                 }
-                Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
-                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
-                startActivity(chooserIntent);
             }
         });
 
