@@ -241,6 +241,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     main.putExtra("activite", "ViewListActivity");
                                                     ViewListActivity2.this.finish();
                                                     startActivity(main);
+                                                    _firsttime = false;
                                                     break;
                                             }
                                         }
@@ -299,6 +300,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     main.putExtra("activite", "ViewListActivity");
                                                     ViewListActivity2.this.finish();
                                                     startActivity(main);
+                                                    _firsttime = false;
                                                     break;
                                             }
                                         }
@@ -358,6 +360,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     main.putExtra("activite", "ViewListActivity");
                                                     ViewListActivity2.this.finish();
                                                     startActivity(main);
+                                                    _firsttime = false;
                                                     break;
                                             }
                                         }
@@ -394,6 +397,7 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
                                                     main.putExtra("activite", "ViewListActivity");
                                                     ViewListActivity2.this.finish();
                                                     startActivity(main);
+                                                    _firsttime = false;
                                                     break;
                                             }
                                         }
