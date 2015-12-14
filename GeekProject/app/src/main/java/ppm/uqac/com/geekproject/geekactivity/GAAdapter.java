@@ -119,8 +119,6 @@ public class GAAdapter extends BaseAdapter
         }
 
         // Font
-
-        // Font
         Typeface typeFace= Typeface.createFromAsset(mContext.getAssets(), "octapost.ttf");
         tv_description.setTypeface(typeFace);
         tv_url.setTypeface(typeFace);

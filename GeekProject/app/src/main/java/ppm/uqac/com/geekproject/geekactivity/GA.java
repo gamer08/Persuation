@@ -13,7 +13,6 @@ public class GA
     private boolean _isDone;
 
 
-
     private String _url;
 
     /**

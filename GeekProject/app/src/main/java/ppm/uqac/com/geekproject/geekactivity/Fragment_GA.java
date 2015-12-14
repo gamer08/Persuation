@@ -15,10 +15,6 @@ public class Fragment_GA extends Fragment
     GAAdapter _gadapter;
     ListView _ContentListView;
 
-    /*public void ActivitiesDoingFragment()
-    {
-    }*/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
