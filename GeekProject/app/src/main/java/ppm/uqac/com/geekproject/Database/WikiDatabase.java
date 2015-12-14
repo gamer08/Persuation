@@ -34,8 +34,6 @@ public class WikiDatabase extends SQLiteOpenHelper {
                 "name string, " +
                 "definition string" +
                 ")");
-
-
         System.out.println("onCREATE DE WIKIDB");
         getWords();
 
@@ -46,8 +44,6 @@ public class WikiDatabase extends SQLiteOpenHelper {
 
         System.out.println("UPGRADE DE WIKIDB");
         getWords();
-
-
         db.execSQL("DROP TABLE IF EXISTS geek_wiki");
         onCreate(db);
     }
@@ -59,7 +55,6 @@ public class WikiDatabase extends SQLiteOpenHelper {
                 i.getDefinition() +
                 "')");
         this.getWritableDatabase().close();
-
         System.out.println("UPGRADE DE WIKIDB");
         getWords();
 
@@ -80,23 +75,18 @@ public class WikiDatabase extends SQLiteOpenHelper {
 
         String name;
         String definition;
-
-
         cursor.moveToFirst();
         System.out.println("Wiki DATABASE - cursor en 1ère position =  " + cursor.getPosition());
         cursor.moveToLast();
-
         System.out.println("Wiki DATABASE - cursor en dernière position =  " + cursor.getPosition());
 
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             name = cursor.getString(0);
             definition = cursor.getString(1);
-
             System.out.println("Mot trouvé = " + name + " avec definition = " + definition);
 
             _words.add(new ItemWiki(name, definition));
         }
-
         cursor.close();
         db.close();
         return _words;

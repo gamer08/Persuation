@@ -132,7 +132,6 @@ public class ContentDatabase extends SQLiteOpenHelper {
      */
     public ArrayList<ItemContent> getContent()
     {
-        //listActivities.clear();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor activitiesSaved = db.rawQuery("SELECT * FROM geek_content", null);
 

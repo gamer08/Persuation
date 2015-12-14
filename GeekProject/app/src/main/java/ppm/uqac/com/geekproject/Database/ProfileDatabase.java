@@ -113,9 +113,6 @@ public class ProfileDatabase extends SQLiteOpenHelper {
             n = Integer.parseInt(cursor.getString(3));
             got = cursor.getString(4);
 
-
-
-
             switch (n)
             {
                 case (0):
