@@ -89,23 +89,6 @@ public class AdapterVideo extends BaseAdapter {
         return layoutItem;
     }
 
-    /*public Bitmap getBitmapFromURL(String src)
-    {
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            InputStream input = connection.getInputStream();
-            Bitmap result = BitmapFactory.decodeStream(input);
-            return result;
-        }catch (Exception e)
-        {
-            System.out.println("Error: "+e.getMessage());
-            return null;
-        }
-    }*/
-
-
     @Override
     public int getCount() {
         return this.listVideo.size();

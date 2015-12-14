@@ -67,8 +67,6 @@ public class AdapterContent extends BaseAdapter
         tv_name.setText(listContent.get(position).get_name());
         tv_description.setText(listContent.get(position).get_description());
 
-
-
         // Font
         Typeface typeFace= Typeface.createFromAsset(mContext.getAssets(), "octapost.ttf");
 

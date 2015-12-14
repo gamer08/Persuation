@@ -110,20 +110,17 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
         {
 
             // Ouverture de la BDD
-
             WikiDatabase db = new WikiDatabase(this);
             ArrayList<ItemWiki> list = new ArrayList<>();
-
             list = db.getWords();
-            // On crée un adapter
 
+            // On crée un adapter
             AdapterWiki adapter = new AdapterWiki(GeeklopedieActivity.this,list);
 
             Fragment_Wiki f = new Fragment_Wiki();
             f.setData(adapter);
             fm.beginTransaction().replace(R.id.content_frame,f).commit();
-
-
+            //fermeture de la database
             db.close();
         }
         else if (id == R.id.nav_web)
@@ -142,8 +139,6 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
             {
                 while ((line = reader.readLine()) != null)
                 {
-                    /*sb.append(line).append('\n');
-                    System.out.println("while "+sb.toString());*/
                     System.out.println("index url: "+line.indexOf("name="));
                     d=line.indexOf(";desc=");
                     u=line.indexOf(";url=");
@@ -166,7 +161,6 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
                     e.printStackTrace();
                 }
             }
-            //
             // Récupération de tout le contenu
             ArrayList<ItemContent> List =  db.getContent();
             System.out.println(List.toString());
@@ -188,7 +182,6 @@ public class GeeklopedieActivity extends AppCompatActivity implements Navigation
             System.out.println("ouverture bd");
 
             InputStream is = getResources().openRawResource(getResources().getIdentifier("raw/video", "raw", getPackageName()));
-
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();
 

@@ -42,7 +42,6 @@ public class Fragment_4GeekFriendly extends Fragment
         {
             tv.setTypeface(typeFace);
         }
-
         return rootview;
     }
 }

@@ -46,9 +46,5 @@ public class Fragment_1Mistrustful extends Fragment
 
         return rootview;
     }
-
-
-
-
 }
 

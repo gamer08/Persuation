@@ -43,7 +43,6 @@ public class Fragment_5Geek extends Fragment
         {
             tv.setTypeface(typeFace);
         }
-        
         return rootview;
     }
 }

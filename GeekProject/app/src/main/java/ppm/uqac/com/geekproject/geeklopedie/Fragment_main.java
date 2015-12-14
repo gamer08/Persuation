@@ -30,7 +30,6 @@ public class Fragment_main extends Fragment
         textView.setTypeface(typeFace);
         textView2.setTypeface(typeFace);
 
-
         return rootview;
     }
 }

@@ -42,7 +42,6 @@ public class Fragment_2Sckeptical extends Fragment
         {
             tv.setTypeface(typeFace);
         }
-
         return rootview;
     }
 }

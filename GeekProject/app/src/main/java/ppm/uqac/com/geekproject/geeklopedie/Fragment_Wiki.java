@@ -34,8 +34,4 @@ public class Fragment_Wiki extends Fragment
         _adapter = adapter;
 
     }
-
-
-
-
 }
