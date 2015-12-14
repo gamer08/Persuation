@@ -144,101 +144,422 @@ public class ViewListActivity2 extends AppCompatActivity implements NavigationVi
         {
             if(_firsttime==true)
             {
-                new AlertDialog.Builder(this)
-                        .setMessage("Voulez-vous partager vos progrès?")
-                        .setCancelable(false)
-                        .setIcon(R.drawable.facebook)
-                     .setNeutralButton("Facebook", new DialogInterface.OnClickListener() {
-                         public void onClick(DialogInterface dialog, int id) {
-                             //test dialog
-                             FacebookSdk.sdkInitialize(getApplicationContext());
-                             callbackManager = CallbackManager.Factory.create();
-                             shareDialog = new ShareDialog(ViewListActivity2.this);
-                             if (ShareDialog.canShow(ShareLinkContent.class)) {
-                                 LoginManager.getInstance().logInWithReadPermissions(
-                                         ViewListActivity2.this,
-                                         Arrays.asList("user_friends"));
-                                 ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                                         .setContentTitle("GeekProject")
-                                         .setContentDescription("A commencé à utiliser l'application GeekProject")
-                                         .setContentUrl(Uri.parse("http://facebook.com"))
-                                         .build();
-                                 shareDialog.show(linkContent);
-                                 _firsttime = false;
-                             }
-                         }
-                     })
+                boolean isfacebook=false;
+                boolean isgoogle=false;
+                boolean istwitter=false;
+                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                shareIntent.setType("image/jpeg");//("text/plain");
+                List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                for (ResolveInfo resolveInfo : resInfo) {
+                    if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.google.android.libraries.social.gateway.gatewayactivity")) {
+                        isgoogle=true;
+                    }
+                    else  if (TextUtils.equals(resolveInfo.activityInfo.packageName.toLowerCase(),"com.facebook.katana")) {
+                        isfacebook=true;
+                    } else  if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.twitter.android.composer.composeractivity")) {
+                        istwitter=true;
+                    }
+                }
 
-                        .setNeutralButton("Twitter", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                ArrayList<String> wantedPackage = new ArrayList<>();
-                                wantedPackage.add("com.google.android.gm");
-                                List<Intent> targetedShareIntents = new ArrayList<Intent>();
-                                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                shareIntent.setType("image/jpeg");//("text/plain");
-                                List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
-                                for (ResolveInfo resolveInfo : resInfo) {
-                                    String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
-                                    Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                    targetedShareIntent.setType("image/jpeg");
-                                    if (TextUtils.equals(resolveInfo.activityInfo.name, "com.twitter.android.composer.ComposerActivity")) {
-                                        targetedShareIntent.setPackage(packageName);
-                                        targetedShareIntent.setClassName(
-                                                resolveInfo.activityInfo.packageName,
-                                                resolveInfo.activityInfo.name);
-                                        String message = "Par rapport aux geeks, je suis "+_profile.getType()+" et je suis de niveau "+_profile.getLevel();
-                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
-                                        targetedShareIntents.add(targetedShareIntent);
-                                        wantedPackage.remove(packageName);
-                                    }
-                                }
-                                Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0), "Select app to share");
-                                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, targetedShareIntents.toArray(new Parcelable[]{}));
-                                startActivity(chooserIntent);
-                                _firsttime = false;
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Voulez-vous partagez vos progrès?");
+                System.out.println(isfacebook+" "+isgoogle+" "+istwitter);
 
-                            }
-                        })
-
-                        .setNeutralButton("Google+", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                ArrayList<String> wantedPackage = new ArrayList<>();
-                                List<Intent> targetedShareIntents = new ArrayList<Intent>();
-                                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                shareIntent.setType("image/jpeg");//("text/plain");
-                                List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
-                                for (ResolveInfo resolveInfo : resInfo) {
-                                    String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
-                                    Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
-                                    targetedShareIntent.setType("image/jpeg");
-                                    if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.google.android.libraries.social.gateway.gatewayactivity")) {
-                                        System.out.println("google plus");
-                                        targetedShareIntent.setPackage(packageName);
-                                        targetedShareIntent.setClassName(
-                                                resolveInfo.activityInfo.packageName,
-                                                resolveInfo.activityInfo.name);
-                                        String message = "Par rapport aux geeks, je suis " + _profile.getType() + " et je suis de niveau " + _profile.getLevel();
-                                        targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
-                                        startActivity(targetedShareIntent);
-                                    }
-                                }
-                                _firsttime = false;
-                            }
-
-                        })
-                        .setNegativeButton("Non",new DialogInterface.OnClickListener()
+                if(isfacebook == true) {
+                    if(isgoogle == true)
+                    {
+                        if(istwitter == true)
                         {
-                            public void onClick(DialogInterface dialog, int id)
-                            {
-                                //Ouverture MainActivity
-                                Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                main.putExtra("profile",_profile);
-                                main.putExtra("activite","ViewListActivity");
-                                ViewListActivity2.this.finish();
-                                startActivity(main);
-                            }
-                        }).show();
-                System.out.println("Bouton retour");
+                            // Cas ou on a les 3
+                            builder.setItems(new CharSequence[]
+                                            {"Facebook", "Google +", "Twitter", "Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    FacebookSdk.sdkInitialize(getApplicationContext());
+                                                    callbackManager = CallbackManager.Factory.create();
+                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                                                        LoginManager.getInstance().logInWithReadPermissions(
+                                                                ViewListActivity2.this,
+                                                                Arrays.asList("user_friends"));
+                                                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                                                .setContentTitle("GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentUrl(Uri.parse("http://facebook.com"))
+                                                                .build();
+                                                        shareDialog.show(linkContent);
+                                                        _firsttime = false;
+                                                    }
+                                                    break;
+                                                case 1:
+                                                    Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntent.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                                                    for (ResolveInfo resolveInfo : resInfo) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.google.android.libraries.social.gateway.gatewayactivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+                                                case 2:
+                                                    Intent shareIntenttwitter = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntenttwitter.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfotwitter = getPackageManager().queryIntentActivities(shareIntenttwitter, 0);
+                                                    for (ResolveInfo resolveInfo : resInfotwitter) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.twitter.android.composer.composeractivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+                                                case 3:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        }
+                        else
+                        {
+                            //Cas ou on a faceboook et google
+                            builder.setItems(new CharSequence[]
+                                            {"Facebook", "Google +", "Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    FacebookSdk.sdkInitialize(getApplicationContext());
+                                                    callbackManager = CallbackManager.Factory.create();
+                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                                                        LoginManager.getInstance().logInWithReadPermissions(
+                                                                ViewListActivity2.this,
+                                                                Arrays.asList("user_friends"));
+                                                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                                                .setContentTitle("GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentUrl(Uri.parse("http://facebook.com"))
+                                                                .build();
+                                                        shareDialog.show(linkContent);
+                                                        _firsttime = false;
+                                                    }
+                                                    break;
+                                                case 1:
+                                                    Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntent.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                                                    for (ResolveInfo resolveInfo : resInfo) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.google.android.libraries.social.gateway.gatewayactivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+
+                                                case 2:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                    else {
+                        if(istwitter==true)
+                        {
+                            // Cas ou on a facebook et twitter
+                            builder.setItems(new CharSequence[]
+                                            {"Facebook", "Twitter", "Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    FacebookSdk.sdkInitialize(getApplicationContext());
+                                                    callbackManager = CallbackManager.Factory.create();
+                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                                                        LoginManager.getInstance().logInWithReadPermissions(
+                                                                ViewListActivity2.this,
+                                                                Arrays.asList("user_friends"));
+                                                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                                                .setContentTitle("GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentUrl(Uri.parse("http://facebook.com"))
+                                                                .build();
+                                                        shareDialog.show(linkContent);
+                                                        _firsttime = false;
+                                                    }
+                                                    break;
+                                                case 1:
+                                                    Intent shareIntenttwitter = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntenttwitter.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfotwitter = getPackageManager().queryIntentActivities(shareIntenttwitter, 0);
+                                                    for (ResolveInfo resolveInfo : resInfotwitter) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.twitter.android.composer.composeractivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+                                                case 2:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        }
+                        else
+                        {
+                            //Cas ou on a uniquement faceboook
+                            builder.setItems(new CharSequence[]
+                                            {"Facebook", "Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    FacebookSdk.sdkInitialize(getApplicationContext());
+                                                    callbackManager = CallbackManager.Factory.create();
+                                                    shareDialog = new ShareDialog(ViewListActivity2.this);
+                                                    if (ShareDialog.canShow(ShareLinkContent.class)) {
+                                                        LoginManager.getInstance().logInWithReadPermissions(
+                                                                ViewListActivity2.this,
+                                                                Arrays.asList("user_friends"));
+                                                        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                                                                .setContentTitle("GeekProject")
+                                                                .setContentDescription("A commencé à utiliser l'application GeekProject")
+                                                                .setContentUrl(Uri.parse("http://facebook.com"))
+                                                                .build();
+                                                        shareDialog.show(linkContent);
+                                                        _firsttime = false;
+                                                    }
+                                                    break;
+                                                case 1:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                }else {
+                    if (isgoogle == true) {
+                        if (istwitter == true) {
+                            // Cas ou on a google et twitter
+                            builder.setItems(new CharSequence[]
+                                            {"Google +", "Twitter", "Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntent.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                                                    for (ResolveInfo resolveInfo : resInfo) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.google.android.libraries.social.gateway.gatewayactivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+                                                case 1:
+                                                    Intent shareIntenttwitter = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntenttwitter.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfotwitter = getPackageManager().queryIntentActivities(shareIntenttwitter, 0);
+                                                    for (ResolveInfo resolveInfo : resInfotwitter) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.twitter.android.composer.composeractivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+                                                case 2:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        } else {
+                            //Cas ou on a google
+                            builder.setItems(new CharSequence[]
+                                            {"Google +","Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntent.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
+                                                    for (ResolveInfo resolveInfo : resInfo) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.google.android.libraries.social.gateway.gatewayactivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+                                                case 1:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        }
+                    } else {
+                        if (istwitter == true) {
+                            // Cas ou on a juste twitter
+                            builder.setItems(new CharSequence[]
+                                            {"Twitter", "Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    Intent shareIntenttwitter = new Intent(android.content.Intent.ACTION_SEND);
+                                                    shareIntenttwitter.setType("image/jpeg");//("text/plain");
+                                                    List<ResolveInfo> resInfotwitter = getPackageManager().queryIntentActivities(shareIntenttwitter, 0);
+                                                    for (ResolveInfo resolveInfo : resInfotwitter) {
+                                                        String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
+                                                        Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                                                        targetedShareIntent.setType("image/jpeg");
+                                                        if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.twitter.android.composer.composeractivity")) {
+                                                            System.out.println("google plus");
+                                                            targetedShareIntent.setPackage(packageName);
+                                                            targetedShareIntent.setClassName(
+                                                                    resolveInfo.activityInfo.packageName,
+                                                                    resolveInfo.activityInfo.name);
+                                                            String message = "J'ai commencé à utiliser l'application GeekProject";
+                                                            targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
+                                                            startActivity(targetedShareIntent);
+                                                        }
+                                                    }
+                                                    _firsttime = false;
+                                                    break;
+                                                case 1:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        } else {
+                            //Cas ou on a aucun réseau
+                            builder.setItems(new CharSequence[]
+                                            {"Non"},
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
+                                                    main.putExtra("profile", _profile);
+                                                    main.putExtra("activite", "ViewListActivity");
+                                                    ViewListActivity2.this.finish();
+                                                    startActivity(main);
+                                                    break;
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+                }
+                builder.create().show();
             }
             else
             {

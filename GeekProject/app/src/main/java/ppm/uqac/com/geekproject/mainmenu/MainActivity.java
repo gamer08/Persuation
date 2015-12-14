@@ -164,23 +164,18 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
         iB1.setVisibility(View.INVISIBLE);
         iB2.setVisibility(View.INVISIBLE);
         iB3.setVisibility(View.INVISIBLE);
-
-        ArrayList<String> wantedPackage = new ArrayList<>();
-        List<Intent> targetedShareIntents = new ArrayList<Intent>();
         Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
         shareIntent.setType("image/jpeg");//("text/plain");
         List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
         for (ResolveInfo resolveInfo : resInfo) {
-            System.out.println(resolveInfo.activityInfo.name);
             if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.google.android.libraries.social.gateway.gatewayactivity")) {
                 iB1.setVisibility(View.VISIBLE);
             }
             else  if (TextUtils.equals(resolveInfo.activityInfo.packageName.toLowerCase(),"com.facebook.katana")) {
                 iB2.setVisibility(View.VISIBLE);
-            } else  if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.twitter.android.composer.ComposerActivity")) {
+            } else  if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.twitter.android.composer.composeractivity")) {
                 iB3.setVisibility(View.VISIBLE);
             }
-
         }
 
 
@@ -196,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                     String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
                     Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
                     targetedShareIntent.setType("image/jpeg");
-                    if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(),"com.google.android.libraries.social.gateway.gatewayactivity")) {
+                    if (TextUtils.equals(resolveInfo.activityInfo.name.toLowerCase(), "com.google.android.libraries.social.gateway.gatewayactivity")) {
                         System.out.println("google plus");
                         targetedShareIntent.setPackage(packageName);
                         targetedShareIntent.setClassName(
@@ -243,15 +238,18 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
                 shareIntent.setType("image/jpeg");//("text/plain");
                 List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(shareIntent, 0);
                 for (ResolveInfo resolveInfo : resInfo) {
+                    System.out.println(resolveInfo.resolvePackageName);
                     String packageName = resolveInfo.activityInfo.packageName.toLowerCase();
                     Intent targetedShareIntent = new Intent(android.content.Intent.ACTION_SEND);
                     targetedShareIntent.setType("image/jpeg");
                     if (TextUtils.equals(resolveInfo.activityInfo.name, "com.twitter.android.composer.ComposerActivity")) {
+                        System.out.println("sdsd " + resolveInfo.activityInfo.packageName);
+                        System.out.println("sdsd 2   " + resolveInfo.activityInfo.name);
                         targetedShareIntent.setPackage(packageName);
                         targetedShareIntent.setClassName(
                                 resolveInfo.activityInfo.packageName,
                                 resolveInfo.activityInfo.name);
-                        String message = "Par rapport aux geeks, je suis "+_profile.getType()+" et je suis de niveau "+_profile.getLevel();
+                        String message = "Par rapport aux geeks, je suis " + _profile.getType() + " et je suis de niveau " + _profile.getLevel();
                         targetedShareIntent.putExtra(Intent.EXTRA_TEXT, message);
                         targetedShareIntents.add(targetedShareIntent);
                         wantedPackage.remove(packageName);
@@ -339,6 +337,13 @@ public class MainActivity extends AppCompatActivity implements GADialog.dialogDo
     protected void onDestroy() {
         super.onDestroy();
         Log.i("MaintActivity", "onDestroy");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("MaintActivity", "onResume");
+        this.socialNetwork();
     }
 
     /*
