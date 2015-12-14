@@ -1,6 +1,7 @@
 package ppm.uqac.com.geekproject.profile;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,7 +33,6 @@ public class CreationProfileActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Toast.makeText(this, "CreationProfileA.onCreate", Toast.LENGTH_SHORT).show();
 
         _saveListener = new View.OnClickListener()
         {
@@ -51,6 +51,15 @@ public class CreationProfileActivity extends AppCompatActivity
 
         _saveButton = (Button) findViewById(R.id.BTN_Save);
         _saveButton.setOnClickListener(_saveListener);
+
+        Typeface typeFace= Typeface.createFromAsset(getAssets(), "octapost.ttf");
+
+        TextView tv = (TextView) findViewById(R.id.TVL_Score);
+        TextView tv2 = (TextView) findViewById(R.id.TV_Score);
+        _userName.setTypeface(typeFace);
+        _score.setTypeface(typeFace);
+        tv.setTypeface(typeFace);
+        tv2.setTypeface(typeFace);
 
         Intent intent = getIntent();
         if (intent != null)

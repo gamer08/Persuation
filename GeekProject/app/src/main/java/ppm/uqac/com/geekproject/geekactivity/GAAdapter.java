@@ -2,6 +2,7 @@ package ppm.uqac.com.geekproject.geekactivity;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -116,6 +117,18 @@ public class GAAdapter extends BaseAdapter
             cb_activity.setChecked(true);
             cb_activity.setEnabled(false);
         }
+
+        // Font
+
+        // Font
+        Typeface typeFace= Typeface.createFromAsset(mContext.getAssets(), "octapost.ttf");
+        tv_description.setTypeface(typeFace);
+        tv_url.setTypeface(typeFace);
+        tv_name.setTypeface(typeFace);
+        tv_level.setTypeface(typeFace);
+        tv_exp.setTypeface(typeFace);
+        cb_activity.setTypeface(typeFace);
+
         return layoutItem;
     }
 

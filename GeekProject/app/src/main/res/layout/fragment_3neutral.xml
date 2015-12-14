@@ -47,7 +47,7 @@
 
         <TextView
             android:layout_width="265dp"
-            android:layout_height="wrap_content"
+            android:layout_height="61dp"
             android:text="@string/neutral_advice"
             android:id="@+id/neutral_advice"
             android:textStyle="bold"

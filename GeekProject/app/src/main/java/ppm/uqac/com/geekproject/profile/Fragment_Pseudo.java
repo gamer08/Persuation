@@ -86,8 +86,7 @@ public class Fragment_Pseudo extends Fragment {
         final TextView tv = (TextView) rootview.findViewById(R.id.TV_ProgressBarText);
         ProgressBar pb = (ProgressBar) rootview.findViewById(R.id.progress_bar);
 
-        pb.setOnLongClickListener(new OnLongClickListener()
-        {
+        pb.setOnLongClickListener(new OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
 
@@ -102,6 +101,15 @@ public class Fragment_Pseudo extends Fragment {
         _typeTV.setTypeface(typeFace);
         _levelTV.setTypeface(typeFace);
         _userNameET.setTypeface(typeFace);
+
+
+        TextView t1 = (TextView) rootview.findViewById(R.id.TVL_Level);
+        TextView t2 = (TextView) rootview.findViewById(R.id.TVL_Type);
+        TextView t3 = (TextView) rootview.findViewById(R.id.TVL_UserName);
+
+        t1.setTypeface(typeFace);
+        t2.setTypeface(typeFace);
+        t3.setTypeface(typeFace);
 
 
         return rootview;

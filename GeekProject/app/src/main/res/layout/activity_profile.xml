@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/background"
-    android:weightSum="1">
+    android:weightSum="100">
 
 
     <LinearLayout
@@ -24,7 +24,9 @@
             android:textColor="@color/label"
             android:paddingBottom="20dp"
             android:layout_gravity="center_horizontal"
-            android:padding="50dp" />
+            android:padding="50dp"
+            android:layout_weight="30"
+            android:gravity="center_horizontal" />
 
         <TextView
             android:text="lalala"
@@ -40,7 +42,9 @@
             android:textColor="@color/value"
             android:padding="50dp"
             android:layout_gravity="center_horizontal"
-            android:autoText="true" />
+            android:autoText="true"
+            android:layout_weight="30"
+            android:gravity="center_horizontal" />
     </LinearLayout>
 
     <LinearLayout
@@ -63,14 +67,13 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:text="@string/BTN_Create"
             android:id="@+id/BTN_Save"
             android:layout_below="@id/TV_UserName"
             android:layout_alignRight="@id/TV_UserName"
             android:textColor="@color/label"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.11"
             android:textSize="30dp" />
     </LinearLayout>
 

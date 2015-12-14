@@ -111,8 +111,6 @@ public class ViewProfileActivity extends AppCompatActivity implements Navigation
             fm.beginTransaction().replace(R.id.content_frame, new Fragment_Chart()).commit();
         }
 
-        if (id == R.id.photo)
-            fm.beginTransaction().replace(R.id.content_frame, new Fragment_Photo()).commit();
 
         mDL.closeDrawer(GravityCompat.START);
 

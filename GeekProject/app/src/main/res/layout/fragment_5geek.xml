@@ -47,7 +47,7 @@
 
         <TextView
             android:layout_width="265dp"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:text="@string/geek_advice"
             android:id="@+id/geek_advice"
             android:textStyle="bold"

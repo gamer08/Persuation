@@ -3,11 +3,15 @@ package ppm.uqac.com.geekproject.geekactivity;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import ppm.uqac.com.geekproject.R;
 
@@ -43,6 +47,13 @@ public class GADialog extends DialogFragment
         myDialog.setTitle("Avant tout..."); //Pas forcément de mettre un titre
         Button OK= (Button) v.findViewById(R.id.buttonDialog); // on lie un bouton java au bouton défini dans le xml
         OK.setOnClickListener(onOK); // Ajout du click sur le bouton dans un listener
+
+        // Font
+        Typeface typeFace= Typeface.createFromAsset(getActivity().getAssets(), "octapost.ttf");
+
+        OK.setTypeface(typeFace);
+        TextView t = (TextView) v.findViewById(R.id.TV_Dialog);
+        t.setTypeface(typeFace);
         return v;
     }
 

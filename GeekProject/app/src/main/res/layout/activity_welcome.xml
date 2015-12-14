@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context="ppm.uqac.com.geekproject.start.WelcomeActivity"
     android:background="@color/background"
-    android:weightSum="1"
+    android:weightSum="100"
     android:gravity="center">
 
     <ImageView
@@ -17,32 +17,34 @@
         android:layout_height="100dp"
         android:id="@+id/imageView2"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/glasses_green" />
+        android:src="@drawable/glasses_green"
+        android:layout_weight="10" />
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_width="313dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="100"
+        android:layout_weight="50">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="73dp"
             android:text="KEEP"
             android:id="@+id/tv_keep"
             android:layout_gravity="center_horizontal"
             android:textColor="@color/value"
-            android:textSize="100dp" />
+            android:textSize="70dp" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="78dp"
             android:text="CALM"
             android:id="@+id/tv_calm"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.02"
             android:textColor="@color/value"
-            android:textSize="100dp" />
+            android:textSize="70dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -50,9 +52,8 @@
             android:text="AND"
             android:id="@+id/tv_and"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.02"
             android:textColor="@color/value"
-            android:textSize="100dp" />
+            android:textSize="70dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -60,31 +61,21 @@
             android:text="CLICK"
             android:id="@+id/tv_click"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.06"
             android:textColor="@color/value"
-            android:textSize="100dp" />
+            android:textSize="70dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="HERE"
-            android:id="@+id/tv_here"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.04"
-            android:textColor="@color/value"
-            android:textSize="100dp" />
     </LinearLayout>
 
     <ImageView
-        android:layout_width="262dp"
-        android:layout_height="wrap_content"
+        android:layout_width="224dp"
+        android:layout_height="132dp"
         android:text="@string/BTN_WelcomeStart"
         android:id="@+id/button"
         android:onClick="StartQuestionary"
         android:src="@drawable/btn_start"
         android:textColor="@color/value"
-        android:layout_weight="0.10"
         android:layout_gravity="center_horizontal"
         android:textSize="30sp"
-        android:padding="50dp" />
+        android:padding="50dp"
+        android:layout_weight="10" />
 </LinearLayout>

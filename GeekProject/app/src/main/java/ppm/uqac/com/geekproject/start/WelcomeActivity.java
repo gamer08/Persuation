@@ -33,14 +33,12 @@ public class WelcomeActivity extends AppCompatActivity
         TextView tv2 = (TextView) findViewById(R.id.tv_calm);
         TextView tv3 = (TextView) findViewById(R.id.tv_and);
         TextView tv4 = (TextView) findViewById(R.id.tv_click);
-        TextView tv5 = (TextView) findViewById(R.id.tv_here);
 
         ArrayList<TextView> a = new ArrayList<>();
         a.add(tv1);
         a.add(tv2);
         a.add(tv3);
         a.add(tv4);
-        a.add(tv5);
 
         for (TextView t : a)
         {

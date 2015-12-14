@@ -5,6 +5,7 @@ package ppm.uqac.com.geekproject.geeklopedie;
  */
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,14 @@ public class AdapterContent extends BaseAdapter
 
         tv_name.setText(listContent.get(position).get_name());
         tv_description.setText(listContent.get(position).get_description());
+
+
+
+        // Font
+        Typeface typeFace= Typeface.createFromAsset(mContext.getAssets(), "octapost.ttf");
+
+        tv_name.setTypeface(typeFace);
+        tv_description.setTypeface(typeFace);
 
         return layoutItem;
     }
