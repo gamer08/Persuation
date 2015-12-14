@@ -82,13 +82,13 @@
 
         <activity
             android:name=".geekactivity.ViewListActivity2"
-            android:label="@string/title_activity_view_list2"
+            android:label="Liste des Activités"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
 
         <activity
             android:name=".questionary.QuestionarySummaryActivity"
-            android:label="@string/title_activity_questionary_summary" >
+            android:label="Résumé du questionnaire" >
         </activity>
 
         <activity android:name=".profile.ViewProfileActivity"></activity>
